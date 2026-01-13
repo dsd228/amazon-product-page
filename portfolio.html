@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Product Pages Portfolio - 4 Ejemplos Profesionales</title>
+    <meta name="description" content="Portfolio con 4 ejemplos profesionales de fichas de producto Amazon: Paneles Solares, Smartwatch, Zapatillas Deportivas, Monitor 4K">
+    <meta property="og:title" content="Amazon Product Pages - Portfolio Profesional">
+    <meta property="og:description" content="Ejemplos de diseño profesional para vendedores en Amazon">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Amazon+Portfolio">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .header-links a:hover {
+            opacity: 1;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: #667eea;
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* EXAMPLES SECTION */
+        .section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+            text-align: center;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid #667eea;
+        }
+
+        .example-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .example-card.green { border-top-color: #22c55e; }
+        .example-card.blue { border-top-color: #3b82f6; }
+        .example-card.orange { border-top-color: #f97316; }
+        .example-card.black { border-top-color: #1a1a1a; }
+
+        .example-header {
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 60px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .example-card.green .example-header { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+        .example-card.blue .example-header { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); }
+        .example-card.orange .example-header { background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); }
+        .example-card.black .example-header { background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); }
+
+        .example-content {
+            padding: 30px;
+        }
+
+        .example-category {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .example-content h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .example-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .example-specs {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .example-specs li {
+            list-style: none;
+            padding: 4px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .example-specs li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .example-cta {
+            display: inline-block;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .example-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* FEATURES */
+        .features {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .features h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            min-width: 40px;
+        }
+
+        .feature-text h4 {
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .feature-text p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        footer h4 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        footer p, footer a {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            section h2 {
+                font-size: 28px;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-links {
+                display: none;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">🚀 Amazon Product Pages</div>
+            <ul class="header-links">
+                <li><a href="#ejemplos">Ejemplos</a></li>
+                <li><a href="#features">Características</a></li>
+                <li><a href="https://github.com/dsd228/amazon-product-page">GitHub</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Fichas de Producto Amazon Profesionales</h1>
+            <p class="tagline">4 ejemplos completos diseñados para convertir. Templates, datos y mejores prácticas.</p>
+            <div class="hero-cta">
+                <a href="#ejemplos" class="btn btn-primary">Ver Ejemplos</a>
+                <a href="https://github.com/dsd228/amazon-product-page" class="btn btn-secondary">GitHub Repository</a>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Ejemplos Completos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">543+</span>
+                    <span class="stat-label">Reviews Promedio</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">4.8★</span>
+                    <span class="stat-label">Calificación Media</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Responsive</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXAMPLES -->
+    <section class="section" id="ejemplos">
+        <div class="container">
+            <h2>📚 Ejemplos de Productos</h2>
+            <div class="examples-grid">
+                <!-- PANELES SOLARES -->
+                <div class="example-card green">
+                    <div class="example-header">☀️</div>
+                    <div class="example-content">
+                        <span class="example-category">Energía</span>
+                        <h3>Paneles Solares 500W</h3>
+                        <p class="example-description">Panel monocristalino de alta eficiencia (22%) con garantía de 25 años. Perfecto para instalaciones residenciales y reducir costos de energía.</p>
+                        <ul class="example-specs">
+                            <li>500W monocristalino</li>
+                            <li>Eficiencia 22%</li>
+                            <li>25-year warranty</li>
+                            <li>Enfoque: Sostenibilidad + ROI</li>
+                        </ul>
+                        <a href="ejemplos/template-paneles-solares.html" class="example-cta">Ver Ejemplo →</a>
+                    </div>
+                </div>
+
+                <!-- SMARTWATCH -->
+                <div class="example-card blue">
+                    <div class="example-header">⌚</div>
+                    <div class="example-content">
+                        <span class="example-category">Wearable Tech</span>
+                        <h3>Smartwatch FitPulse Pro</h3>
+                        <p class="example-description">Rastreador fitness con monitor cardíaco certificado por FDA, 14 días de batería y 100+ modos deportivos. Para atletas y profesionales activos.</p>
+                        <ul class="example-specs">
+                            <li>892 reviews (4.7★)</li>
+                            <li>FDA-certified heart monitor</li>
+                            <li>14-day battery</li>
+                            <li>Enfoque: Salud + Tecnología</li>
+                        </ul>
+                        <a href="ejemplos/template-smartwatch.html" class="example-cta">Ver Ejemplo →</a>
+                    </div>
+                </div>
+
+                <!-- ZAPATILLAS -->
+                <div class="example-card orange">
+                    <div class="example-header">👟</div>
+                    <div class="example-content">
+                        <span class="example-category">Deportes</span>
+                        <h3>Zapatillas SprintMax Ultra</h3>
+                        <p class="example-description">Zapatilla ultraligera (185g) con placa de carbono, aprobada por IAAF y usada en 47 maratones internacionales. Para corredores competitivos.</p>
+                        <ul class="example-specs">
+                            <li>1,247 reviews (4.8★)</li>
+                            <li>185g ultralight</li>
+                            <li>IAAF approved</li>
+                            <li>Enfoque: Performance + Atletas</li>
+                        </ul>
+                        <a href="ejemplos/template-zapatillas.html" class="example-cta">Ver Ejemplo →</a>
+                    </div>
+                </div>
+
+                <!-- MONITOR 4K -->
+                <div class="example-card black">
+                    <div class="example-header">🖥️</div>
+                    <div class="example-content">
+                        <span class="example-category">Profesional</span>
+                        <h3>Monitor 4K ProDisplay Elite</h3>
+                        <p class="example-description">Monitor 32" 4K con cobertura DCI-P3 98%, calibración de fábrica y USB-C Thunderbolt 3. Para diseñadores, editores y fotógrafos profesionales.</p>
+                        <ul class="example-specs">
+                            <li>543 reviews (4.9★)</li>
+                            <li>Factory-calibrated</li>
+                            <li>DCI-P3 98% color</li>
+                            <li>Enfoque: Precisión + Creativos</li>
+                        </ul>
+                        <a href="ejemplos/template-monitor-4k.html" class="example-cta">Ver Ejemplo →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="features">
+                <h3>✨ Lo que Incluye</h3>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-text">
+                            <h4>Diseño Profesional</h4>
+                            <p>Templates HTML/CSS responsive optimizados para conversión</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-text">
+                            <h4>Datos Estructurados</h4>
+                            <p>Archivos JSON con especificaciones, precios y datos reales</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📝</div>
+                        <div class="feature-text">
+                            <h4>Guías Prácticas</h4>
+                            <p>Contenidos, títulos, bullets y descripciones optimizadas</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-text">
+                            <h4>Mobile First</h4>
+                            <p>Totalmente responsive para celular, tablet y desktop</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-text">
+                            <h4>SEO Optimizado</h4>
+                            <p>Keywords, meta tags y estructura para Amazon A9</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-text">
+                            <h4>Conversión Enfocada</h4>
+                            <p>CTAs claros, trust signals y psicología de compra</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Listo para Empezar?</h2>
+                <p>Clonar el repositorio, personalizar ejemplos y aprender cómo estructurar fichas que vendan.</p>
+                <a href="https://github.com/dsd228/amazon-product-page" class="btn btn-primary">Ir a GitHub Repository</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div>
+                <h4>🚀 Amazon Product Pages</h4>
+                <p>Kit profesional de diseño y contenidos para maximizar conversiones en Amazon.</p>
+            </div>
+            <div>
+                <h4>📚 Recursos</h4>
+                <p><a href="https://github.com/dsd228/amazon-product-page/blob/main/Checklist_Producto_Amazon.md">Checklist 9 Fases</a></p>
+                <p><a href="https://github.com/dsd228/amazon-product-page/blob/main/guia-contenidos-amazon.md">Guía de Contenidos</a></p>
+                <p><a href="https://github.com/dsd228/amazon-product-page">Ver en GitHub</a></p>
+            </div>
+            <div>
+                <h4>💡 Más Info</h4>
+                <p><a href="README.md">README Completo</a></p>
+                <p><a href="https://github.com/dsd228">GitHub dsd228</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Amazon Product Pages | Open Source MIT License</p>
+        </div>
+    </footer>
+</body>
+</html>
