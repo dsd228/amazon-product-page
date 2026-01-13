@@ -413,3 +413,8 @@ Si este proyecto te ayudó a aumentar tus ventas en Amazon, ¡déjanos una ⭐ e
 **Hecho con ❤️ para vendedores que quieren maximizar sus conversiones en Amazon**
 
 *Última actualización: 13 de enero de 2026*
+## Logística Multicanal (MCF)
+
+Este portafolio muestra cómo mantener el checkout en tu sitio y delegar la gestión logística a Amazon con MCF (entregas 2–3 días, inventario unificado, integraciones como Shopify/WooCommerce).
+Guía: mcf.html
+Más info oficial: https://sell.amazon.com/fulfillment-by-amazon/fba-multi-channel
