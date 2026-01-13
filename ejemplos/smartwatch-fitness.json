@@ -1,0 +1,316 @@
+{
+  "producto": {
+    "id": "SMARTWATCH-FIT-PRO-001",
+    "titulo": "Smartwatch Fitness Tracker - Monitor Cardíaco Precisión Médica - GPS Integrado - Batería 14 Días - IP68 Resistente Agua",
+    "marca": "FitPulse",
+    "modelo": "Pro X1",
+    "categoria": "Electrónica > Wearables > Smartwatches",
+    "subcategoria": "Smartwatch deportivo con GPS",
+    "descripcion_corta": "Smartwatch premium con monitor cardíaco preciso, GPS y 14 días de batería para entrenamientos completos",
+    "descripcion_larga": "El FitPulse Pro X1 es el compañero perfecto para atletas serios y fitness enthusiasts que buscan monitoreo de salud preciso, análisis detallado de entrenamientos y notificaciones inteligentes. Con sensor cardíaco de precisión médica, batería de 14 días y diseño resistente al agua, es el único smartwatch que necesitas.",
+    
+    "precio": {
+      "moneda": "USD",
+      "precio_actual": 179.99,
+      "precio_original": 249.99,
+      "descuento_porcentaje": 28,
+      "con_iva": false,
+      "notas": "Incluye correa de silicona + correa deportiva extra"
+    },
+
+    "imagenes": [
+      {
+        "posicion": 1,
+        "tipo": "principal",
+        "url": "https://via.placeholder.com/1000x1000?text=Smartwatch+FitPulse",
+        "alt": "Smartwatch FitPulse Pro X1 - Vista Principal",
+        "descripcion": "Reloj inteligente en muñeca, pantalla AMOLED visible, diseño moderno"
+      },
+      {
+        "posicion": 2,
+        "tipo": "angulo",
+        "url": "https://via.placeholder.com/1000x1000?text=Vista+Lateral",
+        "alt": "Vista lateral del smartwatch",
+        "descripcion": "Perfil mostrando botones y espesor"
+      },
+      {
+        "posicion": 3,
+        "tipo": "uso",
+        "url": "https://via.placeholder.com/1000x1000?text=Corriendo",
+        "alt": "Persona usando smartwatch mientras corre",
+        "descripcion": "Atleta en acción, corriendo con el dispositivo"
+      },
+      {
+        "posicion": 4,
+        "tipo": "detalle",
+        "url": "https://via.placeholder.com/1000x1000?text=Pantalla+Close+Up",
+        "alt": "Detalle de pantalla AMOLED",
+        "descripcion": "Close-up mostrando calidad de pantalla y funciones"
+      },
+      {
+        "posicion": 5,
+        "tipo": "comparacion",
+        "url": "https://via.placeholder.com/1000x1000?text=Comparacion+Bateria",
+        "alt": "Comparación de duración de batería",
+        "descripcion": "Infografía: 14 días vs competencia"
+      },
+      {
+        "posicion": 6,
+        "tipo": "contenido",
+        "url": "https://via.placeholder.com/1000x1000?text=Kit+Correas",
+        "alt": "Kit incluido con correas",
+        "descripcion": "Correa silicona + correa deportiva extra + estuche"
+      },
+      {
+        "posicion": 7,
+        "tipo": "infografia",
+        "url": "https://via.placeholder.com/1000x1000?text=Funciones+Salud",
+        "alt": "Funciones de monitoreo de salud",
+        "descripcion": "Gráfico de todas las funciones: FC, sueño, estrés, etc"
+      }
+    ],
+
+    "bullet_points": [
+      {
+        "numero": 1,
+        "titulo": "Monitor Cardíaco Médicamente Preciso",
+        "descripcion": "Sensor de 8 LED con precisión ±2 bpm, detecta arritmias y variabilidad cardíaca, FDA registrado para monitoreo de salud"
+      },
+      {
+        "numero": 2,
+        "titulo": "Batería de 14 Días",
+        "descripcion": "La batería más larga en smartwatches premium, 2 semanas sin cargar, GPS integrado que no consume batería excesiva"
+      },
+      {
+        "numero": 3,
+        "titulo": "GPS+GLONASS+Galileo",
+        "descripcion": "Triple sistema de posicionamiento para precisión de ruta en cualquier lugar, perfecto para correr, ciclismo, senderismo"
+      },
+      {
+        "numero": 4,
+        "titulo": "100+ Modos de Deporte",
+        "descripcion": "Detección automática de actividad: corrida, ciclismo, natación, yoga, pesas, deportes de equipo y más"
+      },
+      {
+        "numero": 5,
+        "titulo": "Monitoreo Completo de Salud",
+        "descripcion": "Oxígeno en sangre (SpO2), calidad de sueño, estrés, ciclos menstruales, respiración, análisis de recuperación"
+      },
+      {
+        "numero": 6,
+        "titulo": "Resistencia Extrema IP68",
+        "descripcion": "Sumergible hasta 50 metros, resistente a polvo, sudor, lluvia, perfecto para entrenamientos intensos y acuáticos"
+      },
+      {
+        "numero": 7,
+        "titulo": "Notificaciones y Control",
+        "descripcion": "Llamadas, mensajes, email, redes sociales en la muñeca, controla música, cámara y pagos NFC integrado"
+      }
+    ],
+
+    "especificaciones_tecnicas": {
+      "pantalla": "AMOLED 1.4 pulgadas (454x454px)",
+      "tipo_cristal": "Gorilla Glass 5 con recubrimiento oleofóbico",
+      "procesador": "Snapdragon Wear 4100+",
+      "ram": "1GB",
+      "almacenamiento": "8GB",
+      "sensores": [
+        "Monitor cardíaco de 8 LED",
+        "GPS + GLONASS + Galileo",
+        "Acelerómetro de 6 ejes",
+        "Giroscopio",
+        "Brújula",
+        "Barómetro",
+        "Termómetro",
+        "Sensor de saturación oxígeno (SpO2)"
+      ],
+      "conectividad": "Bluetooth 5.2, WiFi 802.11 b/g/n, NFC",
+      "bateria_capacidad": "500 mAh",
+      "bateria_autonomia": "14 días (uso normal), 8-9 días (GPS activo)",
+      "tiempo_carga": "1 hora (cargador magnético)",
+      "resistencia": "IP68 (sumergible 50m)",
+      "temperatura_operacion": "-10°C a +45°C",
+      "dimensiones": "45.8 x 45.8 x 11.4 mm",
+      "peso": "43g (sin correa)",
+      "materiales": "Aleación aluminio + vidrio + acero inoxidable",
+      "compatibilidad": "iOS 13.2+ / Android 6.0+",
+      "sistema_operativo": "Wear OS 3.1 (Google)",
+      "certificaciones": "FDA, CE, IP68, FCC"
+    },
+
+    "funciones_principales": {
+      "monitoreo_cardiaco": "Tiempo real 24/7, detección de arritmias, alerta de FC anormal",
+      "rastreo_sueño": "Análisis profundo REM/No-REM, sugerencias de mejora",
+      "gps_deportes": "100+ modos deportivos, rutas guardadas, competencias virtuales",
+      "spO2": "Monitoreo oxígeno en sangre, análisis nocturno automático",
+      "estrés": "Indicador de estrés en tiempo real, ejercicios de respiración guiados",
+      "salud_reproductiva": "Predicción de ciclo menstrual, seguimiento de síntomas",
+      "pago_nfc": "Google Pay integrado, pagos sin contacto",
+      "llamadas": "Llamadas directas desde el reloj (altavoz + micrófono)",
+      "musica": "Almacenamiento 8GB para música offline",
+      "mapas": "Google Maps integrado con navegación voz"
+    },
+
+    "contenido_paquete": [
+      "1x Smartwatch FitPulse Pro X1",
+      "1x Correa de silicona original (negra)",
+      "1x Correa deportiva extra (roja)",
+      "1x Cargador magnético USB-C",
+      "1x Protector de pantalla (2x)",
+      "1x Estuche premium de presentación",
+      "1x Manual de usuario en español",
+      "1x Tarjeta de garantía",
+      "Acceso premium a app FitPulse por 3 meses",
+      "Soporte técnico 24/7"
+    ],
+
+    "compatibilidad_correas": [
+      "Correas de silicona (múltiples colores)",
+      "Correas deportivas transpirables",
+      "Correas de cuero premium",
+      "Correas de acero inoxidable",
+      "Correas de tela tejida"
+    ],
+
+    "garantia": {
+      "duracion_anos": 1.5,
+      "cobertura": "Defectos de fabricación, batería, sensores",
+      "cobertura_extendida": "Daño accidental por $29.99 (4 años totales)",
+      "garantia_bateria": "80% capacidad después de 1 año",
+      "reparacion": "Cambio de batería gratuito dentro de garantía",
+      "proceso": "Envío prepagado + reparación + devolución",
+      "transferible": false
+    },
+
+    "palabras_clave": [
+      "smartwatch",
+      "fitness tracker",
+      "reloj inteligente",
+      "monitor cardiaco",
+      "GPS deportivo",
+      "smartwatch con GPS",
+      "reloj deportivo",
+      "wearable fitness",
+      "monitor de salud",
+      "smartwatch 14 dias bateria",
+      "reloj para correr",
+      "monitor de actividad",
+      "tracker de ejercicio",
+      "reloj inteligente deportivo",
+      "dispositivo portátil salud"
+    ],
+
+    "calificaciones": {
+      "promedio": 4.7,
+      "sobre": 5,
+      "total_resenas": 892,
+      "distribucion": {
+        "5_estrellas": 762,
+        "4_estrellas": 98,
+        "3_estrellas": 25,
+        "2_estrellas": 5,
+        "1_estrella": 2
+      },
+      "resenas_destacadas": [
+        "La batería es increíble, realmente dura 2 semanas",
+        "Monitor cardíaco muy preciso, mejor que mi anterior smartwatch",
+        "Excelente para correr, GPS muy exacto",
+        "Pantalla AMOLED hermosa y responsiva",
+        "Calidad premium a precio justo"
+      ]
+    },
+
+    "promociones": {
+      "activa": true,
+      "tipo": "descuento_porcentaje",
+      "valor": 28,
+      "codigo_cupon": "FITPRO20",
+      "descuento_cupon": 0.20,
+      "descripcion": "20% adicional con código FITPRO20 (máximo $50)",
+      "fecha_inicio": "2026-01-13",
+      "fecha_fin": "2026-02-13",
+      "stock_limitado": true,
+      "unidades_disponibles": 120,
+      "oferta_extra": "Correa extra gratis + 3 meses acceso premium + Protectores pantalla incluidos"
+    },
+
+    "envio": {
+      "gratuito": true,
+      "tiempo_entrega": "3-5 dias",
+      "cobertura": "Todo el país",
+      "seguimiento": true,
+      "asegurado": true,
+      "seguro_cobertura": "$250 USD",
+      "embalaje": "Caja premium con espuma protectora"
+    },
+
+    "seo": {
+      "meta_description": "Smartwatch FitPulse Pro X1 - Monitor cardíaco preciso, GPS, 14 días batería, IP68 - Reloj inteligente deportivo premium",
+      "url_amigable": "smartwatch-fitpulse-pro-x1-monitor-cardiaco-gps",
+      "tags": ["smartwatch", "fitness-tracker", "gps", "monitor-cardiaco", "deportivo"],
+      "long_tail_keywords": [
+        "smartwatch con mejor bateria",
+        "reloj inteligente para corredores",
+        "fitness tracker con GPS preciso",
+        "smartwatch con monitor cardiaco FDA",
+        "reloj deportivo 14 dias bateria",
+        "mejor smartwatch relacion precio"
+      ]
+    },
+
+    "audiencia_objetivo": {
+      "perfil_1": {
+        "nombre": "Deportista Serio",
+        "edad": "25-40 años",
+        "actividad": "Corre, ciclismo, entrenamientos",
+        "motivacion": "Monitoreo preciso, análisis de rendimiento",
+        "presupuesto": "150-250 USD"
+      },
+      "perfil_2": {
+        "nombre": "Health Conscious",
+        "edad": "35-55 años",
+        "actividad": "Actividades moderadas, yoga, caminar",
+        "motivacion": "Monitoreo de salud, seguimiento diario",
+        "presupuesto": "100-200 USD"
+      },
+      "perfil_3": {
+        "nombre": "Tech Enthusiast",
+        "edad": "18-35 años",
+        "actividad": "Todos los deportes, gaming",
+        "motivacion": "Características premium, estatus",
+        "presupuesto": "150-300 USD"
+      }
+    },
+
+    "ventajas_competitivas": {
+      "bateria": "14 días vs 5-7 días competencia",
+      "precio": "28% menos que marcas similares",
+      "precision_cardiaca": "FDA registrado vs solo estimación",
+      "bateria_costo": "$0.01/día vs $0.05 competencia",
+      "garantia_extendida": "Opción de 4 años con protección"
+    },
+
+    "objeciones_frecuentes": [
+      {
+        "objecion": "¿Es tan preciso como un monitor cardíaco profesional?",
+        "respuesta": "FDA registrado con precisión ±2 bpm. Perfecto para deportistas, aunque monitores profesionales ofrecen precisión superior"
+      },
+      {
+        "objecion": "¿Realmente dura 14 días?",
+        "respuesta": "Sí, en modo normal. Con GPS activado continuamente, 8-9 días. Depende de uso"
+      },
+      {
+        "objecion": "¿Es resistente al agua para natación?",
+        "respuesta": "Sí, IP68 permite buceo hasta 50 metros. Perfecto para piscina y mar"
+      },
+      {
+        "objecion": "¿Funciona con iPhone y Android?",
+        "respuesta": "Sí, compatible con iOS 13.2+ y Android 6.0+. Todas las funciones en ambos sistemas"
+      },
+      {
+        "objecion": "¿Puedo hacer llamadas?",
+        "respuesta": "Sí, tiene micrófono y altavoz. Puedes recibir/hacer llamadas directas desde el reloj"
+      }
+    ]
+  }
+}
