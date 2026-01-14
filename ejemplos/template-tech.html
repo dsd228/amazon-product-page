@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla TECH - Amazon Product Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4f9;
+            color: #1a1a1a;
+        }
+
+        .navbar {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #1976d2;
+        }
+
+        .navbar-brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1976d2;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-link {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .navbar-link:hover {
+            color: #1976d2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .product-header h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .product-header p {
+            font-size: 18px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .product-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 50px 40px;
+        }
+
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f5f5f5 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #bbdefb;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .thumbnail {
+            aspect-ratio: 1/1;
+            background: #f5f5f5;
+            border-radius: 12px;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .thumbnail:hover {
+            border-color: #1976d2;
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .stars {
+            font-size: 18px;
+            color: #ffc107;
+        }
+
+        .price-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f5f5f5 100%);
+            padding: 24px;
+            border-radius: 14px;
+            border-left: 5px solid #1976d2;
+        }
+
+        .price-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .price-current {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1976d2;
+            margin: 12px 0;
+            letter-spacing: -1px;
+        }
+
+        .price-original {
+            font-size: 16px;
+            text-decoration: line-through;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .discount-badge {
+            display: inline-block;
+            background: #1976d2;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 16px 24px;
+            font-size: 15px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(25, 118, 210, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1976d2;
+            border: 2px solid #1976d2;
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f4f9;
+        }
+
+        .features {
+            background: #f5f5f5;
+            padding: 24px;
+            border-radius: 14px;
+            border-left: 5px solid #1976d2;
+        }
+
+        .features h3 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .features ul {
+            list-style: none;
+        }
+
+        .features li {
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 500;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1976d2;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .full-description {
+            padding: 50px 40px;
+            background: #f5f5f5;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .full-description h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .full-description p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tech-specs {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .tech-specs h4 {
+            color: #0d47a1;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .tech-specs p {
+            color: #555;
+            margin: 6px 0;
+            font-size: 14px;
+        }
+
+        .footer {
+            background: #1976d2;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #bbdefb;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 20px 40px 0;
+            padding: 10px 20px;
+            background: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+        }
+
+        .back-button:hover {
+            background: #0d47a1;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .product-content {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .product-header h1 {
+                font-size: 24px;
+            }
+
+            .price-current {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">⌚ Tech Template</div>
+        <a class="navbar-link" onclick="history.back()">← Volver</a>
+    </div>
+
+    <div class="container">
+        <div class="product-header">
+            <h1>Smartwatch Ultra Pro 5</h1>
+            <p>Tecnología Wearable de Vanguardia • Monitoreo de Salud 24/7</p>
+        </div>
+
+        <div class="product-content">
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="https://via.placeholder.com/500x500?text=Smartwatch" alt="Producto">
+                </div>
+                <div class="thumbnails">
+                    <div class="thumbnail">
+                        <img src="https://via.placeholder.com/100x100?text=Vista+1" alt="Vista 1">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://via.placeholder.com/100x100?text=Vista+2" alt="Vista 2">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://via.placeholder.com/100x100?text=Pantalla" alt="Pantalla">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://via.placeholder.com/100x100?text=Uso" alt="En uso">
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="rating">
+                    <div class="stars">★★★★★</div>
+                    <div>5.0/5 (892 reseñas)</div>
+                </div>
+
+                <div class="price-section">
+                    <div class="price-label">Precio</div>
+                    <div>
+                        <span class="price-current">$249.99</span>
+                        <span class="discount-badge">-20%</span>
+                    </div>
+                    <div class="price-original">Precio original: $312.99</div>
+                </div>
+
+                <div class="buttons">
+                    <button class="btn btn-primary">🛒 Comprar Ahora</button>
+                    <button class="btn btn-secondary">❤️ Favoritos</button>
+                </div>
+
+                <div class="features">
+                    <h3>✓ Características Avanzadas</h3>
+                    <ul>
+                        <li><strong>Pantalla AMOLED:</strong> Brillo automático hasta 1000 nits con tecnología siempre activa</li>
+                        <li><strong>Procesador Octa-Core:</strong> Snapdragon 5G para máximo rendimiento</li>
+                        <li><strong>Monitoreo de Salud:</strong> ECG, SpO2, ritmo cardíaco con IA médica certificada</li>
+                        <li><strong>Batería 7 Días:</strong> Carga rápida con 10 minutos de uso 24 horas</li>
+                        <li><strong>Resistencia 10 ATM:</strong> A prueba de agua para buceo hasta 100 metros</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="full-description">
+            <h2>Descripción Técnica</h2>
+            
+            <p>
+                El <strong>Smartwatch Ultra Pro 5</strong> redefinirá tu relación con la tecnología wearable. Con procesador de última generación 
+                y pantalla AMOLED de 1.4", ofrece una experiencia de usuario incomparable, perfecta para profesionales 
+                y atletas que exigen lo mejor.
+            </p>
+
+            <p>
+                <strong>Diferenciadores Clave:</strong> El único smartwatch con certificación médica FDA para monitoreo de ECG, 
+                conectividad 5G independiente (sin smartphone), y batería de 7 días con un solo viaje de carga. 
+                Todo respaldado con 2 años de garantía premium.
+            </p>
+
+            <div class="tech-specs">
+                <h4>📱 Especificaciones Técnicas</h4>
+                <p><strong>Procesador:</strong> Snapdragon Wear 5100+ | <strong>RAM:</strong> 2GB | <strong>Almacenamiento:</strong> 16GB</p>
+                <p><strong>Pantalla:</strong> AMOLED 1.4" (454x454px) | <strong>Batería:</strong> 500mAh (7 días) | <strong>Peso:</strong> 51g</p>
+                <p><strong>Sensores:</strong> GPS, Brújula, Acelerómetro, Giroscopio, Altímetro, Sensor de luz</p>
+                <p><strong>Conectividad:</strong> WiFi 6E, Bluetooth 5.3, 5G, NFC | <strong>Resistencia:</strong> 10 ATM + Gorilla Glass</p>
+            </div>
+
+            <h3 style="margin-top: 30px; margin-bottom: 15px;">¿Qué Incluye?</h3>
+            <p>Smartwatch Ultra Pro 5 • 4 Correas de silicona intercambiables • Cable USB-C de carga rápida • Protector de pantalla tempered glass • Garantía 2 años • Soporte técnico 24/7</p>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="#">Soporte Técnico</a>
+                <a href="#">Garantía</a>
+                <a href="#">Contacto</a>
+            </div>
+            <p>© 2026 Tech Templates | Innovación en cada pixel</p>
+        </div>
+    </div>
+
+    <a href="../" class="back-button">← Volver al Component Book</a>
+</body>
+</html>

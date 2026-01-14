@@ -5,15 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Templates Profesionales - Aumenta tus Ventas +127% | Desde $49</title>
     <meta name="description" content="Templates profesionales de fichas que convierten. +127% de ventas vs fichas básicas. Garantía 30 días. Desde $49. Entrega inmediata.">
+    <meta name="theme-color" content="#C9A646">
+    <meta name="author" content="David Díaz">
+    <meta name="keywords" content="templates, amazon, ventas, e-commerce, diseño profesional">
+    <link rel="canonical" href="https://github.com/dsd228/amazon-product-page">
+    <meta property="og:title" content="Templates Profesionales - Aumenta tus Ventas +127%">
+    <meta property="og:description" content="Templates profesionales de fichas que convierten. Garantía 30 días. Desde $49.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Templates Profesionales - Aumenta tus Ventas +127%">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <style>
         * { margin:0; padding:0; box-sizing:border-box }
+        
+        /* Accesibilidad: Focus states mejorados */
+        *:focus-visible {
+            outline: 3px solid #C9A646;
+            outline-offset: 2px;
+        }
+        
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #1C2A3A 0%, #2E2E2E 100%);
             color: #E8E8E8;
             overflow-x: hidden;
+            line-height: 1.6;
         }
+
+        /* SISTEMA DE ICONOS SVG MINIMALISTA */
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .icon-sm { width: 16px; height: 16px; }
+        .icon-md { width: 20px; height: 20px; }
+        .icon-lg { width: 24px; height: 24px; }
+        .icon-xl { width: 32px; height: 32px; }
+        .icon-gold { color: #C9A646; }
+        .icon-light { color: #B8B8B8; }
+        .icon-white { color: #E8E8E8; }
 
         /* HEADER SIMPLIFICADO */
         .header {
@@ -105,16 +141,24 @@
         }
         .stat-item {
             text-align: center;
+            padding: 12px 0;
         }
         .stat-number {
             font-size: 32px;
             font-weight: bold;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             color: #C9A646;
+            margin-bottom: 6px;
         }
         .stat-label {
             font-size: 13px;
-            opacity: 0.9;
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #B8B8B8;
         }
         .hero-cta-row {
             display: flex;
@@ -132,7 +176,15 @@
             cursor: pointer;
             border: none;
             transition: all 0.3s;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 0.3px;
+        }
+        .btn:focus-visible {
+            outline: 3px solid #C9A646;
+            outline-offset: 2px;
         }
         .btn-primary {
             background: #C9A646;
@@ -144,6 +196,9 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 22px rgba(201, 166, 70, 0.45);
         }
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
         .btn-secondary {
             background: transparent;
             color: #C9A646;
@@ -152,6 +207,9 @@
         .btn-secondary:hover {
             background: #C9A646;
             color: #1C2A3A;
+        }
+        .btn-secondary:active {
+            background: #B8941F;
         }
         .hero-badges {
             display: flex;
@@ -165,7 +223,431 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            padding: 8px 0;
+            color: #B8B8B8;
+            letter-spacing: 0.2px;
         }
+        .badge-item .icon { color: #C9A646 }
+
+        /* STYLEBOOK */
+        .stylebook {
+            background: linear-gradient(135deg, #1C2A3A 0%, #2E2E2E 100%);
+            padding: 80px 20px;
+        }
+        .stylebook-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .stylebook-intro .eyebrow {
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #C9A646;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .stylebook-intro h2 {
+            font-size: 36px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            color: #E8E8E8;
+        }
+        .stylebook-intro p {
+            color: #B8B8B8;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .style-toggle-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 26px 0 14px;
+        }
+        .style-toggle {
+            border: 1px solid #3A3A3A;
+            background: #2E2E2E;
+            color: #B8B8B8;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 8px 8px 16px rgba(26, 26, 26, 0.4), -6px -6px 14px rgba(58, 58, 58, 0.2);
+        }
+        .style-toggle:hover { transform: translateY(-2px); }
+        .style-toggle.active {
+            border-color: #C9A646;
+            background: #3A3A3A;
+            color: #C9A646;
+            box-shadow: inset 6px 6px 12px rgba(26, 26, 26, 0.5), inset -6px -6px 12px rgba(90, 90, 90, 0.3), 0 8px 18px rgba(201, 166, 70, 0.2);
+        }
+        .style-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+        .style-highlight {
+            background: #2E2E2E;
+            padding: 15px 16px;
+            border-radius: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #B8B8B8;
+            box-shadow: 8px 8px 16px rgba(26, 26, 26, 0.4), -6px -6px 14px rgba(58, 58, 58, 0.2);
+            border-left: 3px solid #C9A646;
+            transition: all 0.2s ease;
+        }
+        .style-highlight:hover {
+            border-left-color: #E8E8E8;
+            transform: translateX(4px);
+        }
+        .style-highlight .icon-box {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #C9A646;
+            margin-top: 2px;
+        }
+        .style-highlight strong {
+            color: #E8E8E8;
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .style-highlight span {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .stylebook-preview {
+            background: #2E2E2E;
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 14px 14px 28px rgba(26, 26, 26, 0.5), -10px -10px 24px rgba(58, 58, 58, 0.3);
+        }
+        .style-preview-stack {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .style-extra-card {
+            margin-top: 18px;
+            background: #2E2E2E;
+            border: 1px solid #3A3A3A;
+            border-radius: 14px;
+            padding: 18px;
+            color: #B8B8B8;
+            display: grid;
+            gap: 10px;
+            align-items: start;
+            box-shadow: 10px 10px 20px rgba(26, 26, 26, 0.4), -8px -8px 16px rgba(58, 58, 58, 0.2);
+        }
+        .style-extra-card h4 { margin: 0; font-size: 17px; color: #C9A646 }
+        .style-extra-card p { margin: 0; font-size: 14px; color: #B8B8B8; line-height: 1.6 }
+        .style-extra-card .tag-row { display: flex; gap: 8px; flex-wrap: wrap }
+        .style-extra-card .tag {
+            padding: 6px 10px;
+            background: #3A3A3A;
+            border-radius: 999px;
+            font-size: 12px;
+            color: #9A9A9A;
+            box-shadow: inset 4px 4px 8px rgba(26, 26, 26, 0.3), inset -4px -4px 8px rgba(58, 58, 58, 0.2);
+        }
+        .style-extra-card .btn-mini {
+            justify-self: flex-start;
+            background: #C9A646;
+            color: #1C2A3A;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 13px;
+            box-shadow: 0 6px 14px rgba(201, 166, 70, 0.3);
+            transition: all 0.2s ease;
+        }
+        .style-extra-card .btn-mini:hover { background: #B8941F; transform: translateY(-2px) }
+        .style-preview {
+            background: #2E2E2E;
+            border: 1px solid #3A3A3A;
+            border-left: 4px solid #5C6F82;
+            border-radius: 14px;
+            padding: 16px;
+            color: #B8B8B8;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0.65;
+            transform: translateY(6px);
+            transition: all 0.25s ease;
+            box-shadow: 8px 8px 16px rgba(26, 26, 26, 0.4), -6px -6px 14px rgba(58, 58, 58, 0.2);
+        }
+        .style-preview.active {
+            opacity: 1;
+            transform: translateY(-2px);
+            border-left-color: #C9A646;
+            box-shadow: inset 8px 8px 16px rgba(26, 26, 26, 0.4), inset -8px -8px 14px rgba(58, 58, 58, 0.2), 0 10px 24px rgba(201, 166, 70, 0.15);
+        }
+        .style-preview .device-badge {
+            align-self: flex-start;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: #3A3A3A;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: #9A9A9A;
+            box-shadow: inset 4px 4px 8px rgba(26, 26, 26, 0.3), inset -4px -4px 8px rgba(58, 58, 58, 0.2);
+        }
+        .style-preview h4 { margin: 4px 0 0; font-size: 16px; color: #E8E8E8 }
+        .style-preview p { margin: 0; color: #B8B8B8; font-size: 14px; line-height: 1.5 }
+        .style-preview .preview-window {
+            background: #1C2A3A;
+            border: 1px solid #3A3A3A;
+            border-radius: 12px;
+            padding: 12px;
+            min-height: 120px;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            gap: 6px;
+            box-shadow: inset 6px 6px 12px rgba(26, 26, 26, 0.4), inset -4px -4px 10px rgba(58, 58, 58, 0.2);
+        }
+        .preview-bar {
+            background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
+            height: 10px;
+            border-radius: 999px;
+            opacity: 0.9;
+        }
+        .preview-bar.alt { background: linear-gradient(135deg, #C9A646 0%, #B8941F 100%) }
+        .preview-bar.dark { background: linear-gradient(135deg, #6A1B2D 0%, #0F3D3E 100%); opacity: 0.85 }
+
+        /* STYLE DESIGNER */
+        .style-designer {
+            background: linear-gradient(135deg, #2E2E2E 0%, #1C2A3A 100%);
+            color: #E8E8E8;
+            padding: 70px 20px;
+        }
+        .style-designer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+        }
+        .sd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .sd-card {
+            background: #2E2E2E;
+            border: 1px solid #3A3A3A;
+            border-radius: 14px;
+            padding: 18px;
+            display: grid;
+            gap: 12px;
+            box-shadow: 10px 10px 20px rgba(26, 26, 26, 0.4), -8px -8px 16px rgba(58, 58, 58, 0.2);
+            border-left: 4px solid #C9A646;
+        }
+        .sd-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sd-title {
+            margin: 0;
+            font-size: 18px;
+            color: #E8E8E8;
+        }
+        .sd-sub {
+            margin: 0;
+            color: #9A9A9A;
+            font-size: 13px;
+        }
+        .sd-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #C9A646;
+            font-weight: 800;
+        }
+        .sd-swatches {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .sd-swatch {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            border: 1px solid #3A3A3A;
+            box-shadow: inset 6px 6px 12px rgba(26, 26, 26, 0.35), inset -6px -6px 12px rgba(58, 58, 58, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #E8E8E8;
+            font-weight: 700;
+        }
+        .sd-list {
+            display: grid;
+            gap: 6px;
+            margin: 6px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        .sd-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #B8B8B8;
+            font-size: 13px;
+        }
+        .sd-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: #3A3A3A;
+            color: #C9A646;
+            font-size: 12px;
+            box-shadow: inset 4px 4px 8px rgba(26, 26, 26, 0.3), inset -4px -4px 8px rgba(58, 58, 58, 0.2);
+            font-weight: 700;
+        }
+        .sd-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .sd-note {
+            color: #9A9A9A;
+            font-size: 12px;
+        }
+
+        /* SALES STYLES */
+        .sales-styles {
+            background: linear-gradient(135deg, #1C2A3A 0%, #2E2E2E 100%);
+            color: #E8E8E8;
+            padding: 80px 20px;
+        }
+        .sales-styles .container { max-width: 1200px; margin: 0 auto }
+        .sales-header { text-align: center; margin-bottom: 40px }
+        .sales-header h2 { font-size: 34px; margin-bottom: 10px; color: #E8E8E8 }
+        .sales-header p { color: #B8B8B8; font-size: 16px }
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+        .sales-card {
+            background: #2E2E2E;
+            border: 1px solid #3A3A3A;
+            border-radius: 14px;
+            padding: 18px;
+            display: grid;
+            gap: 12px;
+            transition: all 0.25s ease;
+            box-shadow: 10px 10px 20px rgba(26, 26, 26, 0.4), -8px -8px 16px rgba(58, 58, 58, 0.2);
+        }
+        .sales-card:hover {
+            transform: translateY(-4px);
+            box-shadow: inset 8px 8px 14px rgba(26, 26, 26, 0.4), inset -8px -8px 14px rgba(58, 58, 58, 0.2), 0 8px 18px rgba(201, 166, 70, 0.15);
+            border-color: #C9A646;
+        }
+        .sales-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            background: #3A3A3A;
+            color: #C9A646;
+            box-shadow: inset 4px 4px 8px rgba(26, 26, 26, 0.3), inset -4px -4px 8px rgba(58, 58, 58, 0.2);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .sales-card h4 {
+            margin: 0;
+            color: #E8E8E8;
+            font-size: 17px;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+        .sales-card p {
+            margin: 0;
+            color: #B8B8B8;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .sales-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px }
+        .sales-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 10px;
+            background: #3A3A3A;
+            color: #9A9A9A;
+            box-shadow: inset 4px 4px 8px rgba(26, 26, 26, 0.3), inset -4px -4px 8px rgba(58, 58, 58, 0.2);
+        }
+
+        /* AMAZON PLAYBOOK SECTION */
+        .amazon-playbook {
+            background: linear-gradient(135deg, #2E2E2E 0%, #1C2A3A 100%);
+            color: #E8E8E8;
+            padding: 70px 20px;
+        }
+        .amazon-playbook .container { max-width: 1200px; margin: 0 auto }
+        .amazon-header { text-align: center; margin-bottom: 40px }
+        .amazon-header h2 { font-size: 32px; margin-bottom: 12px; color: #C9A646 }
+        .amazon-header p { color: #B8B8B8; font-size: 16px }
+        .amazon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+        .amazon-card {
+            background: #2E2E2E;
+            border: 1px solid #3A3A3A;
+            border-radius: 14px;
+            padding: 18px;
+            display: grid;
+            gap: 10px;
+            box-shadow: 10px 10px 20px rgba(26, 26, 26, 0.4), -8px -8px 16px rgba(58, 58, 58, 0.2);
+        }
+        .amazon-card h4 { margin: 0; font-size: 17px; color: #C9A646 }
+        .amazon-card p { margin: 0; color: #B8B8B8; font-size: 14px; line-height: 1.6 }
+        .amazon-card .tags { display: flex; gap: 8px; flex-wrap: wrap }
+        .amazon-card .tags span {
+            padding: 6px 10px;
+            border-radius: 10px;
+            background: #3A3A3A;
+            color: #9A9A9A;
+            font-size: 12px;
+            box-shadow: inset 4px 4px 8px rgba(26, 26, 26, 0.3), inset -4px -4px 8px rgba(58, 58, 58, 0.2);
+        }
+        .amazon-card .cta-link {
+            color: #C9A646;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .amazon-card .cta-link:hover { color: #E8E8E8 }
 
         /* STYLEBOOK */
         .stylebook {
@@ -240,7 +722,6 @@
             color: #B8B8B8;
             box-shadow: 8px 8px 16px rgba(26, 26, 26, 0.4), -6px -6px 14px rgba(58, 58, 58, 0.2);
         }
-        .style-highlight span { font-size: 18px }
         .stylebook-preview {
             background: #2E2E2E;
             border-radius: 18px;
@@ -468,27 +949,36 @@
             border-left: 4px solid #C9A646;
             text-align: left;
             box-shadow: 8px 8px 16px rgba(26, 26, 26, 0.4), -6px -6px 14px rgba(58, 58, 58, 0.2);
+            transition: all 0.2s ease;
+        }
+        .testimonial:hover {
+            border-left-color: #E8E8E8;
+            transform: translateY(-2px);
         }
         .testimonial-rating {
             color: #C9A646;
             font-size: 18px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
         }
         .testimonial-text {
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: #B8B8B8;
             margin-bottom: 15px;
             font-style: italic;
+            font-weight: 300;
         }
         .testimonial-author {
-            font-weight: bold;
+            font-weight: 600;
             color: #E8E8E8;
             font-size: 14px;
+            margin-bottom: 4px;
         }
         .testimonial-role {
             color: #9A9A9A;
-            font-size: 13px;
+            font-size: 12px;
+            letter-spacing: 0.2px;
         }
 
         /* PROBLEMA-SOLUCIÓN */
@@ -673,12 +1163,16 @@
             padding: 20px;
         }
         .template-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             font-size: 12px;
             font-weight: bold;
             color: #C9A646;
             text-transform: uppercase;
             margin-bottom: 8px;
         }
+        .template-category .icon { color: #C9A646 }
         .template-title {
             font-size: 16px;
             font-weight: bold;
@@ -691,7 +1185,7 @@
             margin: 15px 0;
             font-size: 13px;
         }
-        .stat { display: flex; align-items: center; gap: 5px; color: #666 }
+        .stat { display: flex; align-items: center; gap: 6px; color: #C9A646; font-weight: 700 }
         .template-features {
             font-size: 13px;
             color: #666;
@@ -700,12 +1194,11 @@
         }
         .template-features li {
             list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .template-features li::before {
-            content: '✓ ';
-            color: #0F3D3E;
-            font-weight: bold;
-        }
+        .template-features li::before { content: none }
         .template-price {
             display: flex;
             align-items: center;
@@ -842,13 +1335,9 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: #B8B8B8;
         }
-        .pricing-features li::before {
-            content: '✓';
-            color: #0F3D3E;
-            font-weight: bold;
-            font-size: 16px;
-        }
+        .pricing-features li::before { content: none }
         .pricing-btn {
             width: 100%;
             padding: 15px;
@@ -889,8 +1378,10 @@
             margin: 0 auto;
         }
         .guarantee-icon {
-            font-size: 80px;
+            display: flex;
+            justify-content: center;
             margin-bottom: 20px;
+            color: #C9A646;
         }
         .guarantee h2 {
             font-size: 32px;
@@ -930,6 +1421,8 @@
             transition: all 0.2s;
             color: #B8B8B8;
         }
+        .faq-question .faq-icon { display: flex; align-items: center; }
+        .faq-question .icon { color: #C9A646; }
         .faq-question:hover {
             background: #3A3A3A;
             color: #C9A646;
@@ -1020,7 +1513,9 @@
             font-size: 16px;
         }
         .footer-col a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             color: #9A9A9A;
             text-decoration: none;
             margin-bottom: 10px;
@@ -1055,21 +1550,66 @@
             .header-nav { display: none }
             .stylebook-container { grid-template-columns: 1fr; }
             .style-preview-stack { grid-template-columns: 1fr }
+            
+            /* Mejorar botones en móvil */
+            .btn {
+                padding: 18px 28px;
+                font-size: 15px;
+                min-height: 48px;
+            }
+            
+            .template-card {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+            
+            /* Mejorar FAQ en móvil */
+            .faq-question {
+                padding: 16px;
+                font-size: 15px;
+            }
+            
+            /* Mejorar footer en móvil */
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            /* Mejorar secciones */
+            .hero { padding: 60px 20px }
+            .pricing { padding: 40px 20px }
+            .faq { padding: 40px 20px }
+            
+            /* Mejorar WhatsApp float en móvil */
+            .whatsapp-float {
+                width: 56px;
+                height: 56px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 24px; line-height: 1.3 }
+            .section-header h2 { font-size: 28px }
+            .pricing-price { font-size: 36px }
+            .hero-cta-row { flex-direction: column }
+            .hero-cta-row .btn { width: 100% }
         }
     </style>
 </head>
 <body>
 
     <!-- HEADER -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-content">
-            <div class="logo">🎨 Neumo Lookbook</div>
-            <nav class="header-nav">
-                <a href="#templates">Templates</a>
-                <a href="#pricing">Precios</a>
-                <a href="#faq">FAQ</a>
+            <div class="logo" aria-label="Neumo Lookbook - Plantillas profesionales"><svg class="icon icon-md" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M7 12h10"></path><path d="M12 7v10"></path></svg>Neumo Lookbook</div>
+            <nav class="header-nav" role="navigation" aria-label="Navegación principal">
+                <a href="#templates" title="Ver nuestros templates">Templates</a>
+                <a href="#pricing" title="Ver planes de precios">Precios</a>
+                <a href="#faq" title="Ver preguntas frecuentes">FAQ</a>
             </nav>
-            <a href="#pricing" class="header-cta">Comprar Ahora</a>
+            <a href="#pricing" class="header-cta" title="Ir a sección de compra">Comprar Ahora</a>
         </div>
     </header>
 
@@ -1081,28 +1621,31 @@
             
             <div class="hero-stats">
                 <div class="stat-item">
+                    <svg class="icon icon-lg icon-gold" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
                     <span class="stat-number">+127%</span>
                     <span class="stat-label">Conversión promedio</span>
                 </div>
                 <div class="stat-item">
+                    <svg class="icon icon-lg icon-gold" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     <span class="stat-number">200+</span>
                     <span class="stat-label">Vendedores activos</span>
                 </div>
                 <div class="stat-item">
+                    <svg class="icon icon-lg icon-gold" viewBox="0 0 24 24"><polygon points="12 2 15.09 10.26 23.77 10.26 17.42 15.75 20.51 24 12 18.51 3.49 24 6.58 15.75 0.23 10.26 8.91 10.26 12 2"></polygon></svg>
                     <span class="stat-number">4.9★</span>
                     <span class="stat-label">Calificación media</span>
                 </div>
             </div>
 
             <div class="hero-cta-row">
-                <a href="#templates" class="btn btn-primary">Ver Templates - Desde $49</a>
-                <a href="#pricing" class="btn btn-secondary">Ver Precios</a>
+                <a href="#templates" class="btn btn-primary"><svg class="icon icon-md" viewBox="0 0 24 24"><path d="M9 2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h4M15 2h4a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3h-4M9 7h6M9 13h6M9 19h6"></path></svg>Ver Templates - Desde $49</a>
+                <a href="#pricing" class="btn btn-secondary"><svg class="icon icon-md" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>Ver Precios</a>
             </div>
 
             <div class="hero-badges">
-                <div class="badge-item">✓ Garantía 30 días</div>
-                <div class="badge-item">✓ Entrega inmediata</div>
-                <div class="badge-item">✓ Soporte incluido</div>
+                <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg><span>Garantía 30 días</span></div>
+                <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M3 5h14l4 5-4 5H3l-2-5Z"></path><path d="M7 5v10"></path><path d="M11 5v10"></path></svg><span>Entrega inmediata</span></div>
+                <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 22c-1.5-1.8-2.5-3.6-3-5.2-1-.3-3-.9-3-2.8 0-2.1 1.7-3 3-3.4v-2a3 3 0 0 1 6 0v2c1.3.4 3 1.3 3 3.4 0 1.9-2 2.5-3 2.8-.5 1.6-1.5 3.4-3 5.2Z"></path></svg><span>Soporte incluido</span></div>
             </div>
         </div>
     </section>
@@ -1120,9 +1663,33 @@
                     <button class="style-toggle" data-target="hybrid" type="button" role="tab" aria-selected="false">Landing Híbrida</button>
                 </div>
                 <div class="style-highlights">
-                    <div class="style-highlight"><span>🧭</span><div><strong>Navegación clara</strong><br>Menú compacto y CTA fijo para reducir fricción.</div></div>
-                    <div class="style-highlight"><span>📱</span><div><strong>Mobile-first</strong><br>Bloques verticales optimizados para scroll corto.</div></div>
-                    <div class="style-highlight"><span>🎯</span><div><strong>Story de valor</strong><br>Jerarquía que prioriza pruebas sociales y beneficios.</div></div>
+                    <div class="style-highlight">
+                        <div class="icon-box">
+                            <svg class="icon icon-md" viewBox="0 0 24 24"><line x1="3" y1="9" x2="21" y2="9"></line><polyline points="19 12 21 9 19 6"></polyline><line x1="21" y1="9" x2="9" y2="9"></line><polyline points="5 12 3 9 5 6"></polyline></svg>
+                        </div>
+                        <div>
+                            <strong>Navegación clara</strong>
+                            <span>Menú compacto y CTA fijo para reducir fricción.</span>
+                        </div>
+                    </div>
+                    <div class="style-highlight">
+                        <div class="icon-box">
+                            <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M5 2L5 22M19 2L19 22M2 11H22M2 5H22M2 17H22"></path></svg>
+                        </div>
+                        <div>
+                            <strong>Mobile-first</strong>
+                            <span>Bloques verticales optimizados para scroll corto.</span>
+                        </div>
+                    </div>
+                    <div class="style-highlight">
+                        <div class="icon-box">
+                            <svg class="icon icon-md" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 15 12 12 16"></polyline></svg>
+                        </div>
+                        <div>
+                            <strong>Story de valor</strong>
+                            <span>Jerarquía que prioriza pruebas sociales y beneficios.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1137,7 +1704,7 @@
                             <div class="preview-bar alt"></div>
                             <div class="preview-bar dark"></div>
                         </div>
-                        <div class="sales-meta"><span>✨ Conversión 5.8%</span><span>🖥️ Ratio 16:9</span></div>
+                        <div class="sales-meta"><span><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 2v4"></path><path d="M12 18v4"></path><path d="M4.93 4.93l2.83 2.83"></path><path d="M16.24 16.24l2.83 2.83"></path><path d="M2 12h4"></path><path d="M18 12h4"></path><path d="M4.93 19.07l2.83-2.83"></path><path d="M16.24 7.76l2.83-2.83"></path></svg>Conversión 5.8%</span><span><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 19v2h10v-2"></path></svg>Ratio 16:9</span></div>
                     </div>
 
                     <div class="style-preview" data-mode="mobile">
@@ -1149,7 +1716,7 @@
                             <div class="preview-bar"></div>
                             <div class="preview-bar"></div>
                         </div>
-                        <div class="sales-meta"><span>📱 PWA listo</span><span>⚡ Carga ligera</span></div>
+                        <div class="sales-meta"><span><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M11 18h2"></path></svg>PWA listo</span><span><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z"></path></svg>Carga ligera</span></div>
                     </div>
 
                     <div class="style-preview" data-mode="hybrid">
@@ -1161,7 +1728,7 @@
                             <div class="preview-bar alt"></div>
                             <div class="preview-bar"></div>
                         </div>
-                        <div class="sales-meta"><span>🚀 Ads ready</span><span>🎥 Video slot</span></div>
+                        <div class="sales-meta"><span><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M4 13l2-2h4l2-3 2 6 4-4"></path><path d="M9 14h.01"></path><path d="M15 19a3 3 0 0 1-6 0"></path></svg>Ads ready</span><span><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><polygon points="10 9 15 12 10 15 10 9"></polygon></svg>Video slot</span></div>
                     </div>
                 </div>
                 <div class="style-extra-card">
@@ -1172,7 +1739,133 @@
                     </div>
                     <h4>Playbook Amazon dentro del Lookbook</h4>
                     <p>Centraliza todo lo específico de Amazon (A+, Brand Story, SEO, logística) en un solo lugar. Entra con un clic desde esta card.</p>
-                    <a class="btn-mini" href="#amazon-playbook">Abrir Amazon Playbook</a>
+                    <a class="btn-mini" href="#amazon-playbook" title="Abrir Amazon Playbook">Abrir Amazon Playbook</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STYLE DESIGNER DETAIL -->
+    <section class="style-designer" id="style-designer">
+        <div class="container">
+            <div class="section-header">
+                <h2>Style Designer</h2>
+                <p>Paleta, tipografía, iconografía y micro-sugerencias listas para cada formato: Web, Móvil o Landing híbrida.</p>
+            </div>
+
+            <div class="sd-grid">
+                <div class="sd-card">
+                    <div class="sd-head">
+                        <svg class="icon icon-lg icon-gold" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M7 20h10"></path></svg>
+                        <div>
+                            <h4 class="sd-title">Vista Web</h4>
+                            <p class="sd-sub">Hero ancho + specs</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sd-label">Colores</div>
+                        <div class="sd-swatches">
+                            <div class="sd-swatch" style="background:#1C2A3A">1C2A</div>
+                            <div class="sd-swatch" style="background:#2E2E2E">2E2E</div>
+                            <div class="sd-swatch" style="background:#C9A646;color:#1C2A3A">C9A6</div>
+                            <div class="sd-swatch" style="background:#0F3D3E">0F3D</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sd-label">Tipografía</div>
+                        <ul class="sd-list">
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M4 20h16"></path><path d="M7 20l5-16 5 16"></path><path d="M8.5 14h7"></path></svg><span>H1 48/56 SemiBold · Manrope / Inter</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M5 7h14"></path><path d="M5 17h9"></path></svg><span>Body 16/24 Regular · tracking 0.3px</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="sd-label">Iconografía y UI</div>
+                        <ul class="sd-list">
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="9 12 12 15 16 10"></polyline></svg><span>Lineal 2px · Dorado #C9A646</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"></rect></svg><span>Radio 12px · sombras 12/24</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg><span>CTA primario sólido + secundario contorno</span></li>
+                        </ul>
+                    </div>
+                    <div class="sd-footer">
+                        <span class="sd-note">Tip: combina fondo degradado + CTA dorado arriba del fold.</span>
+                        <a class="btn-mini" href="#style-designer" title="Ver paleta completa">Paleta completa</a>
+                    </div>
+                </div>
+
+                <div class="sd-card">
+                    <div class="sd-head">
+                        <svg class="icon icon-lg icon-gold" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M12 18h.01"></path></svg>
+                        <div>
+                            <h4 class="sd-title">Vista Móvil</h4>
+                            <p class="sd-sub">Scroll corto + CTA fijo</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sd-label">Colores</div>
+                        <div class="sd-swatches">
+                            <div class="sd-swatch" style="background:#2E2E2E">2E2E</div>
+                            <div class="sd-swatch" style="background:#0F3D3E">0F3D</div>
+                            <div class="sd-swatch" style="background:#C9A646;color:#1C2A3A">C9A6</div>
+                            <div class="sd-swatch" style="background:#5C6F82">5C6F</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sd-label">Tipografía</div>
+                        <ul class="sd-list">
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M4 20h16"></path><path d="M7 20l5-16 5 16"></path><path d="M8.5 14h7"></path></svg><span>H2 28/34 SemiBold</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M5 7h14"></path><path d="M5 17h9"></path></svg><span>Body 15/22 Medium · bullets cortos</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="sd-label">Iconografía y UI</div>
+                        <ul class="sd-list">
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="9 12 12 15 16 10"></polyline></svg><span>Iconos 18px · stroke 2px</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="6"></rect></svg><span>Chips redondos · sombras suaves</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M6 19h12"></path><path d="M12 5v10"></path></svg><span>CTA pegajoso + botones fantasma</span></li>
+                        </ul>
+                    </div>
+                    <div class="sd-footer">
+                        <span class="sd-note">Tip: prioriza bloques de 2-3 líneas y CTA sticky.</span>
+                        <a class="btn-mini" href="#templates" title="Ver demostraciones móviles">Ver demos móviles</a>
+                    </div>
+                </div>
+
+                <div class="sd-card">
+                    <div class="sd-head">
+                        <svg class="icon icon-lg icon-gold" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="3"></rect><path d="M7 8h10"></path><path d="M7 12h10"></path><path d="M7 16h6"></path></svg>
+                        <div>
+                            <h4 class="sd-title">Landing Híbrida</h4>
+                            <p class="sd-sub">Storytelling + ads</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sd-label">Colores</div>
+                        <div class="sd-swatches">
+                            <div class="sd-swatch" style="background:#1C2A3A">1C2A</div>
+                            <div class="sd-swatch" style="background:#2E2E2E">2E2E</div>
+                            <div class="sd-swatch" style="background:#6A1B2D">6A1B</div>
+                            <div class="sd-swatch" style="background:#C9A646;color:#1C2A3A">C9A6</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sd-label">Tipografía</div>
+                        <ul class="sd-list">
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M4 20h16"></path><path d="M7 20l5-16 5 16"></path><path d="M8.5 14h7"></path></svg><span>H1 40/48 SemiBold · claim breve</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="M5 7h14"></path><path d="M5 17h9"></path></svg><span>Body 15/24 · micro-copy persuasivo</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="sd-label">Iconografía y UI</div>
+                        <ul class="sd-list">
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="9 12 12 15 16 10"></polyline></svg><span>Iconos lineales + badges de confianza</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M4 12h16"></path><path d="M4 8h10"></path><path d="M4 16h7"></path></svg><span>Bloques de prueba social y FAQ</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"></path><path d="M2 12l10 5 10-5"></path><path d="M2 17l10 5 10-5"></path></svg><span>Slots para video/demo + CTA dual</span></li>
+                        </ul>
+                    </div>
+                    <div class="sd-footer">
+                        <span class="sd-note">Tip: usa contraste burdeos #6A1B2D para highlights.</span>
+                        <a class="btn-mini" href="#templates" title="Ver guía de estilo híbrida">Ver guía de estilo</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1190,19 +1883,19 @@
                     <h4>A+ / Brand Story</h4>
                     <p>Bloques A+ listos, guías de copy y jerarquía visual para subir como contenido enriquecido.</p>
                     <div class="tags"><span>A+</span><span>Brand Story</span><span>Visual</span></div>
-                    <a class="cta-link" href="ejemplos/template-smartwatch.html">Ver demo aplicada →</a>
+                    <a class="cta-link" href="#style-designer" title="Ver detalles de diseño A+">Ver demo aplicada →</a>
                 </div>
                 <div class="amazon-card">
                     <h4>SEO y Contenido</h4>
                     <p>Checklist de keywords, bullet points y FAQs optimizadas para buscador interno y relevancia.</p>
                     <div class="tags"><span>SEO</span><span>Keywords</span><span>Checklist</span></div>
-                    <a class="cta-link" href="guia-contenidos-amazon.md">Abrir guía →</a>
+                    <a class="cta-link" href="README.md" title="Ver guía de contenidos" target="_blank" rel="noopener noreferrer">Abrir guía →</a>
                 </div>
                 <div class="amazon-card">
                     <h4>Logística y CTA</h4>
                     <p>Opciones de checkout: Comprar en Amazon, Buy with Prime o MCF. Flujo recomendado según stock.</p>
                     <div class="tags"><span>Buy with Prime</span><span>MCF</span><span>Checkout</span></div>
-                    <a class="cta-link" href="mcf/index.html">Ver flujo MCF →</a>
+                    <a class="cta-link" href="#amazon-playbook" title="Ver flujo logístico MCF">Ver flujo MCF →</a>
                 </div>
             </div>
         </div>
@@ -1238,7 +1931,10 @@
         <div class="ps-container">
             <div class="ps-grid">
                 <div class="ps-problem">
-                    <h3>❌ ¿Por Qué No Vendes Más?</h3>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24" style="color: #6A1B2D;"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="15" x2="16" y2="15"></line><circle cx="9" cy="9" r="1"></circle><circle cx="15" cy="9" r="1"></circle></svg>
+                        <h3 style="margin: 0; color: #6A1B2D;">¿Por Qué No Vendes Más?</h3>
+                    </div>
                     <ul>
                         <li>Fichas de producto genéricas y aburridas</li>
                         <li>Imágenes de baja calidad sin impacto</li>
@@ -1248,7 +1944,10 @@
                     </ul>
                 </div>
                 <div class="ps-solution">
-                    <h3>✓ Nuestra Solución</h3>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24" style="color: #0F3D3E;"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg>
+                        <h3 style="margin: 0; color: #E8E8E8;">Nuestra Solución</h3>
+                    </div>
                     <ul>
                         <li>Templates profesionales probados</li>
                         <li>Diseño optimizado para conversión</li>
@@ -1298,16 +1997,16 @@
                         <span class="template-badge">ECO</span>
                     </div>
                     <div class="template-content">
-                        <div class="template-category">🌿 GREEN/ECO</div>
+                        <div class="template-category"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 22c4.97-2.23 8-6.06 8-11 0-2.5-1-5-3-7-3 1-5 3-5 7"></path><path d="M6 12c1.5 1.2 3 2 4 2"></path><path d="M10 22c0-7-2-10-6-12"></path></svg><span>GREEN/ECO</span></div>
                         <h3 class="template-title">Template Productos Ecológicos</h3>
                         <div class="template-stats">
-                            <div class="stat">⭐ 4.9/5</div>
-                            <div class="stat">👥 87 ventas</div>
+                            <div class="stat"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polygon points="12 2 15.09 10.26 24 10.26 17.45 15.27 20.55 23 12 18 3.45 23 6.55 15.27 0 10.26 8.91 10.26 12 2"></polygon></svg><span>4.9/5</span></div>
+                            <div class="stat"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span>87 ventas</span></div>
                         </div>
                         <ul class="template-features">
-                            <li>Diseño sustentable y natural</li>
-                            <li>Optimizado para energía/orgánico</li>
-                            <li>Incluye landing page</li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Diseño sustentable y natural</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Optimizado para energía/orgánico</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Incluye landing page</span></li>
                         </ul>
                         <div class="template-price">
                             <span class="price-old">$199</span>
@@ -1315,8 +2014,8 @@
                             <span class="price-discount">-75%</span>
                         </div>
                         <div class="template-actions">
-                            <a href="ejemplos/template-paneles-solares.html" class="btn-view">Ver Demo</a>
-                            <a href="mailto:david.diaz.uxdata@gmail.com?subject=Compra Template Eco - $49" class="btn-buy">Comprar - $49</a>
+                            <a href="#templates" class="btn-view" title="Ver demostración del template Eco">Ver Demo</a>
+                            <a href="https://wa.me/5493525300076?text=Hola! Quiero comprar el Template Eco - $49" class="btn-buy" title="Comprar Template Eco">Comprar - $49</a>
                         </div>
                     </div>
                 </div>
@@ -1327,16 +2026,16 @@
                         <span class="template-badge">TECH</span>
                     </div>
                     <div class="template-content">
-                        <div class="template-category">💙 TECH/MODERN</div>
+                        <div class="template-category"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M7 7h10v10H7z"></path><path d="M10 3v4"></path><path d="M14 17v4"></path><path d="M3 10h4"></path><path d="M17 14h4"></path></svg><span>TECH/MODERN</span></div>
                         <h3 class="template-title">Template Gadgets y Tecnología</h3>
                         <div class="template-stats">
-                            <div class="stat">⭐ 5.0/5</div>
-                            <div class="stat">👥 64 ventas</div>
+                            <div class="stat"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polygon points="12 2 15.09 10.26 24 10.26 17.45 15.27 20.55 23 12 18 3.45 23 6.55 15.27 0 10.26 8.91 10.26 12 2"></polygon></svg><span>5.0/5</span></div>
+                            <div class="stat"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span>64 ventas</span></div>
                         </div>
                         <ul class="template-features">
-                            <li>Diseño tech minimalista</li>
-                            <li>Ideal wearables y gadgets</li>
-                            <li>Incluye landing page</li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Diseño tech minimalista</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Ideal wearables y gadgets</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Incluye landing page</span></li>
                         </ul>
                         <div class="template-price">
                             <span class="price-old">$199</span>
@@ -1344,8 +2043,8 @@
                             <span class="price-discount">-75%</span>
                         </div>
                         <div class="template-actions">
-                            <a href="ejemplos/template-smartwatch.html" class="btn-view">Ver Demo</a>
-                            <a href="mailto:david.diaz.uxdata@gmail.com?subject=Compra Template Tech - $49" class="btn-buy">Comprar - $49</a>
+                            <a href="#templates" class="btn-view" title="Ver demostración del template Tech">Ver Demo</a>
+                            <a href="https://wa.me/5493525300076?text=Hola! Quiero comprar el Template Tech - $49" class="btn-buy" title="Comprar Template Tech">Comprar - $49</a>
                         </div>
                     </div>
                 </div>
@@ -1356,16 +2055,16 @@
                         <span class="template-badge">SPORT</span>
                     </div>
                     <div class="template-content">
-                        <div class="template-category">🔥 SPORTS/DYNAMIC</div>
+                        <div class="template-category"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 2s3 4 3 7a3 3 0 0 1-6 0c0-3 3-7 3-7Z"></path><path d="M12 13a5 5 0 0 1 5 5c0 2.5-2 4-5 4s-5-1.5-5-4a5 5 0 0 1 5-5Z"></path></svg><span>SPORTS/DYNAMIC</span></div>
                         <h3 class="template-title">Template Deportes y Fitness</h3>
                         <div class="template-stats">
-                            <div class="stat">⭐ 4.8/5</div>
-                            <div class="stat">👥 92 ventas</div>
+                            <div class="stat"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polygon points="12 2 15.09 10.26 24 10.26 17.45 15.27 20.55 23 12 18 3.45 23 6.55 15.27 0 10.26 8.91 10.26 12 2"></polygon></svg><span>4.8/5</span></div>
+                            <div class="stat"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span>92 ventas</span></div>
                         </div>
                         <ul class="template-features">
-                            <li>Diseño energético y dinámico</li>
-                            <li>Perfecto para deportes/fitness</li>
-                            <li>Incluye landing page</li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Diseño energético y dinámico</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Perfecto para deportes/fitness</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Incluye landing page</span></li>
                         </ul>
                         <div class="template-price">
                             <span class="price-old">$199</span>
@@ -1373,8 +2072,8 @@
                             <span class="price-discount">-75%</span>
                         </div>
                         <div class="template-actions">
-                            <a href="ejemplos/template-zapatillas.html" class="btn-view">Ver Demo</a>
-                            <a href="mailto:david.diaz.uxdata@gmail.com?subject=Compra Template Sports - $49" class="btn-buy">Comprar - $49</a>
+                            <a href="#templates" class="btn-view" title="Ver demostración del template Sports">Ver Demo</a>
+                            <a href="https://wa.me/5493525300076?text=Hola! Quiero comprar el Template Sports - $49" class="btn-buy" title="Comprar Template Sports">Comprar - $49</a>
                         </div>
                     </div>
                 </div>
@@ -1385,16 +2084,16 @@
                         <span class="template-badge">PRO</span>
                     </div>
                     <div class="template-content">
-                        <div class="template-category">⚫ PRO/MINIMAL</div>
+                        <div class="template-category"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"></rect><path d="M8 12h8"></path><path d="M12 8v8"></path></svg><span>PRO/MINIMAL</span></div>
                         <h3 class="template-title">Template Productos Premium</h3>
                         <div class="template-stats">
-                            <div class="stat">⭐ 4.9/5</div>
-                            <div class="stat">👥 73 ventas</div>
+                            <div class="stat"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polygon points="12 2 15.09 10.26 24 10.26 17.45 15.27 20.55 23 12 18 3.45 23 6.55 15.27 0 10.26 8.91 10.26 12 2"></polygon></svg><span>4.9/5</span></div>
+                            <div class="stat"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span>73 ventas</span></div>
                         </div>
                         <ul class="template-features">
-                            <li>Diseño elegante y profesional</li>
-                            <li>Ideal electrónica premium</li>
-                            <li>Incluye landing page</li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Diseño elegante y profesional</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Ideal electrónica premium</span></li>
+                            <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Incluye landing page</span></li>
                         </ul>
                         <div class="template-price">
                             <span class="price-old">$199</span>
@@ -1402,8 +2101,8 @@
                             <span class="price-discount">-75%</span>
                         </div>
                         <div class="template-actions">
-                            <a href="ejemplos/template-monitor-4k.html" class="btn-view">Ver Demo</a>
-                            <a href="mailto:david.diaz.uxdata@gmail.com?subject=Compra Template Pro - $49" class="btn-buy">Comprar - $49</a>
+                            <a href="#templates" class="btn-view" title="Ver demostración del template Pro">Ver Demo</a>
+                            <a href="https://wa.me/5493525300076?text=Hola! Quiero comprar el Template Pro - $49" class="btn-buy" title="Comprar Template Pro">Comprar - $49</a>
                         </div>
                     </div>
                 </div>
@@ -1420,37 +2119,37 @@
             </div>
             <div class="styles-grid">
                 <div class="sales-card">
-                    <span class="sales-chip">🪄 Storytelling</span>
+                    <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M4 4h4l8 16h-4z"></path><path d="M14 4h6"></path><path d="M18 2v4"></path></svg>Storytelling</span>
                     <h4>Marca con narrativa</h4>
                     <p>Secciones secuenciales (problema → solución → prueba social) y foto lifestyle dominante.</p>
                     <div class="sales-meta"><span>Ideal: Belleza / Deco</span><span>CTA: Doble</span></div>
                 </div>
                 <div class="sales-card">
-                    <span class="sales-chip">📊 Data-driven</span>
+                    <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M3 3v18h18"></path><rect x="7" y="10" width="2" height="8" rx="1"></rect><rect x="12" y="6" width="2" height="12" rx="1"></rect><rect x="17" y="13" width="2" height="5" rx="1"></rect></svg>Data-driven</span>
                     <h4>Ficha orientada a specs</h4>
                     <p>Tabla de beneficios, métricas comparativas y sellos de confianza en el primer scroll.</p>
                     <div class="sales-meta"><span>Ideal: Tech / B2B</span><span>CTA: Comparar</span></div>
                 </div>
                 <div class="sales-card">
-                    <span class="sales-chip">🏆 Social Proof</span>
+                    <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M6 3h12v4a6 6 0 0 1-12 0Z"></path><path d="M18 5h2a3 3 0 0 1-3 3"></path><path d="M6 5H4a3 3 0 0 0 3 3"></path></svg>Social Proof</span>
                     <h4>Autoridad + reviews</h4>
                     <p>Carrusel de reseñas, insignias de prensa y UGC. Enfatiza la prueba social temprana.</p>
                     <div class="sales-meta"><span>Ideal: Nuevas marcas</span><span>CTA: Añadir ahora</span></div>
                 </div>
                 <div class="sales-card">
-                    <span class="sales-chip">⚡ Lanzamiento</span>
+                    <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z"></path></svg>Lanzamiento</span>
                     <h4>Ficha de campaña</h4>
                     <p>Hero con contador, bonus temporales y módulo de preguntas rápidas.</p>
                     <div class="sales-meta"><span>Ideal: Eventos</span><span>CTA: Comprar promo</span></div>
                 </div>
                 <div class="sales-card">
-                    <span class="sales-chip">🧩 Bundle</span>
+                    <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M3 3h7v7H3z"></path><path d="M14 3h7v7h-7z"></path><path d="M3 14h7v7H3z"></path><path d="M14 14h7v7h-7z"></path></svg>Bundle</span>
                     <h4>Venta cruzada</h4>
                     <p>Bloques de packs, accesorios recomendados y ahorro acumulado.</p>
                     <div class="sales-meta"><span>Ideal: Hogar / Electro</span><span>CTA: Añadir bundle</span></div>
                 </div>
                 <div class="sales-card">
-                    <span class="sales-chip">🎨 Minimal Pro</span>
+                    <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M7 7h10v10H7z"></path></svg>Minimal Pro</span>
                     <h4>Diseño premium limpio</h4>
                     <p>Tipografía sólida, fondos neutros y foco en contraste para fotos 4K.</p>
                     <div class="sales-meta"><span>Ideal: Lujo</span><span>CTA: Ver detalles</span></div>
@@ -1474,14 +2173,14 @@
                     <div class="pricing-price">$49</div>
                     <div class="pricing-period">Pago único</div>
                     <ul class="pricing-features">
-                        <li>1 Template a elección</li>
-                        <li>HTML + CSS + Landing</li>
-                        <li>Documentación completa</li>
-                        <li>Actualizaciones gratis</li>
-                        <li>Soporte 30 días</li>
-                        <li>Garantía devolución</li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>1 Template a elección</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>HTML + CSS + Landing</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Documentación completa</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Actualizaciones gratis</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Soporte 30 días</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Garantía devolución</span></li>
                     </ul>
-                    <button onclick="window.location.href='mailto:david.diaz.uxdata@gmail.com?subject=Compra Plan Starter - $49'" class="pricing-btn secondary">Comprar Ahora</button>
+                    <button onclick="window.location.href='https://wa.me/5493525300076?text=Hola! Quiero comprar el Plan Starter - $49'" class="pricing-btn secondary" title="Comprar plan Starter">Comprar Ahora</button>
                 </div>
 
                 <!-- Professional (Popular) -->
@@ -1491,15 +2190,15 @@
                     <div class="pricing-price">$149</div>
                     <div class="pricing-period">Pago único · Ahorras $47</div>
                     <ul class="pricing-features">
-                        <li>4 Templates completos</li>
-                        <li>HTML + CSS + Landings</li>
-                        <li>Personalización básica</li>
-                        <li>Actualizaciones gratis</li>
-                        <li>Soporte 60 días</li>
-                        <li>Garantía devolución</li>
-                        <li>Bonus: Guía de ventas</li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>4 Templates completos</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>HTML + CSS + Landings</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Personalización básica</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Actualizaciones gratis</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Soporte 60 días</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Garantía devolución</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Bonus: Guía de ventas</span></li>
                     </ul>
-                    <button onclick="window.location.href='mailto:david.diaz.uxdata@gmail.com?subject=Compra Plan Professional - $149'" class="pricing-btn primary">Comprar Ahora</button>
+                    <button onclick="window.location.href='https://wa.me/5493525300076?text=Hola! Quiero comprar el Plan Professional - $149'" class="pricing-btn primary" title="Comprar plan Professional">Comprar Ahora</button>
                 </div>
 
                 <!-- Premium -->
@@ -1525,7 +2224,7 @@
     <!-- GUARANTEE -->
     <section class="guarantee">
         <div class="guarantee-content">
-            <div class="guarantee-icon">🛡️</div>
+            <div class="guarantee-icon"><svg class="icon icon-xl" viewBox="0 0 24 24" style="width:64px;height:64px;"><path d="M12 2 4 5v6c0 5 3.5 9 8 11c4.5-2 8-6 8-11V5z"></path><path d="M9 12l2 2l4-4"></path></svg></div>
             <h2>Garantía de Satisfacción 30 Días</h2>
             <p><strong>Si no aumentas tus ventas, te devolvemos 100% de tu dinero.</strong></p>
             <p style="margin-top:15px">Estamos tan seguros de la calidad de nuestros templates que te ofrecemos una garantía total. Si en 30 días no ves mejoras en tus conversiones, te devolvemos todo tu dinero sin preguntas.</p>
@@ -1542,7 +2241,7 @@
             <div class="faq-item">
                 <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                     <span>¿Puedo editarlo yo mismo?</span>
-                    <span class="faq-icon">▼</span>
+                    <span class="faq-icon"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer">
                     Sí, completamente. Los templates son HTML/CSS puro, fáciles de editar con cualquier editor de código. Incluimos documentación detallada paso a paso.
@@ -1552,7 +2251,7 @@
             <div class="faq-item">
                 <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                     <span>¿Funciona en móvil?</span>
-                    <span class="faq-icon">▼</span>
+                    <span class="faq-icon"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer">
                     100% responsive. Todos nuestros templates están optimizados para verse perfectos en móvil, tablet y desktop. El 70% de las compras online son desde móvil.
@@ -1562,7 +2261,7 @@
             <div class="faq-item">
                 <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                     <span>¿Incluye soporte?</span>
-                    <span class="faq-icon">▼</span>
+                    <span class="faq-icon"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer">
                     Sí. Todos los planes incluyen soporte por email. Plan Starter: 30 días, Professional: 60 días, Premium: 90 días con prioridad.
@@ -1572,7 +2271,7 @@
             <div class="faq-item">
                 <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                     <span>¿Hay actualizaciones?</span>
-                    <span class="faq-icon">▼</span>
+                    <span class="faq-icon"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer">
                     Todas las actualizaciones son gratis de por vida. Cuando mejoramos los templates, te enviamos la nueva versión sin costo adicional.
@@ -1582,7 +2281,7 @@
             <div class="faq-item">
                 <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                     <span>¿Cómo recibo el template?</span>
-                    <span class="faq-icon">▼</span>
+                    <span class="faq-icon"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer">
                     Entrega inmediata por email. Después del pago, recibes un link de descarga con todos los archivos (HTML, CSS, imágenes, documentación) en menos de 1 hora.
@@ -1592,7 +2291,7 @@
             <div class="faq-item">
                 <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                     <span>¿Puedo usar en múltiples productos?</span>
-                    <span class="faq-icon">▼</span>
+                    <span class="faq-icon"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer">
                     Sí, licencia ilimitada. Puedes usar el template en tantos productos como quieras sin restricciones.
@@ -1602,7 +2301,7 @@
             <div class="faq-item">
                 <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                     <span>¿Qué métodos de pago aceptan?</span>
-                    <span class="faq-icon">▼</span>
+                    <span class="faq-icon"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer">
                     Transferencia bancaria, PayPal, Mercado Pago y criptomonedas. Contacta por WhatsApp para coordinar el método que prefieras.
@@ -1612,7 +2311,7 @@
             <div class="faq-item">
                 <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                     <span>¿Ofrecen personalización?</span>
-                    <span class="faq-icon">▼</span>
+                    <span class="faq-icon"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
                 </div>
                 <div class="faq-answer">
                     Sí. El plan Premium incluye diseño 100% personalizado con los colores, fuentes y estilo de tu marca. También ofrecemos personalización a la carta desde $99.
@@ -1626,13 +2325,13 @@
         <h2>Empieza a Vender Más Hoy</h2>
         <p>Más de 200 vendedores ya aumentaron sus ventas. Es tu turno.</p>
         <div class="hero-cta-row">
-            <a href="#pricing" class="btn btn-primary">Comprar Template - $49</a>
-            <a href="https://wa.me/5493525300076?text=Hola! Quiero más información sobre los templates" class="btn btn-secondary">Hablar por WhatsApp</a>
+            <a href="#pricing" class="btn btn-primary"><svg class="icon icon-md" viewBox="0 0 24 24"><path d="M3 7h14.5a2.5 2.5 0 0 1 2.5 2.5V15a4 4 0 0 1-4 4H5.5A2.5 2.5 0 0 1 3 16.5V7z"></path><path d="M3 7L4.2 5.4A2 2 0 0 1 5.82 4.7l1.45.48a2 2 0 0 0 1.21 0L9.1 4.7a2 2 0 0 1 1.23 0l1.45.48a2 2 0 0 0 1.22 0l1.45-.48a2 2 0 0 1 1.62.7L16.6 7"></path></svg>Comprar Template - $49</a>
+            <a href="https://wa.me/5493525300076?text=Hola! Quiero más información sobre los templates" class="btn btn-secondary"><svg class="icon icon-md" viewBox="0 0 24 24"><path d="M21.5 15.5v3a2 2 0 0 1-2 2h-15a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2h9"></path><polyline points="22 2 22 8 16 8"></polyline><line x1="22" y1="2" x2="13" y2="11"></line><path d="M6 14.5c.667 1 2.333 2 3.5 2.5c1.167.5 1.5.5 2-.5c.5-1 .667-1.333 0-2c-.667-.667-1.167-1.333-1-2c.167-.667 1.5-1.833 2.5-1c1 .833 1.5 1.5 2 1c.5-.5.833-1.5.333-2.333c-.5-.833-1.833-2-3.166-2.167c-1.334-.167-2.667.333-3.334 1c-.667.667-1.833 2.5-1.833 4.167c0 1.667.5 2.167 1 2.333Z"></path></svg>Hablar por WhatsApp</a>
         </div>
         <div class="hero-badges">
-            <div class="badge-item">✓ Garantía 30 días</div>
-            <div class="badge-item">✓ Entrega inmediata</div>
-            <div class="badge-item">✓ Sin riesgos</div>
+            <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg><span>Garantía 30 días</span></div>
+            <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M3 5h14l4 5-4 5H3l-2-5Z"></path><path d="M7 5v10"></path><path d="M11 5v10"></path></svg><span>Entrega inmediata</span></div>
+            <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5Z"></path><path d="M2 12l10 5 10-5"></path><path d="M2 17l10 5 10-5"></path></svg><span>Sin riesgos</span></div>
         </div>
     </section>
 
@@ -1641,31 +2340,31 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h3>Templates</h3>
-                <a href="ejemplos/template-paneles-solares.html">☀️ Eco/Sustentable</a>
-                <a href="ejemplos/template-smartwatch.html">⌚ Tech/Modern</a>
-                <a href="ejemplos/template-zapatillas.html">👟 Sports/Dynamic</a>
-                <a href="ejemplos/template-monitor-4k.html">🖥️ Pro/Minimal</a>
+                <a href="#templates" title="Ver template Eco"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 2v4"></path><path d="M12 18v4"></path><path d="M4.93 4.93l2.83 2.83"></path><path d="M16.24 16.24l2.83 2.83"></path><path d="M2 12h4"></path><path d="M18 12h4"></path><path d="M4.93 19.07l2.83-2.83"></path><path d="M16.24 7.76l2.83-2.83"></path></svg><span>Eco/Sustentable</span></a>
+                <a href="#templates" title="Ver template Tech"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M12 18h.01"></path></svg><span>Tech/Modern</span></a>
+                <a href="#templates" title="Ver template Sports"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M4 12l2 1 2-3 2 1 2-3 6 3v3H4z"></path><path d="M14 13c-1.5.5-3 .5-4.5 0"></path></svg><span>Sports/Dynamic</span></a>
+                <a href="#templates" title="Ver template Pro"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M7 20h10"></path></svg><span>Pro/Minimal</span></a>
             </div>
             <div class="footer-col">
                 <h3>Recursos</h3>
-                <a href="README.md">Documentación</a>
-                <a href="Checklist_Producto_Amazon.md">Checklist 9 Fases</a>
-                <a href="guia-contenidos-amazon.md">Guía de Contenidos</a>
-                <a href="GITHUB_PAGES_SETUP.md">Setup GitHub Pages</a>
+                <a href="README.md" target="_blank" rel="noopener noreferrer" title="Ver documentación completa">Documentación</a>
+                <a href="Checklist_Producto_Amazon.md" target="_blank" rel="noopener noreferrer" title="Ver checklist">Checklist 9 Fases</a>
+                <a href="README.md" target="_blank" rel="noopener noreferrer" title="Ver guía de contenidos">Guía de Contenidos</a>
+                <a href="GITHUB_PAGES_SETUP.md" target="_blank" rel="noopener noreferrer" title="Ver setup">Setup GitHub Pages</a>
             </div>
             <div class="footer-col">
                 <h3>Empresa</h3>
-                <a href="https://github.com/dsd228/amazon-product-page">GitHub Repository</a>
-                <a href="https://github.com/dsd228">Portfolio</a>
-                <a href="#pricing">Precios</a>
-                <a href="#faq">FAQ</a>
+                <a href="https://github.com/dsd228/amazon-product-page" target="_blank" rel="noopener noreferrer" title="Ver repositorio en GitHub">GitHub Repository</a>
+                <a href="https://github.com/dsd228" target="_blank" rel="noopener noreferrer" title="Ver portfolio">Portfolio</a>
+                <a href="#pricing" title="Ver precios">Precios</a>
+                <a href="#faq" title="Ver FAQ">FAQ</a>
             </div>
             <div class="footer-col footer-contact">
                 <h3>Contacto</h3>
                 <p><strong>David Díaz</strong></p>
-                <p>📧 david.diaz.uxdata@gmail.com</p>
-                <p>📱 +54 9 3525 300076</p>
-                <p>🌐 WhatsApp disponible</p>
+                <p><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M22 4H2v16h20V4Z"></path><path d="M22 6 12 13 2 6"></path></svg> david.diaz.uxdata@gmail.com</p>
+                <p><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M5 2h3l2 4h4l2-4h3v6l-4 4 4 4v6h-3l-2-4h-4l-2 4H5v-6l4-4-4-4V2Z"></path></svg> +54 9 3525 300076</p>
+                <p><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0 0 14a7 7 0 0 0 0-14Z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg> WhatsApp disponible</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1674,30 +2373,44 @@
     </footer>
 
     <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/5493525300076?text=Hola! Quiero información sobre los templates" class="whatsapp-float" title="Contactar por WhatsApp">
-        💬
+    <a href="https://wa.me/5493525300076?text=Hola! Quiero información sobre los templates" class="whatsapp-float" title="Contactar por WhatsApp" aria-label="Contactar por WhatsApp">
+        <svg class="icon icon-md" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 15.5v3a2 2 0 0 1-2 2h-15a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2h9"></path><polyline points="22 2 22 8 16 8"></polyline><line x1="22" y1="2" x2="13" y2="11"></line></svg>
     </a>
 
     <script>
-        // Smooth scroll
+        // Smooth scroll con accesibilidad mejorada
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
                 if (target) {
+                    e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Foco accesible
+                    target.setAttribute('tabindex', '-1');
+                    target.focus();
                 }
             });
         });
 
-        // FAQ toggle
+        // FAQ toggle con accesibilidad
         document.querySelectorAll('.faq-question').forEach(question => {
+            question.setAttribute('role', 'button');
+            question.setAttribute('tabindex', '0');
             question.addEventListener('click', () => {
-                question.parentElement.classList.toggle('active');
+                const faqItem = question.parentElement;
+                const isOpen = faqItem.classList.toggle('active');
+                question.setAttribute('aria-expanded', isOpen);
+            });
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    question.click();
+                }
             });
         });
 
-        // Stylebook toggles
+        // Stylebook toggles mejorado
         const styleToggles = document.querySelectorAll('.style-toggle');
         const stylePreviews = document.querySelectorAll('.style-preview');
         if (styleToggles.length && stylePreviews.length) {
@@ -1725,9 +2438,55 @@
             activate(document.querySelector('.style-toggle.active')?.dataset.target || styleToggles[0].dataset.target);
         }
 
-        // Visitor counter (simulado)
-        const visitors = Math.floor(Math.random() * 50) + 30;
-        console.log(`${visitors} personas viendo esta página ahora`);
+        // Track conversiones y eventos
+        function trackEvent(eventName, data = {}) {
+            console.log(`Event: ${eventName}`, data);
+        }
+
+        // Track clicks en CTA's principales
+        document.querySelectorAll('.btn-primary, .btn-buy, .pricing-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                trackEvent('cta_click', {
+                    text: this.textContent.trim(),
+                    section: this.closest('section')?.id || 'unknown'
+                });
+            });
+        });
+
+        // Performance: Lazy loading de imágenes
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        }
+
+        // Form validation mejorada para emails
+        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                trackEvent('email_contact', {
+                    mailto: this.href
+                });
+            });
+        });
+
+        // Mensajes de feedback
+        document.querySelectorAll('.btn-buy, .btn-view').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Validar que el enlace sea válido
+                if (!this.href || this.href === '#') {
+                    e.preventDefault();
+                    console.warn('Enlace no configurado');
+                }
+            });
+        });
     </script>
 
 </body>

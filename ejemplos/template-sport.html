@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla SPORT - Amazon Product Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff5f5;
+            color: #1a1a1a;
+        }
+
+        .navbar {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 16px rgba(244, 67, 54, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #f44336;
+        }
+
+        .navbar-brand {
+            font-size: 18px;
+            font-weight: 800;
+            color: #f44336;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .navbar-link {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-link:hover {
+            color: #f44336;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, #f44336 0%, #c41e3a 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .product-header h1 {
+            font-size: 40px;
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+        }
+
+        .product-header p {
+            font-size: 18px;
+            opacity: 0.95;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .product-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 50px 40px;
+        }
+
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #ffebee 0%, #fff5f5 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid #f44336;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .thumbnail {
+            aspect-ratio: 1/1;
+            background: #fff5f5;
+            border-radius: 14px;
+            cursor: pointer;
+            overflow: hidden;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .thumbnail:hover {
+            border-color: #f44336;
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .stars {
+            font-size: 20px;
+            color: #ffc107;
+        }
+
+        .price-section {
+            background: linear-gradient(135deg, #ffebee 0%, #fff5f5 100%);
+            padding: 28px;
+            border-radius: 16px;
+            border-left: 6px solid #f44336;
+            border-radius: 16px;
+        }
+
+        .price-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .price-current {
+            font-size: 40px;
+            font-weight: 800;
+            color: #f44336;
+            margin: 12px 0;
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+        }
+
+        .price-original {
+            font-size: 18px;
+            text-decoration: line-through;
+            color: #999;
+            font-weight: 700;
+        }
+
+        .discount-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f44336 0%, #c41e3a 100%);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 800;
+            margin-left: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 18px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 800;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f44336 0%, #c41e3a 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 32px rgba(244, 67, 54, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #f44336;
+            border: 3px solid #f44336;
+            font-weight: 800;
+        }
+
+        .btn-secondary:hover {
+            background: #ffebee;
+        }
+
+        .features {
+            background: #fff5f5;
+            padding: 28px;
+            border-radius: 16px;
+            border-left: 6px solid #f44336;
+        }
+
+        .features h3 {
+            font-size: 18px;
+            margin-bottom: 18px;
+            color: #1a1a1a;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .features ul {
+            list-style: none;
+        }
+
+        .features li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            border-bottom: 2px solid #ffebee;
+            font-weight: 600;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li:before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+
+        .full-description {
+            padding: 50px 40px;
+            background: #fff5f5;
+            border-top: 3px solid #f44336;
+        }
+
+        .full-description h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .full-description p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f44336 0%, #c41e3a 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+
+        .highlight-box p {
+            color: white;
+            margin: 0;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #f44336 0%, #c41e3a 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #ffebee;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 800;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 20px 40px 0;
+            padding: 12px 24px;
+            background: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 800;
+            transition: all 0.3s;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .back-button:hover {
+            background: #c41e3a;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .product-content {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .product-header h1 {
+                font-size: 28px;
+            }
+
+            .price-current {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">🔥 Sport Template</div>
+        <a class="navbar-link" onclick="history.back()">← Volver</a>
+    </div>
+
+    <div class="container">
+        <div class="product-header">
+            <h1>Zapatillas Running Pro X</h1>
+            <p>Tecnología Deportiva de Élite • Rendimiento Máximo • Comodidad Extrema</p>
+        </div>
+
+        <div class="product-content">
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="https://via.placeholder.com/500x500?text=Zapatillas" alt="Producto">
+                </div>
+                <div class="thumbnails">
+                    <div class="thumbnail">
+                        <img src="https://via.placeholder.com/100x100?text=Lateral" alt="Vista lateral">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://via.placeholder.com/100x100?text=Superior" alt="Vista superior">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://via.placeholder.com/100x100?text=Suela" alt="Suela">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="https://via.placeholder.com/100x100?text=Uso" alt="En uso">
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="rating">
+                    <div class="stars">★★★★★</div>
+                    <div>4.9/5 (1,247 reseñas)</div>
+                </div>
+
+                <div class="price-section">
+                    <div class="price-label">PRECIO</div>
+                    <div>
+                        <span class="price-current">$159.99</span>
+                        <span class="discount-badge">-40%</span>
+                    </div>
+                    <div class="price-original">Antes: $266.99</div>
+                </div>
+
+                <div class="buttons">
+                    <button class="btn btn-primary">⚡ COMPRAR AHORA</button>
+                    <button class="btn btn-secondary">❤️ FAVORITOS</button>
+                </div>
+
+                <div class="features">
+                    <h3>⚡ CARACTERÍSTICAS EXPLOSIVAS</h3>
+                    <ul>
+                        <li><strong>Espuma ReactiveFlow:</strong> 40% más rebote que la competencia</li>
+                        <li><strong>Peso Ultra Ligero:</strong> Solo 195g para máxima velocidad</li>
+                        <li><strong>Amortiguación Inteligente:</strong> Se adapta a tu pisada en tiempo real</li>
+                        <li><strong>Suela Duradera:</strong> 500km de resistencia garantizados</li>
+                        <li><strong>Transpirabilidad Premium:</strong> Tela de malla 3D con ventilación extrema</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="full-description">
+            <h2>🏃 DESCRIPCIÓN DEL PRODUCTO</h2>
+            
+            <p>
+                <strong>Zapatillas Running Pro X</strong> - Las zapatillas elegidas por atletas profesionales en todo el mundo. 
+                Con tecnología de vanguardia y diseño ergonómico extremo, son perfectas para maratones, entrenamientos intensos 
+                o tu carrera matutina.
+            </p>
+
+            <p>
+                <strong>¿POR QUÉ SOMOS LOS MEJORES?</strong> Porque combinamos 20 años de experiencia en running, investigación 
+                biomecánica de clase mundial y feedback directo de atletas Olímpicos. Cada detalle está diseñado para potenciar 
+                tu rendimiento al máximo.
+            </p>
+
+            <div class="highlight-box">
+                <p>⚡ 40% MÁS REBOTE • 25% MÁS RÁPIDO • 500KM DE DURABILIDAD • GARANTÍA 2 AÑOS</p>
+            </div>
+
+            <h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: 800; text-transform: uppercase;">📊 ESPECIFICACIONES TÉCNICAS</h3>
+            <p><strong>Peso:</strong> 195g (talla 42) | <strong>Drop:</strong> 8mm | <strong>Durabilidad:</strong> 500km</p>
+            <p><strong>Material Superior:</strong> Mesh 3D + Sintético de Alto Rendimiento | <strong>Suela:</strong> Caucho Continental</p>
+            <p><strong>Amortiguación:</strong> ReactiveFlow Foam + Sistema de Micro Air | <strong>Certificación:</strong> A+ Running Podium</p>
+
+            <h3 style="margin-top: 30px; margin-bottom: 15px; font-weight: 800; text-transform: uppercase;">📦 QUÉ INCLUYE</h3>
+            <p>✓ Zapatillas Running Pro X • ✓ Plantilla ortopédica premium • ✓ Cordones reflectantes • ✓ Bolsa de transporte deportiva • ✓ Garantía 2 años</p>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="#">SOPORTE</a>
+                <a href="#">GARANTÍA</a>
+                <a href="#">CONTACTO</a>
+            </div>
+            <p>© 2026 SPORT TEMPLATES | DISEÑO PARA CAMPEONES</p>
+        </div>
+    </div>
+
+    <a href="../" class="back-button">← VOLVER AL BOOK</a>
+</body>
+</html>
