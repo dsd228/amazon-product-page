@@ -51,18 +51,18 @@
             --radius-xl: 20px;     /* Cards extra grandes */
             --radius-full: 999px;
             
-            /* SOMBRAS NEUMORFISMO - Luz y profundidad - AUMENTADAS para claridad UX */
-            --shadow-sm-up: 3px 3px 10px var(--sombra-oscura), -3px -3px 10px var(--sombra-clara);
-            --shadow-sm-in: inset 1px 1px 3px var(--sombra-clara), inset -1px -1px 3px var(--sombra-oscura);
+            /* SOMBRAS NEUMORFISMO - 20% más perceptible para UI con presencia */
+            --shadow-sm-up: 4px 4px 12px var(--sombra-oscura), -4px -4px 12px var(--sombra-clara);
+            --shadow-sm-in: inset 2px 2px 4px var(--sombra-clara), inset -2px -2px 4px var(--sombra-oscura);
             
-            --shadow-md-up: 6px 6px 16px var(--sombra-oscura), -4px -4px 14px var(--sombra-clara);
-            --shadow-md-in: inset 2px 2px 6px var(--sombra-clara), inset -2px -2px 6px var(--sombra-oscura);
+            --shadow-md-up: 7px 7px 20px var(--sombra-oscura), -5px -5px 18px var(--sombra-clara);
+            --shadow-md-in: inset 3px 3px 8px var(--sombra-clara), inset -3px -3px 8px var(--sombra-oscura);
             
-            --shadow-lg-up: 8px 8px 24px var(--sombra-oscura), -6px -6px 20px var(--sombra-clara);
-            --shadow-lg-in: inset 3px 3px 8px var(--sombra-clara), inset -3px -3px 8px var(--sombra-oscura);
+            --shadow-lg-up: 10px 10px 30px var(--sombra-oscura), -8px -8px 26px var(--sombra-clara);
+            --shadow-lg-in: inset 4px 4px 10px var(--sombra-clara), inset -4px -4px 10px var(--sombra-oscura);
             
-            --shadow-hover: 0 10px 28px rgba(163, 177, 198, 0.45);
-            --shadow-active: inset 0 2px 4px var(--sombra-clara), 0 2px 6px var(--sombra-oscura);
+            --shadow-hover: 0 12px 36px rgba(163, 177, 198, 0.55);
+            --shadow-active: inset 0 3px 6px var(--sombra-clara), 0 3px 8px var(--sombra-oscura);
             
             /* TIPOGRAFÍA - Escalas de tamaño */
             --font-family-serif: 'Playfair Display', serif;
@@ -117,18 +117,30 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* TIPOGRAFÍA ELEGANTE - Escalas armoniosas */
+        /* TIPOGRAFÍA ELEGANTE - Escalas armoniosas CON PESO VISUAL */
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-family-serif);
             font-weight: 700;
-            letter-spacing: 0.02em;
+            letter-spacing: -0.01em;
             line-height: var(--line-height-tight);
             margin-bottom: var(--space-md);
         }
 
         h1 { font-size: var(--font-size-7xl); font-weight: 900; text-shadow: 0 2px 20px rgba(242, 184, 181, 0.1); }
-        h2 { font-size: var(--font-size-5xl); font-weight: 700; }
-        h3 { font-size: var(--font-size-3xl); font-weight: 600; }
+        h2 { 
+            font-size: 46px; 
+            font-weight: 900; 
+            color: #0D1117;
+            margin-bottom: 28px;
+            margin-top: 48px;
+            letter-spacing: -0.01em;
+        }
+        h3 { 
+            font-size: 32px; 
+            font-weight: 800;
+            margin-bottom: 16px;
+            margin-top: 24px;
+        }
         h4 { font-size: var(--font-size-xl); font-weight: 600; }
         h5 { font-size: var(--font-size-lg); font-weight: 600; }
         h6 { font-size: var(--font-size-md); font-weight: 600; }
@@ -149,14 +161,25 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-        .icon-sm { width: 16px; height: 16px; }
-        .icon-md { width: 20px; height: 20px; }
-        .icon-lg { width: 24px; height: 24px; }
-        .icon-xl { width: 32px; height: 32px; }
+        .icon-sm { width: 18px; height: 18px; }
+        .icon-md { width: 22px; height: 22px; }
+        .icon-lg { width: 26px; height: 26px; }
+        .icon-xl { width: 38px; height: 38px; }
         .icon-active { color: var(--texto-principal); }  /* Iconos activos */
         .icon-passive { color: var(--texto-terciario); } /* Iconos pasivos */
         .icon-accent { color: var(--acento-principal); stroke-width: 2.8; }
         .icon-gold { color: var(--acento-principal); stroke-width: 2.8; } /* Alias para compatibilidad */
+
+        /* EYEBROW - Etiquetas superiores */
+        .eyebrow {
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--acento-principal);
+            display: inline-block;
+            margin-bottom: 18px;
+        }
 
         /* HEADER PREMIUM - Sticky navigation */
         .header {
@@ -286,28 +309,24 @@
             z-index: 2;
         }
         .hero h1 {
-            font-size: var(--font-size-7xl);
-            margin-bottom: var(--space-lg);
-            color: var(--texto-principal);
-            text-shadow: 0 4px 24px rgba(242, 184, 181, 0.15);
-        }
+            font-size: 92px;
             font-weight: 900;
-            margin-bottom: 30px;
-            line-height: 1.2;
-            color: var(--texto-principal);
-            text-shadow: 0 2px 10px rgba(242, 184, 181, 0.1);
-            letter-spacing: 0.02em;
+            margin-bottom: 35px;
+            line-height: 1.1;
+            color: #0D1117;
+            text-shadow: 0 4px 28px rgba(242, 184, 181, 0.25);
+            letter-spacing: -0.02em;
         }
         .hero-subtitle {
             font-family: var(--font-family-sans);
-            font-size: var(--font-size-md);
+            font-size: 20px;
             margin-bottom: var(--space-2xl);
             color: var(--texto-secundario);
-            font-weight: 400;
-            max-width: 750px;
+            font-weight: 500;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            line-height: var(--line-height-relaxed);
+            line-height: 1.7;
         }
         .hero-stats {
             display: flex;
@@ -334,7 +353,7 @@
         }
         .stat-number {
             font-family: 'Playfair Display', serif;
-            font-size: 42px;
+            font-size: 52px;
             font-weight: 900;
             display: flex;
             align-items: center;
@@ -342,7 +361,7 @@
             gap: 10px;
             color: var(--acento-principal);
             margin-bottom: 8px;
-            text-shadow: 0 2px 8px rgba(242, 184, 181, 0.2);
+            text-shadow: 0 3px 12px rgba(242, 184, 181, 0.35);
         }
         .stat-label {
             font-size: 13px;
@@ -360,8 +379,10 @@
             flex-wrap: wrap;
         }
         .hero-cta-row .btn-primary {
-            padding: var(--space-lg) var(--space-2xl);    /* Botón más grande */
-            font-size: var(--font-size-md);               /* Letra más grande */
+            padding: 22px 52px;
+            font-size: 18px;
+            font-weight: 800;
+            box-shadow: 0 6px 24px rgba(242, 184, 181, 0.7), var(--shadow-lg-up);
         }
         .btn {
             padding: var(--space-md) var(--space-xl);
@@ -1315,13 +1336,14 @@
         .container { max-width: 1400px; margin: 0 auto }
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 80px;
+            padding-top: 40px;
         }
         .section-header h2 {
-            font-size: var(--font-size-5xl);
+            font-size: 50px;
             margin-bottom: var(--space-lg);
-            color: var(--acento-principal);
-            font-weight: 700;
+            color: #0D1117;
+            font-weight: 900;
         }
         .section-header p {
             font-size: var(--font-size-md);
@@ -1491,8 +1513,8 @@
 
         /* PRICING */
         .pricing {
-            background: var(--fondo-principal);
-            padding: 60px 20px;
+            background: linear-gradient(180deg, var(--blanco-puro) 0%, var(--fondo-principal) 100%);
+            padding: 80px 20px;
         }
         .pricing-grid {
             max-width: 1200px;
@@ -1646,8 +1668,8 @@
 
         /* FAQ */
         .faq {
-            background: var(--fondo-principal);
-            padding: 60px 20px;
+            background: var(--fondo-secundario);
+            padding: 80px 20px;
         }
         .faq-container {
             max-width: 800px;
