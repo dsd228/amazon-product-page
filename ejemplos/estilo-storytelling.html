@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estilo Storytelling · Guía Visual</title>
+  <style>
+    :root { --fondo:#F0F4F8; --acento:#A4D2F4; --texto:#2E3A46; --sec:#3B4758; }
+    body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--fondo);color:var(--texto);} .wrap{max-width:1040px;margin:0 auto;padding:32px 20px 72px;}
+    .hero{background:linear-gradient(135deg,rgba(164,210,244,.18),rgba(247,199,210,.12));border:1.5px solid rgba(164,210,244,.35);border-radius:16px;padding:32px;box-shadow:0 12px 36px rgba(164,210,244,.18);} h1{margin:8px 0 12px;font-size:32px;} .eyebrow{text-transform:uppercase;letter-spacing:.08em;font-weight:800;font-size:12px;color:var(--acento);} p.lead{margin:0 0 14px;color:var(--sec);font-size:17px;}
+    .hero img{width:100%;border-radius:14px;margin-top:16px;box-shadow:0 12px 32px rgba(46,58,70,.18);} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:26px;} .card{background:#fff;border:1px solid rgba(164,210,244,.25);border-radius:14px;padding:18px;box-shadow:0 8px 22px rgba(46,58,70,.1);} .card h3{margin:0 0 10px;font-size:18px;} .card p{margin:0;color:var(--sec);font-size:14px;line-height:1.55;} .back{display:inline-block;margin-top:26px;color:var(--acento);text-decoration:none;font-weight:700;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Estilos de Páginas de Venta</div>
+      <h1>Storytelling</h1>
+      <p class="lead">Ficha narrativa con secuencia problema → solución → prueba social y hero lifestyle dominante.</p>
+      <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=80" alt="Storytelling UI mobile y desktop">
+    </div>
+    <div class="grid">
+      <div class="card"><h3>Hero emocional</h3><p>Imagen lifestyle, titular de problema y CTA dual (ver beneficios / comprar).</p></div>
+      <div class="card"><h3>Bloque secuencial</h3><p>Problema → solución → resultados; copy breve y bullets claros.</p></div>
+      <div class="card"><h3>Prueba social</h3><p>Testimonios arriba del fold, badges de prensa y reseñas destacadas.</p></div>
+    </div>
+    <a class="back" href="../index.html#sales-styles">← Volver</a>
+  </div>
+</body>
+</html>

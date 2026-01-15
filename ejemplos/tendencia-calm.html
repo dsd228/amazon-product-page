@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calm & Accessible · Tendencias 2026</title>
+  <style>
+    :root {
+      --fondo-principal: #F0F4F8;
+      --fondo-secundario: #E9EDF2;
+      --acento-principal: #A4D2F4;
+      --acento-detalle: #F7C7D2;
+      --texto-principal: #2E3A46;
+      --texto-secundario: #3B4758;
+    }
+    body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--fondo-principal); color: var(--texto-principal); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+    .hero {
+      background: linear-gradient(135deg, rgba(164,210,244,0.18), rgba(247,199,210,0.12));
+      border: 1.5px solid rgba(164,210,244,0.35);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 12px 36px rgba(164,210,244,0.18);
+    }
+    h1 { margin: 0 0 12px; font-size: 32px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 800; font-size: 12px; color: var(--acento-principal); }
+    p.lead { margin: 0 0 14px; color: var(--texto-secundario); font-size: 17px; }
+    .hero img { width: 100%; border-radius: 14px; margin-top: 16px; box-shadow: 0 10px 32px rgba(46,58,70,0.18); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 24px; }
+    .card { background: #fff; border: 1px solid rgba(164,210,244,0.25); border-radius: 14px; padding: 18px; box-shadow: 0 8px 22px rgba(46,58,70,0.1); }
+    .card h3 { margin: 0 0 10px; font-size: 18px; color: var(--texto-principal); }
+    .card p { margin: 0; color: var(--texto-secundario); font-size: 14px; line-height: 1.55; }
+    .back { display: inline-block; margin-top: 24px; color: var(--acento-principal); text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Tendencias UX/UI 2026</div>
+      <h1>Calm & Accessible</h1>
+      <p class="lead">Interfaces que reducen ruido cognitivo, priorizan legibilidad y accesibilidad desde el diseño.</p>
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="Interfaces limpias en desktop y móvil">
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Contraste y jerarquía</h3>
+        <p>Escalas tipográficas claras, espaciado generoso y colores con ratio AA/AAA por defecto.</p>
+      </div>
+      <div class="card">
+        <h3>Reducción de estímulos</h3>
+        <p>Menos animaciones, menos decoraciones. Solo lo esencial para guiar acciones clave.</p>
+      </div>
+      <div class="card">
+        <h3>Modos cómodos</h3>
+        <p>Soporte prefers-reduced-motion, dark/light coherente, tamaño de fuente ajustable.</p>
+      </div>
+    </div>
+
+    <a class="back" href="../index.html#tendencias">← Volver</a>
+  </div>
+</body>
+</html>
