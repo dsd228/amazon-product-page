@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soluciones Energéticas Sostenibles | Energía Solar Premium</title>
+    <title>Paneles Solares Residenciales | Energía Solar para tu Hogar | SolarPro</title>
+    <meta name="description" content="Paneles solares de alta eficiencia. Reduce tu factura hasta 60%. Garantía de 25 años. Cotización gratuita personalizada.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,8 +14,8 @@
         }
 
         html, body {
-            font-family: 'Inter', sans-serif;
-            color: #1a1a1a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1f2937;
             line-height: 1.6;
         }
 
@@ -22,47 +23,91 @@
             background: #ffffff;
         }
 
-        /* Navigation */
-        .navbar {
+        /* ===== NAVIGATION ===== */
+        nav {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(45, 122, 74, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 16px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .navbar-brand {
-            font-size: 20px;
-            font-weight: 700;
-            color: #2d7a4a;
-            letter-spacing: -0.5px;
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0d7d2f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .navbar-link {
-            color: #666;
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            flex: 1;
+            margin-left: 60px;
+        }
+
+        .nav-links a {
+            color: #374151;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
-            cursor: pointer;
             transition: color 0.3s;
         }
 
-        .navbar-link:hover {
-            color: #2d7a4a;
+        .nav-links a:hover {
+            color: #0d7d2f;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1a472a 0%, #2d7a4a 50%, #4caf50 100%);
+        .nav-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-phone {
+            color: #0d7d2f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #0d7d2f 0%, #15a34a 100%);
             color: white;
-            padding: 120px 40px;
-            text-align: left;
-            min-height: 80vh;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(13, 125, 47, 0.3);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, #0d7d2f 0%, #1a5a3c 50%, #15a34a 100%);
+            color: white;
+            padding: 100px 40px 140px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -72,11 +117,11 @@
         .hero::before {
             content: '';
             position: absolute;
-            right: -100px;
-            top: -100px;
-            width: 600px;
-            height: 600px;
-            background: rgba(255, 255, 255, 0.05);
+            right: -300px;
+            top: -300px;
+            width: 800px;
+            height: 800px;
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 50%;
         }
 
@@ -85,45 +130,65 @@
             position: absolute;
             left: -200px;
             bottom: -200px;
-            width: 500px;
-            height: 500px;
-            background: rgba(255, 255, 255, 0.03);
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 50%;
         }
 
-        .hero-content {
-            max-width: 600px;
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
             position: relative;
             z-index: 10;
+            width: 100%;
         }
 
-        .hero-eyebrow {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.9;
-            margin-bottom: 16px;
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-        }
-
-        .hero h1 {
-            font-size: 56px;
+        .hero-content h1 {
+            font-size: 62px;
             font-weight: 800;
-            line-height: 1.2;
             margin-bottom: 24px;
+            line-height: 1.1;
             letter-spacing: -1px;
         }
 
-        .hero p {
+        .hero-subtitle {
             font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             opacity: 0.95;
-            font-weight: 300;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        .hero-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .benefit-item::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            flex-shrink: 0;
         }
 
         .hero-buttons {
@@ -134,25 +199,25 @@
 
         .btn {
             padding: 16px 32px;
-            font-size: 15px;
+            border-radius: 8px;
             border: none;
-            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 15px;
             transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
             text-decoration: none;
             display: inline-block;
+            font-family: 'Inter', sans-serif;
         }
 
         .btn-primary {
             background: white;
-            color: #2d7a4a;
+            color: #0d7d2f;
         }
 
         .btn-primary:hover {
+            background: #f3f4f6;
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
         }
 
         .btn-secondary {
@@ -165,513 +230,655 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Main Content */
-        .container {
-            max-width: 1200px;
+        .hero-image {
+            position: relative;
+            height: 600px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== BENEFITS SECTION ===== */
+        .benefits {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* Section */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            max-width: 800px;
-            margin-bottom: 60px;
-        }
-
-        .section-eyebrow {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #2d7a4a;
-            margin-bottom: 16px;
-        }
-
-        .section h2 {
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-        }
-
-        .section p {
-            font-size: 16px;
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* ROI Calculator Section */
-        .roi-section {
-            background: #f9faf7;
-            padding: 80px 40px;
-        }
-
-        .roi-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .calculator-box {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-        }
-
-        .calculator-grid {
+            padding: 100px 40px;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-bottom: 32px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
         }
 
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-group label {
-            font-weight: 600;
-            font-size: 14px;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-
-        .input-group input {
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 16px;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.3s;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #2d7a4a;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        .result-item {
+        .benefit-card {
             text-align: center;
         }
 
-        .result-value {
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(13, 125, 47, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
             font-size: 36px;
+        }
+
+        .benefit-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1f2937;
+        }
+
+        .benefit-card p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 100%);
+            padding: 100px 40px;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 42px;
             font-weight: 800;
-            color: #2d7a4a;
-            margin-bottom: 8px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1f2937;
         }
 
-        .result-label {
-            font-size: 13px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 500;
-        }
-
-        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
-            margin-top: 60px;
         }
 
-        .feature-card {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 32px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.7);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 12px 48px rgba(45, 122, 74, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: rgba(76, 175, 80, 0.1);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover .feature-icon {
-            background: rgba(76, 175, 80, 0.2);
-            transform: scale(1.1);
-        }
-
-        .feature-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #1a1a1a;
-        }
-
-        .feature-card p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.7;
-        }
-
-        /* Certification Section */
-        .certifications-section {
+        .feature {
             background: white;
-            padding: 80px 40px;
-        }
-
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .cert-badge {
-            background: rgba(249, 250, 247, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 24px;
+            padding: 40px;
             border-radius: 12px;
-            text-align: center;
-            border: 2px solid rgba(45, 122, 74, 0.2);
+            border: 1px solid #e5e7eb;
             transition: all 0.3s;
         }
 
-        .cert-badge:hover {
-            border-color: #2d7a4a;
-            background: rgba(241, 248, 245, 0.8);
-            backdrop-filter: blur(15px);
-            transform: translateY(-4px);
+        .feature:hover {
+            border-color: #0d7d2f;
+            box-shadow: 0 12px 40px rgba(13, 125, 47, 0.1);
+            transform: translateY(-8px);
         }
 
-        .cert-badge h4 {
-            font-size: 13px;
+        .feature h3 {
+            font-size: 20px;
             font-weight: 700;
-            color: #2d7a4a;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 16px;
+            color: #1f2937;
         }
 
-        .cert-badge p {
-            font-size: 12px;
-            color: #666;
+        .feature p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.8;
         }
 
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #2d7a4a 0%, #4caf50 100%);
-            color: white;
-            padding: 80px 40px;
-            text-align: center;
+        /* ===== CALCULATOR SECTION ===== */
+        .calculator-section {
+            max-width: 1400px;
+            margin: 100px auto;
+            padding: 0 40px;
         }
 
-        .cta-content {
-            max-width: 700px;
+        .calculator-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 60px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .cta-section h2 {
-            color: white;
-            margin-bottom: 20px;
+        .calculator-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #1f2937;
         }
 
-        .cta-section p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 18px;
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
             margin-bottom: 40px;
         }
 
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: #999;
-            padding: 40px;
-            text-align: center;
-            font-size: 12px;
+        .calc-input {
+            display: flex;
+            flex-direction: column;
         }
 
-        .footer-links {
-            margin-bottom: 20px;
-        }
-
-        .footer-links a {
-            color: #2d7a4a;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #4caf50;
-        }
-
-        .back-button {
-            display: inline-block;
-            margin: 40px auto;
-            padding: 12px 24px;
-            background: #2d7a4a;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
+        .calc-input label {
             font-weight: 600;
+            margin-bottom: 12px;
+            color: #1f2937;
+            font-size: 14px;
+        }
+
+        .calc-input input {
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .calc-input input:focus {
+            outline: none;
+            border-color: #0d7d2f;
+            box-shadow: 0 0 0 3px rgba(13, 125, 47, 0.1);
+        }
+
+        .calc-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 40px;
+            background: #f9fafb;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .calc-result {
+            text-align: center;
+        }
+
+        .calc-result-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0d7d2f;
+            margin-bottom: 8px;
+        }
+
+        .calc-result-label {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .calc-button {
+            width: 100%;
+            background: linear-gradient(135deg, #0d7d2f 0%, #15a34a 100%);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
             transition: all 0.3s;
         }
 
-        .back-button:hover {
-            background: #1a472a;
+        .calc-button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(13, 125, 47, 0.3);
         }
 
-        @media (max-width: 768px) {
-            .hero {
-                padding: 80px 24px;
-                min-height: auto;
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            max-width: 1400px;
+            margin: 100px auto;
+            padding: 0 40px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            color: #4b5563;
+            margin-bottom: 24px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-role {
+            font-size: 13px;
+            color: #0d7d2f;
+            font-weight: 500;
+        }
+
+        /* ===== SPECS SECTION ===== */
+        .specs {
+            background: #f9fafb;
+            padding: 100px 40px;
+        }
+
+        .specs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .spec-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .spec-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0d7d2f;
+            margin-bottom: 12px;
+        }
+
+        .spec-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-final {
+            background: linear-gradient(135deg, #0d7d2f 0%, #15a34a 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-final h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-final p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: white;
+            color: #0d7d2f;
+            border: none;
+        }
+
+        .btn-white:hover {
+            background: #f3f4f6;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1f2937;
+            color: #d1d5db;
+            padding: 60px 40px 40px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
-            .hero h1 {
+            .hero-content h1 {
+                font-size: 48px;
+            }
+
+            .benefits {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-results {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
                 font-size: 36px;
             }
 
-            .container {
-                padding: 0 24px;
+            .hero {
+                padding: 60px 20px 80px;
             }
 
-            .section {
-                padding: 60px 0;
+            .nav-container {
+                padding: 12px 20px;
             }
 
-            .calculator-grid,
-            .features-grid,
-            .certifications-grid {
+            .benefits {
                 grid-template-columns: 1fr;
+                padding: 60px 20px;
             }
 
-            .results-grid {
+            .features {
+                padding: 60px 20px;
+            }
+
+            .calculator-box {
+                padding: 32px 20px;
+            }
+
+            .specs {
+                padding: 60px 20px;
+            }
+
+            .specs-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-brand">⚡ Soluciones Energéticas</div>
-        <a class="navbar-link" href="../index.html#templates-section">← Volver a Demos</a>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">☀️ SolarPro</div>
+            <ul class="nav-links">
+                <li><a href="#features">Características</a></li>
+                <li><a href="#calculator">Calcular Ahorro</a></li>
+                <li><a href="#testimonials">Clientes</a></li>
+                <li><a href="#specs">Especificaciones</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="tel:+34900123456" class="nav-phone">900 123 456</a>
+                <button class="nav-cta">Cotización Gratuita</button>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-eyebrow">Energía Solar Premium</div>
-            <h1>Tu Independencia Energética Comienza Aquí</h1>
-            <p>Paneles solares de última generación con ROI garantizado en 5-7 años. Certificado internacionalmente. Garantía 25 años.</p>
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">Calcular Mi Ahorro</a>
-                <a href="#" class="btn btn-secondary">Solicitar Propuesta</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Energía solar que genera ahorros reales</h1>
+                <p class="hero-subtitle">Reduce tu factura de electricidad hasta 60% con nuestros paneles solares de última generación. Garantía de 25 años incluida.</p>
+                <div class="hero-benefits">
+                    <div class="benefit-item">Sin costo inicial</div>
+                    <div class="benefit-item">25 años garantía</div>
+                    <div class="benefit-item">Instalación gratuita</div>
+                    <div class="benefit-item">Monitoreo 24/7</div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Solicitar Cotización</button>
+                    <button class="btn btn-secondary">Ver Cómo Funciona</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=800&fit=crop&q=85" alt="Paneles solares en techo">
             </div>
         </div>
     </section>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- ROI Calculator Section -->
-        <section class="section roi-section">
-            <div class="roi-container">
-                <div class="section-header">
-                    <div class="section-eyebrow">CALCULA TU RETORNO</div>
-                    <h2>¿Cuánto Ahorrarás Realmente?</h2>
-                    <p>Ingresa tus datos para obtener una estimación personalizada de tu ahorro anual y tiempo de retorno de inversión.</p>
-                </div>
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="benefit-card">
+            <div class="benefit-icon">💰</div>
+            <h3>Ahorros Inmediatos</h3>
+            <p>Comienza a ahorrar desde el primer día con energía generada por paneles solares.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">🛡️</div>
+            <h3>Garantía Completa</h3>
+            <p>25 años de cobertura integral incluyendo defectos de fabricación y rendimiento.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">⚡</div>
+            <h3>Máxima Eficiencia</h3>
+            <p>Paneles monocristalinos de 22% de eficiencia, los más altos del mercado.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">📊</div>
+            <h3>Monitoreo Real-Time</h3>
+            <p>Controla tu producción de energía en tiempo real desde la app móvil.</p>
+        </div>
+    </section>
 
-                <div class="calculator-box">
-                    <div class="calculator-grid">
-                        <div class="input-group">
-                            <label>Consumo Eléctrico Mensual (kWh)</label>
-                            <input type="number" id="consumption" value="500" placeholder="500">
-                        </div>
-                        <div class="input-group">
-                            <label>Tarifa Promedio ($/kWh)</label>
-                            <input type="number" id="rate" value="0.15" step="0.01" placeholder="0.15">
-                        </div>
-                    </div>
-
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <div class="result-value" id="annual-savings">$900</div>
-                            <div class="result-label">Ahorro Anual</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value" id="roi-years">3.9</div>
-                            <div class="result-label">Años Para Recuperar</div>
-                        </div>
-                        <div class="result-item">
-                            <div class="result-value" id="payback-amount">$22,500</div>
-                            <div class="result-label">Ahorro en 25 Años</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-eyebrow">POR QUÉ ELEGIRNOS</div>
-                <h2>Tecnología de Última Generación</h2>
-                <p>Cada aspecto de nuestros sistemas ha sido diseñado para máximo rendimiento, durabilidad y retorno de inversión.</p>
-            </div>
-
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">¿Por qué elegir SolarPro?</h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="16" cy="16" r="14" stroke="#2d7a4a" stroke-width="2"/>
-                            <path d="M16 4V16M16 16L22 22" stroke="#2d7a4a" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M16 16L10 22" stroke="#4caf50" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-                        </svg>
-                    </div>
-                    <h3>Eficiencia 23.5%</h3>
-                    <p>La más alta en la industria. Convierte más luz solar en energía utilizable en cualquier condición climática.</p>
+                <div class="feature">
+                    <h3>Tecnología Probada</h3>
+                    <p>Más de 20 años en la industria solar con miles de instalaciones exitosas. Confianza y experiencia respaldadas por resultados.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="6" y="8" width="20" height="18" rx="2" stroke="#2d7a4a" stroke-width="2"/>
-                            <path d="M10 8V6C10 4.9 10.9 4 12 4H20C21.1 4 22 4.9 22 6V8" stroke="#2d7a4a" stroke-width="2"/>
-                            <circle cx="16" cy="17" r="4" stroke="#4caf50" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Garantía 25 Años</h3>
-                    <p>Cobertura completa contra defectos de manufactura. Garantía transferible a nuevos propietarios.</p>
+                <div class="feature">
+                    <h3>Instalación Profesional</h3>
+                    <p>Equipo de instaladores certificados. Proceso rápido, limpio y sin molestias. Garantizamos máxima eficiencia desde el inicio.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="16" cy="10" r="6" stroke="#2d7a4a" stroke-width="2"/>
-                            <path d="M9 18H23C23.55 18 24 18.45 24 19V26C24 27.1 23.1 28 22 28H10C8.9 28 8 27.1 8 26V19C8 18.45 8.45 18 9 18Z" stroke="#4caf50" stroke-width="2" fill="rgba(76, 175, 80, 0.1)"/>
-                        </svg>
-                    </div>
-                    <h3>Monitoreo en Tiempo Real</h3>
-                    <p>App incluida para ver exactamente cuánto dinero estás ahorrando cada día, mes y año.</p>
+                <div class="feature">
+                    <h3>Soporte Continuo</h3>
+                    <p>Asistencia 24/7 incluyendo mantenimiento preventivo, limpiezas periódicas y actualizaciones de software.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Certifications Section -->
-        <section class="section certifications-section">
-            <div class="section-header">
-                <div class="section-eyebrow">CERTIFICACIONES INTERNACIONALES</div>
-                <h2>Máximos Estándares de Calidad</h2>
-                <p>Todos nuestros sistemas cumplen con las certificaciones más rigurosas del mundo.</p>
-            </div>
-
-            <div class="certifications-grid">
-                <div class="cert-badge">
-                    <h4>ISO 14001</h4>
-                    <p>Gestión Ambiental</p>
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="calculator-box">
+            <h2 class="calculator-title">Calcula tu potencial de ahorro</h2>
+            <div class="calc-grid">
+                <div class="calc-input">
+                    <label>Consumo mensual (kWh)</label>
+                    <input type="number" id="consumption" placeholder="800" value="800">
                 </div>
-                <div class="cert-badge">
-                    <h4>TÜV</h4>
-                    <p>Seguridad Técnica</p>
+                <div class="calc-input">
+                    <label>Tarifa eléctrica (€/kWh)</label>
+                    <input type="number" id="rate" placeholder="0.25" value="0.25" step="0.01">
                 </div>
-                <div class="cert-badge">
-                    <h4>IEC 61215</h4>
-                    <p>Rendimiento Solar</p>
-                </div>
-                <div class="cert-badge">
-                    <h4>FDA</h4>
-                    <p>Energía Renovable</p>
+                <div class="calc-input">
+                    <label>Inversión (€)</label>
+                    <input type="number" id="investment" placeholder="8000" value="8000">
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="calc-results">
+                <div class="calc-result">
+                    <div class="calc-result-value" id="monthly-savings">$2,400</div>
+                    <div class="calc-result-label">Ahorro anual</div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-result-value" id="payback">3.3 años</div>
+                    <div class="calc-result-label">Retorno de inversión</div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-result-value" id="total-savings">$60,000+</div>
+                    <div class="calc-result-label">Ahorros en 25 años</div>
+                </div>
+            </div>
+            <button class="calc-button">Solicitar Cotización Personalizada</button>
+        </div>
+    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2>Empieza Tu Transformación Energética Hoy</h2>
-            <p>Obtén una propuesta personalizada completamente gratis. Sin compromisos. Sin obligaciones.</p>
-            <a href="#" class="btn btn-primary" style="color: #2d7a4a;">Solicitar Propuesta Gratuita</a>
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p class="testimonial-text">"Instalaron los paneles sin ningún problema. Mi factura bajó exactamente como calcularon. Muy profesionales y atentos."</p>
+                <div class="testimonial-author">Juan Martínez</div>
+                <div class="testimonial-role">Madrid, España</div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"La mejor inversión que hice para mi casa. En 3 años ya recuperé el dinero y ahora solo recibo ahorros. Excelente equipo."</p>
+                <div class="testimonial-author">María García</div>
+                <div class="testimonial-role">Barcelona, España</div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"El soporte es increíble. Cualquier pregunta se la resuelven en minutos. Recomiendo SolarPro a todos mis amigos."</p>
+                <div class="testimonial-author">Carlos López</div>
+                <div class="testimonial-role">Valencia, España</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs" id="specs">
+        <div class="specs-container">
+            <h2 class="section-title">Especificaciones Técnicas</h2>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <div class="spec-value">500W</div>
+                    <div class="spec-label">Potencia por panel</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-value">22%</div>
+                    <div class="spec-label">Eficiencia máxima</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-value">25 años</div>
+                    <div class="spec-label">Garantía total</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-value">5-7 años</div>
+                    <div class="spec-label">ROI garantizado</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-final">
+        <div class="cta-container">
+            <h2>Comienza tu transición a energía solar hoy</h2>
+            <p>Cotización gratuita, sin compromiso. Expertos locales en tu zona.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-white">Solicitar Cotización</button>
+                <button class="btn btn-secondary">Hablar con Experto</button>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="#">Contacto</a>
-            <a href="#">Soporte</a>
-            <a href="#">Garantía</a>
-            <a href="#">Privacidad</a>
-        </div>
-        <p>© 2026 Soluciones Energéticas Sostenibles | Energía Renovable de Excelencia</p>
+    <footer>
+        <p>© 2026 SolarPro. Energía solar para un futuro sostenible.</p>
+        <p style="margin-top: 16px;">
+            <a href="#">Contacto</a> • 
+            <a href="#">Términos</a> • 
+            <a href="#">Privacidad</a> • 
+            <a href="#">Certificaciones</a>
+        </p>
     </footer>
 
-    <div style="text-align: center;">
-        <a href="../" class="back-button">← Volver a Demos</a>
-    </div>
-
     <script>
-        // ROI Calculator
-        const consumptionInput = document.getElementById('consumption');
-        const rateInput = document.getElementById('rate');
-        const annualSavingsDisplay = document.getElementById('annual-savings');
-        const roiYearsDisplay = document.getElementById('roi-years');
-        const paybackAmountDisplay = document.getElementById('payback-amount');
+        // Calculator functionality
+        const consumption = document.getElementById('consumption');
+        const rate = document.getElementById('rate');
+        const investment = document.getElementById('investment');
+        const monthlySavings = document.getElementById('monthly-savings');
+        const payback = document.getElementById('payback');
+        const totalSavings = document.getElementById('total-savings');
 
-        function calculateROI() {
-            const consumption = parseFloat(consumptionInput.value) || 500;
-            const rate = parseFloat(rateInput.value) || 0.15;
-            const investmentCost = 3499;
-            const annualSavings = consumption * 12 * rate;
-            const roiYears = (investmentCost / annualSavings).toFixed(1);
-            const paybackAmount = (annualSavings * 25).toFixed(0);
+        function updateCalculator() {
+            const monthly = parseFloat(consumption.value) || 0;
+            const tariff = parseFloat(rate.value) || 0;
+            const invest = parseFloat(investment.value) || 0;
 
-            annualSavingsDisplay.textContent = '$' + Math.round(annualSavings);
-            roiYearsDisplay.textContent = roiYears;
-            paybackAmountDisplay.textContent = '$' + paybackAmount.toLocaleString();
+            // Annual savings (assuming 80% offset)
+            const annualSavings = monthly * 12 * tariff * 0.8;
+            
+            // Payback period
+            const paybackPeriod = invest > 0 ? (invest / annualSavings).toFixed(1) : 0;
+            
+            // 25 year savings
+            const years25Savings = annualSavings * 25;
+
+            monthlySavings.textContent = '$' + annualSavings.toLocaleString('es-ES', { maximumFractionDigits: 0 });
+            payback.textContent = paybackPeriod + ' años';
+            totalSavings.textContent = '$' + years25Savings.toLocaleString('es-ES', { maximumFractionDigits: 0 });
         }
 
-        consumptionInput.addEventListener('input', calculateROI);
-        rateInput.addEventListener('input', calculateROI);
-        calculateROI();
+        consumption.addEventListener('input', updateCalculator);
+        rate.addEventListener('input', updateCalculator);
+        investment.addEventListener('input', updateCalculator);
+
+        // Initial calculation
+        updateCalculator();
     </script>
 </body>
 </html>
