@@ -2759,7 +2759,19 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(164, 210, 244, 0.3);
         }
-    </style>
+
+        /* RESPONSIVE GRID FOR CASE STUDIES */
+        @media (max-width: 1024px) {
+            #case-studies > div:nth-child(2) {
+                grid-template-columns: repeat(2, minmax(240px, 1fr)) !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #case-studies > div:nth-child(2) {
+                grid-template-columns: 1fr !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -3322,7 +3334,7 @@
             </div>
 
             <!-- CASOS DE ESTUDIO -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(250px, 1fr)); gap: 28px;">
                 
                 <!-- CASO 1: NEXUS LOGISTICS -->
                 <div style="background: var(--blanco-puro); border-radius: 16px; overflow: hidden; box-shadow: -6px -6px 16px rgba(255,255,255,0.9), 6px 6px 16px rgba(46,58,70,0.08); border: 1px solid rgba(164,210,244,0.15); display: flex; flex-direction: column; height: 100%; transition: all 0.3s ease;">
