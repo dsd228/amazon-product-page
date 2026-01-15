@@ -43,7 +43,7 @@
             --space-2xl: 56px;                  /* 48 → 56px */
             --space-3xl: 72px;                  /* 64 → 72px */
             --space-4xl: 96px;
-            --space-5xl: 120px;                 /* 96 → 120px */"
+            --space-5xl: 120px;                 /* 96 → 120px */
             
             /* RADIOS - Neumorfismo (actualizado) */
             --radius-sm: 10px;     /* Inputs */
@@ -80,7 +80,7 @@
             --font-size-4xl: 48px;          /* 37 → 48 dramático */
             --font-size-5xl: 56px;          /* 42 → 56 */
             --font-size-6xl: 68px;          /* 49 → 68 */
-            --font-size-7xl: 82px;          /* 56 → 82 hero dominante */"
+            --font-size-7xl: 82px;          /* 56 → 82 hero dominante */
             
             --line-height-tight: 1.2;
             --line-height-normal: 1.5;
@@ -305,11 +305,20 @@
         .nav-item > a {
             cursor: pointer;
         }
-        .nav-item.has-dropdown > a::before {
-            content: '▾';
-            margin-left: 4px;
-            font-size: 12px;
+        .nav-item.has-dropdown > a::after {
+            content: '▼';
+            display: inline-block;
+            margin-left: 6px;
+            font-size: 10px;
+            transition: transform 0.3s ease;
             opacity: 0.6;
+        }
+        .nav-item.has-dropdown:hover > a::after {
+            transform: rotate(180deg);
+            opacity: 1;
+        }
+        .nav-item.has-dropdown > a::before {
+            content: '';
         }
         .nav-item > a,
         .header-nav a {
@@ -341,22 +350,35 @@
         .nav-item > a:hover::after,
         .header-nav a:hover::after { width: 100% }
         
-        /* Dropdown Menu Styles */
+        /* Dropdown Menu Styles - Mejorado (Ley de Jakob) */
         .dropdown-menu {
             position: absolute;
             top: 100%;
             left: 50%;
             transform: translateX(-50%) translateY(10px);
             background: white;
-            border: 1.5px solid rgba(164, 210, 244, 0.35);
+            border: 2px solid var(--acento-principal);
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(46, 58, 70, 0.15);
-            min-width: 200px;
+            box-shadow: 0 12px 48px rgba(164, 210, 244, 0.25), 0 4px 12px rgba(46, 58, 70, 0.08);
+            min-width: 220px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
             margin-top: 15px;
+            padding: 8px 0;
+        }
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--acento-principal);
         }
         .nav-item:hover .dropdown-menu {
             opacity: 1;
@@ -364,14 +386,28 @@
             transform: translateX(-50%) translateY(0);
         }
         .dropdown-menu a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             padding: 12px 20px;
             color: var(--texto-principal);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.2s ease;
-            border-bottom: 1px solid rgba(164, 210, 244, 0.15);
+            border-bottom: 1px solid rgba(164, 210, 244, 0.12);
+            position: relative;
+        }
+        .dropdown-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--acento-principal);
+            transform: scaleY(0);
+            transition: transform 0.2s ease;
         }
         .dropdown-menu a:last-child {
             border-bottom: none;
@@ -383,9 +419,12 @@
             border-radius: 0 0 10px 10px;
         }
         .dropdown-menu a:hover {
-            background: rgba(164, 210, 244, 0.1);
+            background: rgba(164, 210, 244, 0.15);
             color: var(--acento-principal);
             padding-left: 24px;
+        }
+        .dropdown-menu a:hover::before {
+            transform: scaleY(1);
         }
         .dropdown-menu a::after {
             display: none;
@@ -405,6 +444,10 @@
             position: relative;
             letter-spacing: 0.3px;
             border: none;
+        }
+        /* Ocultar botón dentro del nav en desktop */
+        .header-nav .header-cta {
+            display: none;
         }
         .header-cta::before {
             content: '';
@@ -430,6 +473,34 @@
         }
         .header-cta.active::before {
             opacity: 1;
+        }
+        
+        /* MENÚ HAMBURGUESA - Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--texto-principal);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* HERO NEUMORFISMO CLARO - Visual Depth */
@@ -511,18 +582,18 @@
         .stat-item {
             text-align: center;
             padding: var(--space-lg);
-            background: rgba(164, 210, 244, 0.08);
+            background: var(--fondo-secundario);
             border-radius: var(--radius-lg);
-            border: 1px solid rgba(164, 210, 244, 0.15);
+            border: 1px solid rgba(164, 210, 244, 0.18);
             min-width: 180px;
-            box-shadow: 0 2px 10px rgba(163, 177, 198, 0.1);
-            transition: all var(--transition-base);
+            box-shadow: var(--shadow-md-up);
+            transition: all var(--transition-fast);
         }
         .stat-item:hover {
-            background: rgba(164, 210, 244, 0.12);
-            border-color: rgba(164, 210, 244, 0.3);
+            background: var(--blanco-puro);
+            border-color: rgba(164, 210, 244, 0.35);
             transform: translateY(-2px);
-            box-shadow: 0 4px 18px rgba(164, 210, 244, 0.2);
+            box-shadow: var(--shadow-lg-up);
         }
         .stat-number {
             font-family: 'Playfair Display', serif;
@@ -560,12 +631,13 @@
         /* Checkbox Neumórfico Base */
         .btn {
             padding: 14px 32px;
+            min-height: 48px;
             border-radius: 50px;
             font-weight: 500;
             font-size: 15px;
             text-decoration: none;
             cursor: pointer;
-            border: none;
+            border: 1px solid rgba(164, 210, 244, 0.18);
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
@@ -574,17 +646,13 @@
             letter-spacing: 0.3px;
             position: relative;
             color: var(--texto-secundario);
-            background: #ECEEF1;
-            box-shadow: 
-                -5px -5px 15px rgba(255, 255, 255, 0.95),
-                5px 5px 15px rgba(46, 58, 70, 0.18);
+            background: var(--fondo-secundario);
+            box-shadow: var(--shadow-md-up);
             user-select: none;
         }
         .btn:active,
         .btn.active {
-            box-shadow: 
-                inset 4px 4px 10px rgba(46, 58, 70, 0.15),
-                inset -4px -4px 10px rgba(255, 255, 255, 0.7);
+            box-shadow: var(--shadow-active);
             transform: scale(0.98);
         }
         .btn:focus-visible {
@@ -592,9 +660,10 @@
             outline-offset: 4px;
         }
         .btn-primary {
-            background: #ECEEF1;
-            color: var(--texto-secundario);
+            background: var(--fondo-secundario);
+            color: var(--texto-principal);
             position: relative;
+            box-shadow: var(--shadow-md-up);
         }
         .btn-primary::before {
             content: '';
@@ -620,15 +689,12 @@
             z-index: 1;
         }
         .btn-primary:hover {
-            box-shadow: 
-                -6px -6px 18px rgba(255, 255, 255, 1),
-                6px 6px 20px rgba(46, 58, 70, 0.22);
+            box-shadow: var(--shadow-lg-up);
+            transform: translateY(-2px);
         }
         .btn-primary:active,
         .btn-primary.active {
-            box-shadow: 
-                inset 5px 5px 12px rgba(46, 58, 70, 0.15),
-                inset -5px -5px 12px rgba(255, 255, 255, 0.8);
+            box-shadow: var(--shadow-active);
             transform: scale(0.97);
         }
         .btn-primary.active::before {
@@ -638,24 +704,18 @@
             transform: translateY(-50%) scale(1);
         }
         .btn-secondary {
-            background: #ECEEF1;
+            background: var(--fondo-secundario);
             color: var(--texto-secundario);
-            box-shadow: 
-                -4px -4px 12px rgba(255, 255, 255, 0.9),
-                4px 4px 12px rgba(46, 58, 70, 0.15);
+            box-shadow: var(--shadow-md-up);
         }
         .btn-secondary:hover {
             transform: translateY(-1px);
-            box-shadow: 
-                -5px -5px 15px rgba(255, 255, 255, 0.95),
-                5px 5px 16px rgba(46, 58, 70, 0.18);
+            box-shadow: var(--shadow-lg-up);
             color: var(--acento-principal);
         }
         .btn-secondary:active {
             transform: translateY(1px);
-            box-shadow: 
-                inset 3px 3px 8px rgba(46, 58, 70, 0.1),
-                inset -3px -3px 8px rgba(255, 255, 255, 0.7);
+            box-shadow: var(--shadow-active);
         }
         .hero-badges {
             display: flex;
@@ -674,6 +734,33 @@
             letter-spacing: 0.2px;
         }
         .badge-item .icon { color: var(--acento-principal) }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: var(--space-4xl) var(--space-md);
+                min-height: auto;
+            }
+            .hero h1 { font-size: 48px; }
+            .hero-subtitle {
+                font-size: 16px;
+                margin-bottom: var(--space-xl);
+            }
+            .hero-stats {
+                gap: var(--space-md);
+                margin: var(--space-lg) 0;
+            }
+            .stat-item {
+                min-width: 150px;
+                padding: var(--space-md);
+            }
+            .hero-cta-row {
+                gap: var(--space-md);
+                margin-top: var(--space-xl);
+            }
+            section#case-studies {
+                padding: 90px 16px !important;
+            }
+        }
 
         /* STYLEBOOK */
         .stylebook {
@@ -2162,7 +2249,7 @@
             line-height: 1.6;
         }
 
-        /* WHATSAPP FLOATING - Optimizado */
+        /* BOTONES FLOTANTES - Optimizado */
         .whatsapp-float {
             position: fixed;
             bottom: var(--space-2xl);
@@ -2186,6 +2273,38 @@
             transform: scale(1.15);
             box-shadow: 0 8px 24px rgba(37,211,102,0.6);
         }
+        
+        /* BOTÓN SUBIR AL INICIO */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: calc(var(--space-2xl) + 75px);
+            right: var(--space-2xl);
+            background: var(--acento-principal);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(164, 210, 244, 0.4);
+            cursor: pointer;
+            z-index: 998;
+            transition: all var(--transition-slow);
+            opacity: 0;
+            visibility: hidden;
+        }
+        .scroll-top-btn:hover {
+            transform: scale(1.15) translateY(-2px);
+            box-shadow: 0 8px 24px rgba(164, 210, 244, 0.6);
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.08); }
@@ -2248,6 +2367,85 @@
                 --font-size-5xl: 32px;
             }
             
+            /* Mostrar menú hamburguesa */
+            .menu-toggle {
+                display: block;
+            }
+            
+            /* Navegación mobile */
+            .header-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--blanco-puro);
+                flex-direction: column;
+                padding: 80px 30px 30px;
+                box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            .header-nav.active {
+                right: 0;
+            }
+            
+            /* Items navegación mobile */
+            .nav-item {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .nav-item > a,
+            .header-nav a {
+                padding: 16px 12px;
+                min-height: 52px;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                font-size: 16px;
+            }
+            
+            /* Dropdown mobile */
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                border: none;
+                border-left: 3px solid var(--acento-principal);
+                margin-top: 8px;
+                margin-left: 12px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            .nav-item.active .dropdown-menu {
+                max-height: 500px;
+            }
+            .dropdown-menu::before {
+                display: none;
+            }
+            .dropdown-menu a {
+                padding: 14px 20px;
+                min-height: 48px;
+            }
+            
+            /* Ocultar Header CTA original en mobile */
+            .header-content > .header-cta {
+                display: none;
+            }
+            
+            /* Mostrar botón Cotizar dentro del menú mobile */
+            .header-nav .header-cta {
+                display: block;
+                margin-top: 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
             .hero { 
                 padding: var(--space-3xl) var(--space-lg);
                 min-height: 80vh;
@@ -2261,27 +2459,107 @@
             
             .templates-grid { grid-template-columns: 1fr; }
             .pricing-grid { grid-template-columns: 1fr; }
-            .header-nav { display: none; }
+            /* Navegación mobile simplificada y accesible */
+            .header-nav { 
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--blanco-puro);
+                width: 280px;
+                padding: var(--space-xl);
+                box-shadow: var(--shadow-lg-up);
+                transition: right 0.3s ease;
+                z-index: var(--z-sticky);
+            }
+            .header-nav.active { right: 0; }
+            .nav-item > a { 
+                padding: 16px 12px;
+                min-height: 52px;
+                font-size: 16px;
+            }
             .stylebook-container { grid-template-columns: 1fr; }
             .style-preview-stack { grid-template-columns: 1fr; }
             
-            /* Optimizar botones en móvil */
+            /* Imágenes responsive */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            .template-image {
+                height: 180px;
+            }
+            
+            /* Cards responsive */
+            .template-card,
+            .pricing-card,
+            .testimonial,
+            .tendencia-card,
+            .sales-card,
+            .amazon-card {
+                margin-bottom: 20px;
+            }
+            
+            /* Template actions en mobile */
+            .template-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .template-actions a {
+                width: 100%;
+            }
+            
+            /* Optimizar botones en móvil (Ley de Fitts - targets 52px mínimo) */
             .btn {
-                padding: var(--space-lg) var(--space-xl);
-                font-size: var(--font-size-sm);
-                min-height: 48px;
+                padding: 16px 24px;
+                font-size: 16px;
+                min-height: 52px;
+                width: 100%;
+            }
+            
+            .btn-primary, .btn-buy, .pricing-btn {
+                min-height: 54px;
+                padding: 18px 28px;
+            }
+            
+            .hero-cta-row {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .hero-cta-row .btn {
+                width: 100%;
+            }
+            
+            /* Secciones con padding reducido */
+            section {
+                padding: 60px 20px !important;
+            }
+            
+            /* Case studies responsive */
+            .case-studies > div {
+                padding: 60px 20px !important;
+            }
+            
+            /* Formulario responsive */
+            .contact-form-simple {
+                padding: 25px;
+            }
+            .contact-form-simple input,
+            .contact-form-simple textarea {
+                font-size: 16px;
             }
             
             /* Mejorar FAQ en móvil */
             .faq-question {
-                padding: var(--space-md);
-                font-size: var(--font-size-base);
+                padding: 16px;
+                font-size: 15px;
             }
             
             /* Mejorar footer en móvil */
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: var(--space-2xl);
+                gap: 30px;
             }
             
             /* Optimizar secciones */
@@ -2289,7 +2567,7 @@
             .pricing { padding: var(--space-3xl) var(--space-lg); }
             .faq { padding: var(--space-3xl) var(--space-lg); }
             
-            /* WhatsApp float móvil optimizado */
+            /* Botones flotantes móvil optimizado */
             .whatsapp-float {
                 width: 56px;
                 height: 56px;
@@ -2298,7 +2576,26 @@
                 font-size: 28px;
             }
             
+            .scroll-top-btn {
+                width: 56px;
+                height: 56px;
+                bottom: calc(var(--space-lg) + 65px);
+                right: var(--space-lg);
+                font-size: 28px;
+            }
+            
             h2 { font-size: var(--font-size-2xl); }
+        }
+        
+        /* Tablet responsive */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .templates-grid,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 {
+                font-size: 52px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -2309,14 +2606,35 @@
                 --space-xl: 20px;
             }
             
-            .hero h1 { font-size: 28px; line-height: 1.2; }
-            .section-header h2 { font-size: var(--font-size-2xl); }
-            .pricing-price { font-size: 32px; }
-            .hero-cta-row { flex-direction: column; }
-            .hero-cta-row .btn { width: 100%; }
+            .hero h1 { 
+                font-size: 28px;
+                line-height: 1.2;
+            }
+            .section-header h2 { 
+                font-size: 28px;
+            }
+            .pricing-price { 
+                font-size: 32px;
+            }
+            .hero-cta-row { 
+                flex-direction: column;
+            }
+            .hero-cta-row .btn { 
+                width: 100%;
+            }
             
-            .btn { padding: var(--space-md) var(--space-lg); }
-            .whatsapp-float { width: 52px; height: 52px; font-size: 24px; }
+            .btn { 
+                padding: 14px 20px;
+            }
+            .whatsapp-float,
+            .scroll-top-btn { 
+                width: 52px;
+                height: 52px;
+                font-size: 24px;
+            }
+            .scroll-top-btn {
+                bottom: calc(20px + 65px);
+            }
         }
         
         /* PROCESO ANIMACIONES */
@@ -2450,37 +2768,31 @@
     <header class="header" role="banner">
         <div class="header-content">
             <div class="logo" aria-label="NeoBook - Diseño UX/UI Profesional"><svg class="icon icon-md" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M7 12h10"></path><path d="M12 7v10"></path></svg>NeoBook<svg style="width: 16px; height: 16px; margin-left: 6px; fill: var(--acento-principal); filter: drop-shadow(0 2px 6px rgba(164,210,244,0.4));" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
             <nav class="header-nav" role="navigation" aria-label="Navegación principal">
                 <div class="nav-item">
                     <a href="#servicios" title="Ver servicios profesionales">Servicios</a>
                 </div>
                 <div class="nav-item">
-                    <a href="#metodologia" title="Ver metodología Amazon">Metodología</a>
-                </div>
-                <div class="nav-item has-dropdown">
-                    <a title="Ver templates profesionales">Templates</a>
-                    <div class="dropdown-menu">
-                        <a href="ejemplos/template-eco.html" target="_blank" title="Template Eco/Sostenible">🌿 Eco & Sostenible</a>
-                        <a href="ejemplos/template-tech.html" target="_blank" title="Template Tech">⚡ Tech & Gadgets</a>
-                        <a href="ejemplos/template-sport.html" target="_blank" title="Template Sport">🏃 Sport & Fitness</a>
-                        <a href="ejemplos/template-premium.html" target="_blank" title="Template Premium">💎 Premium & Luxury</a>
-                    </div>
-                </div>
-                <div class="nav-item has-dropdown">
-                    <a title="Recursos profesionales">Recursos</a>
-                    <div class="dropdown-menu">
-                        <a href="#amazon-playbook" title="Playbook completo">🎯 Amazon Playbook</a>
-                        <a href="ejemplos/amazon-seo-contenido.html" target="_blank" title="Guía SEO">🔍 Guía SEO</a>
-                        <a href="#sales-styles" title="Estilos de venta">💼 Estilos de Venta</a>
-                        <a href="#tendencias" title="Tendencias 2026">✨ Tendencias 2026</a>
-                    </div>
-                </div>
-                <div class="nav-item">
                     <a href="#portafolio" title="Ver casos de éxito">Portafolio</a>
                 </div>
-                <div class="nav-item">
-                    <a href="#pricing" title="Ver planes">Planes</a>
+                <div class="nav-item has-dropdown">
+                    <a title="Recursos">Recursos</a>
+                    <div class="dropdown-menu">
+                        <a href="#amazon-playbook" title="Guía completa Amazon">🎯 Amazon Playbook</a>
+                        <a href="#sales-styles" title="Ver estilos de venta">💼 Estilos de Venta</a>
+                        <a href="#tendencias" title="Ver tendencias UX 2026">✨ Tendencias 2026</a>
+                        <a href="ejemplos/template-eco.html" target="_blank" title="Ver galería de templates">🎨 Galería de Templates</a>
+                        <a href="ejemplos/amazon-seo-contenido.html" target="_blank" title="Guías y contenidos">📚 Guías & Contenidos</a>
+                    </div>
                 </div>
+                <a href="cotizacion.html" class="header-cta" title="Solicitar cotización gratuita">Cotización Gratis</a>
             </nav>
             <a href="cotizacion.html" class="header-cta" title="Solicitar cotización gratuita">Cotización Gratis</a>
         </div>
@@ -2533,55 +2845,91 @@
                 <p style="font-size: 18px; color: var(--texto-secundario); max-width: 700px; margin: 0 auto; line-height: 1.6;">Cada caso muestra mi proceso real: investigación, ideación, prototipado, pruebas y resultados medibles.</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
                 <!-- CASE 1 -->
-                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(46, 58, 70, 0.1); transition: all 0.3s ease;">
+                <div style="background: var(--fondo-secundario); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg-up); transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%;">
                     <div style="height: 200px; background: linear-gradient(135deg, #A4D2F4 0%, #DFF1FF 100%); display: flex; align-items: center; justify-content: center;">
-                        <span style="font-size: 64px;">🛒</span>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZ2MnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjQTREMkY0Jy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0RGRjFGRicvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PScyOCcgZmlsbD0ndXJsKCNnYyknLz4KICA8cGF0aCBkPSdNMzAgMzRoMTBsNiA0NGgzOGw2LTI4SDQ0JyBmaWxsPSdub25lJyBzdHJva2U9JyMwRDNCNjYnIHN0cm9rZS13aWR0aD0nNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+CiAgPGNpcmNsZSBjeD0nNTInIGN5PSc4Nicgcj0nNicgZmlsbD0nIzBEM0I2NicvPgogIDxjaXJjbGUgY3g9JzgwJyBjeT0nODYnIHI9JzYnIGZpbGw9JyMwRDNCNjYnLz4KICA8cGF0aCBkPSdNNDYgNTJoNDInIHN0cm9rZT0nIzBEM0I2Nicgc3Ryb2tlLXdpZHRoPSc2JyBzdHJva2UtbGluZWNhcD0ncm91bmQnLz4KPC9zdmc+" alt="Optimización de Checkout" style="width: 96px; height: 96px; filter: drop-shadow(0 10px 20px rgba(46,58,70,0.12));">
                     </div>
-                    <div style="padding: 32px;">
+                    <div style="padding: 28px; display: flex; flex-direction: column; height: 100%; gap: 14px;">
                         <h3 style="font-size: 24px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">Optimización de Checkout</h3>
-                        <p style="font-size: 14px; color: var(--texto-terciario); margin-bottom: 20px; line-height: 1.6;"><strong>Problema:</strong> Carrito abandonado 68% en e-commerce</p>
-                        <ul style="font-size: 14px; color: var(--texto-secundario); margin-bottom: 20px; line-height: 1.8;">
-                            <li>✓ <strong>Investigación:</strong> User testing + heatmaps</li>
-                            <li>✓ <strong>Solución:</strong> Checkout reducido de 5 a 2 pasos</li>
-                            <li>✓ <strong>Resultado:</strong> ↓45% abandono, ↑32% conversión</li>
-                        </ul>
-                        <a href="#" onclick="event.preventDefault()" style="display: inline-block; padding: 12px 24px; background: var(--acento-principal); color: white; border-radius: 50px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.2s ease;">Ver caso completo →</a>
+                        <div style="display: grid; gap: 12px;">
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Problema</span>
+                                <p style="font-size: 14px; color: var(--texto-terciario); margin: 0; line-height: 1.6;">Carrito abandonado 68% en e-commerce.</p>
+                            </div>
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Solución</span>
+                                <ul style="font-size: 14px; color: var(--texto-secundario); margin: 0; padding-left: 18px; line-height: 1.7;">
+                                    <li>Checkout reducido de 5 a 2 pasos.</li>
+                                    <li>Costes visibles siempre en el resumen.</li>
+                                    <li>Validaciones inline y CTA fijo en mobile.</li>
+                                </ul>
+                            </div>
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Resultado</span>
+                                <p style="font-size: 14px; color: var(--texto-secundario); margin: 0; line-height: 1.6;">↓45% abandono y ↑32% conversión.</p>
+                            </div>
+                        </div>
+                        <a href="case-optimizacion-checkout.html" style="margin-top: auto; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 26px; background: var(--acento-principal); color: white; border-radius: var(--radius-full); text-decoration: none; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; transition: var(--transition-fast); box-shadow: var(--shadow-md-up);">Ver caso completo →</a>
                     </div>
                 </div>
 
                 <!-- CASE 2 -->
-                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(46, 58, 70, 0.1); transition: all 0.3s ease;">
+                <div style="background: var(--fondo-secundario); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg-up); transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%;">
                     <div style="height: 200px; background: linear-gradient(135deg, #F7C7D2 0%, #FFE4ED 100%); display: flex; align-items: center; justify-content: center;">
-                        <span style="font-size: 64px;">📊</span>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZ2EnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjRjdDN0QyJy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0ZGRTRFRCcvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PScyOCcgZmlsbD0ndXJsKCNnYSknLz4KICA8cGF0aCBkPSdNMjggODBjOCAwIDEyLTIyIDIwLTIyczEyIDE4IDIwIDE4IDEyLTI2IDIwLTI2IDEyIDE4IDIwIDE4JyBmaWxsPSdub25lJyBzdHJva2U9JyMzRTFGNDcnIHN0cm9rZS13aWR0aD0nNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+CiAgPGxpbmUgeDE9JzI2JyB5MT0nOTInIHgyPSc5NCcgeTI9JzkyJyBzdHJva2U9JyMzRTFGNDcnIHN0cm9rZS13aWR0aD0nNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJy8+CiAgPGNpcmNsZSBjeD0nNDgnIGN5PSc1OCcgcj0nNCcgZmlsbD0nIzNFMUY0NycvPgogIDxjaXJjbGUgY3g9JzY4JyBjeT0nNzQnIHI9JzQnIGZpbGw9JyMzRTFGNDcnLz4KICA8Y2lyY2xlIGN4PSc4OCcgY3k9JzU2JyByPSc0JyBmaWxsPScjM0UxRjQ3Jy8+Cjwvc3ZnPg==" alt="Dashboard Analytics" style="width: 96px; height: 96px; filter: drop-shadow(0 10px 20px rgba(62,31,71,0.12));">
                     </div>
-                    <div style="padding: 32px;">
+                    <div style="padding: 28px; display: flex; flex-direction: column; height: 100%; gap: 14px;">
                         <h3 style="font-size: 24px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">Dashboard Analytics Rediseñado</h3>
-                        <p style="font-size: 14px; color: var(--texto-terciario); margin-bottom: 20px; line-height: 1.6;"><strong>Problema:</strong> Dashboard confuso con tiempo de decisión lento</p>
-                        <ul style="font-size: 14px; color: var(--texto-secundario); margin-bottom: 20px; line-height: 1.8;">
-                            <li>✓ <strong>Investigación:</strong> Entrevistas 1-on-1 con usuarios</li>
-                            <li>✓ <strong>Solución:</strong> Information hierarchy + custom widgets</li>
-                            <li>✓ <strong>Resultado:</strong> ↓60% tiempo decisión, ↑47% engagement</li>
-                        </ul>
-                        <a href="#" onclick="event.preventDefault()" style="display: inline-block; padding: 12px 24px; background: var(--acento-principal); color: white; border-radius: 50px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.2s ease;">Ver caso completo →</a>
+                        <div style="display: grid; gap: 12px;">
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Problema</span>
+                                <p style="font-size: 14px; color: var(--texto-terciario); margin: 0; line-height: 1.6;">Dashboard confuso con tiempo de decisión lento.</p>
+                            </div>
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Solución</span>
+                                <ul style="font-size: 14px; color: var(--texto-secundario); margin: 0; padding-left: 18px; line-height: 1.7;">
+                                    <li>Jerarquía clara con KPIs arriba.</li>
+                                    <li>Widgets custom por rol y presets curados.</li>
+                                    <li>Comparaciones YoY/WoW visibles siempre.</li>
+                                </ul>
+                            </div>
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Resultado</span>
+                                <p style="font-size: 14px; color: var(--texto-secundario); margin: 0; line-height: 1.6;">↓60% tiempo decisión, ↑47% engagement.</p>
+                            </div>
+                        </div>
+                        <a href="case-dashboard-analytics.html" style="margin-top: auto; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 26px; background: var(--acento-principal); color: white; border-radius: var(--radius-full); text-decoration: none; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; transition: var(--transition-fast); box-shadow: var(--shadow-md-up);">Ver caso completo →</a>
                     </div>
                 </div>
 
                 <!-- CASE 3 -->
-                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(46, 58, 70, 0.1); transition: all 0.3s ease;">
+                <div style="background: var(--fondo-secundario); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg-up); transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%;">
                     <div style="height: 200px; background: linear-gradient(135deg, #B8E6FF 0%, #E8F5FF 100%); display: flex; align-items: center; justify-content: center;">
-                        <span style="font-size: 64px;">📱</span>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZ20nIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjQjhFNkZGJy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0U4RjVGRicvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PScyOCcgZmlsbD0ndXJsKCNnbSknLz4KICA8cmVjdCB4PSc0MCcgeT0nMTgnIHdpZHRoPSc0MCcgaGVpZ2h0PSc4NCcgcng9JzEwJyBmaWxsPSdub25lJyBzdHJva2U9JyMwRjNENUYnIHN0cm9rZS13aWR0aD0nNicvPgogIDxjaXJjbGUgY3g9JzYwJyBjeT0nODYnIHI9JzYnIGZpbGw9JyMwRjNENUYnLz4KICA8cmVjdCB4PSc0NicgeT0nMzAnIHdpZHRoPScyOCcgaGVpZ2h0PSc0MCcgcng9JzYnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzBGM0Q1Ricgc3Ryb2tlLXdpZHRoPSc2Jy8+CiAgPHBhdGggZD0nTTUyIDQ0aDE2JyBzdHJva2U9JyMwRjNENUYnIHN0cm9rZS13aWR0aD0nNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJy8+Cjwvc3ZnPg==" alt="App móvil" style="width: 96px; height: 96px; filter: drop-shadow(0 10px 20px rgba(15,61,95,0.12));">
                     </div>
-                    <div style="padding: 32px;">
+                    <div style="padding: 28px; display: flex; flex-direction: column; height: 100%; gap: 14px;">
                         <h3 style="font-size: 24px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">App Móvil: Onboarding</h3>
-                        <p style="font-size: 14px; color: var(--texto-terciario); margin-bottom: 20px; line-height: 1.6;"><strong>Problema:</strong> 55% de usuarios no completaban setup inicial</p>
-                        <ul style="font-size: 14px; color: var(--texto-secundario); margin-bottom: 20px; line-height: 1.8;">
-                            <li>✓ <strong>Investigación:</strong> Session recordings + drop-off analysis</li>
-                            <li>✓ <strong>Solución:</strong> Onboarding progresivo con 3 fases</li>
-                            <li>✓ <strong>Resultado:</strong> ↑89% completitud, NPS +34</li>
-                        </ul>
-                        <a href="#" onclick="event.preventDefault()" style="display: inline-block; padding: 12px 24px; background: var(--acento-principal); color: white; border-radius: 50px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.2s ease;">Ver caso completo →</a>
+                        <div style="display: grid; gap: 12px;">
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Problema</span>
+                                <p style="font-size: 14px; color: var(--texto-terciario); margin: 0; line-height: 1.6;">55% de usuarios no completaban el setup inicial.</p>
+                            </div>
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Solución</span>
+                                <ul style="font-size: 14px; color: var(--texto-secundario); margin: 0; padding-left: 18px; line-height: 1.7;">
+                                    <li>Onboarding progresivo en 3 fases con progreso visible.</li>
+                                    <li>CTA fijo en mobile y validaciones persistentes.</li>
+                                    <li>Auto-setup de valores por defecto y opción "hazlo luego".</li>
+                                </ul>
+                            </div>
+                            <div style="padding: 12px 14px; border-radius: var(--radius-md); background: var(--blanco-puro); box-shadow: var(--shadow-sm-in);">
+                                <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-terciario); display: block; margin-bottom: 6px;">Resultado</span>
+                                <p style="font-size: 14px; color: var(--texto-secundario); margin: 0; line-height: 1.6;">↑89% completitud y NPS +34.</p>
+                            </div>
+                        </div>
+                        <a href="case-app-onboarding.html" style="margin-top: auto; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 26px; background: var(--acento-principal); color: white; border-radius: var(--radius-full); text-decoration: none; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; transition: var(--transition-fast); box-shadow: var(--shadow-md-up);">Ver caso completo →</a>
                     </div>
                 </div>
             </div>
@@ -2599,32 +2947,44 @@
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
                 <div style="text-align: center;" class="proceso-step">
-                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; background: linear-gradient(135deg, #A4D2F4 0%, #DFF1FF 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 44px; box-shadow: 0 4px 15px rgba(164, 210, 244, 0.3);">🔍</div>
+                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; border-radius: 50%; box-shadow: 0 4px 15px rgba(164, 210, 244, 0.3); overflow: hidden;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZzEnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjQTREMkY0Jy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0RGRjFGRicvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PSc2MCcgZmlsbD0ndXJsKCNnMSknLz4KICA8Y2lyY2xlIGN4PSc1NCcgY3k9JzU0JyByPScxOCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjMEQzQjY2JyBzdHJva2Utd2lkdGg9JzYnLz4KICA8bGluZSB4MT0nNjYnIHkxPSc2NicgeDI9Jzg4JyB5Mj0nODgnIHN0cm9rZT0nIzBEM0I2Nicgc3Ryb2tlLXdpZHRoPSc2JyBzdHJva2UtbGluZWNhcD0ncm91bmQnLz4KPC9zdmc+" alt="Investigación" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
                     <h3 style="font-size: 20px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">1. Investigación</h3>
                     <p style="font-size: 15px; color: var(--texto-secundario); line-height: 1.6;">User interviews, data analysis, competitive research y testing para entender el problema real.</p>
                 </div>
                 <div style="text-align: center;" class="proceso-step">
-                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; background: linear-gradient(135deg, #F7C7D2 0%, #FFE4ED 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 44px; box-shadow: 0 4px 15px rgba(247, 199, 210, 0.3);">💡</div>
+                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; border-radius: 50%; box-shadow: 0 4px 15px rgba(247, 199, 210, 0.3); overflow: hidden;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZzInIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjRjdDN0QyJy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0ZGRTRFRCcvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PSc2MCcgZmlsbD0ndXJsKCNnMiknLz4KICA8cGF0aCBkPSdNNjAgMjZjLTEyLjIgMC0yMiA5LjgtMjIgMjIgMCA4LjMgNC40IDE1LjYgMTEuNSAxOS4zVjc4YzAgMi4yIDEuOCA0IDQgNGgxM2MyLjIgMCA0LTEuOCA0LTR2LTEwLjdDNzcuNiA2My42IDgyIDU2LjMgODIgNDhjMC0xMi4yLTkuOC0yMi0yMi0yMnonIGZpbGw9J25vbmUnIHN0cm9rZT0nIzNFMUY0Nycgc3Ryb2tlLXdpZHRoPSc2JyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz4KICA8cmVjdCB4PSc1MCcgeT0nNzgnIHdpZHRoPScyMCcgaGVpZ2h0PSc4JyByeD0nMycgZmlsbD0nIzNFMUY0NycvPgogIDxsaW5lIHgxPSc1NCcgeTE9JzkwJyB4Mj0nNjYnIHkyPSc5MCcgc3Ryb2tlPScjM0UxRjQ3JyBzdHJva2Utd2lkdGg9JzQnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPgo8L3N2Zz4=" alt="Ideación" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
                     <h3 style="font-size: 20px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">2. Ideación</h3>
                     <p style="font-size: 15px; color: var(--texto-secundario); line-height: 1.6;">Brainstorming iterativo, sketching y definición de soluciones viables con el equipo.</p>
                 </div>
                 <div style="text-align: center;" class="proceso-step">
-                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; background: linear-gradient(135deg, #B8E6FF 0%, #E8F5FF 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 44px; box-shadow: 0 4px 15px rgba(184, 230, 255, 0.3);">🎨</div>
+                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; border-radius: 50%; box-shadow: 0 4px 15px rgba(184, 230, 255, 0.3); overflow: hidden;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZzMnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjQjhFNkZGJy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0U4RjVGRicvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PSc2MCcgZmlsbD0ndXJsKCNnMyknLz4KICA8cGF0aCBkPSdNNzggMjQgOTYgNDIgNjIgNzYgNDQgNTggNzggMjRaJyBmaWxsPSdub25lJyBzdHJva2U9JyMwRjNENUYnIHN0cm9rZS13aWR0aD0nNicgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcvPgogIDxwYXRoIGQ9J000NCA1OCAzOCA4MmwyNC02JyBmaWxsPSdub25lJyBzdHJva2U9JyMwRjNENUYnIHN0cm9rZS13aWR0aD0nNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+CiAgPGNpcmNsZSBjeD0nNjgnIGN5PSc1Micgcj0nNCcgZmlsbD0nIzBGM0Q1RicvPgo8L3N2Zz4=" alt="Prototipado" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
                     <h3 style="font-size: 20px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">3. Prototipado</h3>
                     <p style="font-size: 15px; color: var(--texto-secundario); line-height: 1.6;">Wireframes, high-fidelity mockups y prototipos interactivos en Figma.</p>
                 </div>
                 <div style="text-align: center;" class="proceso-step">
-                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; background: linear-gradient(135deg, #A4D2F4 0%, #DFF1FF 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 44px; box-shadow: 0 4px 15px rgba(164, 210, 244, 0.3);">🧪</div>
+                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; border-radius: 50%; box-shadow: 0 4px 15px rgba(164, 210, 244, 0.3); overflow: hidden;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZzQnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjQTREMkY0Jy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0RGRjFGRicvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PSc2MCcgZmlsbD0ndXJsKCNnNCknLz4KICA8cGF0aCBkPSdNNTAgMjZoMjB2MTJsMTAgMjJjNCA5LTIgMTgtMTIgMThINDJjLTEwIDAtMTYtOS0xMi0xOGwxMC0yMlYyNnonIGZpbGw9J25vbmUnIHN0cm9rZT0nIzBEM0I2Nicgc3Ryb2tlLXdpZHRoPSc2JyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz4KICA8bGluZSB4MT0nNTAnIHkxPSczOCcgeDI9JzcwJyB5Mj0nMzgnIHN0cm9rZT0nIzBEM0I2Nicgc3Ryb2tlLXdpZHRoPSc2JyBzdHJva2UtbGluZWNhcD0ncm91bmQnLz4KICA8cGF0aCBkPSdNNDggNjJoMjQnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzBEM0I2Nicgc3Ryb2tlLXdpZHRoPSc2JyBzdHJva2UtbGluZWNhcD0ncm91bmQnLz4KICA8Y2lyY2xlIGN4PSc1NicgY3k9JzU0JyByPSczJyBmaWxsPScjMEQzQjY2Jy8+CiAgPGNpcmNsZSBjeD0nNjgnIGN5PSc1OCcgcj0nMycgZmlsbD0nIzBEM0I2NicvPgo8L3N2Zz4=" alt="Testing" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
                     <h3 style="font-size: 20px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">4. Testing</h3>
                     <p style="font-size: 15px; color: var(--texto-secundario); line-height: 1.6;">Usability testing, A/B testing y recolección de feedback para validar hipótesis.</p>
                 </div>
                 <div style="text-align: center;" class="proceso-step">
-                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; background: linear-gradient(135deg, #F7C7D2 0%, #FFE4ED 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 44px; box-shadow: 0 4px 15px rgba(247, 199, 210, 0.3);">📈</div>
+                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; border-radius: 50%; box-shadow: 0 4px 15px rgba(247, 199, 210, 0.3); overflow: hidden;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZzUnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjRjdDN0QyJy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0ZGRTRFRCcvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PSc2MCcgZmlsbD0ndXJsKCNnNSknLz4KICA8bGluZSB4MT0nMjgnIHkxPSc4NicgeDI9JzkyJyB5Mj0nODYnIHN0cm9rZT0nIzNFMUY0Nycgc3Ryb2tlLXdpZHRoPSc0JyBzdHJva2UtbGluZWNhcD0ncm91bmQnLz4KICA8cmVjdCB4PSczMCcgeT0nNjAnIHdpZHRoPScxMicgaGVpZ2h0PScyNicgcng9JzMnIGZpbGw9JyMzRTFGNDcnLz4KICA8cmVjdCB4PSc1MCcgeT0nNDYnIHdpZHRoPScxMicgaGVpZ2h0PSc0MCcgcng9JzMnIGZpbGw9JyMzRTFGNDcnLz4KICA8cmVjdCB4PSc3MCcgeT0nMzQnIHdpZHRoPScxMicgaGVpZ2h0PSc1Micgcng9JzMnIGZpbGw9JyMzRTFGNDcnLz4KPC9zdmc+" alt="Medición" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
                     <h3 style="font-size: 20px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">5. Medición</h3>
                     <p style="font-size: 15px; color: var(--texto-secundario); line-height: 1.6;">Análisis de métricas, KPIs y aprendizajes para mejora continua post-launch.</p>
                 </div>
                 <div style="text-align: center;" class="proceso-step">
-                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; background: linear-gradient(135deg, #B8E6FF 0%, #E8F5FF 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 44px; box-shadow: 0 4px 15px rgba(184, 230, 255, 0.3);">🔄</div>
+                    <div class="proceso-circle" style="width: 100px; height: 100px; margin: 0 auto 24px; border-radius: 50%; box-shadow: 0 4px 15px rgba(184, 230, 255, 0.3); overflow: hidden;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgMTIwJz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0nZzYnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPgogICAgICA8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjQjhFNkZGJy8+CiAgICAgIDxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0U4RjVGRicvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMjAnIHJ4PSc2MCcgZmlsbD0ndXJsKCNnNiknLz4KICA8cGF0aCBkPSdNNDIgNTRjMi0xMiAxMy0yMCAyNS0xOCA4IDEgMTUgNyAxOCAxNCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjMEYzRDVGJyBzdHJva2Utd2lkdGg9JzYnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcvPgogIDxwb2x5bGluZSBwb2ludHM9Jzc0IDQ0IDg2IDUwIDgwIDYyJyBmaWxsPSdub25lJyBzdHJva2U9JyMwRjNENUYnIHN0cm9rZS13aWR0aD0nNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+CiAgPHBhdGggZD0nTTc4IDY2Yy0yIDEyLTEzIDIwLTI1IDE4LTgtMS0xNS03LTE4LTE0JyBmaWxsPSdub25lJyBzdHJva2U9JyMwRjNENUYnIHN0cm9rZS13aWR0aD0nNicgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+CiAgPHBvbHlsaW5lIHBvaW50cz0nNDYgNzYgMzQgNzAgNDAgNTgnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzBGM0Q1Ricgc3Ryb2tlLXdpZHRoPSc2JyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz4KPC9zdmc+" alt="Iteración" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
                     <h3 style="font-size: 20px; font-weight: 700; color: var(--texto-principal); margin-bottom: 12px;">6. Iteración</h3>
                     <p style="font-size: 15px; color: var(--texto-secundario); line-height: 1.6;">Ciclos de mejora constante basados en datos, never stop learning.</p>
                 </div>
@@ -2642,8 +3002,9 @@
             </div>
 
             <div class="templates-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-                <!-- Servicio 1: Diseño UX/UI -->
-                <div class="template-card">
+                <!-- Servicio 1: Diseño UX/UI - DESTACADO (Efecto Posición Serial) -->
+                <div class="template-card" style="border: 2px solid var(--acento-principal); position: relative;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--acento-principal); color: white; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(164, 210, 244, 0.4);">⭐ MÁS POPULAR</div>
                     <div class="template-image" style="background: var(--fondo-secundario); height: 200px; display: flex; align-items: center; justify-content: center;">
                         <svg class="icon" style="width: 80px; height: 80px; stroke: var(--acento-principal); fill: none; stroke-width: 2;" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
                     </div>
@@ -2654,10 +3015,11 @@
                         </div>
                         <h3 class="template-title" style="font-size: 22px; margin-bottom: 12px; color: var(--texto-principal);">Investigación & UX/UI</h3>
                         <ul class="template-features" style="list-style: none; padding: 0; margin-bottom: 20px;">
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>User interviews y research</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Prototipos interactivos</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Test de usabilidad</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Design Systems</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Research & User Interviews</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Prototipos interactivos Figma</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Usability Testing & Métricas</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Design Systems completos</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Soporte post-launch 60 días</span></li>
                         </ul>
                         <a href="cotizacion.html" class="btn-buy" style="display: block; text-align: center; background: var(--acento-principal); color: var(--texto-principal); padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s;">Solicitar Presupuesto</a>
                     </div>
@@ -2675,10 +3037,11 @@
                         </div>
                         <h3 class="template-title" style="font-size: 22px; margin-bottom: 12px; color: var(--texto-principal);">Prototipado Avanzado</h3>
                         <ul class="template-features" style="list-style: none; padding: 0; margin-bottom: 20px;">
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Figma / Framer prototipos</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>User testing moderated</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Feedback loops iterativos</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Insights & recomendaciones</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Prototipos hi-fi en Figma/Framer</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>User testing con usuarios reales</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>A/B testing & optimización</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Insights accionables + roadmap</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Feedback loops continuos</span></li>
                         </ul>
                         <a href="cotizacion.html" class="btn-buy" style="display: block; text-align: center; background: var(--acento-principal); color: var(--texto-principal); padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold;">Solicitar Presupuesto</a>
                     </div>
@@ -2696,17 +3059,19 @@
                         </div>
                         <h3 class="template-title" style="font-size: 22px; margin-bottom: 12px; color: var(--texto-principal);">Análisis & Growth</h3>
                         <ul class="template-features" style="list-style: none; padding: 0; margin-bottom: 20px;">
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Análisis de KPIs & métricas</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Heatmaps & user behavior</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Roadmap de optimización</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Continuous improvement</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>KPIs & métricas de conversión</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Heatmaps & session recordings</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Growth roadmap personalizado</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Mejora continua post-launch</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Reports mensuales ejecutivos</span></li>
                         </ul>
                         <a href="cotizacion.html" class="btn-buy" style="display: block; text-align: center; background: var(--acento-principal); color: var(--texto-principal); padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold;">Solicitar Presupuesto</a>
                     </div>
                 </div>
 
-                <!-- Servicio 4: Marketplace Optimization -->
-                <div class="template-card">
+                <!-- Servicio 4: Marketplace Optimization - DESTACADO (Efecto Posición Serial) -->
+                <div class="template-card" style="border: 2px solid var(--acento-principal); position: relative;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #FF9900 0%, #FFA724 100%); color: white; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(255, 153, 0, 0.4);">🚀 ALTO IMPACTO</div>
                     <div class="template-image" style="background: var(--fondo-secundario); height: 200px; display: flex; align-items: center; justify-content: center;">
                         <svg class="icon" style="width: 80px; height: 80px; stroke: var(--acento-principal); fill: none; stroke-width: 2;" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                     </div>
@@ -2717,10 +3082,11 @@
                         </div>
                         <h3 class="template-title" style="font-size: 22px; margin-bottom: 12px; color: var(--texto-principal);">Amazon & E-commerce</h3>
                         <ul class="template-features" style="list-style: none; padding: 0; margin-bottom: 20px;">
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Optimización de listings</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>SEO interno Amazon</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Contenido A+ / Brand Story</span></li>
-                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Amazon Ads & PPC</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>SEO + Optimización de listings</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Contenido A+ & Brand Story</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Fotografía lifestyle profesional</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Amazon Ads + PPC strategy</span></li>
+                            <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--texto-secundario); font-size: 14px;"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Análisis competencia + pricing</span></li>
                         </ul>
                         <a href="cotizacion.html" class="btn-buy" style="display: block; text-align: center; background: var(--acento-principal); color: var(--texto-principal); padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold;">Solicitar Presupuesto</a>
                     </div>
@@ -3671,6 +4037,11 @@
                 <span class="eyebrow" style="display: inline-block;">Inversión en Diseño</span>
                 <h2 style="font-family: var(--font-family-serif); font-size: 56px; font-weight: 900; color: var(--texto-principal); letter-spacing: -0.015em;">Planes Personalizados</h2>
                 <p style="color: var(--texto-secundario); font-size: 18px; max-width: 700px; margin: 0 auto; line-height: 1.6;">Cada proyecto es único. Solicita una cotización ajustada a tus necesidades y presupuesto</p>
+                <!-- Urgencia visual (Ley de Parkinson) -->
+                <div style="margin-top: 20px; padding: 14px 28px; background: rgba(255, 153, 0, 0.12); border: 2px solid #FF9900; border-radius: 50px; display: inline-block; font-weight: 600; color: #D97706;">
+                    <svg style="width: 18px; height: 18px; display: inline-block; margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    🔥 Solo 3 cupos disponibles este mes
+                </div>
             </div>
             
             <div class="pricing-grid">
@@ -3680,12 +4051,11 @@
                     <div class="pricing-price" style="font-size: 22px; color: var(--acento-principal);">Cotización Personalizada</div>
                     <div class="pricing-period">Precio según tus necesidades</div>
                     <ul class="pricing-features">
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>1 Template a elección</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>HTML + CSS + Landing</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Documentación completa</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Actualizaciones gratis</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Soporte 30 días</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Garantía devolución</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>1 Template profesional</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>HTML + CSS + Landing page</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Documentación detallada</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Soporte 30 días + actualizaciones</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Garantía 100% satisfacción</span></li>
                     </ul>
                     <button onclick="window.location.href='cotizacion.html'" class="pricing-btn secondary" title="Solicitar cotización plan Starter">Solicitar Cotización</button>
                 </div>
@@ -3697,13 +4067,12 @@
                     <div class="pricing-price" style="font-size: 22px; color: var(--acento-principal);">Cotización Personalizada</div>
                     <div class="pricing-period">Mejor relación calidad-precio</div>
                     <ul class="pricing-features">
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>4 Templates completos</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>HTML + CSS + Landings</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Personalización básica</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Actualizaciones gratis</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Soporte 60 días</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Garantía devolución</span></li>
-                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Bonus: Guía de ventas</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>4 Templates completos + Landings</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Personalización tu marca</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Soporte priority 60 días</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Actualizaciones lifetime gratis</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Bonus: Guía ventas + SEO</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Garantía 100% satisfacción</span></li>
                     </ul>
                     <button onclick="window.location.href='cotizacion.html'" class="pricing-btn primary" title="Solicitar cotización plan Professional">Solicitar Cotización</button>
                 </div>
@@ -3714,13 +4083,12 @@
                     <div class="pricing-price" style="font-size: 22px; color: var(--acento-principal);">Cotización Personalizada</div>
                     <div class="pricing-period">Diseño 100% a medida</div>
                     <ul class="pricing-features">
-                        <li>Diseño 100% a medida</li>
-                        <li>3 revisiones incluidas</li>
-                        <li>Tu marca, tu estilo</li>
-                        <li>Optimización A/B testing</li>
-                        <li>Soporte 90 días priority</li>
-                        <li>Consultoría incluida</li>
-                        <li>Entrega en 7 días</li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Diseño 100% personalizado</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>3 rondas revisión + tu marca</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>A/B testing & optimización</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Soporte VIP 90 días</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Consultoría estratégica incluida</span></li>
+                        <li><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Entrega express 7 días hábiles</span></li>
                     </ul>
                     <button onclick="window.location.href='cotizacion.html'" class="pricing-btn secondary">Solicitar Cotización</button>
                 </div>
@@ -3885,31 +4253,36 @@
         <h2 style="font-family: var(--font-family-serif); font-size: 56px; font-weight: 900; letter-spacing: -0.015em;">¿Listo para Transformar tu Producto?</h2>
         <p style="margin-bottom: 40px; font-size: 18px; line-height: 1.6;">Hablemos sobre cómo puedo ayudarte a resolver los retos de diseño UX/UI en tu negocio</p>
         
-        <!-- FORMULARIO SIMPLE DE CONTACTO -->
+        <!-- FORMULARIO COMPLETO PARA GENERAR CASO DE ESTUDIO -->
         <form class="contact-form-simple" onsubmit="return handleContactForm(event)">
-            <input type="text" name="name" placeholder="Tu nombre completo" required style="border-radius: 8px;">
-            <input type="email" name="email" placeholder="Tu email" required style="border-radius: 8px;">
-            <input type="text" name="company" placeholder="Tu empresa o proyecto" style="border-radius: 8px;">
-            <textarea name="message" placeholder="¿Cuál es tu reto de diseño? (Breve descripción)" required style="border-radius: 8px;"></textarea>
+            <!-- Indicador de progreso simplificado (2 pasos - Ley de Tesler) -->
+            <div style="display: flex; gap: 8px; margin-bottom: 24px; justify-content: center;">
+                <div class="form-step-indicator active" data-step="1" style="width: 100px; height: 4px; background: var(--acento-principal); border-radius: 4px; transition: all 0.3s;"></div>
+                <div class="form-step-indicator" data-step="2" style="width: 100px; height: 4px; background: rgba(164, 210, 244, 0.3); border-radius: 4px; transition: all 0.3s;"></div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <input type="text" name="name" placeholder="Tu nombre" required style="border-radius: 8px;" data-form-step="1">
+                <input type="email" name="email" placeholder="Tu email" required style="border-radius: 8px;" data-form-step="1">
+            </div>
+            <textarea name="message" placeholder="¿Cuál es tu reto de diseño? Describe brevemente tu proyecto..." required style="border-radius: 8px; min-height: 100px;" data-form-step="2"></textarea>
             <button type="submit" class="form-submit-btn">Enviar Consulta de Diseño</button>
         </form>
         
         <p style="font-size: 13px; color: var(--texto-terciario); margin-top: 20px;">Responderé en menos de 24 horas. Sin spam. Sin obligación.</p>
         
-        <div style="margin: 60px 0 40px;" style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;">
+        <!-- Botones de Acción sin Superposición -->
+        <div style="margin: 60px auto 40px; max-width: 800px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; align-items: center;">
             <!-- Descargar Case Study Template -->
-            <div style="text-align: center;">
-                <a href="#" onclick="downloadCaseStudyTemplate()" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--acento-principal); color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; cursor: pointer;">
-                    <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    Descargar Case Study Template
-                </a>
-            </div>
-            <div style="text-align: center;">
-                <a href="https://wa.me/5493525300076?text=Hola! Tengo un proyecto de diseño que necesita ayuda" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: #25D366; color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s;">
-                    <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-3.055 2.206-4.791 5.694-4.791 9.965 0 1.71.33 3.39.989 4.99L2.070 22.5l5.313-1.794c1.429.957 3.075 1.466 4.842 1.466 5.487 0 9.955-4.467 9.955-9.954 0-2.654-.981-5.15-2.771-7.04a9.954 9.954 0 00-7.074-2.819" /></svg>
-                    Hablar por WhatsApp
-                </a>
-            </div>
+            <a href="#" onclick="downloadCaseStudyTemplate(); return false;" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--acento-principal); color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; cursor: pointer; box-shadow: 0 4px 12px rgba(164, 210, 244, 0.3);">
+                <svg style="width: 20px; height: 20px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Descargar Case Study Template</span>
+            </a>
+            
+            <a href="https://wa.me/5493525300076?text=Hola! Tengo un proyecto de diseño que necesita ayuda" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: #25D366; color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
+                <svg style="width: 20px; height: 20px; flex-shrink: 0;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-3.055 2.206-4.791 5.694-4.791 9.965 0 1.71.33 3.39.989 4.99L2.070 22.5l5.313-1.794c1.429.957 3.075 1.466 4.842 1.466 5.487 0 9.955-4.467 9.955-9.954 0-2.654-.981-5.15-2.771-7.04a9.954 9.954 0 00-7.074-2.819" /></svg>
+                <span>Hablar por WhatsApp</span>
+            </a>
         </div>
         
         <div style="margin-top: 60px; padding: 40px; background: white; border-radius: 16px;">
@@ -4027,12 +4400,55 @@
         </div>
     </footer>
 
-    <!-- WHATSAPP FLOAT -->
+    <!-- BOTONES FLOTANTES -->
+    <!-- WhatsApp Float -->
     <a href="https://wa.me/5493525300076?text=Hola! Quiero información sobre los templates" class="whatsapp-float" title="Contactar por WhatsApp" aria-label="Contactar por WhatsApp">
-        <svg class="icon icon-md" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 15.5v3a2 2 0 0 1-2 2h-15a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2h9"></path><polyline points="22 2 22 8 16 8"></polyline><line x1="22" y1="2" x2="13" y2="11"></line></svg>
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
     </a>
+    
+    <!-- Botón Subir al Inicio -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="scroll-top-btn" title="Subir al inicio" aria-label="Subir al inicio" style="display: none;">
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <script>
+        // Toggle menú hamburguesa
+        const menuToggle = document.querySelector('.menu-toggle');
+        const headerNav = document.querySelector('.header-nav');
+        
+        if (menuToggle && headerNav) {
+            menuToggle.addEventListener('click', function() {
+                const isActive = this.classList.toggle('active');
+                headerNav.classList.toggle('active');
+                this.setAttribute('aria-expanded', isActive);
+                document.body.style.overflow = isActive ? 'hidden' : '';
+            });
+            
+            // Cerrar menú al hacer click en un enlace
+            document.querySelectorAll('.header-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    headerNav.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Toggle dropdown en mobile
+            document.querySelectorAll('.nav-item.has-dropdown > a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        this.parentElement.classList.toggle('active');
+                    }
+                });
+            });
+        }
+        
         // Smooth scroll con accesibilidad mejorada
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -4190,6 +4606,50 @@
                 if (!this.href || this.href === '#') {
                     e.preventDefault();
                     console.warn('Enlace no configurado');
+                }
+            });
+        });
+        
+        // Botón "Subir al Inicio" - Mostrar/ocultar según scroll
+        const scrollTopBtn = document.querySelector('.scroll-top-btn');
+        if (scrollTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                    scrollTopBtn.style.display = 'flex';
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+        }
+        
+        // Indicadores de progreso del formulario (Efecto Zeigarnik)
+        const formInputs = document.querySelectorAll('.contact-form-simple input, .contact-form-simple textarea');
+        const stepIndicators = document.querySelectorAll('.form-step-indicator');
+        
+        formInputs.forEach((input, index) => {
+            input.addEventListener('focus', () => {
+                // Activar indicador del paso actual
+                stepIndicators.forEach((indicator, i) => {
+                    if (i <= index) {
+                        indicator.style.background = 'var(--acento-principal)';
+                        indicator.classList.add('active');
+                    }
+                });
+            });
+            
+            input.addEventListener('blur', () => {
+                // Mantener activados los pasos completados
+                if (input.value.trim() !== '') {
+                    const step = parseInt(input.dataset.formStep) - 1;
+                    if (stepIndicators[step]) {
+                        stepIndicators[step].style.background = 'var(--acento-principal)';
+                    }
+                } else {
+                    const step = parseInt(input.dataset.formStep) - 1;
+                    if (stepIndicators[step]) {
+                        stepIndicators[step].style.background = 'rgba(164, 210, 244, 0.3)';
+                    }
                 }
             });
         });
