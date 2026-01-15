@@ -4,60 +4,492 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI-Augmented UX · Tendencias 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --fondo-principal: #F0F4F8;
-      --fondo-secundario: #E9EDF2;
+      --blanco-puro: #F5F6F7;
+      --fondo-principal: #F0F2F5;
+      --fondo-secundario: #FAFBFC;
+      --texto-principal: #0D3B66;
+      --texto-secundario: #5A6B7F;
       --acento-principal: #A4D2F4;
-      --acento-detalle: #F7C7D2;
-      --texto-principal: #2E3A46;
-      --texto-secundario: #3B4758;
+      --acento-secundario: #F2B8B5;
+      --sombra-sm: 0 2px 8px rgba(46, 58, 70, 0.08);
+      --sombra-md: 0 8px 24px rgba(46, 58, 70, 0.12);
+      --radius-lg: 16px;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
     }
-    body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--fondo-principal); color: var(--texto-principal); }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
-    .hero {
-      background: linear-gradient(135deg, rgba(164,210,244,0.18), rgba(247,199,210,0.12));
-      border: 1.5px solid rgba(164,210,244,0.35);
-      border-radius: 16px;
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--fondo-principal);
+      color: var(--texto-principal);
+      line-height: 1.6;
+    }
+
+    /* CONTENEDOR */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* ENCABEZADO */
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--acento-principal);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--texto-secundario);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* GRID PRINCIPAL - ESTRUCTURA ESTABLE */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .principle-card {
+      background: var(--blanco-puro);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 
+        -6px -6px 16px rgba(255, 255, 255, 0.9),
+        6px 6px 16px rgba(46, 58, 70, 0.08);
+      border: 1px solid rgba(164, 210, 244, 0.1);
+    }
+
+    .principle-card.highlight {
+      border: 2px solid var(--acento-principal);
+      background: linear-gradient(135deg, rgba(164, 210, 244, 0.05), rgba(164, 210, 244, 0.02));
+    }
+
+    .principle-number {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--acento-principal);
+      margin-bottom: 12px;
+    }
+
+    .principle-card h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--texto-principal);
+    }
+
+    .principle-card p {
+      font-size: 15px;
+      color: var(--texto-secundario);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .principle-example {
+      background: var(--fondo-secundario);
+      border-left: 3px solid var(--acento-principal);
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--texto-principal);
+      font-weight: 500;
+    }
+
+    .principle-example strong {
+      color: var(--acento-principal);
+    }
+
+    /* SECCIÓN DE DEMOSTRACIÓN INTERACTIVA */
+    .demo-section {
+      background: var(--blanco-puro);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 
+        -6px -6px 16px rgba(255, 255, 255, 0.9),
+        6px 6px 16px rgba(46, 58, 70, 0.08);
+      margin-bottom: 60px;
+    }
+
+    .demo-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--texto-principal);
+    }
+
+    .user-selector {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .user-btn {
+      padding: 12px 24px;
+      border: 2px solid rgba(164, 210, 244, 0.3);
+      background: var(--blanco-puro);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--texto-principal);
+      transition: all 0.3s;
+    }
+
+    .user-btn:hover {
+      border-color: var(--acento-principal);
+    }
+
+    .user-btn.active {
+      background: var(--acento-principal);
+      border-color: var(--acento-principal);
+      color: white;
+    }
+
+    .demo-content {
+      background: var(--fondo-secundario);
+      border-radius: 12px;
       padding: 32px;
-      box-shadow: 0 12px 36px rgba(164,210,244,0.18);
+      border: 1px solid rgba(164, 210, 244, 0.15);
     }
-    h1 { margin: 0 0 12px; font-size: 32px; }
-    .eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 800; font-size: 12px; color: var(--acento-principal); }
-    p.lead { margin: 0 0 14px; color: var(--texto-secundario); font-size: 17px; }
-    .hero img { width: 100%; border-radius: 14px; margin-top: 16px; box-shadow: 0 10px 32px rgba(46,58,70,0.18); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 24px; }
-    .card { background: #fff; border: 1px solid rgba(164,210,244,0.25); border-radius: 14px; padding: 18px; box-shadow: 0 8px 22px rgba(46,58,70,0.1); }
-    .card h3 { margin: 0 0 10px; font-size: 18px; color: var(--texto-principal); }
-    .card p { margin: 0; color: var(--texto-secundario); font-size: 14px; line-height: 1.55; }
-    .back { display: inline-block; margin-top: 24px; color: var(--acento-principal); text-decoration: none; font-weight: 700; }
+
+    .microcopy {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--texto-principal);
+      margin-bottom: 20px;
+    }
+
+    .microcopy-desc {
+      font-size: 14px;
+      color: var(--texto-secundario);
+      margin-bottom: 24px;
+    }
+
+    .cta-demo {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--acento-principal);
+      color: var(--texto-principal);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .cta-demo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(164, 210, 244, 0.3);
+    }
+
+    /* CARACTERÍSTICAS GRID */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background: var(--blanco-puro);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 
+        -4px -4px 12px rgba(255, 255, 255, 0.9),
+        4px 4px 12px rgba(46, 58, 70, 0.08);
+      border: 1px solid rgba(164, 210, 244, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--texto-principal);
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--texto-secundario);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(164, 210, 244, 0.1);
+    }
+
+    .back-link {
+      color: var(--acento-principal);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .back-link:hover {
+      transform: translateX(-4px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .principles-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .principle-card {
+        padding: 28px;
+      }
+
+      .user-selector {
+        flex-direction: column;
+      }
+
+      .user-btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="hero">
+  <div class="container">
+    <!-- ENCABEZADO -->
+    <div class="header">
       <div class="eyebrow">Tendencias UX/UI 2026</div>
       <h1>AI-Augmented UX</h1>
-      <p class="lead">Interfaces que aprenden del contexto y personalizan contenido, microcopys y flows en tiempo real.</p>
-      <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=1400&q=80" alt="AI UX en web y móvil">
+      <p class="lead">Interfaces inteligentes que adaptan contenido, microcopy y flujos sin romper la estructura. La IA no se ve, se siente.</p>
     </div>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Onboarding adaptativo</h3>
-        <p>El sistema detecta nivel de expertise y muestra pasos distintos: experto salta tutoriales; nuevo recibe ayudas guiadas.</p>
+    <!-- 6 PRINCIPIOS -->
+    <div class="principles-grid">
+      <!-- Principio 1 -->
+      <div class="principle-card">
+        <div class="principle-number">1</div>
+        <h2>Layout Estable</h2>
+        <p>La estructura base nunca cambia. Grid simple, jerarquía clara, componentes conocidos.</p>
+        <div class="principle-example">
+          <strong>La IA adapta contenido, no estructura.</strong> El usuario siempre sabe dónde están las cosas.
+        </div>
       </div>
-      <div class="card">
-        <h3>Copy contextual</h3>
-        <p>Los microcopys se ajustan al estado del usuario (atrapado, confiado, indeciso) para reducir fricción y abandono.</p>
+
+      <!-- Principio 2 -->
+      <div class="principle-card highlight">
+        <div class="principle-number">2</div>
+        <h2>Microcopy Dinámico</h2>
+        <p>El texto cambia según contexto: si entraste antes, si abandonaste un flow, si estás apurado.</p>
+        <div class="principle-example">
+          <strong>✅ "Retomá donde lo dejaste ayer"</strong><br>
+          No: "Continuar"
+        </div>
       </div>
-      <div class="card">
-        <h3>UI reactiva a señales</h3>
-        <p>Detecta patrones (errores repetidos, scrolls rápidos, abandono de campos) y ofrece sugerencias o correcciones en vivo.</p>
+
+      <!-- Principio 3 -->
+      <div class="principle-card">
+        <div class="principle-number">3</div>
+        <h2>Flujos Adaptativos</h2>
+        <p>La interfaz decide qué paso mostrar primero. Usuario nuevo → onboarding corto. Avanzado → acceso directo.</p>
+        <div class="principle-example">
+          <strong>No hay un flujo único.</strong> Hay rutas inteligentes según expertise.
+        </div>
+      </div>
+
+      <!-- Principio 4 -->
+      <div class="principle-card">
+        <div class="principle-number">4</div>
+        <h2>Reordenamiento Inteligente</h2>
+        <p>Cards más relevantes suben. Opciones irrelevantes se minimizan. CTA principal cambia copy, no lugar.</p>
+        <div class="principle-example">
+          <strong>Lo importante sube.</strong> La estructura se respeta, el contenido se reorganiza.
+        </div>
+      </div>
+
+      <!-- Principio 5 -->
+      <div class="principle-card">
+        <div class="principle-number">5</div>
+        <h2>Feedback Predictivo</h2>
+        <p>"Parece que estás comparando opciones. ¿Querés ver una comparativa rápida?" Reduce fricción antes del error.</p>
+        <div class="principle-example">
+          <strong>La interfaz se adelanta.</strong> Anticipa necesidades sin ser invasiva.
+        </div>
+      </div>
+
+      <!-- Principio 6 -->
+      <div class="principle-card highlight">
+        <div class="principle-number">6</div>
+        <h2>Personalidad Contextual</h2>
+        <p>Formal en desktop laboral, más directa en móvil, más guiada si detecta fricción. Tiene criterio, no carisma.</p>
+        <div class="principle-example">
+          <strong>La interfaz se adapta al medio y al usuario.</strong> Nunca fuerza un tono.
+        </div>
       </div>
     </div>
 
-    <a class="back" href="../index.html#tendencias">← Volver</a>
+    <!-- DEMOSTRACIÓN INTERACTIVA -->
+    <div class="demo-section">
+      <div class="demo-title">🧪 Demostración: Microcopy Adaptativo</div>
+      
+      <div class="user-selector">
+        <button class="user-btn active" data-user="nuevo">👤 Usuario Nuevo</button>
+        <button class="user-btn" data-user="avanzado">⭐ Usuario Avanzado</button>
+        <button class="user-btn" data-user="atrapado">🤔 Usuario Atrapado</button>
+        <button class="user-btn" data-user="apurado">⚡ Usuario Apurado</button>
+      </div>
+
+      <div class="demo-content">
+        <div class="microcopy" id="microcopy"></div>
+        <div class="microcopy-desc" id="description"></div>
+        <button class="cta-demo" id="cta"></button>
+      </div>
+    </div>
+
+    <!-- CARACTERÍSTICAS VISUALES -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Minimalista</h3>
+        <p>Nada grita "IA". La interfaz es neutra, mucho espacio, estados suaves. La tecnología desaparece.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Sensible a Señales</h3>
+        <p>Detecta: errores repetidos, scrolls rápidos, abandono de campos, indecisión. Reacciona sin ser invasiva.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>Sin Sorpresas</h3>
+        <p>La estructura nunca cambia. Solo el contenido se reorganiza. El usuario siempre se orienta.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h3>Anticipación</h3>
+        <p>Ofrece sugerencias antes de que el usuario las pida. Reduce fricciones y abandono.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Conversación Implícita</h3>
+        <p>El sistema dialoga sin chatbots. Cada interacción es feedback que personaliza la siguiente.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Menos Clics</h3>
+        <p>Anticipa lo que necesitas. Menos pasos, menos fricción. La eficiencia es la mejor UX.</p>
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN FOOTER -->
+    <div class="footer-nav">
+      <a href="../../index.html#tendencias" class="back-link">← Volver a Tendencias</a>
+      <div style="font-size: 13px; color: var(--texto-secundario);">
+        La IA no reemplaza diseño, lo potencia.
+      </div>
+    </div>
   </div>
+
+  <script>
+    // Datos contextuales para cada tipo de usuario
+    const userContexts = {
+      nuevo: {
+        microcopy: "👋 Bienvenida a NeoBook",
+        description: "Primera vez aquí. La interfaz te guía paso a paso sin abrumar.",
+        cta: "Comenzar onboarding guiado"
+      },
+      avanzado: {
+        microcopy: "🚀 Acceso directo al editor",
+        description: "Te conocemos. Saltamos tutoriales, vamos al grano.",
+        cta: "Ir al editor"
+      },
+      atrapado: {
+        microcopy: "¿Necesitás ayuda? Estamos aquí.",
+        description: "Detectamos que dudaste en este paso. Te mostramos una comparativa rápida.",
+        cta: "Ver explicación visual"
+      },
+      apurado: {
+        microcopy: "⚡ Modo rápido activado",
+        description: "Detectamos que scrolleás rápido. Mostramos solo lo esencial.",
+        cta: "Ir a lo importante"
+      }
+    };
+
+    // Event listeners para botones de usuario
+    document.querySelectorAll('.user-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Remover active de todos
+        document.querySelectorAll('.user-btn').forEach(b => b.classList.remove('active'));
+        // Agregar active al clickeado
+        this.classList.add('active');
+        
+        // Obtener contexto
+        const userType = this.dataset.user;
+        const context = userContexts[userType];
+        
+        // Actualizar contenido
+        document.getElementById('microcopy').textContent = context.microcopy;
+        document.getElementById('description').textContent = context.description;
+        document.getElementById('cta').textContent = context.cta;
+        
+        // Animación suave
+        document.querySelector('.demo-content').style.opacity = '0.8';
+        setTimeout(() => {
+          document.querySelector('.demo-content').style.opacity = '1';
+        }, 150);
+      });
+    });
+
+    // Inicializar con usuario nuevo
+    document.querySelector('.user-btn').click();
+  </script>
 </body>
 </html>
