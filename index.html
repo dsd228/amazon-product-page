@@ -173,6 +173,55 @@
         .icon-accent { color: var(--acento-principal); stroke-width: 2.8; }
         .icon-gold { color: var(--acento-principal); stroke-width: 2.8; } /* Alias para compatibilidad */
 
+        /* TOGGLE SWITCH NEUMÓRFICO */
+        .switch {
+            position: relative;
+            width: 64px;
+            height: 34px;
+            display: inline-block;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            inset: 0;
+            background: #E6EBF0;
+            border-radius: 34px;
+            box-shadow:
+                inset 6px 6px 12px #CFD6DD,
+                inset -6px -6px 12px #FFFFFF;
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+        .slider::before {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            left: 4px;
+            top: 4px;
+            background: #F5F7FA;
+            border-radius: 50%;
+            box-shadow:
+                4px 4px 8px rgba(46, 58, 70, 0.15),
+                -4px -4px 8px rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease-in-out, background 0.3s ease;
+        }
+        input:checked + .slider {
+            background: #DFF1FF;
+        }
+        input:checked + .slider::before {
+            transform: translateX(30px);
+            background: linear-gradient(135deg, rgba(247, 199, 210, 0.6), rgba(247, 199, 210, 0.4));
+        }
+        .switch:focus-within .slider {
+            outline: 2px solid rgba(164, 210, 244, 0.5);
+            outline-offset: 2px;
+        }
+
         /* EYEBROW - Etiquetas superiores */
         .eyebrow {
             font-weight: 800;
@@ -217,7 +266,24 @@
             display: flex;
             gap: 25px;
             align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
+        .nav-item {
+            position: relative;
+            display: inline-block;
+        }
+        .nav-item > a {
+            cursor: pointer;
+        }
+        .nav-item.has-dropdown > a::before {
+            content: '▾';
+            margin-left: 4px;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        .nav-item > a,
         .header-nav a {
             color: var(--texto-principal);
             text-decoration: none;
@@ -227,6 +293,7 @@
             position: relative;
             letter-spacing: 0.03em;
         }
+        .nav-item > a::after,
         .header-nav a::after {
             content: '';
             position: absolute;
@@ -238,28 +305,103 @@
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 8px rgba(242, 184, 181, 0.3);
         }
+        .nav-item > a:hover,
         .header-nav a:hover { 
             color: var(--acento-principal);
             text-shadow: 0 0 20px rgba(242, 184, 181, 0.2);
         }
+        .nav-item > a:hover::after,
         .header-nav a:hover::after { width: 100% }
-        .header-cta {
-            background: var(--acento-principal);
-            color: #1A2332;
-            padding: var(--space-md) var(--space-lg);
-            border-radius: var(--radius-md);
-            font-weight: 700;
+        
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            border: 1.5px solid rgba(164, 210, 244, 0.35);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(46, 58, 70, 0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            margin-top: 15px;
+        }
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--texto-principal);
             text-decoration: none;
-            transition: all var(--transition-base);
-            box-shadow: 0 3px 14px rgba(164, 210, 244, 0.5);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(164, 210, 244, 0.15);
+        }
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-menu a:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 10px 10px;
+        }
+        .dropdown-menu a:hover {
+            background: rgba(164, 210, 244, 0.1);
+            color: var(--acento-principal);
+            padding-left: 24px;
+        }
+        .dropdown-menu a::after {
+            display: none;
+        }
+        
+        .header-cta {
+            background: #ECEEF1;
+            color: var(--texto-secundario);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 15px rgba(46, 58, 70, 0.18);
             position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            border: none;
+        }
+        .header-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(164, 210, 244, 0.25), rgba(164, 210, 244, 0.18));
+            border-radius: 50px;
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+            z-index: 0;
         }
         .header-cta:hover {
-            background: #8FC4F0;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(164, 210, 244, 0.65);
+            box-shadow: 
+                -6px -6px 18px rgba(255, 255, 255, 1),
+                6px 6px 20px rgba(46, 58, 70, 0.22);
+        }
+        .header-cta:active,
+        .header-cta.active {
+            box-shadow: 
+                inset 5px 5px 12px rgba(46, 58, 70, 0.15),
+                inset -5px -5px 12px rgba(255, 255, 255, 0.8);
+            transform: scale(0.97);
+        }
+        .header-cta.active::before {
+            opacity: 1;
         }
 
         /* HERO NEUMORFISMO CLARO - Visual Depth */
@@ -386,60 +528,105 @@
             font-weight: 700;
             box-shadow: 0 4px 20px rgba(242, 184, 181, 0.6), var(--shadow-md-up);
         }
+        /* Checkbox Neumórfico Base */
         .btn {
-            padding: var(--space-md) var(--space-xl);
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: var(--font-size-sm);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
             text-decoration: none;
             cursor: pointer;
             border: none;
-            transition: all var(--transition-base);
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: var(--space-md);
-            letter-spacing: 0.5px;
+            gap: 10px;
+            letter-spacing: 0.3px;
             position: relative;
-            overflow: hidden;
+            color: var(--texto-secundario);
+            background: #ECEEF1;
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 15px rgba(46, 58, 70, 0.18);
+            user-select: none;
+        }
+        .btn:active,
+        .btn.active {
+            box-shadow: 
+                inset 4px 4px 10px rgba(46, 58, 70, 0.15),
+                inset -4px -4px 10px rgba(255, 255, 255, 0.7);
+            transform: scale(0.98);
         }
         .btn:focus-visible {
-            outline: 3px solid var(--acento-principal);
-            outline-offset: 3px;
+            outline: 2px solid rgba(164, 210, 244, 0.5);
+            outline-offset: 4px;
         }
         .btn-primary {
-            background: var(--acento-principal);
-            color: #1A2332;
-            box-shadow: 0 6px 20px rgba(164, 210, 244, 0.6), var(--shadow-lg-up);
-            border: 2px solid rgba(164, 210, 244, 0.6);
-            font-weight: 700;
+            background: #ECEEF1;
+            color: var(--texto-secundario);
+            position: relative;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(164, 210, 244, 0.2), rgba(164, 210, 244, 0.12));
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 0;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            background: linear-gradient(135deg, rgba(164, 210, 244, 0.8), rgba(164, 210, 244, 0.6));
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+            z-index: 1;
         }
         .btn-primary:hover {
-            background: #8FC4F0;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 32px rgba(164, 210, 244, 0.75), var(--shadow-hover);
-            border-color: var(--acento-principal);
+            box-shadow: 
+                -6px -6px 18px rgba(255, 255, 255, 1),
+                6px 6px 20px rgba(46, 58, 70, 0.22);
         }
-        .btn-primary:active {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-active);
+        .btn-primary:active,
+        .btn-primary.active {
+            box-shadow: 
+                inset 5px 5px 12px rgba(46, 58, 70, 0.15),
+                inset -5px -5px 12px rgba(255, 255, 255, 0.8);
+            transform: scale(0.97);
+        }
+        .btn-primary.active::before {
+            opacity: 1;
+        }
+        .btn-primary.active::after {
+            transform: translateY(-50%) scale(1);
         }
         .btn-secondary {
-            background: var(--fondo-secundario);
-            color: var(--texto-principal);
-            border: 2px solid rgba(164, 210, 244, 0.3);
-            box-shadow: none;
+            background: #ECEEF1;
+            color: var(--texto-secundario);
+            box-shadow: 
+                -4px -4px 12px rgba(255, 255, 255, 0.9),
+                4px 4px 12px rgba(46, 58, 70, 0.15);
         }
         .btn-secondary:hover {
-            background: var(--blanco-puro);
-            border-color: var(--acento-principal);
+            transform: translateY(-1px);
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 16px rgba(46, 58, 70, 0.18);
             color: var(--acento-principal);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(164, 210, 244, 0.25);
         }
         .btn-secondary:active {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-active);
+            transform: translateY(1px);
+            box-shadow: 
+                inset 3px 3px 8px rgba(46, 58, 70, 0.1),
+                inset -3px -3px 8px rgba(255, 255, 255, 0.7);
         }
         .hero-badges {
             display: flex;
@@ -499,22 +686,39 @@
             margin: 26px 0 14px;
         }
         .style-toggle {
-            border: 1px solid rgba(242, 184, 181, 0.2);
-            background: var(--fondo-secundario);
+            border: none;
+            background: #ECEEF1;
             color: var(--texto-secundario);
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-weight: 700;
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-sm-up);
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            box-shadow: 
+                -4px -4px 12px rgba(255, 255, 255, 0.9),
+                4px 4px 12px rgba(46, 58, 70, 0.15);
         }
-        .style-toggle:hover { transform: translateY(-2px); }
+        .style-toggle:hover { 
+            transform: translateY(-1px);
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 16px rgba(46, 58, 70, 0.18);
+        }
         .style-toggle.active {
-            border-color: var(--acento-principal);
-            background: rgba(242, 184, 181, 0.15);
+            box-shadow: 
+                inset 3px 3px 8px rgba(46, 58, 70, 0.12),
+                inset -3px -3px 8px rgba(255, 255, 255, 0.7);
             color: var(--acento-principal);
-            box-shadow: var(--shadow-md-up);
+            position: relative;
+        }
+        .style-toggle.active::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg, rgba(164, 210, 244, 0.15), rgba(164, 210, 244, 0.08));
+            border-radius: 50px;
+            z-index: -1;
         }
         .style-highlights {
             display: grid;
@@ -594,17 +798,27 @@
         }
         .style-extra-card .btn-mini {
             justify-self: flex-start;
-            background: var(--acento-principal);
-            color: var(--texto-principal);
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-weight: 700;
+            background: #ECEEF1;
+            color: var(--texto-secundario);
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-weight: 500;
             text-decoration: none;
             font-size: 13px;
-            box-shadow: var(--shadow-md-up);
-            transition: all 0.2s ease;
+            letter-spacing: 0.2px;
+            box-shadow: 
+                -3px -3px 10px rgba(255, 255, 255, 0.9),
+                3px 3px 10px rgba(46, 58, 70, 0.15);
+            transition: all 0.3s ease;
+            border: none;
         }
-        .style-extra-card .btn-mini:hover { background: #E89B98; transform: translateY(-2px) }
+        .style-extra-card .btn-mini:hover { 
+            transform: translateY(-1px);
+            box-shadow: 
+                -4px -4px 12px rgba(255, 255, 255, 0.95),
+                4px 4px 14px rgba(46, 58, 70, 0.18);
+            color: var(--acento-principal);
+        }
         .style-preview {
             background: var(--fondo-secundario);
             border: 1px solid rgba(242, 184, 181, 0.15);
@@ -850,37 +1064,42 @@
         .amazon-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 18px;
+            gap: 20px;
         }
         .amazon-card {
-            background: var(--fondo-secundario);
-            border: 1px solid rgba(242, 184, 181, 0.15);
-            border-radius: 14px;
-            padding: 18px;
+            background: #fff;
+            border: 1.5px solid rgba(164, 210, 244, 0.35);
+            border-radius: 16px;
+            padding: 22px;
             display: grid;
-            gap: 10px;
-            box-shadow: var(--shadow-sm-up);
+            gap: 12px;
+            box-shadow: 0 10px 26px rgba(46, 58, 70, 0.08);
         }
-        .amazon-card h4 { margin: 0; font-size: 17px; color: var(--acento-principal) }
+        .amazon-card h4 { margin: 0; font-size: 18px; color: var(--acento-principal); font-weight: 800 }
         .amazon-card p { margin: 0; color: var(--texto-secundario); font-size: 14px; line-height: 1.6 }
         .amazon-card .tags { display: flex; gap: 8px; flex-wrap: wrap }
         .amazon-card .tags span {
-            padding: 6px 10px;
+            padding: 6px 12px;
             border-radius: 10px;
-            background: var(--fondo-principal);
-            color: var(--texto-terciario);
+            background: transparent;
+            color: var(--texto-principal);
             font-size: 12px;
-            box-shadow: var(--shadow-sm-in);
+            border: 1px solid rgba(164, 210, 244, 0.6);
         }
         .amazon-card .cta-link {
-            color: var(--acento-principal);
-            font-weight: 700;
+            color: var(--texto-principal);
+            font-weight: 800;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1.5px solid rgba(164, 210, 244, 0.75);
+            background: rgba(164, 210, 244, 0.12);
         }
-        .amazon-card .cta-link:hover { color: var(--texto-principal) }
+        .amazon-card .cta-link:hover { color: #1A2332; border-color: rgba(164, 210, 244, 1); background: rgba(164, 210, 244, 0.2) }
 
         /* STYLEBOOK - SEGUNDA INSTANCIA */
         .stylebook {
@@ -922,22 +1141,39 @@
             margin: 26px 0 14px;
         }
         .style-toggle {
-            border: 1px solid rgba(242, 184, 181, 0.2);
-            background: var(--fondo-secundario);
+            border: none;
+            background: #ECEEF1;
             color: var(--texto-secundario);
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-weight: 700;
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-sm-up);
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            box-shadow: 
+                -4px -4px 12px rgba(255, 255, 255, 0.9),
+                4px 4px 12px rgba(46, 58, 70, 0.15);
         }
-        .style-toggle:hover { transform: translateY(-2px); }
+        .style-toggle:hover { 
+            transform: translateY(-1px);
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 16px rgba(46, 58, 70, 0.18);
+        }
         .style-toggle.active {
-            border-color: var(--acento-principal);
-            background: rgba(242, 184, 181, 0.15);
+            box-shadow: 
+                inset 3px 3px 8px rgba(46, 58, 70, 0.12),
+                inset -3px -3px 8px rgba(255, 255, 255, 0.7);
             color: var(--acento-principal);
-            box-shadow: var(--shadow-md-up);
+            position: relative;
+        }
+        .style-toggle.active::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg, rgba(164, 210, 244, 0.15), rgba(164, 210, 244, 0.08));
+            border-radius: 50px;
+            z-index: -1;
         }
         .style-highlights {
             display: grid;
@@ -991,17 +1227,27 @@
         }
         .style-extra-card .btn-mini {
             justify-self: flex-start;
-            background: var(--acento-principal);
-            color: var(--texto-principal);
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-weight: 700;
+            background: #ECEEF1;
+            color: var(--texto-secundario);
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-weight: 500;
             text-decoration: none;
             font-size: 13px;
-            box-shadow: var(--shadow-md-up);
-            transition: all 0.2s ease;
+            letter-spacing: 0.2px;
+            box-shadow: 
+                -3px -3px 10px rgba(255, 255, 255, 0.9),
+                3px 3px 10px rgba(46, 58, 70, 0.15);
+            transition: all 0.3s ease;
+            border: none;
         }
-        .style-extra-card .btn-mini:hover { background: #E89B98; transform: translateY(-2px) }
+        .style-extra-card .btn-mini:hover { 
+            transform: translateY(-1px);
+            box-shadow: 
+                -4px -4px 12px rgba(255, 255, 255, 0.95),
+                4px 4px 14px rgba(46, 58, 70, 0.18);
+            color: var(--acento-principal);
+        }
         .style-preview {
             background: var(--fondo-secundario);
             border: 1px solid rgba(242, 184, 181, 0.15);
@@ -1363,12 +1609,12 @@
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(163, 177, 198, 0.15);
             transition: all var(--transition-base);
-            cursor: pointer;
+            cursor: default; /* no se ve como botón clickable */
             border: 1.5px solid rgba(164, 210, 244, 0.2);
         }
         .template-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(164, 210, 244, 0.35);
+            transform: none; /* sin efecto de botón */
+            box-shadow: 0 4px 18px rgba(164, 210, 244, 0.22);
             border-color: var(--acento-principal);
             background: var(--blanco-puro);
         }
@@ -1445,9 +1691,12 @@
         .template-features li::before { content: none }
         .template-price {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
             margin: 15px 0;
+            text-align: center;
         }
         .price-old {
             text-decoration: line-through;
@@ -1455,63 +1704,90 @@
             font-size: 16px;
         }
         .price-new {
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--acento-principal);
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--texto-principal);
         }
         .price-discount {
-            background: var(--acento-principal);
-            color: var(--texto-principal);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
+            background: transparent;
+            color: var(--acento-principal);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1.5px solid var(--acento-principal);
         }
         .template-actions {
             display: flex;
             gap: 10px;
             margin-top: 15px;
+            align-items: stretch;
+        }
+        .template-actions a { cursor: pointer; flex: 1; }
+        .btn-view,
+        .btn-buy {
+            flex: 1;
+            padding: 13px 20px;
+            border-radius: 50px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 44px;
+            border: none;
+            letter-spacing: 0.3px;
         }
         .btn-view {
-            flex: 1;
-            background: var(--fondo-principal);
-            color: var(--texto-principal);
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            text-align: center;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: var(--font-size-sm);
-            transition: all var(--transition-base);
-            border: 1px solid rgba(242, 184, 181, 0.2);
+            background: #ECEEF1;
+            color: var(--texto-secundario);
+            box-shadow: 
+                -4px -4px 12px rgba(255, 255, 255, 0.9),
+                4px 4px 12px rgba(46, 58, 70, 0.15);
         }
         .btn-view:hover {
-            background: rgba(242, 184, 181, 0.1);
-            border-color: rgba(242, 184, 181, 0.4);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 16px rgba(46, 58, 70, 0.18);
+            color: var(--acento-principal);
         }
         .btn-buy {
-            flex: 2;
-            background: var(--acento-principal);
-            color: var(--texto-principal);
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            text-align: center;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: var(--font-size-sm);
-            transition: all var(--transition-base);
-            box-shadow: var(--shadow-md-up);
-            border: none;
+            background: #ECEEF1;
+            color: var(--texto-secundario);
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 15px rgba(46, 58, 70, 0.18);
             cursor: pointer;
+            position: relative;
+        }
+        .btn-buy::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(164, 210, 244, 0.2), rgba(164, 210, 244, 0.12));
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 0;
         }
         .btn-buy:hover {
-            background: #E89B98;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: 
+                -6px -6px 18px rgba(255, 255, 255, 1),
+                6px 6px 20px rgba(46, 58, 70, 0.22);
         }
-        .btn-buy:active {
-            transform: translateY(-1px);
+        .btn-buy:active,
+        .btn-buy.active {
+            box-shadow: 
+                inset 5px 5px 12px rgba(46, 58, 70, 0.15),
+                inset -5px -5px 12px rgba(255, 255, 255, 0.8);
+            transform: scale(0.98);
+        }
+        .btn-buy.active::before {
+            opacity: 1;
         }
 
         /* TENDENCIAS UX/UI 2026 */
@@ -1668,42 +1944,84 @@
         .pricing-features li::before { content: none }
         .pricing-btn {
             width: 100%;
-            padding: var(--space-lg);
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: var(--font-size-sm);
+            padding: 15px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
             cursor: pointer;
             border: none;
-            transition: all var(--transition-base);
-            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            background: #ECEEF1;
+            color: var(--texto-secundario);
+            box-shadow: 
+                -4px -4px 12px rgba(255, 255, 255, 0.9),
+                4px 4px 12px rgba(46, 58, 70, 0.15);
         }
         .pricing-btn.primary {
-            background: var(--acento-principal);
-            color: var(--texto-principal);
-            box-shadow: var(--shadow-md-up);
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 15px rgba(46, 58, 70, 0.18);
+            position: relative;
+        }
+        .pricing-btn.primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(164, 210, 244, 0.22), rgba(164, 210, 244, 0.15));
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 0;
+        }
+        .pricing-btn.primary::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            background: radial-gradient(circle, rgba(164, 210, 244, 0.9), rgba(164, 210, 244, 0.6));
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(164, 210, 244, 0.5);
+            transition: transform 0.2s ease;
+            z-index: 1;
         }
         .pricing-btn.primary:hover {
-            background: #E89B98;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: 
+                -6px -6px 18px rgba(255, 255, 255, 1),
+                6px 6px 20px rgba(46, 58, 70, 0.22);
         }
-        .pricing-btn.primary:active {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-active);
+        .pricing-btn.primary:active,
+        .pricing-btn.primary.active {
+            box-shadow: 
+                inset 5px 5px 12px rgba(46, 58, 70, 0.15),
+                inset -5px -5px 12px rgba(255, 255, 255, 0.8);
+            transform: scale(0.98);
+        }
+        .pricing-btn.primary.active::before {
+            opacity: 1;
+        }
+        .pricing-btn.primary.active::after {
+            transform: translateY(-50%) scale(1);
         }
         .pricing-btn.secondary {
-            background: transparent;
+            background: #ECEEF1;
             color: var(--texto-secundario);
-            border: 2px solid rgba(242, 184, 181, 0.3);
         }
         .pricing-btn.secondary:hover {
-            background: rgba(242, 184, 181, 0.1);
-            border-color: var(--acento-principal);
+            transform: translateY(-1px);
+            box-shadow: 
+                -5px -5px 15px rgba(255, 255, 255, 0.95),
+                5px 5px 16px rgba(46, 58, 70, 0.18);
             color: var(--acento-principal);
-            transform: translateY(-2px);
         }
         .pricing-btn.secondary:active {
-            transform: translateY(-1px);
+            transform: translateY(1px);
+            box-shadow: 
+                inset 3px 3px 8px rgba(46, 58, 70, 0.1),
+                inset -3px -3px 8px rgba(255, 255, 255, 0.7);
         }
 
         /* GUARANTEE */
@@ -1975,14 +2293,38 @@
     <!-- HEADER -->
     <header class="header" role="banner">
         <div class="header-content">
-            <div class="logo" aria-label="NeoBook - Diseño UX/UI Profesional"><svg class="icon icon-md" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M7 12h10"></path><path d="M12 7v10"></path></svg>NeoBook</div>
+            <div class="logo" aria-label="NeoBook - Diseño UX/UI Profesional"><svg class="icon icon-md" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M7 12h10"></path><path d="M12 7v10"></path></svg>NeoBook<svg style="width: 16px; height: 16px; margin-left: 6px; fill: var(--acento-principal); filter: drop-shadow(0 2px 6px rgba(164,210,244,0.4));" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
             <nav class="header-nav" role="navigation" aria-label="Navegación principal">
-                <a href="#servicios" title="Ver servicios profesionales">Servicios</a>
-                <a href="#metodologia" title="Ver metodología Amazon">Metodología</a>
-                <a href="#templates" title="Ver templates">Templates</a>
-                <a href="#stylebook" title="Ver guías de estilo">Style Book</a>
-                <a href="#portafolio" title="Ver casos de éxito">Portafolio</a>
-                <a href="#pricing" title="Ver planes">Planes</a>
+                <div class="nav-item">
+                    <a href="#servicios" title="Ver servicios profesionales">Servicios</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#metodologia" title="Ver metodología Amazon">Metodología</a>
+                </div>
+                <div class="nav-item has-dropdown">
+                    <a title="Ver templates profesionales">Templates</a>
+                    <div class="dropdown-menu">
+                        <a href="ejemplos/template-eco.html" target="_blank" title="Template Eco/Sostenible">🌿 Eco & Sostenible</a>
+                        <a href="ejemplos/template-tech.html" target="_blank" title="Template Tech">⚡ Tech & Gadgets</a>
+                        <a href="ejemplos/template-sport.html" target="_blank" title="Template Sport">🏃 Sport & Fitness</a>
+                        <a href="ejemplos/template-premium.html" target="_blank" title="Template Premium">💎 Premium & Luxury</a>
+                    </div>
+                </div>
+                <div class="nav-item has-dropdown">
+                    <a title="Recursos profesionales">Recursos</a>
+                    <div class="dropdown-menu">
+                        <a href="#amazon-playbook" title="Playbook completo">🎯 Amazon Playbook</a>
+                        <a href="ejemplos/amazon-seo-contenido.html" target="_blank" title="Guía SEO">🔍 Guía SEO</a>
+                        <a href="#sales-styles" title="Estilos de venta">💼 Estilos de Venta</a>
+                        <a href="#tendencias" title="Tendencias 2026">✨ Tendencias 2026</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="#portafolio" title="Ver casos de éxito">Portafolio</a>
+                </div>
+                <div class="nav-item">
+                    <a href="#pricing" title="Ver planes">Planes</a>
+                </div>
             </nav>
             <a href="cotizacion.html" class="header-cta" title="Solicitar cotización gratuita">Cotización Gratis</a>
         </div>
@@ -2021,6 +2363,31 @@
                 <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 11 15 16 9"></polyline></svg><span>Garantía 30 días</span></div>
                 <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg><span>Bilingüe ES/EN</span></div>
                 <div class="badge-item"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>Metodología probada</span></div>
+            </div>
+
+            <!-- Toggles Neumórficos Demo -->
+            <div style="display: flex; gap: 32px; justify-content: center; margin-top: 40px; flex-wrap: wrap; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 14px; color: var(--texto-secundario); font-weight: 500;">Vista Precio USD</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 14px; color: var(--texto-secundario); font-weight: 500;">Notificaciones</span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 14px; color: var(--texto-secundario); font-weight: 500;">Modo Oscuro</span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
         </div>
     </section>
@@ -2361,13 +2728,13 @@
                     <h4>SEO y Contenido</h4>
                     <p>Checklist de keywords, bullet points y FAQs optimizadas para buscador interno y relevancia.</p>
                     <div class="tags"><span>SEO</span><span>Keywords</span><span>Checklist</span></div>
-                    <a class="cta-link" href="README.md" title="Ver guía de contenidos" target="_blank" rel="noopener noreferrer">Abrir guía →</a>
+                    <a class="cta-link" href="ejemplos/amazon-seo-contenido.html" title="Ver guía completa de SEO Amazon" target="_blank" rel="noopener">Abrir guía →</a>
                 </div>
                 <div class="amazon-card">
                     <h4>Logística y CTA</h4>
                     <p>Opciones de checkout: Comprar en Amazon, Buy with Prime o MCF. Flujo recomendado según stock.</p>
                     <div class="tags"><span>Buy with Prime</span><span>MCF</span><span>Checkout</span></div>
-                    <a class="cta-link" href="#amazon-playbook" title="Ver flujo logístico MCF">Ver flujo MCF →</a>
+                    <a class="cta-link" href="mcf/index.html" title="Ver flujo logístico MCF" target="_blank" rel="noopener">Ver flujo MCF →</a>
                 </div>
             </div>
         </div>
@@ -2543,10 +2910,10 @@
             <div class="templates-grid">
                 <!-- Template 1 -->
                 <div class="template-card">
-                    <div class="template-image" style="background: var(--fondo-secundario); position: relative; height: 200px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--acento-principal); box-shadow: inset 0 0 40px rgba(242, 184, 181, 0.2);">
-                        <svg style="width: 80px; height: 80px; stroke: var(--acento-principal); fill: none; stroke-width: 2; filter: drop-shadow(0 4px 12px rgba(242, 184, 181, 0.4));" viewBox="0 0 24 24"><path d="M12 22c4.97-2.23 8-6.06 8-11 0-2.5-1-5-3-7-3 1-5 3-5 7"></path><path d="M6 12c1.5 1.2 3 2 4 2"></path><path d="M10 22c0-7-2-10-6-12"></path></svg>
+                    <div class="template-image" style="position: relative; height: 200px; border: 2px solid var(--acento-principal); border-radius: 14px; overflow: hidden; box-shadow: inset 0 0 40px rgba(164, 210, 244, 0.16); background: linear-gradient(135deg, rgba(164, 210, 244, 0.18), rgba(247, 199, 210, 0.12));">
+                        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1200&q=80" alt="Template Eco - Paneles Solares" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         <span class="popularity-badge">MÁS VENDIDO</span>
-                        <span class="template-badge" style="position: absolute; top: 15px; left: 15px; background: var(--acento-principal); color: var(--texto-principal); padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(242, 184, 181, 0.4);">ECO</span>
+                        <span class="template-badge" style="position: absolute; top: 15px; left: 15px; background: var(--acento-principal); color: var(--texto-principal); padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(164, 210, 244, 0.4);">ECO</span>
                     </div>
                     <div class="template-content">
                         <div class="template-category"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 22c4.97-2.23 8-6.06 8-11 0-2.5-1-5-3-7-3 1-5 3-5 7"></path><path d="M6 12c1.5 1.2 3 2 4 2"></path><path d="M10 22c0-7-2-10-6-12"></path></svg><span>GREEN/ECO</span></div>
@@ -2573,9 +2940,9 @@
 
                 <!-- Template 2 -->
                 <div class="template-card">
-                    <div class="template-image" style="background: var(--fondo-secundario); position: relative; height: 200px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--acento-principal); box-shadow: inset 0 0 40px rgba(242, 184, 181, 0.15);">
-                        <svg style="width: 80px; height: 80px; stroke: var(--acento-principal); fill: none; stroke-width: 2; filter: drop-shadow(0 4px 12px rgba(242, 184, 181, 0.4));" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M12 18h.01"></path></svg>
-                        <span class="template-badge" style="position: absolute; top: 15px; left: 15px; background: var(--acento-principal); color: var(--texto-principal); padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(242, 184, 181, 0.4);">TECH</span>
+                    <div class="template-image" style="position: relative; height: 200px; border: 2px solid var(--acento-principal); border-radius: 14px; overflow: hidden; box-shadow: inset 0 0 40px rgba(164, 210, 244, 0.16); background: linear-gradient(135deg, rgba(164, 210, 244, 0.18), rgba(247, 199, 210, 0.12));">
+                        <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=1200&q=80" alt="Template Tech - Smartwatch" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <span class="template-badge" style="position: absolute; top: 15px; left: 15px; background: var(--acento-principal); color: var(--texto-principal); padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(164, 210, 244, 0.4);">TECH</span>
                     </div>
                     <div class="template-content">
                         <div class="template-category"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M7 7h10v10H7z"></path><path d="M10 3v4"></path><path d="M14 17v4"></path><path d="M3 10h4"></path><path d="M17 14h4"></path></svg><span>TECH/MODERN</span></div>
@@ -2602,9 +2969,9 @@
 
                 <!-- Template 3 -->
                 <div class="template-card">
-                    <div class="template-image" style="background: linear-gradient(135deg, var(--fondo-secundario) 0%, #D4BFAA 100%); position: relative; height: 200px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--acento-principal); box-shadow: inset 0 0 40px rgba(242, 184, 181, 0.15);">
-                        <svg style="width: 80px; height: 80px; stroke: var(--acento-principal); fill: none; stroke-width: 2; filter: drop-shadow(0 4px 12px rgba(242, 184, 181, 0.4));" viewBox="0 0 24 24"><path d="M12 2s3 4 3 7a3 3 0 0 1-6 0c0-3 3-7 3-7Z"></path><path d="M12 13a5 5 0 0 1 5 5c0 2.5-2 4-5 4s-5-1.5-5-4a5 5 0 0 1 5-5Z"></path></svg>
-                        <span class="template-badge" style="position: absolute; top: 15px; left: 15px; background: var(--acento-principal); color: var(--texto-principal); padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(242, 184, 181, 0.4);">SPORT</span>
+                    <div class="template-image" style="position: relative; height: 200px; border: 2px solid var(--acento-principal); border-radius: 14px; overflow: hidden; box-shadow: inset 0 0 40px rgba(164, 210, 244, 0.16); background: linear-gradient(135deg, rgba(164, 210, 244, 0.18), rgba(247, 199, 210, 0.12));">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80" alt="Template Sports - Zapatillas" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <span class="template-badge" style="position: absolute; top: 15px; left: 15px; background: var(--acento-principal); color: var(--texto-principal); padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(164, 210, 244, 0.4);">SPORT</span>
                     </div>
                     <div class="template-content">
                         <div class="template-category"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M12 2s3 4 3 7a3 3 0 0 1-6 0c0-3 3-7 3-7Z"></path><path d="M12 13a5 5 0 0 1 5 5c0 2.5-2 4-5 4s-5-1.5-5-4a5 5 0 0 1 5-5Z"></path></svg><span>SPORTS/DYNAMIC</span></div>
@@ -2631,9 +2998,9 @@
 
                 <!-- Template 4 -->
                 <div class="template-card">
-                    <div class="template-image" style="background: var(--fondo-secundario); position: relative; height: 200px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--acento-principal); box-shadow: inset 0 0 40px rgba(242, 184, 181, 0.15);">
-                        <svg style="width: 80px; height: 80px; stroke: var(--acento-principal); fill: none; stroke-width: 2; filter: drop-shadow(0 4px 12px rgba(242, 184, 181, 0.4));" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"></rect><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
-                        <span class="template-badge" style="position: absolute; top: 15px; left: 15px; background: var(--acento-principal); color: var(--texto-principal); padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(242, 184, 181, 0.4);">PRO</span>
+                    <div class="template-image" style="position: relative; height: 200px; border: 2px solid var(--acento-principal); border-radius: 14px; overflow: hidden; box-shadow: inset 0 0 40px rgba(164, 210, 244, 0.16); background: linear-gradient(135deg, rgba(164, 210, 244, 0.18), rgba(247, 199, 210, 0.12));">
+                        <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=80" alt="Template Premium - Monitor 4K" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <span class="template-badge" style="position: absolute; top: 15px; left: 15px; background: var(--acento-principal); color: var(--texto-principal); padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 12px rgba(164, 210, 244, 0.4);">PRO</span>
                     </div>
                     <div class="template-content">
                         <div class="template-category"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"></rect><path d="M8 12h8"></path><path d="M12 8v8"></path></svg><span>PRO/MINIMAL</span></div>
@@ -2669,48 +3036,54 @@
                 <p>Guía rápida de enfoques visuales para adaptar tu ficha: storytelling, comparativo, social proof y bundle.</p>
             </div>
             <div class="styles-grid">
-                <div class="sales-card">
+                <a class="sales-card" href="ejemplos/estilo-storytelling.html" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
                     <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M4 4h4l8 16h-4z"></path><path d="M14 4h6"></path><path d="M18 2v4"></path></svg>Storytelling</span>
                     <h4>Marca con narrativa</h4>
                     <p>Secciones secuenciales (problema → solución → prueba social) y foto lifestyle dominante.</p>
                     <div class="sales-meta"><span>Ideal: Belleza / Deco</span><span>CTA: Doble</span></div>
-                </div>
-                <div class="sales-card">
+                    <div style="margin-top: 12px; color: var(--acento-principal); font-weight: 700;">Ver ejemplo →</div>
+                </a>
+                <a class="sales-card" href="ejemplos/estilo-data-driven.html" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
                     <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M3 3v18h18"></path><rect x="7" y="10" width="2" height="8" rx="1"></rect><rect x="12" y="6" width="2" height="12" rx="1"></rect><rect x="17" y="13" width="2" height="5" rx="1"></rect></svg>Data-driven</span>
                     <h4>Ficha orientada a specs</h4>
                     <p>Tabla de beneficios, métricas comparativas y sellos de confianza en el primer scroll.</p>
                     <div class="sales-meta"><span>Ideal: Tech / B2B</span><span>CTA: Comparar</span></div>
-                </div>
-                <div class="sales-card">
+                    <div style="margin-top: 12px; color: var(--acento-principal); font-weight: 700;">Ver ejemplo →</div>
+                </a>
+                <a class="sales-card" href="ejemplos/estilo-social-proof.html" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
                     <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M6 3h12v4a6 6 0 0 1-12 0Z"></path><path d="M18 5h2a3 3 0 0 1-3 3"></path><path d="M6 5H4a3 3 0 0 0 3 3"></path></svg>Social Proof</span>
                     <h4>Autoridad + reviews</h4>
                     <p>Carrusel de reseñas, insignias de prensa y UGC. Enfatiza la prueba social temprana.</p>
                     <div class="sales-meta"><span>Ideal: Nuevas marcas</span><span>CTA: Añadir ahora</span></div>
-                </div>
-                <div class="sales-card">
+                    <div style="margin-top: 12px; color: var(--acento-principal); font-weight: 700;">Ver ejemplo →</div>
+                </a>
+                <a class="sales-card" href="ejemplos/estilo-lanzamiento.html" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
                     <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z"></path></svg>Lanzamiento</span>
                     <h4>Ficha de campaña</h4>
                     <p>Hero con contador, bonus temporales y módulo de preguntas rápidas.</p>
                     <div class="sales-meta"><span>Ideal: Eventos</span><span>CTA: Comprar promo</span></div>
-                </div>
-                <div class="sales-card">
+                    <div style="margin-top: 12px; color: var(--acento-principal); font-weight: 700;">Ver ejemplo →</div>
+                </a>
+                <a class="sales-card" href="ejemplos/estilo-bundle.html" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
                     <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><path d="M3 3h7v7H3z"></path><path d="M14 3h7v7h-7z"></path><path d="M3 14h7v7H3z"></path><path d="M14 14h7v7h-7z"></path></svg>Bundle</span>
                     <h4>Venta cruzada</h4>
                     <p>Bloques de packs, accesorios recomendados y ahorro acumulado.</p>
                     <div class="sales-meta"><span>Ideal: Hogar / Electro</span><span>CTA: Añadir bundle</span></div>
-                </div>
-                <div class="sales-card">
+                    <div style="margin-top: 12px; color: var(--acento-principal); font-weight: 700;">Ver ejemplo →</div>
+                </a>
+                <a class="sales-card" href="ejemplos/estilo-minimal-pro.html" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
                     <span class="sales-chip"><svg class="icon icon-sm icon-gold" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M7 7h10v10H7z"></path></svg>Minimal Pro</span>
                     <h4>Diseño premium limpio</h4>
                     <p>Tipografía sólida, fondos neutros y foco en contraste para fotos 4K.</p>
                     <div class="sales-meta"><span>Ideal: Lujo</span><span>CTA: Ver detalles</span></div>
-                </div>
+                    <div style="margin-top: 12px; color: var(--acento-principal); font-weight: 700;">Ver ejemplo →</div>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- VELVET COLLECTION / STYLE BOOK PREMIUM -->
-    <section class="stylebook" id="stylebook" style="background: var(--fondo-principal); padding: 100px 30px; position: relative; overflow: hidden;">
+    <section class="stylebook" id="style-guides" style="background: var(--fondo-principal); padding: 100px 30px; position: relative; overflow: hidden;">
         <!-- Textura de fondo -->
         <div style="position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(242, 184, 181, 0.02) 15px, rgba(242, 184, 181, 0.02) 30px); opacity: 0.5;"></div>
         
@@ -2939,35 +3312,47 @@
             
             <div class="tendencias-grid">
                 <div class="tendencia-card">
-                    <div class="tendencia-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                    </div>
-                    <h3 class="tendencia-title">AI-Augmented UX</h3>
-                    <p class="tendencia-desc">Interfaces que se adaptan al usuario en tiempo real mediante IA contextual.</p>
+                    <a href="ejemplos/tendencia-ai-ux.html" target="_blank" rel="noopener" style="display: block; color: inherit; text-decoration: none; height: 100%;">
+                        <div class="tendencia-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                        </div>
+                        <h3 class="tendencia-title">AI-Augmented UX</h3>
+                        <p class="tendencia-desc">Interfaces que se adaptan al usuario en tiempo real mediante IA contextual.</p>
+                        <p style="color: var(--acento-principal); font-weight: 700; margin-top: 12px;">Ver ejemplos →</p>
+                    </a>
                 </div>
 
                 <div class="tendencia-card">
-                    <div class="tendencia-icon">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    </div>
-                    <h3 class="tendencia-title">Motion as Feedback</h3>
-                    <p class="tendencia-desc">Microinteracciones como guía de usuario, no como adorno visual.</p>
+                    <a href="ejemplos/tendencia-motion.html" target="_blank" rel="noopener" style="display: block; color: inherit; text-decoration: none; height: 100%;">
+                        <div class="tendencia-icon">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <h3 class="tendencia-title">Motion as Feedback</h3>
+                        <p class="tendencia-desc">Microinteracciones como guía de usuario, no como adorno visual.</p>
+                        <p style="color: var(--acento-principal); font-weight: 700; margin-top: 12px;">Ver ejemplos →</p>
+                    </a>
                 </div>
 
                 <div class="tendencia-card">
-                    <div class="tendencia-icon">
-                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    </div>
-                    <h3 class="tendencia-title">Calm & Accessible</h3>
-                    <p class="tendencia-desc">Menos estímulo visual, más claridad y accesibilidad universal.</p>
+                    <a href="ejemplos/tendencia-calm.html" target="_blank" rel="noopener" style="display: block; color: inherit; text-decoration: none; height: 100%;">
+                        <div class="tendencia-icon">
+                            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </div>
+                        <h3 class="tendencia-title">Calm & Accessible</h3>
+                        <p class="tendencia-desc">Menos estímulo visual, más claridad y accesibilidad universal.</p>
+                        <p style="color: var(--acento-principal); font-weight: 700; margin-top: 12px;">Ver ejemplos →</p>
+                    </a>
                 </div>
 
                 <div class="tendencia-card">
-                    <div class="tendencia-icon">
-                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
-                    </div>
-                    <h3 class="tendencia-title">Neumorfismo Evolucionado</h3>
-                    <p class="tendencia-desc">Más contraste, menos decoración. Profundidad con propósito funcional.</p>
+                    <a href="ejemplos/tendencia-neumorfismo.html" target="_blank" rel="noopener" style="display: block; color: inherit; text-decoration: none; height: 100%;">
+                        <div class="tendencia-icon">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
+                        </div>
+                        <h3 class="tendencia-title">Neumorfismo Evolucionado</h3>
+                        <p class="tendencia-desc">Más contraste, menos decoración. Profundidad con propósito funcional.</p>
+                        <p style="color: var(--acento-principal); font-weight: 700; margin-top: 12px;">Ver ejemplos →</p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -3195,26 +3580,26 @@
         
         <div style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px;">
             <!-- Cotización Rápida -->
-            <div style="background: rgba(242, 184, 181, 0.1); border: 2px solid var(--acento-principal); border-radius: 16px; padding: 30px; text-align: center;">
+            <div style="background: rgba(164, 210, 244, 0.1); border: 2px solid var(--acento-principal); border-radius: 16px; padding: 30px; text-align: center; display: flex; flex-direction: column;">
                 <svg style="width: 48px; height: 48px; stroke: var(--acento-principal); fill: none; stroke-width: 2; margin: 0 auto 15px;" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
                 <h3 style="color: var(--acento-principal); font-size: 20px; margin-bottom: 10px;">Cotización Personalizada</h3>
-                <p style="color: var(--texto-secundario); margin-bottom: 20px; font-size: 14px;">Completa un breve formulario y recibe tu presupuesto en menos de 24h</p>
-                <a href="cotizacion.html" style="display: inline-block; background: var(--acento-principal); color: var(--texto-principal); padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s;">Solicitar Cotización</a>
+                <p style="color: var(--texto-secundario); margin-bottom: 20px; font-size: 14px; flex-grow: 1;">Completa un breve formulario y recibe tu presupuesto en menos de 24h</p>
+                <a href="cotizacion.html" style="display: inline-block; background: var(--acento-principal); color: #1A2332; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s;">Solicitar Cotización</a>
             </div>
 
             <!-- WhatsApp Directo -->
-            <div style="background: rgba(37, 211, 102, 0.1); border: 2px solid #25D366; border-radius: 16px; padding: 30px; text-align: center;">
+            <div style="background: rgba(37, 211, 102, 0.1); border: 2px solid #25D366; border-radius: 16px; padding: 30px; text-align: center; display: flex; flex-direction: column;">
                 <svg style="width: 48px; height: 48px; stroke: #25D366; fill: none; stroke-width: 2; margin: 0 auto 15px;" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                 <h3 style="color: #25D366; font-size: 20px; margin-bottom: 10px;">WhatsApp Directo</h3>
-                <p style="color: #D0D0D0; margin-bottom: 20px; font-size: 14px;">Habla con nosotros ahora mismo y resuelve todas tus dudas</p>
+                <p style="color: var(--texto-secundario); margin-bottom: 20px; font-size: 14px; flex-grow: 1;">Habla con nosotros ahora mismo y resuelve todas tus dudas</p>
                 <a href="https://wa.me/5493525300076?text=Hola! Quiero más información sobre los templates" target="_blank" style="display: inline-block; background: #25D366; color: #FFFFFF; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s;">Chatear Ahora</a>
             </div>
 
             <!-- Email Contacto -->
-            <div style="background: rgba(59, 130, 246, 0.1); border: 2px solid #3B82F6; border-radius: 16px; padding: 30px; text-align: center;">
+            <div style="background: rgba(59, 130, 246, 0.1); border: 2px solid #3B82F6; border-radius: 16px; padding: 30px; text-align: center; display: flex; flex-direction: column;">
                 <svg style="width: 48px; height: 48px; stroke: #3B82F6; fill: none; stroke-width: 2; margin: 0 auto 15px;" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 <h3 style="color: #3B82F6; font-size: 20px; margin-bottom: 10px;">Envía un Email</h3>
-                <p style="color: #D0D0D0; margin-bottom: 20px; font-size: 14px;">Contáctanos por correo para proyectos más complejos</p>
+                <p style="color: var(--texto-secundario); margin-bottom: 20px; font-size: 14px; flex-grow: 1;">Contáctanos por correo para proyectos más complejos</p>
                 <a href="mailto:david.diaz.uxdata@gmail.com?subject=Consulta sobre Templates" style="display: inline-block; background: #3B82F6; color: #FFFFFF; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s;">Enviar Email</a>
             </div>
         </div>
@@ -3375,6 +3760,57 @@
             });
             document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
         }
+
+        // Checkbox Neumórfico: Convertir botones en checkboxes interactivos
+        document.querySelectorAll('.btn-primary, .btn-buy, .pricing-btn.primary, .header-cta').forEach(btn => {
+            // Agregar indicador visual al HTML si no existe
+            if (!btn.querySelector('.checkbox-indicator')) {
+                const indicator = document.createElement('span');
+                indicator.className = 'checkbox-indicator';
+                indicator.style.cssText = `
+                    position: absolute;
+                    width: 14px;
+                    height: 14px;
+                    right: 16px;
+                    top: 50%;
+                    transform: translateY(-50%) scale(0);
+                    background: radial-gradient(circle, rgba(164, 210, 244, 0.9), rgba(164, 210, 244, 0.6));
+                    border-radius: 50%;
+                    box-shadow: 0 0 8px rgba(164, 210, 244, 0.5);
+                    transition: transform 0.2s ease;
+                    pointer-events: none;
+                    z-index: 10;
+                `;
+                btn.style.position = 'relative';
+                btn.appendChild(indicator);
+            }
+            
+            // Toggle estado al hacer click
+            btn.addEventListener('click', function(e) {
+                // Solo toggle si no tiene href o href es # (no es navegación)
+                const hasNavigation = this.href && this.href !== '#' && !this.href.includes('javascript:');
+                
+                if (!hasNavigation || this.classList.contains('pricing-btn')) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                    
+                    // Animar indicador
+                    const indicator = this.querySelector('.checkbox-indicator');
+                    if (indicator) {
+                        if (this.classList.contains('active')) {
+                            indicator.style.transform = 'translateY(-50%) scale(1)';
+                        } else {
+                            indicator.style.transform = 'translateY(-50%) scale(0)';
+                        }
+                    }
+                    
+                    // Feedback háptico (si está disponible)
+                    if (navigator.vibrate) {
+                        navigator.vibrate(10);
+                    }
+                }
+            });
+        });
 
         // Form validation mejorada para emails
         document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
