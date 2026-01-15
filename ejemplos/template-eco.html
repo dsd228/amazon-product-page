@@ -27,8 +27,9 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: white;
-            border-bottom: 1px solid #f0f0f0;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(45, 122, 74, 0.1);
             padding: 16px 40px;
             display: flex;
             justify-content: space-between;
@@ -216,10 +217,12 @@
         }
 
         .calculator-box {
-            background: white;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
 
         .calculator-grid {
@@ -292,21 +295,37 @@
         }
 
         .feature-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
             padding: 32px;
-            border-radius: 8px;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.7);
         }
 
         .feature-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 12px 48px rgba(45, 122, 74, 0.15);
         }
 
         .feature-icon {
             font-size: 32px;
             margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: rgba(76, 175, 80, 0.2);
+            transform: scale(1.1);
         }
 
         .feature-card h3 {
@@ -336,17 +355,20 @@
         }
 
         .cert-badge {
-            background: #f9faf7;
+            background: rgba(249, 250, 247, 0.6);
+            backdrop-filter: blur(10px);
             padding: 24px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-align: center;
-            border: 2px solid #e8f5e9;
+            border: 2px solid rgba(45, 122, 74, 0.2);
             transition: all 0.3s;
         }
 
         .cert-badge:hover {
             border-color: #2d7a4a;
-            background: #f1f8f5;
+            background: rgba(241, 248, 245, 0.8);
+            backdrop-filter: blur(15px);
+            transform: translateY(-4px);
         }
 
         .cert-badge h4 {
@@ -472,7 +494,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-brand">⚡ Soluciones Energéticas</div>
-        <a class="navbar-link" onclick="history.back()">← Volver</a>
+        <a class="navbar-link" href="../index.html#templates-section">← Volver a Demos</a>
     </nav>
 
     <!-- Hero Section -->
@@ -539,17 +561,34 @@
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="14" stroke="#2d7a4a" stroke-width="2"/>
+                            <path d="M16 4V16M16 16L22 22" stroke="#2d7a4a" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M16 16L10 22" stroke="#4caf50" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                        </svg>
+                    </div>
                     <h3>Eficiencia 23.5%</h3>
                     <p>La más alta en la industria. Convierte más luz solar en energía utilizable en cualquier condición climática.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="8" width="20" height="18" rx="2" stroke="#2d7a4a" stroke-width="2"/>
+                            <path d="M10 8V6C10 4.9 10.9 4 12 4H20C21.1 4 22 4.9 22 6V8" stroke="#2d7a4a" stroke-width="2"/>
+                            <circle cx="16" cy="17" r="4" stroke="#4caf50" stroke-width="2"/>
+                        </svg>
+                    </div>
                     <h3>Garantía 25 Años</h3>
                     <p>Cobertura completa contra defectos de manufactura. Garantía transferible a nuevos propietarios.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="10" r="6" stroke="#2d7a4a" stroke-width="2"/>
+                            <path d="M9 18H23C23.55 18 24 18.45 24 19V26C24 27.1 23.1 28 22 28H10C8.9 28 8 27.1 8 26V19C8 18.45 8.45 18 9 18Z" stroke="#4caf50" stroke-width="2" fill="rgba(76, 175, 80, 0.1)"/>
+                        </svg>
+                    </div>
                     <h3>Monitoreo en Tiempo Real</h3>
                     <p>App incluida para ver exactamente cuánto dinero estás ahorrando cada día, mes y año.</p>
                 </div>
