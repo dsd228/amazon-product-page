@@ -3,1099 +3,1040 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeoProdUx - Design & Product Strategy Agency</title>
+  <title>NeoProdUx - UX/UI Design & Product Strategy Agency</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
     * { 
-      font-family: "Inter", sans-serif; 
       margin: 0; 
       padding: 0; 
       box-sizing: border-box; 
     }
     
     html { scroll-behavior: smooth; }
-    body { background: #0a0a0a; color: #fff; overflow-x: hidden; }
-    
-    /* Marquee */
-    @keyframes marquee {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+    body { 
+      background: #ffffff; 
+      color: #1a1a1a; 
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
     }
     
-    .marquee-wrapper {
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.02);
-      border-top: 1px solid rgba(102, 126, 234, 0.2);
-      border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+    h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; font-weight: 700; }
+    
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 16px 0;
+      transition: all 0.3s;
     }
     
-    .marquee {
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      px: 40px;
       display: flex;
-      animation: marquee 35s linear infinite;
-      gap: 80px;
+      justify-content: space-between;
+      align-items: center;
     }
     
-    .marquee:hover {
-      animation-play-state: paused;
+    .logo { font-size: 1.3rem; font-weight: 800; color: #000; }
+    
+    nav a { color: #666; font-size: 0.95rem; transition: color 0.3s; }
+    nav a:hover { color: #000; }
+    
+    .nav-cta { 
+      background: #000; 
+      color: #fff; 
+      padding: 10px 24px;
+      border-radius: 8px;
+      transition: all 0.3s;
     }
     
-    .marquee-item {
-      font-weight: 600;
-      font-size: 1.15rem;
-      white-space: nowrap;
-      color: #888;
-      letter-spacing: 1px;
+    .nav-cta:hover { 
+      background: #333;
+      transform: scale(1.05);
     }
     
-    /* Parallax Hero */
-    .hero-section {
-      position: relative;
-      height: 900px;
+    /* Hero Section */
+    .hero {
+      padding-top: 140px;
+      padding-bottom: 80px;
+      background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
       overflow: hidden;
-      background: linear-gradient(180deg, #0f172a 0%, #1a1f35 50%, #0a0f1a 100%);
-    }
-    
-    .parallax-bg {
-      position: absolute;
-      inset: 0;
-      background: url('images/hero/bg-hero.svg') center/cover;
-      z-index: 0;
+      position: relative;
     }
     
     .hero-content {
-      position: relative;
-      z-index: 10;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
       text-align: center;
     }
     
-    .hero-container {
+    .hero h1 {
+      font-size: 4.5rem;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      font-weight: 800;
+      color: #000;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: #666;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    .btn-primary {
+      background: #000;
+      color: #fff;
+    }
+    
+    .btn-primary:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #000;
+      border: 2px solid #000;
+    }
+    
+    .btn-secondary:hover {
+      background: #000;
+      color: #fff;
+    }
+    
+    .hero-carousel {
       position: relative;
-      height: 500px;
+      height: 400px;
+      border-radius: 16px;
       overflow: hidden;
-      border-radius: 32px;
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-      border: 1px solid rgba(102, 126, 234, 0.2);
-      margin-top: 60px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin-bottom: 40px;
     }
     
     .carousel-slide {
       position: absolute;
       width: 100%;
       height: 100%;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
       display: flex;
       align-items: center;
       justify-content: center;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      font-size: 120px;
     }
     
     .carousel-slide.active {
       opacity: 1;
     }
     
-    .slide-gradient {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--grad-from) 0%, var(--grad-to) 100%);
-    }
-    
     .carousel-dots {
       position: absolute;
-      bottom: 30px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 12px;
+      gap: 8px;
       z-index: 10;
     }
     
     .dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.5);
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s;
     }
     
     .dot.active {
-      background: #667eea;
-      transform: scale(1.4);
-      border-color: #667eea;
+      background: #fff;
+      width: 24px;
+      border-radius: 4px;
     }
     
-    /* Scroll animations */
-    @keyframes slideInUp { 
-      from { opacity: 0; transform: translateY(100px); } 
-      to { opacity: 1; transform: translateY(0); } 
-    }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-100px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(100px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes float { 
-      0%, 100% { transform: translateY(0px); } 
-      50% { transform: translateY(-30px); } 
-    }
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    /* Clients Marquee */
+    .clients-section {
+      padding: 60px 40px;
+      background: #f9f9f9;
+      border-top: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e5e5e5;
     }
     
-    .scroll-animate {
-      opacity: 0;
-      transform: translateY(60px);
+    .clients-title {
+      text-align: center;
+      color: #999;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      letter-spacing: 0.5px;
     }
     
-    .scroll-animate.active {
-      animation: slideInUp 0.8s ease-out forwards;
-    }
-    
-    .scroll-animate.left {
-      animation: slideInLeft 0.8s ease-out forwards;
-    }
-    
-    .scroll-animate.right {
-      animation: slideInRight 0.8s ease-out forwards;
-    }
-    
-    .scroll-animate.scale {
-      animation: scaleIn 0.8s ease-out forwards;
-    }
-    
-    .animate-float { animation: float 4s ease-in-out infinite; }
-    
-    /* Gradient text */
-    .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .gradient-text-cyan {
-      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* Sticky nav */
-    .nav-sticky {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      transition: all 0.3s;
-      background: transparent;
-      padding: 20px 0;
-    }
-    .nav-sticky.scrolled {
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(40px);
-      border-bottom: 1px solid rgba(102, 126, 234, 0.15);
-      padding: 16px 0;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-    
-    /* Glass effect */
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Project card */
-    .project-card {
-      background: linear-gradient(145deg, #131313, #0a0a0a);
-      border: 1px solid rgba(102, 126, 234, 0.15);
-      border-radius: 28px;
+    .marquee-wrapper {
       overflow: hidden;
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    
+    .marquee {
+      display: flex;
+      gap: 40px;
+      animation: marquee 40s linear infinite;
+    }
+    
+    .marquee-item {
+      white-space: nowrap;
+      color: #999;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    
+    /* Stats */
+    .stats {
+      padding: 60px 40px;
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .stats-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+    
+    .stat-item h3 {
+      font-size: 3.5rem;
+      color: #000;
+      margin-bottom: 12px;
+    }
+    
+    .stat-item p {
+      color: #666;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    
+    /* Services */
+    .services {
+      padding: 100px 40px;
+      background: #fff;
+    }
+    
+    .section-title {
+      max-width: 1400px;
+      margin: 0 auto 60px;
+    }
+    
+    .section-title h2 {
+      font-size: 3.5rem;
+      color: #000;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    
+    .section-title p {
+      color: #666;
+      font-size: 1.15rem;
+      max-width: 500px;
+      line-height: 1.6;
+    }
+    
+    .services-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    
+    .service-card {
+      background: #f9f9f9;
+      padding: 40px;
+      border-radius: 12px;
+      transition: all 0.4s;
+      border: 1px solid #e5e5e5;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: #000;
+      background: #fff;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #000;
+    }
+    
+    .service-card p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    
+    /* Projects */
+    .projects {
+      padding: 100px 40px;
+      background: #f9f9f9;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .projects-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    
+    .project-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e5e5;
+      transition: all 0.4s;
       cursor: pointer;
     }
     
     .project-card:hover {
-      border-color: #667eea;
-      transform: translateY(-24px);
-      box-shadow: 0 60px 120px rgba(102, 126, 234, 0.25);
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border-color: #000;
     }
     
     .project-image {
       width: 100%;
-      height: 380px;
-      background: linear-gradient(135deg, var(--grad-from) 0%, var(--grad-to) 100%);
+      height: 200px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 100px;
-      position: relative;
+      font-size: 80px;
       overflow: hidden;
-      background-size: cover;
-    }
-    
-    .project-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.08), transparent);
-    }
-    
-    .project-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
     
     .project-content {
-      padding: 48px;
+      padding: 24px;
     }
     
-    /* Stats */
-    .stat-item {
-      text-align: center;
-      transition: all 0.4s;
+    .project-tag {
+      display: inline-block;
+      background: #f0f0f0;
+      color: #666;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
     }
     
-    .stat-number {
-      font-size: 4.5rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      letter-spacing: -2px;
+    .project-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #000;
     }
     
-    .stat-item:hover .stat-number {
-      transform: scale(1.1);
+    .project-card p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
     
-    /* Service card */
-    .service-card {
-      background: linear-gradient(145deg, #131313, #0a0a0a);
-      border: 1px solid rgba(102, 126, 234, 0.15);
-      border-radius: 24px;
-      padding: 48px;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      height: 100%;
-      position: relative;
-      overflow: hidden;
+    /* Process */
+    .process {
+      padding: 100px 40px;
+      background: #fff;
     }
     
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(102, 126, 234, 0.05), transparent);
-      opacity: 0;
-      transition: opacity 0.5s;
-      pointer-events: none;
-    }
-    
-    .service-card:hover::before {
-      opacity: 1;
-    }
-    
-    .service-card:hover {
-      border-color: #667eea;
-      transform: translateY(-16px);
-      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.2);
-    }
-    
-    .service-icon {
-      font-size: 3.5rem;
-      margin-bottom: 30px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
-      border-radius: 20px;
-      border: 1px solid rgba(102, 126, 234, 0.2);
-      transition: all 0.4s;
-    }
-    
-    .service-card:hover .service-icon {
-      transform: scale(1.15);
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.15));
-    }
-    
-    /* Testimonial */
-    .testimonial-carousel {
-      display: flex;
+    .process-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 32px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding-bottom: 20px;
-      scrollbar-width: thin;
-      margin-right: -24px;
-      padding-right: 24px;
     }
     
-    .testimonial-carousel::-webkit-scrollbar { height: 8px; }
-    .testimonial-carousel::-webkit-scrollbar-thumb { background: rgba(102, 126, 234, 0.5); border-radius: 4px; }
+    .process-step {
+      text-align: center;
+    }
+    
+    .step-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #000;
+      margin-bottom: 16px;
+    }
+    
+    .process-step h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #000;
+    }
+    
+    .process-step p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      padding: 100px 40px;
+      background: #f9f9f9;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .testimonials-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
     
     .testimonial-card {
-      background: linear-gradient(145deg, #131313, #0a0a0a);
-      border: 1px solid rgba(102, 126, 234, 0.15);
-      border-radius: 24px;
-      padding: 48px;
-      min-width: 450px;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      transition: all 0.5s;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid #e5e5e5;
+      transition: all 0.4s;
     }
     
     .testimonial-card:hover {
-      border-color: #667eea;
-      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.2);
-      transform: translateY(-12px);
-    }
-    
-    .testimonial-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      font-size: 28px;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     }
     
     .rating {
       color: #fbbf24;
-      margin: 12px 0;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
     }
     
-    /* Process steps */
-    .process-step {
-      flex: 1;
-      text-align: center;
-      position: relative;
-      padding: 0 20px;
+    .testimonial-text {
+      color: #333;
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.8;
     }
     
-    .step-circle {
-      width: 90px;
-      height: 90px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 32px;
-      font-size: 2.5rem;
-      font-weight: bold;
-      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.4s;
+    .testimonial-author {
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 4px;
     }
     
-    .process-step:hover .step-circle {
-      transform: scale(1.15);
-      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.4);
+    .testimonial-role {
+      color: #999;
+      font-size: 0.9rem;
     }
     
     /* FAQ */
+    .faq {
+      padding: 100px 40px;
+      background: #fff;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
     details {
       margin-bottom: 16px;
     }
     
     details summary {
       cursor: pointer;
-      padding: 28px;
-      background: linear-gradient(145deg, #131313, #0a0a0a);
-      border: 1px solid rgba(102, 126, 234, 0.15);
-      border-radius: 20px;
+      padding: 24px;
+      background: #f9f9f9;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
       font-weight: 600;
-      font-size: 1.15rem;
-      list-style: none;
-      transition: all 0.4s;
+      font-size: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       user-select: none;
+      transition: all 0.3s;
     }
     
     details summary:hover {
-      border-color: #667eea;
-      background: linear-gradient(145deg, #1a1a1a, #111);
+      background: #fff;
+      border-color: #000;
     }
     
     details summary::after {
       content: '+';
       font-weight: bold;
-      font-size: 1.8rem;
-      transition: transform 0.4s;
-      color: #667eea;
+      font-size: 1.5rem;
     }
     
     details[open] summary::after {
-      transform: rotate(45deg);
+      content: '−';
     }
     
     details[open] summary {
-      border-color: #667eea;
-      background: linear-gradient(145deg, #1a1a1a, #111);
+      background: #fff;
+      border-color: #000;
     }
     
-    /* Blog card */
+    details p {
+      padding: 24px;
+      color: #666;
+      line-height: 1.8;
+    }
+    
+    /* Blog */
+    .blog {
+      padding: 100px 40px;
+      background: #f9f9f9;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .blog-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    
     .blog-card {
-      background: linear-gradient(145deg, #131313, #0a0a0a);
-      border: 1px solid rgba(102, 126, 234, 0.15);
-      border-radius: 24px;
+      background: #fff;
+      border-radius: 12px;
       overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid #e5e5e5;
+      transition: all 0.4s;
     }
     
     .blog-card:hover {
-      border-color: #667eea;
-      transform: translateY(-16px);
-      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.2);
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     }
     
     .blog-image {
       width: 100%;
-      height: 240px;
+      height: 200px;
       background: linear-gradient(135deg, #667eea, #764ba2);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3.5rem;
-      position: relative;
-      overflow: hidden;
-      background-size: cover;
+      font-size: 60px;
     }
     
-    .blog-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .blog-content {
+      padding: 24px;
     }
     
-    /* CTA Button */
-    .cta-button {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 30px 100px rgba(102, 126, 234, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+    .blog-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      color: #000;
     }
     
-    .cta-button:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 40px 120px rgba(102, 126, 234, 0.5);
+    .blog-card p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
     }
     
-    /* Section backgrounds */
-    .section-light {
-      background: linear-gradient(180deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.04) 100%);
+    /* CTA */
+    .cta {
+      padding: 80px 40px;
+      background: #000;
+      color: #fff;
+      text-align: center;
     }
     
-    .section-pattern {
-      background: 
-        repeating-linear-gradient(
-          90deg,
-          rgba(102, 126, 234, 0.03),
-          rgba(102, 126, 234, 0.03) 1px,
-          transparent 1px,
-          transparent 50px
-        ),
-        linear-gradient(180deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.03) 100%);
+    .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+    }
+    
+    .cta p {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 40px;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-buttons .btn {
+      background: #fff;
+      color: #000;
+    }
+    
+    .cta-buttons .btn:hover {
+      background: #e5e5e5;
+    }
+    
+    /* Footer */
+    footer {
+      background: #f9f9f9;
+      padding: 60px 40px;
+      border-top: 1px solid #e5e5e5;
+    }
+    
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-section h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #000;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-section a {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-section a:hover {
+      color: #000;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid #e5e5e5;
+      padding-top: 40px;
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      color: #000;
+      font-size: 1.25rem;
+      transition: color 0.3s;
+    }
+    
+    .social-links a:hover {
+      color: #667eea;
     }
   </style>
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav class="nav-sticky" id="navbar">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="flex justify-between items-center">
-        <div class="text-2xl font-black gradient-text cursor-pointer" onclick="document.body.scrollIntoView({behavior:'smooth'})">
-          NeoProdUx
-        </div>
-        <div class="hidden md:flex space-x-12 items-center text-sm font-medium">
-          <a href="#servicios" class="text-gray-400 hover:text-purple-400 transition">Servicios</a>
-          <a href="#proyectos" class="text-gray-400 hover:text-purple-400 transition">Proyectos</a>
-          <a href="#proceso" class="text-gray-400 hover:text-purple-400 transition">Proceso</a>
-          <a href="#faq" class="text-gray-400 hover:text-purple-400 transition">FAQ</a>
-          <a href="#contacto" class="cta-button text-white px-8 py-3 rounded-full font-semibold text-sm">Contacto</a>
-        </div>
+  <nav>
+    <div style="max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center;">
+      <div class="logo">NeoProdUx</div>
+      <div style="display: flex; gap: 40px; align-items: center;">
+        <a href="#servicios" style="text-decoration: none;">Servicios</a>
+        <a href="#proyectos" style="text-decoration: none;">Proyectos</a>
+        <a href="#proceso" style="text-decoration: none;">Proceso</a>
+        <a href="#faq" style="text-decoration: none;">FAQ</a>
+        <a href="#contacto" class="nav-cta" style="text-decoration: none;">Contacto</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section with Parallax -->
-  <section class="hero-section" id="hero">
-    <div class="parallax-bg" id="parallaxBg"></div>
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="hero-content">
-      <div class="max-w-7xl mx-auto px-8 w-full">
-        <div class="text-center mb-20 scroll-animate">
-          <h1 class="text-8xl md:text-9xl font-black mb-10 leading-tight">
-            <span class="gradient-text">Diseño de</span><br>
-            <span class="gradient-text">Productos</span><br>
-            que Crecen
-          </h1>
-          <p class="text-2xl text-gray-400 max-w-4xl mx-auto font-light leading-relaxed">
-            Creemos en UX/UI, estrategia de producto y decisiones basadas en datos reales.
-            Transformamos desafíos complejos en oportunidades de crecimiento exponencial.
-          </p>
-        </div>
+      <h1>Diseño de Productos que Generan Resultados</h1>
+      <p>UX/UI design, product strategy y análisis de datos. Transformamos desafíos en oportunidades de crecimiento.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Ver Proyectos</button>
+        <button class="btn btn-secondary">Agendar Llamada</button>
+      </div>
 
-        <!-- Hero Carousel -->
-        <div class="hero-container">
-          <div class="carousel-slide active" style="--grad-from: #667eea; --grad-to: #764ba2;">
-            <div class="slide-gradient"></div>
-            <div class="relative z-10 text-center">
-              <div class="text-9xl mb-8 animate-float">🐕</div>
-              <h2 class="text-5xl font-bold mb-3">PASEO App</h2>
-              <p class="text-xl text-gray-200">+45K usuarios | +89% retención W1</p>
-            </div>
-          </div>
-          
-          <div class="carousel-slide" style="--grad-from: #06b6d4; --grad-to: #0891b2;">
-            <div class="slide-gradient"></div>
-            <div class="relative z-10 text-center">
-              <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.2s;">📊</div>
-              <h2 class="text-5xl font-bold mb-3">Nexus Logistics</h2>
-              <p class="text-xl text-gray-200">200+ empresas | +40% usabilidad</p>
-            </div>
-          </div>
-          
-          <div class="carousel-slide" style="--grad-from: #f43f5e; --grad-to: #e11d48;">
-            <div class="slide-gradient"></div>
-            <div class="relative z-10 text-center">
-              <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.4s;">🛍️</div>
-              <h2 class="text-5xl font-bold mb-3">La Caroyense</h2>
-              <p class="text-xl text-gray-200">↑340% conversión | +$2.1M ingresos</p>
-            </div>
-          </div>
-          
-          <div class="carousel-slide" style="--grad-from: #3b82f6; --grad-to: #1e40af;">
-            <div class="slide-gradient"></div>
-            <div class="relative z-10 text-center">
-              <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.6s;">🎓</div>
-              <h2 class="text-5xl font-bold mb-3">Yale School of Art</h2>
-              <p class="text-xl text-gray-200">↑60% visitas | ↑45% engagement</p>
-            </div>
-          </div>
-
-          <div class="carousel-dots" id="carousel-dots"></div>
+      <!-- Hero Carousel -->
+      <div class="hero-carousel">
+        <div class="carousel-slide active" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+          🐕
         </div>
-
-        <div class="text-center mt-16">
-          <a href="#proyectos" class="cta-button text-white px-12 py-6 rounded-full font-bold text-lg inline-block">
-            Ver Proyectos <i class="fas fa-arrow-right ml-3"></i>
-          </a>
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+          📊
         </div>
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
+          🛍️
+        </div>
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">
+          🎓
+        </div>
+        <div class="carousel-dots" id="carousel-dots"></div>
       </div>
     </div>
   </section>
 
-  <!-- Marquee Clients -->
-  <section class="py-12">
+  <!-- Clients Marquee -->
+  <section class="clients-section">
+    <div class="clients-title">CONFÍAN EN NEOPRODYUX</div>
     <div class="marquee-wrapper">
       <div class="marquee">
-        <span class="marquee-item">🚀 GitHub</span>
-        <span class="marquee-item">💼 LinkedIn</span>
-        <span class="marquee-item">🎨 Design Community</span>
-        <span class="marquee-item">💻 Tech Industry</span>
-        <span class="marquee-item">🌍 Global Portfolio</span>
-        <span class="marquee-item">🚀 GitHub</span>
-        <span class="marquee-item">💼 LinkedIn</span>
-        <span class="marquee-item">🎨 Design Community</span>
-        <span class="marquee-item">💻 Tech Industry</span>
-        <span class="marquee-item">🌍 Global Portfolio</span>
+        <span class="marquee-item">★ GitHub</span>
+        <span class="marquee-item">★ LinkedIn</span>
+        <span class="marquee-item">★ Design Community</span>
+        <span class="marquee-item">★ Tech Industry</span>
+        <span class="marquee-item">★ Global Portfolio</span>
+        <span class="marquee-item">★ GitHub</span>
+        <span class="marquee-item">★ LinkedIn</span>
+        <span class="marquee-item">★ Design Community</span>
+        <span class="marquee-item">★ Tech Industry</span>
+        <span class="marquee-item">★ Global Portfolio</span>
       </div>
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="py-40 border-b border-white/10 section-pattern">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="grid md:grid-cols-3 gap-24">
-        <div class="stat-item scroll-animate">
-          <div class="stat-number">30+</div>
-          <p class="text-gray-400 mt-8 text-lg font-medium">Proyectos en Producción</p>
-        </div>
-        <div class="stat-item scroll-animate" style="animation-delay: 0.2s;">
-          <div class="stat-number">5M+</div>
-          <p class="text-gray-400 mt-8 text-lg font-medium">Usuarios Impactados</p>
-        </div>
-        <div class="stat-item scroll-animate" style="animation-delay: 0.4s;">
-          <div class="stat-number">+35%</div>
-          <p class="text-gray-400 mt-8 text-lg font-medium">Mejora Conversión Promedio</p>
-        </div>
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>30+</h3>
+        <p>Proyectos en Producción</p>
+      </div>
+      <div class="stat-item">
+        <h3>5M+</h3>
+        <p>Usuarios Impactados</p>
+      </div>
+      <div class="stat-item">
+        <h3>+35%</h3>
+        <p>Mejora en Conversión</p>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section id="servicios" class="py-40 border-b border-white/10 section-light">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-32 scroll-animate">
-        <h2 class="text-8xl md:text-8xl font-black mb-8">
-          <span class="gradient-text">Servicios</span><br>
-          Populares
-        </h2>
-        <p class="text-2xl text-gray-400 font-light max-w-2xl">Transforma tu presencia digital con soluciones de UX/UI estratégico</p>
+  <!-- Services -->
+  <section class="services" id="servicios">
+    <div class="section-title">
+      <h2>Servicios Populares</h2>
+      <p>Transforma tu presencia digital con soluciones de UX/UI estratégico basadas en datos reales</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>UX/UI Design</h3>
+        <p>Investigación profunda, prototipos iterativos y diseño centrado en el usuario que convierte visitas en resultados.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-12">
-        <div class="service-card scroll-animate left">
-          <div class="service-icon text-purple-400"><i class="fas fa-pencil-ruler"></i></div>
-          <h3 class="text-3xl font-black mb-6">UX/UI Design</h3>
-          <p class="text-gray-400 text-lg leading-relaxed">Investigación profunda, prototipos iterativos y diseño centrado en el usuario que convierte visitas en resultados.</p>
-        </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Product Strategy</h3>
+        <p>Análisis de datos, validación de mercado y roadmap basado en insights reales de usuarios y negocio.</p>
+      </div>
 
-        <div class="service-card scroll-animate scale" style="animation-delay: 0.2s;">
-          <div class="service-icon text-indigo-400"><i class="fas fa-chart-line"></i></div>
-          <h3 class="text-3xl font-black mb-6">Product Strategy</h3>
-          <p class="text-gray-400 text-lg leading-relaxed">Análisis de datos, validación de mercado y roadmap basado en insights reales de usuarios y negocio.</p>
-        </div>
-
-        <div class="service-card scroll-animate right" style="animation-delay: 0.4s;">
-          <div class="service-icon text-pink-400"><i class="fas fa-code"></i></div>
-          <h3 class="text-3xl font-black mb-6">Design System</h3>
-          <p class="text-gray-400 text-lg leading-relaxed">Componentes reutilizables, guías de diseño y tokens que escalan con tu producto a largo plazo.</p>
-        </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Design System</h3>
+        <p>Componentes reutilizables, guías de diseño y tokens que escalan con tu producto a largo plazo.</p>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="proyectos" class="py-40 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-32 scroll-animate">
-        <h2 class="text-8xl md:text-8xl font-black mb-8">
-          Hecho en<br>
-          <span class="gradient-text">NeoProdUx</span>
-        </h2>
-        <p class="text-2xl text-gray-400 font-light">Proyectos que generaron impacto real en el negocio</p>
+  <!-- Projects -->
+  <section class="projects" id="proyectos">
+    <div class="section-title">
+      <h2>Hecho en NeoProdUx</h2>
+      <p>Proyectos que generaron impacto real en el negocio</p>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">🐕</div>
+        <div class="project-content">
+          <span class="project-tag">App Móvil</span>
+          <h3>PASEO App</h3>
+          <p>App de paseadores de mascotas con validación de identidad y tracking en tiempo real. +45K usuarios, +89% retención.</p>
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-16">
-        <!-- PASEO -->
-        <div class="project-card scroll-animate left">
-          <div class="project-image" style="--grad-from: #667eea; --grad-to: #764ba2; background-image: url('images/projects/paseo.svg');">
-            <div class="text-9xl">🐕</div>
-          </div>
-          <div class="project-content">
-            <span class="inline-block px-4 py-2 bg-purple-500/20 rounded-full text-xs font-bold text-purple-300 mb-6 uppercase tracking-wider">APP MÓVIL</span>
-            <h3 class="text-4xl font-black mb-6">PASEO App</h3>
-            <p class="text-gray-400 text-lg mb-10 leading-relaxed">App de paseadores de mascotas con validación de identidad y tracking en tiempo real</p>
-            <div class="grid grid-cols-3 gap-6 mb-10 pb-10 border-b border-white/10">
-              <div>
-                <div class="text-3xl font-black text-green-400">↑78%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Completitud Onboarding</p>
-              </div>
-              <div>
-                <div class="text-3xl font-black text-green-400">↑89%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Retención W1</p>
-              </div>
-              <div>
-                <div class="text-3xl font-black text-green-400">+45K</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Usuarios</p>
-              </div>
-            </div>
-            <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg transition">
-              Ver Repositorio <i class="fas fa-arrow-right ml-3"></i>
-            </a>
-          </div>
+      <div class="project-card">
+        <div class="project-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">📊</div>
+        <div class="project-content">
+          <span class="project-tag" style="background: #e0f7ff;">SaaS</span>
+          <h3>Nexus Logistics</h3>
+          <p>Dashboard B2B para logística empresarial. 200+ empresas, +40% usabilidad, -30% capacitación requerida.</p>
         </div>
+      </div>
 
-        <!-- NEXUS -->
-        <div class="project-card scroll-animate right">
-          <div class="project-image" style="--grad-from: #06b6d4; --grad-to: #0891b2; background-image: url('images/projects/nexus.svg');">
-            <div class="text-9xl">📊</div>
-          </div>
-          <div class="project-content">
-            <span class="inline-block px-4 py-2 bg-cyan-500/20 rounded-full text-xs font-bold text-cyan-300 mb-6 uppercase tracking-wider">ENTERPRISE SAAS</span>
-            <h3 class="text-4xl font-black mb-6">Nexus Logistics</h3>
-            <p class="text-gray-400 text-lg mb-10 leading-relaxed">Dashboard B2B para gestión de logística empresarial con simplificación de interfaz compleja</p>
-            <div class="grid grid-cols-3 gap-6 mb-10 pb-10 border-b border-white/10">
-              <div>
-                <div class="text-3xl font-black text-green-400">+40%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Usabilidad (SUS)</p>
-              </div>
-              <div>
-                <div class="text-3xl font-black text-green-400">200+</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Empresas</p>
-              </div>
-              <div>
-                <div class="text-3xl font-black text-green-400">-30%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Capacitación</p>
-              </div>
-            </div>
-            <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg transition">
-              Ver Repositorio <i class="fas fa-arrow-right ml-3"></i>
-            </a>
-          </div>
+      <div class="project-card">
+        <div class="project-image" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">🛍️</div>
+        <div class="project-content">
+          <span class="project-tag" style="background: #ffe0e0;">E-Commerce</span>
+          <h3>La Caroyense</h3>
+          <p>Rediseño e-commerce. ↑340% conversión, ↓45% abandono de carrito, +$2.1M ingresos.</p>
         </div>
+      </div>
 
-        <!-- LA CAROYENSE -->
-        <div class="project-card scroll-animate left" style="animation-delay: 0.2s;">
-          <div class="project-image" style="--grad-from: #f43f5e; --grad-to: #e11d48; background-image: url('images/projects/caroyense.svg');">
-            <div class="text-9xl">🛍️</div>
-          </div>
-          <div class="project-content">
-            <span class="inline-block px-4 py-2 bg-rose-500/20 rounded-full text-xs font-bold text-rose-300 mb-6 uppercase tracking-wider">E-COMMERCE</span>
-            <h3 class="text-4xl font-black mb-6">La Caroyense</h3>
-            <p class="text-gray-400 text-lg mb-10 leading-relaxed">Rediseño e-commerce con optimización de checkout y trust signals estratégicos para conversión</p>
-            <div class="grid grid-cols-3 gap-6 mb-10 pb-10 border-b border-white/10">
-              <div>
-                <div class="text-3xl font-black text-green-400">↑340%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Conversión</p>
-              </div>
-              <div>
-                <div class="text-3xl font-black text-green-400">↓45%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Abandono Carrito</p>
-              </div>
-              <div>
-                <div class="text-3xl font-black text-green-400">+$2.1M</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Ingresos</p>
-              </div>
-            </div>
-            <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg transition">
-              Ver Repositorio <i class="fas fa-arrow-right ml-3"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- YALE -->
-        <div class="project-card scroll-animate right" style="animation-delay: 0.2s;">
-          <div class="project-image" style="--grad-from: #3b82f6; --grad-to: #1e40af; background-image: url('images/projects/yale.svg');">
-            <div class="text-9xl">🎓</div>
-          </div>
-          <div class="project-content">
-            <span class="inline-block px-4 py-2 bg-blue-500/20 rounded-full text-xs font-bold text-blue-300 mb-6 uppercase tracking-wider">EDUCATIVO</span>
-            <h3 class="text-4xl font-black mb-6">Yale School of Art</h3>
-            <p class="text-gray-400 text-lg mb-10 leading-relaxed">Rediseño sitio web con información organizada y storytelling visual moderno para estudiantes</p>
-            <div class="grid grid-cols-3 gap-6 mb-10 pb-10 border-b border-white/10">
-              <div>
-                <div class="text-3xl font-black text-green-400">↑60%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Visitas</p>
-              </div>
-              <div>
-                <div class="text-3xl font-black text-green-400">↑45%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Engagement</p>
-              </div>
-              <div>
-                <div class="text-3xl font-black text-green-400">↑35%</div>
-                <p class="text-xs text-gray-400 mt-3 font-medium">Aplicaciones</p>
-              </div>
-            </div>
-            <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg transition">
-              Ver Repositorio <i class="fas fa-arrow-right ml-3"></i>
-            </a>
-          </div>
+      <div class="project-card">
+        <div class="project-image" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">🎓</div>
+        <div class="project-content">
+          <span class="project-tag" style="background: #e0e7ff;">Educativo</span>
+          <h3>Yale School of Art</h3>
+          <p>Rediseño web moderno. ↑60% visitas, ↑45% engagement, ↑35% aplicaciones.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Process Section -->
-  <section id="proceso" class="py-40 border-b border-white/10 section-light">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="text-center mb-32 scroll-animate">
-        <h2 class="text-8xl font-black mb-10">
-          Cómo<br>
-          <span class="gradient-text">Trabajamos</span>
-        </h2>
-        <p class="text-2xl text-gray-400 font-light">Un proceso probado para resultados excepcionales</p>
-      </div>
+  <!-- Process -->
+  <section class="process" id="proceso">
+    <div class="section-title">
+      <h2>Cómo Trabajamos</h2>
+      <p>Un proceso probado para resultados excepcionales</p>
+    </div>
 
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="process-step scroll-animate left">
-          <div class="step-circle">1</div>
-          <h3 class="text-2xl font-black mb-6">Discovery</h3>
-          <p class="text-gray-400 text-lg leading-relaxed">Entendemos tu negocio, usuarios y mercado mediante investigación profunda</p>
-        </div>
-        <div class="process-step scroll-animate scale" style="animation-delay: 0.1s;">
-          <div class="step-circle">2</div>
-          <h3 class="text-2xl font-black mb-6">Strategy</h3>
-          <p class="text-gray-400 text-lg leading-relaxed">Definimos estrategia basada en insights, datos y oportunidades reales</p>
-        </div>
-        <div class="process-step scroll-animate scale" style="animation-delay: 0.2s;">
-          <div class="step-circle">3</div>
-          <h3 class="text-2xl font-black mb-6">Design</h3>
-          <p class="text-gray-400 text-lg leading-relaxed">Creamos prototipos interactivos y testamos con usuarios reales</p>
-        </div>
-        <div class="process-step scroll-animate right" style="animation-delay: 0.3s;">
-          <div class="step-circle">4</div>
-          <h3 class="text-2xl font-black mb-6">Optimize</h3>
-          <p class="text-gray-400 text-lg leading-relaxed">Medimos impacto, iteramos y optimizamos continuamente</p>
-        </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <h3>Discovery</h3>
+        <p>Entendemos tu negocio, usuarios y mercado mediante investigación profunda y análisis competitivo.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <h3>Strategy</h3>
+        <p>Definimos estrategia basada en insights, datos y oportunidades reales del mercado.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <h3>Design</h3>
+        <p>Creamos prototipos interactivos y testamos con usuarios reales para validar soluciones.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <h3>Optimize</h3>
+        <p>Medimos impacto, iteramos y optimizamos continuamente basado en métricas reales.</p>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="py-40 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-24 scroll-animate">
-        <h2 class="text-8xl font-black mb-8">
-          Lo que dicen<br>
-          <span class="gradient-text">clientes</span>
-        </h2>
-        <p class="text-2xl text-gray-400 font-light">Resultados reales de productos reales</p>
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="section-title">
+      <h2>Lo que dicen nuestros clientes</h2>
+      <p>Resultados reales de productos reales</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+        <p class="testimonial-text">"El trabajo de David transformó completamente nuestro producto. +78% en retención de usuarios en 3 meses. Recomendado 100%."</p>
+        <p class="testimonial-author">CEO, Startup Tech</p>
+        <p class="testimonial-role">Founder</p>
       </div>
 
-      <div class="testimonial-carousel">
-        <div class="testimonial-card scroll-animate">
-          <div class="testimonial-avatar">🐕</div>
-          <h4 class="font-bold text-lg">CEO, Startup Tech</h4>
-          <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
-          <p class="text-gray-300 text-lg leading-relaxed">
-            "El trabajo de David transformó completamente nuestro producto. +78% en retención de usuarios en 3 meses. Recomendado 100%."
-          </p>
-        </div>
+      <div class="testimonial-card">
+        <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+        <p class="testimonial-text">"Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad mejoraron +40% post-rediseño."</p>
+        <p class="testimonial-author">Product Manager, Enterprise</p>
+        <p class="testimonial-role">Product Lead</p>
+      </div>
 
-        <div class="testimonial-card scroll-animate" style="animation-delay: 0.2s;">
-          <div class="testimonial-avatar">📊</div>
-          <h4 class="font-bold text-lg">Product Manager, Enterprise</h4>
-          <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
-          <p class="text-gray-300 text-lg leading-relaxed">
-            "Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad mejoraron +40% post-rediseño."
-          </p>
-        </div>
-
-        <div class="testimonial-card scroll-animate" style="animation-delay: 0.4s;">
-          <div class="testimonial-avatar">💰</div>
-          <h4 class="font-bold text-lg">Founder, E-commerce</h4>
-          <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
-          <p class="text-gray-300 text-lg leading-relaxed">
-            "+$2.1M en ingresos tras rediseño. El mejor ROI que hemos visto. Profesional, preciso y orientado a resultados."
-          </p>
-        </div>
+      <div class="testimonial-card">
+        <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+        <p class="testimonial-text">"+$2.1M en ingresos tras rediseño. El mejor ROI que hemos visto. Profesional, preciso y orientado a resultados."</p>
+        <p class="testimonial-author">Founder, E-commerce</p>
+        <p class="testimonial-role">CEO</p>
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section id="faq" class="py-40 border-b border-white/10 section-light">
-    <div class="max-w-5xl mx-auto px-8">
-      <h2 class="text-8xl font-black mb-16 text-center scroll-animate">
-        Preguntas<br>
-        <span class="gradient-text">Frecuentes</span>
-      </h2>
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="section-title" style="max-width: 800px;">
+      <h2>Preguntas Frecuentes</h2>
+    </div>
 
-      <details class="scroll-animate">
+    <div class="faq-container">
+      <details>
         <summary>¿Cuál es tu proceso de diseño?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
-          Utilizamos un proceso iterativo basado en Design Thinking: Discovery → Strategy → Design → Validation → Optimization. Cada fase está fundamentada en investigación real y datos del usuario.
-        </div>
+        <p>Utilizamos un proceso iterativo basado en Design Thinking: Discovery → Strategy → Design → Validation → Optimization. Cada fase está fundamentada en investigación real y datos del usuario.</p>
       </details>
 
-      <details class="scroll-animate" style="animation-delay: 0.1s;">
+      <details>
         <summary>¿Cómo garantizas resultados measurables?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
-          Todo proyecto tiene KPIs claros desde el inicio. Medimos conversión, retención, satisfacción y ROI. Mostro los números reales, no promesas bonitas.
-        </div>
+        <p>Todo proyecto tiene KPIs claros desde el inicio. Medimos conversión, retención, satisfacción y ROI. Mostro los números reales, no promesas bonitas.</p>
       </details>
 
-      <details class="scroll-animate" style="animation-delay: 0.2s;">
+      <details>
         <summary>¿Puedo solicitar cambios después de terminar?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
-          Sí. Las iteraciones basadas en feedback real son parte fundamental del proceso. Trabajamos hasta que los resultados cumplan los objetivos definidos.
-        </div>
+        <p>Sí. Las iteraciones basadas en feedback real son parte fundamental del proceso. Trabajamos hasta que los resultados cumplan los objetivos definidos.</p>
       </details>
 
-      <details class="scroll-animate" style="animation-delay: 0.3s;">
+      <details>
         <summary>¿Qué herramientas utilizas?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
-          Figma para diseño, Python/SQL para análisis, Power BI para reporting, Git para versionamiento. Las mejores herramientas para cada fase del proyecto.
-        </div>
+        <p>Figma para diseño, Python/SQL para análisis, Power BI para reporting, Git para versionamiento. Las mejores herramientas para cada fase del proyecto.</p>
       </details>
 
-      <details class="scroll-animate" style="animation-delay: 0.4s;">
+      <details>
         <summary>¿Trabajas con equipos remotos?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
-          100% remoto. Timezone flexible. Comunicación clara y documentación detallada. Estoy acostumbrado a colaborar con equipos globales.
-        </div>
+        <p>100% remoto. Timezone flexible. Comunicación clara y documentación detallada. Estoy acostumbrado a colaborar con equipos globales.</p>
       </details>
     </div>
   </section>
 
-  <!-- Blog Section -->
-  <section class="py-40 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-24 scroll-animate">
-        <h2 class="text-8xl font-black mb-8">
-          ¿Qué hay de<br>
-          <span class="gradient-text">Tendencia?</span>
-        </h2>
-        <p class="text-2xl text-gray-400 font-light">Insights y tips sobre diseño, UX y producto</p>
-      </div>
+  <!-- Blog -->
+  <section class="blog">
+    <div class="section-title">
+      <h2>¿Qué hay de Tendencia?</h2>
+      <p>Insights y tips sobre diseño, UX y producto</p>
+    </div>
 
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="blog-card scroll-animate left">
-          <div class="blog-image" style="background-image: url('images/blog/research.svg');">
-            <i class="fas fa-pen-fancy"></i>
-          </div>
-          <div class="p-10">
-            <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Guía</span>
-            <h3 class="text-2xl font-black mt-6 mb-4">Guía Completa de UX Research</h3>
-            <p class="text-gray-400 text-lg mb-8">Metodologías modernas para entender realmente a tus usuarios</p>
-            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg transition">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="blog-card scroll-animate scale" style="animation-delay: 0.2s;">
-          <div class="blog-image" style="background-image: url('images/blog/metrics.svg');">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <div class="p-10">
-            <span class="text-xs text-cyan-400 font-bold uppercase tracking-wider">Data</span>
-            <h3 class="text-2xl font-black mt-6 mb-4">Métricas que Importan</h3>
-            <p class="text-gray-400 text-lg mb-8">Cómo medir el impacto real de tus decisiones de diseño</p>
-            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg transition">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
-        </div>
-
-        <div class="blog-card scroll-animate right" style="animation-delay: 0.4s;">
-          <div class="blog-image" style="background-image: url('images/blog/errors.svg');">
-            <i class="fas fa-lightbulb"></i>
-          </div>
-          <div class="p-10">
-            <span class="text-xs text-rose-400 font-bold uppercase tracking-wider">Tips</span>
-            <h3 class="text-2xl font-black mt-6 mb-4">5 Errores de UX Comunes</h3>
-            <p class="text-gray-400 text-lg mb-8">Y cómo evitarlos en tu próximo proyecto</p>
-            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg transition">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
-          </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-image">📝</div>
+        <div class="blog-content">
+          <h3>Guía Completa de UX Research</h3>
+          <p>Metodologías modernas para entender realmente a tus usuarios y validar tus soluciones.</p>
         </div>
       </div>
 
-      <div class="text-center mt-16">
-        <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-xl transition">
-          Ver Todos los Artículos <i class="fas fa-arrow-right ml-3"></i>
-        </a>
+      <div class="blog-card">
+        <div class="blog-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">📊</div>
+        <div class="blog-content">
+          <h3>Métricas que Importan</h3>
+          <p>Cómo medir el impacto real de tus decisiones de diseño en el negocio.</p>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-image" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">💡</div>
+        <div class="blog-content">
+          <h3>5 Errores de UX Comunes</h3>
+          <p>Y cómo evitarlos en tu próximo proyecto de diseño.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section id="contacto" class="py-40">
-    <div class="max-w-6xl mx-auto px-8">
-      <div class="cta-button rounded-3xl p-28 text-center relative overflow-hidden scroll-animate">
-        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
-        <div class="relative z-10">
-          <h2 class="text-8xl md:text-9xl font-black mb-10">¿Necesitas un Producto que Crezca?</h2>
-          <p class="text-3xl text-gray-100 mb-16 font-light">Hablemos sobre tu desafío</p>
-          <div class="flex flex-col sm:flex-row gap-8 justify-center">
-            <a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="bg-white text-purple-600 px-14 py-7 rounded-full text-lg font-black hover:shadow-2xl transition transform hover:scale-105 inline-block">
-              Agendar Llamada
-            </a>
-            <a href="mailto:david.diaz.uxdata@gmail.com" class="border-2 border-white text-white px-14 py-7 rounded-full text-lg font-black hover:bg-white/10 transition inline-block">
-              Enviar Email
-            </a>
-          </div>
-        </div>
-      </div>
+  <!-- CTA -->
+  <section class="cta" id="contacto">
+    <h2>¿Necesitas un Producto que Crezca?</h2>
+    <p>Hablemos sobre tu desafío. Agendar una llamada rápida o envíame un email.</p>
+    <div class="cta-buttons">
+      <button class="btn btn-primary">Agendar Llamada</button>
+      <button class="btn btn-secondary">Enviar Email</button>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-24 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="grid md:grid-cols-4 gap-16 mb-20">
-        <div>
-          <h3 class="text-2xl font-black gradient-text mb-8">NeoProdUx</h3>
-          <p class="text-gray-400 text-lg">Diseño de productos digitales que transforman negocios.</p>
-        </div>
-        <div>
-          <h4 class="font-black mb-8 uppercase text-xs tracking-wider text-gray-300">Compañía</h4>
-          <ul class="space-y-4 text-gray-400">
-            <li><a href="#servicios" class="hover:text-purple-400 transition font-medium">Servicios</a></li>
-            <li><a href="#proyectos" class="hover:text-purple-400 transition font-medium">Proyectos</a></li>
-            <li><a href="#proceso" class="hover:text-purple-400 transition font-medium">Proceso</a></li>
-            <li><a href="#faq" class="hover:text-purple-400 transition font-medium">FAQ</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-black mb-8 uppercase text-xs tracking-wider text-gray-300">Redes</h4>
-          <ul class="space-y-4 text-gray-400">
-            <li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="hover:text-purple-400 transition font-medium">LinkedIn</a></li>
-            <li><a href="https://github.com/dsd228" target="_blank" class="hover:text-purple-400 transition font-medium">GitHub</a></li>
-            <li><a href="https://dribbble.com" target="_blank" class="hover:text-purple-400 transition font-medium">Dribbble</a></li>
-            <li><a href="https://behance.net" target="_blank" class="hover:text-purple-400 transition font-medium">Behance</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-black mb-8 uppercase text-xs tracking-wider text-gray-300">Contacto</h4>
-          <ul class="space-y-4 text-gray-400">
-            <li><a href="mailto:david.diaz.uxdata@gmail.com" class="hover:text-purple-400 transition font-medium">Email</a></li>
-            <li><a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="hover:text-purple-400 transition font-medium">Calendly</a></li>
-            <li class="text-sm font-medium pt-2">100% Remoto</li>
-          </ul>
-        </div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Compañía</h3>
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
       </div>
 
-      <div class="border-t border-white/10 pt-12 text-center text-gray-400">
-        <p class="mb-3 font-medium">© 2026 NeoProdUx. All Rights Reserved.</p>
-        <p class="italic text-sm">"El buen diseño no se ve. Solo sientes los resultados."</p>
+      <div class="footer-section">
+        <h3>Redes</h3>
+        <ul>
+          <li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/dsd228" target="_blank">GitHub</a></li>
+          <li><a href="https://dribbble.com" target="_blank">Dribbble</a></li>
+          <li><a href="https://behance.net" target="_blank">Behance</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <ul>
+          <li><a href="mailto:david.diaz.uxdata@gmail.com">Email</a></li>
+          <li><a href="https://calendly.com/david-sebastian-diaz" target="_blank">Calendly</a></li>
+          <li>100% Remoto</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 NeoProdUx. All Rights Reserved.</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/dsd228" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://dribbble.com" target="_blank"><i class="fab fa-dribbble"></i></a>
+        <a href="https://behance.net" target="_blank"><i class="fab fa-behance"></i></a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Navbar scroll effect
-    window.addEventListener("scroll", () => {
-      const navbar = document.getElementById("navbar");
-      if (window.scrollY > 100) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-    });
-
-    // Parallax effect
-    window.addEventListener("scroll", () => {
-      const parallax = document.getElementById("parallaxBg");
-      if (parallax) {
-        const scrollPosition = window.scrollY;
-        parallax.style.transform = `translateY(${scrollPosition * 0.5}px)`;
-      }
-    });
-
-    // Scroll animations
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "0px 0px -100px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll(".scroll-animate").forEach(element => {
-      observer.observe(element);
-    });
-
     // Carousel
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
@@ -1138,6 +1079,20 @@
             behavior: 'smooth',
             block: 'start'
           });
+        }
+      });
+    });
+
+    // Button clicks
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const text = this.textContent;
+        if (text.includes('Proyectos')) {
+          document.querySelector('#proyectos').scrollIntoView({ behavior: 'smooth' });
+        } else if (text.includes('Llamada')) {
+          window.open('https://calendly.com/david-sebastian-diaz', '_blank');
+        } else if (text.includes('Email')) {
+          window.location.href = 'mailto:david.diaz.uxdata@gmail.com';
         }
       });
     });
