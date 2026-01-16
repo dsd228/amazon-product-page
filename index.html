@@ -143,13 +143,29 @@
       color: #fff;
     }
 
+    /* CAROUSEL 3D ROTATIVO */
     .hero-carousel {
       position: relative;
+      width: 100%;
       height: 450px;
       border-radius: 16px;
       overflow: hidden;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: #f0f0f0;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      perspective: 1200px;
+    }
+
+    .carousel-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCarousel 20s linear infinite;
+    }
+
+    @keyframes rotateCarousel {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
     }
 
     .carousel-slide {
@@ -159,13 +175,28 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
       font-size: 120px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      backface-visibility: hidden;
     }
 
-    .carousel-slide.active {
-      opacity: 1;
+    /* Posicionamiento de slides en rotación 3D */
+    .carousel-slide:nth-child(1) {
+      transform: rotateY(0deg) translateZ(0);
+    }
+
+    .carousel-slide:nth-child(2) {
+      transform: rotateY(90deg) translateZ(0);
+    }
+
+    .carousel-slide:nth-child(3) {
+      transform: rotateY(180deg) translateZ(0);
+    }
+
+    .carousel-slide:nth-child(4) {
+      transform: rotateY(270deg) translateZ(0);
     }
 
     .carousel-dots {
@@ -182,7 +213,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.6);
       cursor: pointer;
       transition: all 0.3s;
     }
@@ -368,6 +399,8 @@
       justify-content: center;
       font-size: 80px;
       overflow: hidden;
+      background-size: cover;
+      background-position: center;
     }
 
     .project-content {
@@ -581,6 +614,8 @@
       align-items: center;
       justify-content: center;
       font-size: 60px;
+      background-size: cover;
+      background-position: center;
     }
 
     .blog-content {
@@ -749,19 +784,13 @@
         </div>
       </div>
 
-      <!-- Hero Carousel -->
+      <!-- CAROUSEL 3D ROTATIVO -->
       <div class="hero-carousel">
-        <div class="carousel-slide active" style="background: linear-gradient(135deg, #667eea, #764ba2);">
-          🐕
-        </div>
-        <div class="carousel-slide" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
-          📊
-        </div>
-        <div class="carousel-slide" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
-          🛍️
-        </div>
-        <div class="carousel-slide" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">
-          🎓
+        <div class="carousel-container">
+          <div class="carousel-slide" style="background: linear-gradient(135deg, #667eea, #764ba2);">🐕</div>
+          <div class="carousel-slide" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">📊</div>
+          <div class="carousel-slide" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">🛍️</div>
+          <div class="carousel-slide" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">🎓</div>
         </div>
         <div class="carousel-dots" id="carousel-dots"></div>
       </div>
@@ -842,7 +871,7 @@
 
     <div class="projects-grid">
       <div class="project-card">
-        <div class="project-image">🐕</div>
+        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=200&fit=crop');">🐕</div>
         <div class="project-content">
           <span class="project-tag">App Móvil</span>
           <h3>PASEO App</h3>
@@ -851,7 +880,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">📊</div>
+        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-adf4e9e339b2?w=800&h=200&fit=crop');">📊</div>
         <div class="project-content">
           <span class="project-tag" style="background: #e0f7ff;">SaaS</span>
           <h3>Nexus Logistics</h3>
@@ -860,7 +889,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-image" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">🛍️</div>
+        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561911?w=800&h=200&fit=crop');">🛍️</div>
         <div class="project-content">
           <span class="project-tag" style="background: #ffe0e0;">E-Commerce</span>
           <h3>La Caroyense</h3>
@@ -869,7 +898,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-image" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">🎓</div>
+        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=200&fit=crop');">🎓</div>
         <div class="project-content">
           <span class="project-tag" style="background: #e0e7ff;">Educativo</span>
           <h3>Yale School of Art</h3>
@@ -984,7 +1013,7 @@
 
     <div class="blog-grid">
       <div class="blog-card">
-        <div class="blog-image">📝</div>
+        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1455165814004-1126614d8d3f?w=800&h=200&fit=crop');">📝</div>
         <div class="blog-content">
           <h3>Guía Completa de UX Research</h3>
           <p>Metodologías modernas para entender realmente a tus usuarios y validar tus soluciones.</p>
@@ -992,7 +1021,7 @@
       </div>
 
       <div class="blog-card">
-        <div class="blog-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">📊</div>
+        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-adf4e9e339b2?w=800&h=200&fit=crop');">📊</div>
         <div class="blog-content">
           <h3>Métricas que Importan</h3>
           <p>Cómo medir el impacto real de tus decisiones de diseño en el negocio.</p>
@@ -1000,7 +1029,7 @@
       </div>
 
       <div class="blog-card">
-        <div class="blog-image" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">💡</div>
+        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=200&fit=crop');">💡</div>
         <div class="blog-content">
           <h3>5 Errores de UX Comunes</h3>
           <p>Y cómo evitarlos en tu próximo proyecto de diseño.</p>
@@ -1064,62 +1093,36 @@
   </footer>
 
   <script>
-    // Carousel
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(''.carousel-slide'');
-    const dotsContainer = document.getElementById(''carousel-dots'');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById('carousel-dots');
 
     slides.forEach((_, index) => {
-      const dot = document.createElement(''div'');
-      dot.className = `dot ${index === 0 ? ''active'' : ''''}`;
-      dot.addEventListener(''click'', () => goToSlide(index));
+      const dot = document.createElement('div');
+      dot.className = `dot ${index === 0 ? 'active' : ''}`;
       dotsContainer.appendChild(dot);
     });
 
-    function showSlide(n) {
-      slides.forEach(slide => slide.classList.remove(''active''));
-      document.querySelectorAll(''.dot'').forEach(dot => dot.classList.remove(''active''));
-      
-      slides[n].classList.add(''active'');
-      document.querySelectorAll(''.dot'')[n].classList.add(''active'');
-    }
-
-    function goToSlide(n) {
-      currentSlide = n;
-      showSlide(currentSlide);
-    }
-
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-
-    setInterval(nextSlide, 5000);
-
     // Smooth scroll
-    document.querySelectorAll(''a[href^="#"]'').forEach(anchor => {
-      anchor.addEventListener(''click'', function (e) {
-        const href = this.getAttribute(''href'');
-        if (href !== ''#'' && document.querySelector(href)) {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
           e.preventDefault();
-          document.querySelector(href).scrollIntoView({
-            behavior: ''smooth'',
-            block: ''start''
-          });
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
 
     // Button clicks
-    document.querySelectorAll(''.btn'').forEach(btn => {
-      btn.addEventListener(''click'', function() {
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function() {
         const text = this.textContent;
-        if (text.includes(''Proyectos'')) {
-          document.querySelector(''#proyectos'').scrollIntoView({ behavior: ''smooth'' });
-        } else if (text.includes(''Llamada'')) {
-          window.open(''https://calendly.com/david-sebastian-diaz'', ''_blank'');
-        } else if (text.includes(''Email'')) {
-          window.location.href = ''mailto:david.diaz.uxdata@gmail.com'';
+        if (text.includes('Proyectos')) {
+          document.querySelector('#proyectos').scrollIntoView({ behavior: 'smooth' });
+        } else if (text.includes('Llamada')) {
+          window.open('https://calendly.com/david-sebastian-diaz', '_blank');
+        } else if (text.includes('Email')) {
+          window.location.href = 'mailto:david.diaz.uxdata@gmail.com';
         }
       });
     });
