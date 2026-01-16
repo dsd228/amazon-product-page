@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeoProdUx - Diseño de Productos Digitales</title>
+  <title>NeoProdUx - Design & Product Strategy Agency</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
     * { 
-      font-family: "Plus Jakarta Sans", sans-serif; 
+      font-family: "Inter", sans-serif; 
       margin: 0; 
       padding: 0; 
       box-sizing: border-box; 
@@ -19,61 +19,69 @@
     html { scroll-behavior: smooth; }
     body { background: #0a0a0a; color: #fff; overflow-x: hidden; }
     
-    /* Hero Slider */
-    .hero-slider {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      gap: 20px;
-      padding: 20px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-    }
-    .hero-slider::-webkit-scrollbar { display: none; }
-    .hero-slide {
-      min-width: 500px;
-      height: 400px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border-radius: 20px;
-      scroll-snap-align: start;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Hero Carousel */
+    .hero-carousel {
       position: relative;
+      height: 600px;
       overflow: hidden;
+      border-radius: 24px;
     }
-    .hero-slide::before {
-      content: '';
+    
+    .carousel-slide {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1), transparent);
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .carousel-slide.active {
+      opacity: 1;
+    }
+    
+    .carousel-dots {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .dot.active {
+      background: #fff;
+      width: 32px;
+      border-radius: 6px;
     }
     
     /* Animations */
     @keyframes slideInUp { 
-      from { opacity: 0; transform: translateY(30px); } 
+      from { opacity: 0; transform: translateY(40px); } 
       to { opacity: 1; transform: translateY(0); } 
     }
     @keyframes float { 
       0%, 100% { transform: translateY(0px); } 
-      50% { transform: translateY(-20px); } 
+      50% { transform: translateY(-15px); } 
     }
     @keyframes fadeIn { 
       from { opacity: 0; } 
       to { opacity: 1; } 
     }
     
-    .animate-in { animation: slideInUp 0.6s ease-out; }
-    .animate-float { animation: float 6s ease-in-out infinite; }
-    
-    /* Glass effect */
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-    }
+    .animate-in { animation: slideInUp 0.8s ease-out; }
+    .animate-float { animation: float 4s ease-in-out infinite; }
     
     /* Gradient text */
     .gradient-text {
@@ -90,41 +98,67 @@
       width: 100%;
       z-index: 1000;
       transition: all 0.3s;
+      background: transparent;
     }
     .nav-sticky.scrolled {
-      background: rgba(10, 10, 10, 0.95);
+      background: rgba(10, 10, 10, 0.98);
       backdrop-filter: blur(20px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Glass effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     /* Project card */
     .project-card {
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       border: 1px solid #2a2a2a;
-      border-radius: 20px;
-      padding: 40px;
-      transition: all 0.3s;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.4s;
       cursor: pointer;
     }
+    
     .project-card:hover {
       border-color: #667eea;
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+      transform: translateY(-12px);
+      box-shadow: 0 30px 60px rgba(102, 126, 234, 0.25);
+    }
+    
+    .project-card-image {
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-card-content {
+      padding: 40px;
     }
     
     /* Stats */
-    .stat-box {
+    .stat-item {
       text-align: center;
     }
+    
     .stat-number {
       font-size: 3.5rem;
-      font-weight: 800;
+      font-weight: 900;
       background: linear-gradient(135deg, #667eea, #764ba2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 10px;
+      line-height: 1;
     }
     
     /* Service card */
@@ -132,87 +166,160 @@
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       border: 1px solid #2a2a2a;
       border-radius: 20px;
-      padding: 30px;
+      padding: 40px;
       transition: all 0.3s;
-      text-align: center;
+      height: 100%;
     }
+    
     .service-card:hover {
       border-color: #667eea;
       transform: translateY(-8px);
     }
     
-    /* Testimonial */
-    .testimonial-card {
-      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-      border: 1px solid #2a2a2a;
-      border-radius: 20px;
-      padding: 30px;
-      min-width: 350px;
-      flex-shrink: 0;
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
     }
     
-    /* Carousel */
-    .carousel {
+    /* Testimonial carousel */
+    .testimonial-carousel {
       display: flex;
-      gap: 20px;
+      gap: 24px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       padding-bottom: 10px;
       scrollbar-width: thin;
     }
-    .carousel::-webkit-scrollbar { height: 8px; }
-    .carousel::-webkit-scrollbar-thumb { background: #667eea; border-radius: 4px; }
+    
+    .testimonial-carousel::-webkit-scrollbar { height: 6px; }
+    .testimonial-carousel::-webkit-scrollbar-thumb { background: #667eea; border-radius: 3px; }
+    
+    .testimonial-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 40px;
+      min-width: 400px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      transition: all 0.3s;
+    }
+    
+    .testimonial-card:hover {
+      border-color: #667eea;
+    }
+    
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    
+    /* Process steps */
+    .process-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    
+    .step-number {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      font-size: 2rem;
+      font-weight: bold;
+    }
     
     /* FAQ */
     details {
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
+    
     details summary {
       cursor: pointer;
-      padding: 15px;
+      padding: 24px;
       background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
       border: 1px solid #2a2a2a;
-      border-radius: 12px;
+      border-radius: 16px;
       font-weight: 600;
+      font-size: 1.1rem;
       list-style: none;
       transition: all 0.3s;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+    
     details summary:hover {
       border-color: #667eea;
+      background: linear-gradient(145deg, #1a1a1a, #111);
     }
+    
     details summary::after {
       content: '+';
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+      transition: transform 0.3s;
     }
+    
     details[open] summary::after {
-      content: '−';
+      transform: rotate(45deg);
     }
+    
     details[open] summary {
       border-color: #667eea;
     }
     
-    /* Process step */
-    .process-step {
-      flex: 1;
-      min-width: 250px;
-      text-align: center;
+    details[open] div {
+      animation: slideInUp 0.3s ease-out;
     }
-    .step-number {
-      width: 60px;
-      height: 60px;
+    
+    /* Blog section */
+    .blog-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    
+    .blog-card:hover {
+      border-color: #667eea;
+      transform: translateY(-8px);
+    }
+    
+    .blog-image {
+      width: 100%;
+      height: 200px;
       background: linear-gradient(135deg, #667eea, #764ba2);
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 3rem;
+    }
+    
+    /* CTA Button */
+    .cta-button {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
     }
   </style>
 </head>
@@ -220,268 +327,285 @@
 
   <!-- Navigation -->
   <nav class="nav-sticky py-6" id="navbar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-6">
       <div class="flex justify-between items-center">
-        <div class="text-2xl font-bold gradient-text">
-          <i class="fas fa-rocket mr-2"></i>NeoProdUx
+        <div class="text-2xl font-bold gradient-text cursor-pointer" onclick="document.querySelector('body').scrollIntoView({behavior:'smooth'})">
+          NeoProdUx
         </div>
-        <div class="hidden md:flex space-x-8 items-center">
-          <a href="#servicios" class="hover:text-purple-400 transition">Servicios</a>
-          <a href="#proyectos" class="hover:text-purple-400 transition">Proyectos</a>
-          <a href="#proceso" class="hover:text-purple-400 transition">Proceso</a>
-          <a href="#faq" class="hover:text-purple-400 transition">FAQ</a>
-          <a href="#contacto" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition inline-block bg-gradient-to-r from-purple-600 to-purple-700">
-            Contacto
-          </a>
+        <div class="hidden md:flex space-x-10 items-center text-sm">
+          <a href="#servicios" class="hover:text-purple-400 transition font-medium">Servicios</a>
+          <a href="#proyectos" class="hover:text-purple-400 transition font-medium">Proyectos</a>
+          <a href="#proceso" class="hover:text-purple-400 transition font-medium">Proceso</a>
+          <a href="#faq" class="hover:text-purple-400 transition font-medium">FAQ</a>
+          <a href="#contacto" class="cta-button text-white px-8 py-3 rounded-full font-semibold">Contacto</a>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-32 pb-20 px-4">
-    <div class="max-w-7xl mx-auto mb-20">
+  <section class="pt-40 pb-32 px-6">
+    <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16 animate-in">
-        <h1 class="text-7xl md:text-8xl font-bold mb-6 leading-tight">
+        <h1 class="text-7xl md:text-8xl font-black mb-8 leading-tight">
           <span class="gradient-text">Diseño de Productos</span><br>
-          que Transforman
+          que Crecen
         </h1>
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-          Crear experiencias digitales excepcionales que crecen tu negocio. UX/UI, 
-          investigación de usuarios y soluciones basadas en datos.
+        <p class="text-2xl text-gray-400 max-w-3xl mx-auto font-light">
+          Créatelo en UX/UI, estrategia de producto y decisiones basadas en datos reales.
+          Transformamos desafíos en oportunidades de crecimiento.
         </p>
       </div>
 
-      <!-- Hero Slider -->
-      <div class="hero-slider">
-        <div class="hero-slide">
-          <div class="relative z-10 text-center">
-            <div class="text-6xl mb-4">🐕</div>
-            <h3 class="text-2xl font-bold">PASEO App</h3>
-            <p class="text-gray-200 mt-2">+45K usuarios</p>
+      <!-- Hero Carousel -->
+      <div class="hero-carousel mb-8">
+        <div class="carousel-slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <div class="absolute inset-0 flex items-center justify-center flex-col text-center">
+            <div class="text-8xl mb-6 animate-float">🐕</div>
+            <h2 class="text-4xl font-bold mb-2">PASEO App</h2>
+            <p class="text-gray-200">+45K usuarios | +89% retención</p>
           </div>
         </div>
-        <div class="hero-slide" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
-          <div class="relative z-10 text-center">
-            <div class="text-6xl mb-4">📊</div>
-            <h3 class="text-2xl font-bold">Nexus Logistics</h3>
-            <p class="text-gray-200 mt-2">200+ empresas</p>
+        
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+          <div class="absolute inset-0 flex items-center justify-center flex-col text-center">
+            <div class="text-8xl mb-6 animate-float" style="animation-delay: 0.2s;">📊</div>
+            <h2 class="text-4xl font-bold mb-2">Nexus Logistics</h2>
+            <p class="text-gray-200">200+ empresas | +40% usabilidad</p>
           </div>
         </div>
-        <div class="hero-slide" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
-          <div class="relative z-10 text-center">
-            <div class="text-6xl mb-4">🛍️</div>
-            <h3 class="text-2xl font-bold">La Caroyense</h3>
-            <p class="text-gray-200 mt-2">+$2.1M ingresos</p>
+        
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);">
+          <div class="absolute inset-0 flex items-center justify-center flex-col text-center">
+            <div class="text-8xl mb-6 animate-float" style="animation-delay: 0.4s;">🛍️</div>
+            <h2 class="text-4xl font-bold mb-2">La Caroyense</h2>
+            <p class="text-gray-200">↑340% conversión | +$2.1M ingresos</p>
           </div>
         </div>
-        <div class="hero-slide" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">
-          <div class="relative z-10 text-center">
-            <div class="text-6xl mb-4">🎓</div>
-            <h3 class="text-2xl font-bold">Yale School</h3>
-            <p class="text-gray-200 mt-2">+60% visitas</p>
+        
+        <div class="carousel-slide" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);">
+          <div class="absolute inset-0 flex items-center justify-center flex-col text-center">
+            <div class="text-8xl mb-6 animate-float" style="animation-delay: 0.6s;">🎓</div>
+            <h2 class="text-4xl font-bold mb-2">Yale School of Art</h2>
+            <p class="text-gray-200">↑60% visitas | ↑45% engagement</p>
           </div>
         </div>
+
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+
+      <div class="text-center mt-16">
+        <a href="#contacto" class="cta-button text-white px-12 py-5 rounded-full font-bold text-lg inline-block">
+          Ver Proyectos <i class="fas fa-arrow-right ml-2"></i>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Clients Section -->
-  <section class="py-16 border-y border-white/10">
-    <div class="max-w-7xl mx-auto px-4">
-      <p class="text-center text-gray-400 mb-8 uppercase text-sm tracking-wider">Confían en nosotros</p>
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
-        <div class="text-center text-gray-400">GitHub</div>
-        <div class="text-center text-gray-400">LinkedIn</div>
-        <div class="text-center text-gray-400">Design</div>
-        <div class="text-center text-gray-400">Portfolio</div>
-        <div class="text-center text-gray-400">Community</div>
+  <section class="py-16 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <p class="text-center text-gray-500 text-sm uppercase tracking-widest mb-12">Confían en NeoProdUx</p>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center text-center text-gray-400">
+        <div>GitHub</div>
+        <div>LinkedIn</div>
+        <div>Design</div>
+        <div>Portfolio</div>
+        <div>Community</div>
       </div>
     </div>
   </section>
 
   <!-- Stats Section -->
-  <section class="py-32">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-16 text-center">
-        <div class="stat-box">
+  <section class="py-32 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-16">
+        <div class="stat-item">
           <div class="stat-number">30+</div>
-          <p class="text-gray-400 text-lg">Proyectos en Producción</p>
+          <p class="text-gray-400 mt-6 text-lg">Proyectos en Producción</p>
         </div>
-        <div class="stat-box">
+        <div class="stat-item">
           <div class="stat-number">5M+</div>
-          <p class="text-gray-400 text-lg">Usuarios Impactados</p>
+          <p class="text-gray-400 mt-6 text-lg">Usuarios Impactados</p>
         </div>
-        <div class="stat-box">
+        <div class="stat-item">
           <div class="stat-number">+35%</div>
-          <p class="text-gray-400 text-lg">Mejora Conversión</p>
+          <p class="text-gray-400 mt-6 text-lg">Mejora Conversión Promedio</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section id="servicios" class="py-32">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="mb-20">
-        <h2 class="text-6xl md:text-7xl font-bold mb-6">
+  <section id="servicios" class="py-32 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-24">
+        <h2 class="text-6xl md:text-7xl font-black mb-6">
           <span class="gradient-text">Servicios</span> Populares
         </h2>
-        <p class="text-xl text-gray-400">Transforma tu presencia digital con soluciones de UX/UI y estrategia de producto</p>
+        <p class="text-2xl text-gray-400 font-light">Transforma tu presencia digital con soluciones de UX/UI</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         <div class="service-card">
-          <div class="text-5xl mb-4"><i class="fas fa-pencil-ruler text-purple-400"></i></div>
-          <h3 class="text-2xl font-bold mb-4">UX/UI Design</h3>
-          <p class="text-gray-400">Investigación profunda, prototipos iterativos y diseño centrado en el usuario que convierte.</p>
+          <div class="service-icon text-purple-400"><i class="fas fa-pencil-ruler"></i></div>
+          <h3 class="text-3xl font-bold mb-6">UX/UI Design</h3>
+          <p class="text-gray-400 text-lg">Investigación profunda, prototipos iterativos y diseño centrado en el usuario que convierte.</p>
         </div>
 
         <div class="service-card">
-          <div class="text-5xl mb-4"><i class="fas fa-chart-line text-indigo-400"></i></div>
-          <h3 class="text-2xl font-bold mb-4">Product Strategy</h3>
-          <p class="text-gray-400">Análisis de datos, validación de mercado y roadmap de producto basado en insights reales.</p>
+          <div class="service-icon text-indigo-400"><i class="fas fa-chart-line"></i></div>
+          <h3 class="text-3xl font-bold mb-6">Product Strategy</h3>
+          <p class="text-gray-400 text-lg">Análisis de datos, validación de mercado y roadmap basado en insights reales.</p>
         </div>
 
         <div class="service-card">
-          <div class="text-5xl mb-4"><i class="fas fa-code text-pink-400"></i></div>
-          <h3 class="text-2xl font-bold mb-4">Design System</h3>
-          <p class="text-gray-400">Componentes reutilizables, guías de diseño y tokens que escalan con tu producto.</p>
+          <div class="service-icon text-pink-400"><i class="fas fa-code"></i></div>
+          <h3 class="text-3xl font-bold mb-6">Design System</h3>
+          <p class="text-gray-400 text-lg">Componentes reutilizables, guías de diseño y tokens que escalan con tu producto.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="proyectos" class="py-32 bg-gradient-to-b from-purple-900/10 to-transparent">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="mb-20">
-        <h2 class="text-6xl md:text-7xl font-bold mb-6">
-          <span class="gradient-text">Casos de Estudio</span> Destacados
+  <!-- Projects Section - Made on NeoProdUx -->
+  <section id="proyectos" class="py-32 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-24">
+        <h2 class="text-6xl md:text-7xl font-black mb-6">
+          Hecho en <span class="gradient-text">NeoProdUx</span>
         </h2>
-        <p class="text-xl text-gray-400">Proyectos que generaron impacto real en el negocio</p>
+        <p class="text-2xl text-gray-400 font-light">Proyectos que generaron impacto real</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12">
         <!-- PASEO -->
         <div class="project-card">
-          <div class="mb-6">
-            <span class="inline-block px-4 py-2 bg-purple-500/20 rounded-full text-sm font-semibold text-purple-300 mb-4">⭐ Favorito</span>
-            <h3 class="text-4xl font-bold mb-2">PASEO App</h3>
-            <p class="text-gray-400">App de Paseadores • Wellness</p>
+          <div class="project-card-image">
+            <div class="text-8xl">🐕</div>
           </div>
-          <div class="space-y-4 mb-8">
-            <div>
-              <h4 class="text-purple-400 font-semibold mb-2">Desafío</h4>
-              <p class="text-gray-300">55% abandono en onboarding, retención débil, falta de confianza en usuarios</p>
+          <div class="project-card-content">
+            <span class="inline-block px-4 py-2 bg-purple-500/20 rounded-full text-sm font-semibold text-purple-300 mb-4">APP MÓVIL</span>
+            <h3 class="text-3xl font-bold mb-4">PASEO App</h3>
+            <p class="text-gray-400 mb-8">App de paseadores de mascotas con validación y tracking en tiempo real</p>
+            <div class="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-white/10">
+              <div>
+                <div class="text-2xl font-bold text-green-400">↑78%</div>
+                <p class="text-xs text-gray-400 mt-1">Completitud</p>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-green-400">↑89%</div>
+                <p class="text-xs text-gray-400 mt-1">Retención W1</p>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-green-400">+45K</div>
+                <p class="text-xs text-gray-400 mt-1">Usuarios</p>
+              </div>
             </div>
-            <div>
-              <h4 class="text-purple-400 font-semibold mb-2">Solución</h4>
-              <p class="text-gray-300">Onboarding progresivo, microinteracciones motivacionales, sistema de verificación</p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑78% Completitud</span>
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑89% Retención W1</span>
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">+45K usuarios</span>
-            </div>
+            <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
+              Ver Repositorio <i class="fas fa-arrow-right ml-2"></i>
+            </a>
           </div>
-          <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
-            Ver caso <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
 
         <!-- NEXUS -->
         <div class="project-card">
-          <div class="mb-6">
-            <span class="inline-block px-4 py-2 bg-indigo-500/20 rounded-full text-sm font-semibold text-indigo-300 mb-4">🎯 Enterprise</span>
-            <h3 class="text-4xl font-bold mb-2">Nexus Logistics</h3>
-            <p class="text-gray-400">SaaS B2B Dashboard • Logística</p>
+          <div class="project-card-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+            <div class="text-8xl">📊</div>
           </div>
-          <div class="space-y-4 mb-8">
-            <div>
-              <h4 class="text-purple-400 font-semibold mb-2">Desafío</h4>
-              <p class="text-gray-300">Dashboard complejo, 200+ campos, usuarios frustrados, baja adopción</p>
+          <div class="project-card-content">
+            <span class="inline-block px-4 py-2 bg-cyan-500/20 rounded-full text-sm font-semibold text-cyan-300 mb-4">ENTERPRISE SAAS</span>
+            <h3 class="text-3xl font-bold mb-4">Nexus Logistics</h3>
+            <p class="text-gray-400 mb-8">Dashboard B2B para gestión de logística empresarial con 200+ campos simplificados</p>
+            <div class="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-white/10">
+              <div>
+                <div class="text-2xl font-bold text-green-400">+40%</div>
+                <p class="text-xs text-gray-400 mt-1">Usabilidad</p>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-green-400">200+</div>
+                <p class="text-xs text-gray-400 mt-1">Empresas</p>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-green-400">-30%</div>
+                <p class="text-xs text-gray-400 mt-1">Capacitación</p>
+              </div>
             </div>
-            <div>
-              <h4 class="text-purple-400 font-semibold mb-2">Solución</h4>
-              <p class="text-gray-300">Simplificación de interfaz, design system coherente, IA contextual</p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">+40% Usabilidad</span>
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">200+ Empresas</span>
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">-30% Capacitación</span>
-            </div>
+            <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
+              Ver Repositorio <i class="fas fa-arrow-right ml-2"></i>
+            </a>
           </div>
-          <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
-            Ver caso <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
 
         <!-- LA CAROYENSE -->
         <div class="project-card">
-          <div class="mb-6">
-            <span class="inline-block px-4 py-2 bg-pink-500/20 rounded-full text-sm font-semibold text-pink-300 mb-4">💰 E-commerce</span>
-            <h3 class="text-4xl font-bold mb-2">La Caroyense</h3>
-            <p class="text-gray-400">Rediseño E-commerce • Retail</p>
+          <div class="project-card-image" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
+            <div class="text-8xl">🛍️</div>
           </div>
-          <div class="space-y-4 mb-8">
-            <div>
-              <h4 class="text-purple-400 font-semibold mb-2">Desafío</h4>
-              <p class="text-gray-300">Conversión 1.2%, abandono carrito 78%, UX obsoleto</p>
+          <div class="project-card-content">
+            <span class="inline-block px-4 py-2 bg-rose-500/20 rounded-full text-sm font-semibold text-rose-300 mb-4">E-COMMERCE</span>
+            <h3 class="text-3xl font-bold mb-4">La Caroyense</h3>
+            <p class="text-gray-400 mb-8">Rediseño e-commerce con optimización de checkout y trust signals estratégicos</p>
+            <div class="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-white/10">
+              <div>
+                <div class="text-2xl font-bold text-green-400">↑340%</div>
+                <p class="text-xs text-gray-400 mt-1">Conversión</p>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-green-400">↓45%</div>
+                <p class="text-xs text-gray-400 mt-1">Abandono</p>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-green-400">+$2.1M</div>
+                <p class="text-xs text-gray-400 mt-1">Ingresos</p>
+              </div>
             </div>
-            <div>
-              <h4 class="text-purple-400 font-semibold mb-2">Solución</h4>
-              <p class="text-gray-300">Rediseño completo, checkout optimizado, trust signals estratégicos</p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑340% Conversión</span>
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↓45% Abandono</span>
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">+$2.1M</span>
-            </div>
+            <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
+              Ver Repositorio <i class="fas fa-arrow-right ml-2"></i>
+            </a>
           </div>
-          <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
-            Ver caso <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
 
         <!-- YALE -->
         <div class="project-card">
-          <div class="mb-6">
-            <span class="inline-block px-4 py-2 bg-blue-500/20 rounded-full text-sm font-semibold text-blue-300 mb-4">🎓 Educativo</span>
-            <h3 class="text-4xl font-bold mb-2">Yale School of Art</h3>
-            <p class="text-gray-400">Rediseño Web • Institución</p>
+          <div class="project-card-image" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">
+            <div class="text-8xl">🎓</div>
           </div>
-          <div class="space-y-4 mb-8">
-            <div>
-              <h4 class="text-purple-400 font-semibold mb-2">Desafío</h4>
-              <p class="text-gray-300">Presencia digital desactualizada, info desorganizada, baja aplicaciones</p>
+          <div class="project-card-content">
+            <span class="inline-block px-4 py-2 bg-blue-500/20 rounded-full text-sm font-semibold text-blue-300 mb-4">EDUCATIVO</span>
+            <h3 class="text-3xl font-bold mb-4">Yale School of Art</h3>
+            <p class="text-gray-400 mb-8">Rediseño sitio web con información organizada y storytelling visual moderno</p>
+            <div class="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-white/10">
+              <div>
+                <div class="text-2xl font-bold text-green-400">↑60%</div>
+                <p class="text-xs text-gray-400 mt-1">Visitas</p>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-green-400">↑45%</div>
+                <p class="text-xs text-gray-400 mt-1">Engagement</p>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-green-400">↑35%</div>
+                <p class="text-xs text-gray-400 mt-1">Aplicaciones</p>
+              </div>
             </div>
-            <div>
-              <h4 class="text-purple-400 font-semibold mb-2">Solución</h4>
-              <p class="text-gray-300">Rediseño moderno, arquitectura clara, storytelling visual</p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑60% Visitas</span>
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑45% Engagement</span>
-              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑35% Apps</span>
-            </div>
+            <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
+              Ver Repositorio <i class="fas fa-arrow-right ml-2"></i>
+            </a>
           </div>
-          <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
-            Ver caso <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Process Section -->
-  <section id="proceso" class="py-32">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="mb-20 text-center">
-        <h2 class="text-6xl md:text-7xl font-bold mb-6">
+  <section id="proceso" class="py-32 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-24">
+        <h2 class="text-6xl md:text-7xl font-black mb-6">
           Cómo <span class="gradient-text">Trabajamos</span>
         </h2>
-        <p class="text-xl text-gray-400">Un proceso probado para resultados excepcionales</p>
+        <p class="text-2xl text-gray-400 font-light">Un proceso probado para resultados excepcionales</p>
       </div>
 
       <div class="grid md:grid-cols-4 gap-8">
@@ -510,25 +634,22 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section class="py-32 bg-gradient-to-b from-purple-900/10 to-transparent">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="mb-20">
-        <h2 class="text-6xl md:text-7xl font-bold mb-6">
+  <section class="py-32 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-24">
+        <h2 class="text-6xl md:text-7xl font-black mb-6">
           Lo que dicen <span class="gradient-text">clientes</span>
         </h2>
-        <p class="text-xl text-gray-400">Resultados reales de productos reales</p>
+        <p class="text-2xl text-gray-400 font-light">Resultados reales de productos reales</p>
       </div>
 
-      <div class="carousel">
+      <div class="testimonial-carousel">
         <div class="testimonial-card">
+          <div class="testimonial-avatar">🐕</div>
+          <h4 class="font-bold text-lg mb-1">CEO, Startup Tech</h4>
           <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mr-4">
-              <i class="fas fa-user text-purple-400"></i>
-            </div>
-            <div>
-              <h4 class="font-bold">CEO, Startup Tech</h4>
-              <p class="text-gray-400 text-sm">⭐⭐⭐⭐⭐</p>
-            </div>
+            <span class="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</span>
+            <span class="text-gray-400 text-sm ml-2">5.0</span>
           </div>
           <p class="text-gray-300 italic">
             "El trabajo de David transformó completamente nuestro producto. +78% en retención de usuarios en 3 meses. Recomendado 100%."
@@ -536,14 +657,11 @@
         </div>
 
         <div class="testimonial-card">
+          <div class="testimonial-avatar">📊</div>
+          <h4 class="font-bold text-lg mb-1">Product Manager, Enterprise</h4>
           <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center mr-4">
-              <i class="fas fa-user text-indigo-400"></i>
-            </div>
-            <div>
-              <h4 class="font-bold">Product Manager, Enterprise</h4>
-              <p class="text-gray-400 text-sm">⭐⭐⭐⭐⭐</p>
-            </div>
+            <span class="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</span>
+            <span class="text-gray-400 text-sm ml-2">5.0</span>
           </div>
           <p class="text-gray-300 italic">
             "Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad mejoraron +40% post-rediseño."
@@ -551,14 +669,11 @@
         </div>
 
         <div class="testimonial-card">
+          <div class="testimonial-avatar">💰</div>
+          <h4 class="font-bold text-lg mb-1">Founder, E-commerce</h4>
           <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-pink-500/20 rounded-full flex items-center justify-center mr-4">
-              <i class="fas fa-user text-pink-400"></i>
-            </div>
-            <div>
-              <h4 class="font-bold">Founder, E-commerce</h4>
-              <p class="text-gray-400 text-sm">⭐⭐⭐⭐⭐</p>
-            </div>
+            <span class="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</span>
+            <span class="text-gray-400 text-sm ml-2">5.0</span>
           </div>
           <p class="text-gray-300 italic">
             "+$2.1M en ingresos tras rediseño. El mejor ROI que hemos visto. Profesional, preciso y orientado a resultados."
@@ -569,84 +684,140 @@
   </section>
 
   <!-- Why Choose Section -->
-  <section class="py-32">
-    <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-6xl md:text-7xl font-bold mb-20 text-center">
-        Por qué <span class="gradient-text">elegirnos</span>
+  <section class="py-32 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-6xl md:text-7xl font-black mb-24 text-center">
+        Por qué <span class="gradient-text">NeoProdUx</span>
       </h2>
 
-      <div class="grid md:grid-cols-3 gap-12">
-        <div class="text-center">
-          <div class="stat-number text-3xl mb-4">30+</div>
-          <h3 class="text-2xl font-bold mb-4">Proyectos</h3>
-          <p class="text-gray-400">Experiencia comprobada en producción</p>
+      <div class="grid md:grid-cols-3 gap-12 text-center">
+        <div>
+          <div class="stat-number text-3xl mb-6">30+</div>
+          <h3 class="text-2xl font-bold mb-4">Proyectos Completados</h3>
+          <p class="text-gray-400">Experiencia comprobada en diferentes industrias y mercados</p>
         </div>
-        <div class="text-center">
-          <div class="stat-number text-3xl mb-4">5M+</div>
-          <h3 class="text-2xl font-bold mb-4">Usuarios</h3>
-          <p class="text-gray-400">Impacto real en millones de personas</p>
+        <div>
+          <div class="stat-number text-3xl mb-6">5M+</div>
+          <h3 class="text-2xl font-bold mb-4">Usuarios Impactados</h3>
+          <p class="text-gray-400">Nuestro trabajo llega a millones de personas en todo el mundo</p>
         </div>
-        <div class="text-center">
-          <div class="stat-number text-3xl mb-4">18+</div>
+        <div>
+          <div class="stat-number text-3xl mb-6">18+</div>
           <h3 class="text-2xl font-bold mb-4">Certificaciones</h3>
-          <p class="text-gray-400">Experto en UX, Data y Producto</p>
+          <p class="text-gray-400">Experto certificado en UX/UI, Data y Estrategia de Producto</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <section id="faq" class="py-32 bg-gradient-to-b from-purple-900/10 to-transparent">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-6xl md:text-7xl font-bold mb-20 text-center">
+  <section id="faq" class="py-32 border-b border-white/5">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-6xl md:text-7xl font-black mb-24 text-center">
         Preguntas <span class="gradient-text">Frecuentes</span>
       </h2>
 
       <details>
         <summary>¿Cuál es tu proceso de diseño?</summary>
-        <div class="p-6 text-gray-300">
-          Utilizamos un proceso iterativo: Discovery → Strategy → Design → Validation → Optimization. Cada fase está basada en investigación real y datos del usuario.
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-lg">
+          Utilizamos un proceso iterativo basado en Design Thinking: Discovery → Strategy → Design → Validation → Optimization. Cada fase está fundamentada en investigación real y datos del usuario.
         </div>
       </details>
 
       <details>
         <summary>¿Cómo garantizas resultados measurables?</summary>
-        <div class="p-6 text-gray-300">
-          Todo proyecto tiene KPIs claros desde el inicio. Medimos conversión, retención, satisfacción y ROI. Mostro los números reales, no promesas.
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-lg">
+          Todo proyecto tiene KPIs claros desde el inicio. Medimos conversión, retención, satisfacción y ROI. Mostro los números reales, no promesas bonitas.
         </div>
       </details>
 
       <details>
         <summary>¿Puedo solicitar cambios después de terminar?</summary>
-        <div class="p-6 text-gray-300">
-          Sí. Las iteraciones basadas en feedback real son parte del proceso. Trabajamos hasta que los resultados cumplan los objetivos.
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-lg">
+          Sí. Las iteraciones basadas en feedback real son parte fundamental del proceso. Trabajamos hasta que los resultados cumplan los objetivos definidos.
         </div>
       </details>
 
       <details>
         <summary>¿Qué herramientas utilizas?</summary>
-        <div class="p-6 text-gray-300">
-          Figma para diseño, Python/SQL para análisis, Power BI para reporting, Git para versionamiento. Las mejores herramientas para cada fase.
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-lg">
+          Figma para diseño, Python/SQL para análisis, Power BI para reporting, Git para versionamiento. Las mejores herramientas para cada fase del proyecto.
         </div>
       </details>
 
       <details>
         <summary>¿Trabajas con equipos remotos?</summary>
-        <div class="p-6 text-gray-300">
-          100% remoto. Timezone flexible. Comunicación clara y documentación detallada. Estoy acostumbrado a colaborar con equipos globales.
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-lg">
+          100% remoto. Timezone flexible. Comunicación clara y documentación detallada. Estoy acostumbrado a colaborar con equipos globales de diferentes zonas horarias.
         </div>
       </details>
     </div>
   </section>
 
+  <!-- Blog Section -->
+  <section class="py-32 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-24">
+        <h2 class="text-6xl md:text-7xl font-black mb-6">
+          ¿Qué hay de <span class="gradient-text">Tendencia?</span>
+        </h2>
+        <p class="text-2xl text-gray-400 font-light">Insights y tips sobre diseño, UX y producto</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="blog-card">
+          <div class="blog-image">
+            <i class="fas fa-pen-fancy"></i>
+          </div>
+          <div class="p-8">
+            <span class="text-sm text-purple-400 font-semibold uppercase">Guía</span>
+            <h3 class="text-2xl font-bold mt-4 mb-3">Guía Completa de UX Research</h3>
+            <p class="text-gray-400 mb-6">Metodologías modernas para entender realmente a tus usuarios</p>
+            <a href="#" class="text-purple-400 font-semibold hover:text-purple-300">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="p-8">
+            <span class="text-sm text-cyan-400 font-semibold uppercase">Data</span>
+            <h3 class="text-2xl font-bold mt-4 mb-3">Métricas que Importan</h3>
+            <p class="text-gray-400 mb-6">Cómo medir el impacto real de tus decisiones de diseño</p>
+            <a href="#" class="text-purple-400 font-semibold hover:text-purple-300">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-image" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="p-8">
+            <span class="text-sm text-rose-400 font-semibold uppercase">Tips</span>
+            <h3 class="text-2xl font-bold mt-4 mb-3">5 Errores de UX Comunes</h3>
+            <p class="text-gray-400 mb-6">Y cómo evitarlos en tu próximo proyecto</p>
+            <a href="#" class="text-purple-400 font-semibold hover:text-purple-300">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-16">
+        <a href="#" class="text-purple-400 font-semibold hover:text-purple-300 text-lg">
+          Ver Todos los Artículos <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
-  <section id="contacto" class="py-32">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="gradient-bg rounded-3xl p-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+  <section id="contacto" class="py-32 border-b border-white/5">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="cta-button rounded-3xl p-24 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
         <div class="relative z-10">
-          <h2 class="text-6xl md:text-7xl font-bold mb-6">¿Necesitas un Producto que Crezca?</h2>
-          <p class="text-2xl mb-12 text-gray-100">Hablemos sobre tu proyecto</p>
+          <h2 class="text-6xl md:text-7xl font-black mb-8">¿Necesitas un Producto que Crezca?</h2>
+          <p class="text-2xl text-gray-100 mb-12 font-light">Hablemos sobre tu desafío</p>
           <div class="flex flex-col sm:flex-row gap-6 justify-center">
             <a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="bg-white text-purple-600 px-12 py-5 rounded-full text-lg font-bold hover:shadow-2xl transition transform hover:scale-105 inline-block">
               Agendar Llamada
@@ -661,44 +832,44 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-20 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid md:grid-cols-4 gap-12 mb-12">
+  <footer class="py-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-12 mb-16">
         <div>
-          <h3 class="text-2xl font-bold gradient-text mb-6">NeoProdUx</h3>
-          <p class="text-gray-400">Diseño de productos digitales que crecen.</p>
+          <h3 class="text-2xl font-black gradient-text mb-8">NeoProdUx</h3>
+          <p class="text-gray-400">Diseño de productos digitales que transforman negocios.</p>
         </div>
         <div>
-          <h4 class="font-bold mb-6">Navegación</h4>
-          <ul class="space-y-3 text-gray-400">
-            <li><a href="#servicios" class="hover:text-purple-400">Servicios</a></li>
-            <li><a href="#proyectos" class="hover:text-purple-400">Proyectos</a></li>
-            <li><a href="#proceso" class="hover:text-purple-400">Proceso</a></li>
-            <li><a href="#faq" class="hover:text-purple-400">FAQ</a></li>
+          <h4 class="font-bold mb-8 uppercase text-sm tracking-wider">Compañía</h4>
+          <ul class="space-y-4 text-gray-400">
+            <li><a href="#servicios" class="hover:text-purple-400 transition">Servicios</a></li>
+            <li><a href="#proyectos" class="hover:text-purple-400 transition">Proyectos</a></li>
+            <li><a href="#proceso" class="hover:text-purple-400 transition">Proceso</a></li>
+            <li><a href="#faq" class="hover:text-purple-400 transition">FAQ</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-bold mb-6">Redes</h4>
-          <ul class="space-y-3 text-gray-400">
-            <li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="hover:text-purple-400">LinkedIn</a></li>
-            <li><a href="https://github.com/dsd228" target="_blank" class="hover:text-purple-400">GitHub</a></li>
-            <li><a href="https://dribbble.com" target="_blank" class="hover:text-purple-400">Dribbble</a></li>
-            <li><a href="https://behance.net" target="_blank" class="hover:text-purple-400">Behance</a></li>
+          <h4 class="font-bold mb-8 uppercase text-sm tracking-wider">Redes</h4>
+          <ul class="space-y-4 text-gray-400">
+            <li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="hover:text-purple-400 transition">LinkedIn</a></li>
+            <li><a href="https://github.com/dsd228" target="_blank" class="hover:text-purple-400 transition">GitHub</a></li>
+            <li><a href="https://dribbble.com" target="_blank" class="hover:text-purple-400 transition">Dribbble</a></li>
+            <li><a href="https://behance.net" target="_blank" class="hover:text-purple-400 transition">Behance</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-bold mb-6">Contacto</h4>
-          <ul class="space-y-3 text-gray-400">
-            <li><a href="mailto:david.diaz.uxdata@gmail.com" class="hover:text-purple-400">Email</a></li>
-            <li><a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="hover:text-purple-400">Calendly</a></li>
-            <li class="text-sm">100% Remoto</li>
+          <h4 class="font-bold mb-8 uppercase text-sm tracking-wider">Contacto</h4>
+          <ul class="space-y-4 text-gray-400">
+            <li><a href="mailto:david.diaz.uxdata@gmail.com" class="hover:text-purple-400 transition">david.diaz.uxdata@gmail.com</a></li>
+            <li><a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="hover:text-purple-400 transition">Agendar Llamada</a></li>
+            <li class="text-sm pt-2">100% Remoto</li>
           </ul>
         </div>
       </div>
 
-      <div class="border-t border-white/10 pt-12 text-center text-gray-400">
-        <p>© 2026 NeoProdUx. All Rights Reserved.</p>
-        <p class="italic mt-2">"El buen diseño no es visible. Solo sientes los resultados."</p>
+      <div class="border-t border-white/5 pt-12 text-center text-gray-400">
+        <p class="mb-2">© 2026 NeoProdUx. All Rights Reserved.</p>
+        <p class="italic text-sm">"El buen diseño no se ve. Solo sientes los resultados."</p>
       </div>
     </div>
   </footer>
@@ -714,6 +885,40 @@
       }
     });
 
+    // Carousel functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById('carousel-dots');
+
+    // Create dots
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.className = `dot ${index === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      document.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
+      
+      slides[n].classList.add('active');
+      document.querySelectorAll('.dot')[n].classList.add('active');
+    }
+
+    function goToSlide(n) {
+      currentSlide = n;
+      showSlide(currentSlide);
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Auto-advance carousel
+    setInterval(nextSlide, 6000);
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -721,7 +926,8 @@
         if (href !== '#' && document.querySelector(href)) {
           e.preventDefault();
           document.querySelector(href).scrollIntoView({
-            behavior: 'smooth'
+            behavior: 'smooth',
+            block: 'start'
           });
         }
       });
