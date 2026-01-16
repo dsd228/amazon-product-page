@@ -9,23 +9,23 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-    
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
+
     html { scroll-behavior: smooth; }
-    body { 
-      background: #ffffff; 
-      color: #1a1a1a; 
+    body {
+      background: #ffffff;
+      color: #1a1a1a;
       overflow-x: hidden;
       font-family: 'Inter', sans-serif;
     }
-    
+
     h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; font-weight: 700; }
-    
+
     /* Navbar */
     nav {
       position: fixed;
@@ -38,34 +38,34 @@
       padding: 16px 0;
       transition: all 0.3s;
     }
-    
+
     .nav-container {
       max-width: 1400px;
       margin: 0 auto;
-      px: 40px;
+      padding: 0 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .logo { font-size: 1.3rem; font-weight: 800; color: #000; }
-    
+
     nav a { color: #666; font-size: 0.95rem; transition: color 0.3s; }
     nav a:hover { color: #000; }
-    
-    .nav-cta { 
-      background: #000; 
-      color: #fff; 
+
+    .nav-cta {
+      background: #000;
+      color: #fff;
       padding: 10px 24px;
       border-radius: 8px;
       transition: all 0.3s;
     }
-    
-    .nav-cta:hover { 
+
+    .nav-cta:hover {
       background: #333;
       transform: scale(1.05);
     }
-    
+
     /* Hero Section */
     .hero {
       padding-top: 140px;
@@ -74,41 +74,43 @@
       overflow: hidden;
       position: relative;
     }
-    
+
     .hero-content {
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 40px;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
-    
+
+    .hero-text {
+      text-align: left;
+    }
+
     .hero h1 {
-      font-size: 4.5rem;
-      line-height: 1.1;
+      font-size: 4rem;
+      line-height: 1.2;
       margin-bottom: 24px;
       font-weight: 800;
       color: #000;
     }
-    
+
     .hero p {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: #666;
       margin-bottom: 40px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-      font-weight: 300;
+      line-height: 1.7;
+      font-weight: 400;
     }
-    
+
     .hero-buttons {
       display: flex;
       gap: 16px;
-      justify-content: center;
-      margin-bottom: 80px;
       flex-wrap: wrap;
     }
-    
+
     .btn {
       padding: 14px 32px;
       border-radius: 8px;
@@ -118,37 +120,38 @@
       cursor: pointer;
       font-size: 1rem;
     }
-    
+
     .btn-primary {
       background: #000;
       color: #fff;
     }
-    
+
     .btn-primary:hover {
       background: #333;
       transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
-    
+
     .btn-secondary {
       background: transparent;
       color: #000;
       border: 2px solid #000;
     }
-    
+
     .btn-secondary:hover {
       background: #000;
       color: #fff;
     }
-    
+
     .hero-carousel {
       position: relative;
-      height: 400px;
+      height: 450px;
       border-radius: 16px;
       overflow: hidden;
       background: linear-gradient(135deg, #667eea, #764ba2);
-      margin-bottom: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
     }
-    
+
     .carousel-slide {
       position: absolute;
       width: 100%;
@@ -157,14 +160,14 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.8s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
       font-size: 120px;
     }
-    
+
     .carousel-slide.active {
       opacity: 1;
     }
-    
+
     .carousel-dots {
       position: absolute;
       bottom: 20px;
@@ -174,7 +177,7 @@
       gap: 8px;
       z-index: 10;
     }
-    
+
     .dot {
       width: 8px;
       height: 8px;
@@ -183,13 +186,13 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-    
+
     .dot.active {
       background: #fff;
       width: 24px;
       border-radius: 4px;
     }
-    
+
     /* Clients Marquee */
     .clients-section {
       padding: 60px 40px;
@@ -197,7 +200,7 @@
       border-top: 1px solid #e5e5e5;
       border-bottom: 1px solid #e5e5e5;
     }
-    
+
     .clients-title {
       text-align: center;
       color: #999;
@@ -206,36 +209,36 @@
       margin-bottom: 30px;
       letter-spacing: 0.5px;
     }
-    
+
     .marquee-wrapper {
       overflow: hidden;
     }
-    
+
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
-    
+
     .marquee {
       display: flex;
       gap: 40px;
       animation: marquee 40s linear infinite;
     }
-    
+
     .marquee-item {
       white-space: nowrap;
       color: #999;
       font-weight: 500;
       font-size: 0.95rem;
     }
-    
+
     /* Stats */
     .stats {
       padding: 60px 40px;
       background: #fff;
       border-bottom: 1px solid #e5e5e5;
     }
-    
+
     .stats-grid {
       max-width: 1400px;
       margin: 0 auto;
@@ -244,44 +247,46 @@
       gap: 40px;
       text-align: center;
     }
-    
+
     .stat-item h3 {
       font-size: 3.5rem;
       color: #000;
       margin-bottom: 12px;
+      font-weight: 800;
     }
-    
+
     .stat-item p {
       color: #666;
       font-size: 1rem;
       font-weight: 500;
     }
-    
+
     /* Services */
     .services {
       padding: 100px 40px;
       background: #fff;
     }
-    
+
     .section-title {
       max-width: 1400px;
       margin: 0 auto 60px;
     }
-    
+
     .section-title h2 {
       font-size: 3.5rem;
       color: #000;
       margin-bottom: 16px;
       line-height: 1.2;
+      font-weight: 800;
     }
-    
+
     .section-title p {
       color: #666;
       font-size: 1.15rem;
       max-width: 500px;
       line-height: 1.6;
     }
-    
+
     .services-grid {
       max-width: 1400px;
       margin: 0 auto;
@@ -289,7 +294,7 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
     }
-    
+
     .service-card {
       background: #f9f9f9;
       padding: 40px;
@@ -297,39 +302,40 @@
       transition: all 0.4s;
       border: 1px solid #e5e5e5;
     }
-    
+
     .service-card:hover {
       transform: translateY(-12px);
       border-color: #000;
       background: #fff;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     }
-    
+
     .service-icon {
       font-size: 2.5rem;
       margin-bottom: 20px;
       display: inline-block;
     }
-    
+
     .service-card h3 {
       font-size: 1.5rem;
       margin-bottom: 16px;
       color: #000;
+      font-weight: 700;
     }
-    
+
     .service-card p {
       color: #666;
       line-height: 1.7;
       font-size: 0.95rem;
     }
-    
+
     /* Projects */
     .projects {
       padding: 100px 40px;
       background: #f9f9f9;
       border-bottom: 1px solid #e5e5e5;
     }
-    
+
     .projects-grid {
       max-width: 1400px;
       margin: 0 auto;
@@ -337,7 +343,7 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
     }
-    
+
     .project-card {
       background: #fff;
       border-radius: 12px;
@@ -346,13 +352,13 @@
       transition: all 0.4s;
       cursor: pointer;
     }
-    
+
     .project-card:hover {
       transform: translateY(-12px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
       border-color: #000;
     }
-    
+
     .project-image {
       width: 100%;
       height: 200px;
@@ -363,11 +369,11 @@
       font-size: 80px;
       overflow: hidden;
     }
-    
+
     .project-content {
       padding: 24px;
     }
-    
+
     .project-tag {
       display: inline-block;
       background: #f0f0f0;
@@ -379,25 +385,26 @@
       margin-bottom: 12px;
       text-transform: uppercase;
     }
-    
+
     .project-card h3 {
       font-size: 1.3rem;
       margin-bottom: 12px;
       color: #000;
+      font-weight: 700;
     }
-    
+
     .project-card p {
       color: #666;
       font-size: 0.9rem;
       line-height: 1.5;
     }
-    
+
     /* Process */
     .process {
       padding: 100px 40px;
       background: #fff;
     }
-    
+
     .process-grid {
       max-width: 1400px;
       margin: 0 auto;
@@ -405,37 +412,38 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 32px;
     }
-    
+
     .process-step {
       text-align: center;
     }
-    
+
     .step-number {
       font-size: 3.5rem;
       font-weight: 800;
       color: #000;
       margin-bottom: 16px;
     }
-    
+
     .process-step h3 {
       font-size: 1.3rem;
       margin-bottom: 12px;
       color: #000;
+      font-weight: 700;
     }
-    
+
     .process-step p {
       color: #666;
       font-size: 0.95rem;
       line-height: 1.6;
     }
-    
+
     /* Testimonials */
     .testimonials {
       padding: 100px 40px;
       background: #f9f9f9;
       border-bottom: 1px solid #e5e5e5;
     }
-    
+
     .testimonials-grid {
       max-width: 1400px;
       margin: 0 auto;
@@ -443,7 +451,7 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
     }
-    
+
     .testimonial-card {
       background: #fff;
       padding: 40px;
@@ -451,51 +459,51 @@
       border: 1px solid #e5e5e5;
       transition: all 0.4s;
     }
-    
+
     .testimonial-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     }
-    
+
     .rating {
       color: #fbbf24;
       margin-bottom: 16px;
       font-size: 1.1rem;
     }
-    
+
     .testimonial-text {
       color: #333;
       font-style: italic;
       margin-bottom: 20px;
       line-height: 1.8;
     }
-    
+
     .testimonial-author {
       font-weight: 600;
       color: #000;
       margin-bottom: 4px;
     }
-    
+
     .testimonial-role {
       color: #999;
       font-size: 0.9rem;
     }
-    
+
     /* FAQ */
     .faq {
       padding: 100px 40px;
       background: #fff;
     }
-    
+
     .faq-container {
       max-width: 800px;
       margin: 0 auto;
     }
-    
+
     details {
       margin-bottom: 16px;
     }
-    
+
     details summary {
       cursor: pointer;
       padding: 24px;
@@ -510,40 +518,40 @@
       user-select: none;
       transition: all 0.3s;
     }
-    
+
     details summary:hover {
       background: #fff;
       border-color: #000;
     }
-    
+
     details summary::after {
       content: '+';
       font-weight: bold;
       font-size: 1.5rem;
     }
-    
+
     details[open] summary::after {
       content: '−';
     }
-    
+
     details[open] summary {
       background: #fff;
       border-color: #000;
     }
-    
+
     details p {
       padding: 24px;
       color: #666;
       line-height: 1.8;
     }
-    
+
     /* Blog */
     .blog {
       padding: 100px 40px;
       background: #f9f9f9;
       border-bottom: 1px solid #e5e5e5;
     }
-    
+
     .blog-grid {
       max-width: 1400px;
       margin: 0 auto;
@@ -551,7 +559,7 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
     }
-    
+
     .blog-card {
       background: #fff;
       border-radius: 12px;
@@ -559,12 +567,12 @@
       border: 1px solid #e5e5e5;
       transition: all 0.4s;
     }
-    
+
     .blog-card:hover {
       transform: translateY(-12px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     }
-    
+
     .blog-image {
       width: 100%;
       height: 200px;
@@ -574,23 +582,24 @@
       justify-content: center;
       font-size: 60px;
     }
-    
+
     .blog-content {
       padding: 24px;
     }
-    
+
     .blog-card h3 {
       font-size: 1.25rem;
       margin-bottom: 12px;
       color: #000;
+      font-weight: 700;
     }
-    
+
     .blog-card p {
       color: #666;
       font-size: 0.9rem;
       line-height: 1.6;
     }
-    
+
     /* CTA */
     .cta {
       padding: 80px 40px;
@@ -598,41 +607,42 @@
       color: #fff;
       text-align: center;
     }
-    
+
     .cta h2 {
       font-size: 2.5rem;
       margin-bottom: 24px;
+      font-weight: 800;
     }
-    
+
     .cta p {
       font-size: 1.1rem;
       color: #ccc;
       margin-bottom: 40px;
     }
-    
+
     .cta-buttons {
       display: flex;
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
     }
-    
+
     .cta-buttons .btn {
       background: #fff;
       color: #000;
     }
-    
+
     .cta-buttons .btn:hover {
       background: #e5e5e5;
     }
-    
+
     /* Footer */
     footer {
       background: #f9f9f9;
       padding: 60px 40px;
       border-top: 1px solid #e5e5e5;
     }
-    
+
     .footer-container {
       max-width: 1400px;
       margin: 0 auto;
@@ -641,7 +651,7 @@
       gap: 40px;
       margin-bottom: 40px;
     }
-    
+
     .footer-section h3 {
       font-size: 0.95rem;
       font-weight: 700;
@@ -650,26 +660,26 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    
+
     .footer-section ul {
       list-style: none;
     }
-    
+
     .footer-section li {
       margin-bottom: 12px;
     }
-    
+
     .footer-section a {
       color: #666;
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.3s;
     }
-    
+
     .footer-section a:hover {
       color: #000;
     }
-    
+
     .footer-bottom {
       border-top: 1px solid #e5e5e5;
       padding-top: 40px;
@@ -677,22 +687,37 @@
       color: #999;
       font-size: 0.9rem;
     }
-    
+
     .social-links {
       display: flex;
       gap: 20px;
       justify-content: center;
       margin-top: 20px;
     }
-    
+
     .social-links a {
       color: #000;
       font-size: 1.25rem;
       transition: color 0.3s;
     }
-    
+
     .social-links a:hover {
       color: #667eea;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-carousel {
+        height: 300px;
+      }
     }
   </style>
 </head>
@@ -700,7 +725,7 @@
 
   <!-- Navigation -->
   <nav>
-    <div style="max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center;">
+    <div class="nav-container">
       <div class="logo">NeoProdUx</div>
       <div style="display: flex; gap: 40px; align-items: center;">
         <a href="#servicios" style="text-decoration: none;">Servicios</a>
@@ -715,11 +740,13 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Diseño de Productos que Generan Resultados</h1>
-      <p>UX/UI design, product strategy y análisis de datos. Transformamos desafíos en oportunidades de crecimiento.</p>
-      <div class="hero-buttons">
-        <button class="btn btn-primary">Ver Proyectos</button>
-        <button class="btn btn-secondary">Agendar Llamada</button>
+      <div class="hero-text">
+        <h1>Diseño de Productos que Generan Resultados</h1>
+        <p>UX/UI design, product strategy y análisis de datos. Transformamos desafíos en oportunidades de crecimiento.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary">Ver Proyectos</button>
+          <button class="btn btn-secondary">Agendar Llamada</button>
+        </div>
       </div>
 
       <!-- Hero Carousel -->
@@ -1039,22 +1066,22 @@
   <script>
     // Carousel
     let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dotsContainer = document.getElementById('carousel-dots');
+    const slides = document.querySelectorAll(''.carousel-slide'');
+    const dotsContainer = document.getElementById(''carousel-dots'');
 
     slides.forEach((_, index) => {
-      const dot = document.createElement('div');
-      dot.className = `dot ${index === 0 ? 'active' : ''}`;
-      dot.addEventListener('click', () => goToSlide(index));
+      const dot = document.createElement(''div'');
+      dot.className = `dot ${index === 0 ? ''active'' : ''''}`;
+      dot.addEventListener(''click'', () => goToSlide(index));
       dotsContainer.appendChild(dot);
     });
 
     function showSlide(n) {
-      slides.forEach(slide => slide.classList.remove('active'));
-      document.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
+      slides.forEach(slide => slide.classList.remove(''active''));
+      document.querySelectorAll(''.dot'').forEach(dot => dot.classList.remove(''active''));
       
-      slides[n].classList.add('active');
-      document.querySelectorAll('.dot')[n].classList.add('active');
+      slides[n].classList.add(''active'');
+      document.querySelectorAll(''.dot'')[n].classList.add(''active'');
     }
 
     function goToSlide(n) {
@@ -1070,29 +1097,29 @@
     setInterval(nextSlide, 5000);
 
     // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && document.querySelector(href)) {
+    document.querySelectorAll(''a[href^="#"]'').forEach(anchor => {
+      anchor.addEventListener(''click'', function (e) {
+        const href = this.getAttribute(''href'');
+        if (href !== ''#'' && document.querySelector(href)) {
           e.preventDefault();
           document.querySelector(href).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+            behavior: ''smooth'',
+            block: ''start''
           });
         }
       });
     });
 
     // Button clicks
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('click', function() {
+    document.querySelectorAll(''.btn'').forEach(btn => {
+      btn.addEventListener(''click'', function() {
         const text = this.textContent;
-        if (text.includes('Proyectos')) {
-          document.querySelector('#proyectos').scrollIntoView({ behavior: 'smooth' });
-        } else if (text.includes('Llamada')) {
-          window.open('https://calendly.com/david-sebastian-diaz', '_blank');
-        } else if (text.includes('Email')) {
-          window.location.href = 'mailto:david.diaz.uxdata@gmail.com';
+        if (text.includes(''Proyectos'')) {
+          document.querySelector(''#proyectos'').scrollIntoView({ behavior: ''smooth'' });
+        } else if (text.includes(''Llamada'')) {
+          window.open(''https://calendly.com/david-sebastian-diaz'', ''_blank'');
+        } else if (text.includes(''Email'')) {
+          window.location.href = ''mailto:david.diaz.uxdata@gmail.com'';
         }
       });
     });
