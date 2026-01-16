@@ -28,12 +28,14 @@
     .marquee-wrapper {
       overflow: hidden;
       background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(102, 126, 234, 0.2);
+      border-bottom: 1px solid rgba(102, 126, 234, 0.2);
     }
     
     .marquee {
       display: flex;
-      animation: marquee 30s linear infinite;
-      gap: 60px;
+      animation: marquee 35s linear infinite;
+      gap: 80px;
     }
     
     .marquee:hover {
@@ -42,18 +44,45 @@
     
     .marquee-item {
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       white-space: nowrap;
-      color: #999;
+      color: #888;
+      letter-spacing: 1px;
     }
     
-    /* Hero Carousel */
+    /* Parallax Hero */
+    .hero-section {
+      position: relative;
+      height: 900px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #0f172a 0%, #1a1f35 50%, #0a0f1a 100%);
+    }
+    
+    .parallax-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/hero/bg-hero.svg') center/cover;
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
     .hero-container {
       position: relative;
-      height: 700px;
+      height: 500px;
       overflow: hidden;
       border-radius: 32px;
       background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      margin-top: 60px;
     }
     
     .carousel-slide {
@@ -79,11 +108,11 @@
     
     .carousel-dots {
       position: absolute;
-      bottom: 40px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 10px;
+      gap: 12px;
       z-index: 10;
     }
     
@@ -91,38 +120,73 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
       cursor: pointer;
-      transition: all 0.3s;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .dot.active {
-      background: #fff;
-      transform: scale(1.3);
+      background: #667eea;
+      transform: scale(1.4);
+      border-color: #667eea;
     }
     
-    /* Animations */
+    /* Scroll animations */
     @keyframes slideInUp { 
-      from { opacity: 0; transform: translateY(60px); } 
+      from { opacity: 0; transform: translateY(100px); } 
       to { opacity: 1; transform: translateY(0); } 
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(100px); }
+      to { opacity: 1; transform: translateX(0); }
     }
     @keyframes float { 
       0%, 100% { transform: translateY(0px); } 
-      50% { transform: translateY(-20px); } 
+      50% { transform: translateY(-30px); } 
     }
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-40px); }
-      to { opacity: 1; transform: translateX(0); }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
     
-    .animate-in { animation: slideInUp 0.8s ease-out; }
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    
+    .scroll-animate.active {
+      animation: slideInUp 0.8s ease-out forwards;
+    }
+    
+    .scroll-animate.left {
+      animation: slideInLeft 0.8s ease-out forwards;
+    }
+    
+    .scroll-animate.right {
+      animation: slideInRight 0.8s ease-out forwards;
+    }
+    
+    .scroll-animate.scale {
+      animation: scaleIn 0.8s ease-out forwards;
+    }
+    
     .animate-float { animation: float 4s ease-in-out infinite; }
-    .animate-left { animation: fadeInLeft 0.8s ease-out; }
     
     /* Gradient text */
     .gradient-text {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .gradient-text-cyan {
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -140,10 +204,10 @@
     }
     .nav-sticky.scrolled {
       background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(30px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(40px);
+      border-bottom: 1px solid rgba(102, 126, 234, 0.15);
       padding: 16px 0;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     }
     
     /* Glass effect */
@@ -155,37 +219,44 @@
     
     /* Project card */
     .project-card {
-      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(145deg, #131313, #0a0a0a);
+      border: 1px solid rgba(102, 126, 234, 0.15);
       border-radius: 28px;
       overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
     }
     
     .project-card:hover {
       border-color: #667eea;
-      transform: translateY(-16px);
-      box-shadow: 0 40px 80px rgba(102, 126, 234, 0.2);
+      transform: translateY(-24px);
+      box-shadow: 0 60px 120px rgba(102, 126, 234, 0.25);
     }
     
     .project-image {
       width: 100%;
-      height: 400px;
+      height: 380px;
       background: linear-gradient(135deg, var(--grad-from) 0%, var(--grad-to) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 120px;
+      font-size: 100px;
       position: relative;
       overflow: hidden;
+      background-size: cover;
     }
     
     .project-image::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1), transparent);
+      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.08), transparent);
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     
     .project-content {
@@ -195,10 +266,11 @@
     /* Stats */
     .stat-item {
       text-align: center;
+      transition: all 0.4s;
     }
     
     .stat-number {
-      font-size: 4rem;
+      font-size: 4.5rem;
       font-weight: 900;
       background: linear-gradient(135deg, #667eea, #764ba2);
       -webkit-background-clip: text;
@@ -208,33 +280,62 @@
       letter-spacing: -2px;
     }
     
+    .stat-item:hover .stat-number {
+      transform: scale(1.1);
+    }
+    
     /* Service card */
     .service-card {
-      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(145deg, #131313, #0a0a0a);
+      border: 1px solid rgba(102, 126, 234, 0.15);
       border-radius: 24px;
       padding: 48px;
-      transition: all 0.4s;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(102, 126, 234, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+    
+    .service-card:hover::before {
+      opacity: 1;
     }
     
     .service-card:hover {
       border-color: #667eea;
-      transform: translateY(-12px);
-      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+      transform: translateY(-16px);
+      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.2);
     }
     
     .service-icon {
       font-size: 3.5rem;
       margin-bottom: 30px;
-      display: inline-block;
-      width: 70px;
-      height: 70px;
-      background: rgba(102, 126, 234, 0.1);
-      border-radius: 16px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+      border-radius: 20px;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      transition: all 0.4s;
+    }
+    
+    .service-card:hover .service-icon {
+      transform: scale(1.15);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.15));
     }
     
     /* Testimonial */
@@ -254,19 +355,20 @@
     .testimonial-carousel::-webkit-scrollbar-thumb { background: rgba(102, 126, 234, 0.5); border-radius: 4px; }
     
     .testimonial-card {
-      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(145deg, #131313, #0a0a0a);
+      border: 1px solid rgba(102, 126, 234, 0.15);
       border-radius: 24px;
       padding: 48px;
       min-width: 450px;
       flex-shrink: 0;
       scroll-snap-align: start;
-      transition: all 0.4s;
+      transition: all 0.5s;
     }
     
     .testimonial-card:hover {
       border-color: #667eea;
-      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.2);
+      transform: translateY(-12px);
     }
     
     .testimonial-avatar {
@@ -295,34 +397,41 @@
     }
     
     .step-circle {
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       background: linear-gradient(135deg, #667eea, #764ba2);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 32px;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: bold;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s;
+    }
+    
+    .process-step:hover .step-circle {
+      transform: scale(1.15);
+      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.4);
     }
     
     /* FAQ */
     details {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     
     details summary {
       cursor: pointer;
       padding: 28px;
-      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(145deg, #131313, #0a0a0a);
+      border: 1px solid rgba(102, 126, 234, 0.15);
       border-radius: 20px;
       font-weight: 600;
       font-size: 1.15rem;
       list-style: none;
-      transition: all 0.3s;
+      transition: all 0.4s;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -338,7 +447,7 @@
       content: '+';
       font-weight: bold;
       font-size: 1.8rem;
-      transition: transform 0.3s;
+      transition: transform 0.4s;
       color: #667eea;
     }
     
@@ -348,21 +457,22 @@
     
     details[open] summary {
       border-color: #667eea;
+      background: linear-gradient(145deg, #1a1a1a, #111);
     }
     
     /* Blog card */
     .blog-card {
-      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(145deg, #131313, #0a0a0a);
+      border: 1px solid rgba(102, 126, 234, 0.15);
       border-radius: 24px;
       overflow: hidden;
-      transition: all 0.4s;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .blog-card:hover {
       border-color: #667eea;
-      transform: translateY(-12px);
-      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+      transform: translateY(-16px);
+      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.2);
     }
     
     .blog-image {
@@ -375,28 +485,43 @@
       font-size: 3.5rem;
       position: relative;
       overflow: hidden;
+      background-size: cover;
+    }
+    
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     
     /* CTA Button */
     .cta-button {
       background: linear-gradient(135deg, #667eea, #764ba2);
-      transition: all 0.4s;
-      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 30px 100px rgba(102, 126, 234, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
     
     .cta-button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.5);
+      transform: translateY(-8px);
+      box-shadow: 0 40px 120px rgba(102, 126, 234, 0.5);
     }
     
     /* Section backgrounds */
     .section-light {
-      background: linear-gradient(180deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.03) 100%);
+      background: linear-gradient(180deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.04) 100%);
     }
     
-    .section-dark {
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+    .section-pattern {
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          rgba(102, 126, 234, 0.03),
+          rgba(102, 126, 234, 0.03) 1px,
+          transparent 1px,
+          transparent 50px
+        ),
+        linear-gradient(180deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.03) 100%);
     }
   </style>
 </head>
@@ -410,111 +535,114 @@
           NeoProdUx
         </div>
         <div class="hidden md:flex space-x-12 items-center text-sm font-medium">
-          <a href="#servicios" class="text-gray-300 hover:text-purple-400 transition">Servicios</a>
-          <a href="#proyectos" class="text-gray-300 hover:text-purple-400 transition">Proyectos</a>
-          <a href="#proceso" class="text-gray-300 hover:text-purple-400 transition">Proceso</a>
-          <a href="#faq" class="text-gray-300 hover:text-purple-400 transition">FAQ</a>
+          <a href="#servicios" class="text-gray-400 hover:text-purple-400 transition">Servicios</a>
+          <a href="#proyectos" class="text-gray-400 hover:text-purple-400 transition">Proyectos</a>
+          <a href="#proceso" class="text-gray-400 hover:text-purple-400 transition">Proceso</a>
+          <a href="#faq" class="text-gray-400 hover:text-purple-400 transition">FAQ</a>
           <a href="#contacto" class="cta-button text-white px-8 py-3 rounded-full font-semibold text-sm">Contacto</a>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="pt-48 pb-24 px-8">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-20 animate-in">
-        <h1 class="text-8xl md:text-9xl font-black mb-10 leading-tight">
-          <span class="gradient-text">Diseño de</span><br>
-          <span class="gradient-text">Productos</span><br>
-          que Crecen
-        </h1>
-        <p class="text-2xl text-gray-400 max-w-4xl mx-auto font-light leading-relaxed">
-          Creemos en UX/UI, estrategia de producto y decisiones basadas en datos reales.
-          Transformamos desafíos complejos en oportunidades de crecimiento exponencial.
-        </p>
-      </div>
-
-      <!-- Hero Carousel -->
-      <div class="hero-container mb-12">
-        <div class="carousel-slide active" style="--grad-from: #667eea; --grad-to: #764ba2;">
-          <div class="slide-gradient"></div>
-          <div class="relative z-10 text-center">
-            <div class="text-9xl mb-8 animate-float">🐕</div>
-            <h2 class="text-5xl font-bold mb-3">PASEO App</h2>
-            <p class="text-xl text-gray-200">+45K usuarios | +89% retención W1</p>
-          </div>
-        </div>
-        
-        <div class="carousel-slide" style="--grad-from: #06b6d4; --grad-to: #0891b2;">
-          <div class="slide-gradient"></div>
-          <div class="relative z-10 text-center">
-            <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.2s;">📊</div>
-            <h2 class="text-5xl font-bold mb-3">Nexus Logistics</h2>
-            <p class="text-xl text-gray-200">200+ empresas | +40% usabilidad</p>
-          </div>
-        </div>
-        
-        <div class="carousel-slide" style="--grad-from: #f43f5e; --grad-to: #e11d48;">
-          <div class="slide-gradient"></div>
-          <div class="relative z-10 text-center">
-            <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.4s;">🛍️</div>
-            <h2 class="text-5xl font-bold mb-3">La Caroyense</h2>
-            <p class="text-xl text-gray-200">↑340% conversión | +$2.1M ingresos</p>
-          </div>
-        </div>
-        
-        <div class="carousel-slide" style="--grad-from: #3b82f6; --grad-to: #1e40af;">
-          <div class="slide-gradient"></div>
-          <div class="relative z-10 text-center">
-            <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.6s;">🎓</div>
-            <h2 class="text-5xl font-bold mb-3">Yale School of Art</h2>
-            <p class="text-xl text-gray-200">↑60% visitas | ↑45% engagement</p>
-          </div>
+  <!-- Hero Section with Parallax -->
+  <section class="hero-section" id="hero">
+    <div class="parallax-bg" id="parallaxBg"></div>
+    <div class="hero-content">
+      <div class="max-w-7xl mx-auto px-8 w-full">
+        <div class="text-center mb-20 scroll-animate">
+          <h1 class="text-8xl md:text-9xl font-black mb-10 leading-tight">
+            <span class="gradient-text">Diseño de</span><br>
+            <span class="gradient-text">Productos</span><br>
+            que Crecen
+          </h1>
+          <p class="text-2xl text-gray-400 max-w-4xl mx-auto font-light leading-relaxed">
+            Creemos en UX/UI, estrategia de producto y decisiones basadas en datos reales.
+            Transformamos desafíos complejos en oportunidades de crecimiento exponencial.
+          </p>
         </div>
 
-        <div class="carousel-dots" id="carousel-dots"></div>
-      </div>
+        <!-- Hero Carousel -->
+        <div class="hero-container">
+          <div class="carousel-slide active" style="--grad-from: #667eea; --grad-to: #764ba2;">
+            <div class="slide-gradient"></div>
+            <div class="relative z-10 text-center">
+              <div class="text-9xl mb-8 animate-float">🐕</div>
+              <h2 class="text-5xl font-bold mb-3">PASEO App</h2>
+              <p class="text-xl text-gray-200">+45K usuarios | +89% retención W1</p>
+            </div>
+          </div>
+          
+          <div class="carousel-slide" style="--grad-from: #06b6d4; --grad-to: #0891b2;">
+            <div class="slide-gradient"></div>
+            <div class="relative z-10 text-center">
+              <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.2s;">📊</div>
+              <h2 class="text-5xl font-bold mb-3">Nexus Logistics</h2>
+              <p class="text-xl text-gray-200">200+ empresas | +40% usabilidad</p>
+            </div>
+          </div>
+          
+          <div class="carousel-slide" style="--grad-from: #f43f5e; --grad-to: #e11d48;">
+            <div class="slide-gradient"></div>
+            <div class="relative z-10 text-center">
+              <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.4s;">🛍️</div>
+              <h2 class="text-5xl font-bold mb-3">La Caroyense</h2>
+              <p class="text-xl text-gray-200">↑340% conversión | +$2.1M ingresos</p>
+            </div>
+          </div>
+          
+          <div class="carousel-slide" style="--grad-from: #3b82f6; --grad-to: #1e40af;">
+            <div class="slide-gradient"></div>
+            <div class="relative z-10 text-center">
+              <div class="text-9xl mb-8 animate-float" style="animation-delay: 0.6s;">🎓</div>
+              <h2 class="text-5xl font-bold mb-3">Yale School of Art</h2>
+              <p class="text-xl text-gray-200">↑60% visitas | ↑45% engagement</p>
+            </div>
+          </div>
 
-      <div class="text-center">
-        <a href="#proyectos" class="cta-button text-white px-12 py-6 rounded-full font-bold text-lg inline-block">
-          Ver Proyectos <i class="fas fa-arrow-right ml-3"></i>
-        </a>
+          <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
+
+        <div class="text-center mt-16">
+          <a href="#proyectos" class="cta-button text-white px-12 py-6 rounded-full font-bold text-lg inline-block">
+            Ver Proyectos <i class="fas fa-arrow-right ml-3"></i>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Marquee Clients -->
-  <section class="py-12 border-y border-white/5">
+  <section class="py-12">
     <div class="marquee-wrapper">
       <div class="marquee">
-        <span class="marquee-item">GitHub</span>
-        <span class="marquee-item">LinkedIn</span>
-        <span class="marquee-item">Design Community</span>
-        <span class="marquee-item">Tech Industry</span>
-        <span class="marquee-item">Global Portfolio</span>
-        <span class="marquee-item">GitHub</span>
-        <span class="marquee-item">LinkedIn</span>
-        <span class="marquee-item">Design Community</span>
-        <span class="marquee-item">Tech Industry</span>
-        <span class="marquee-item">Global Portfolio</span>
+        <span class="marquee-item">🚀 GitHub</span>
+        <span class="marquee-item">💼 LinkedIn</span>
+        <span class="marquee-item">🎨 Design Community</span>
+        <span class="marquee-item">💻 Tech Industry</span>
+        <span class="marquee-item">🌍 Global Portfolio</span>
+        <span class="marquee-item">🚀 GitHub</span>
+        <span class="marquee-item">💼 LinkedIn</span>
+        <span class="marquee-item">🎨 Design Community</span>
+        <span class="marquee-item">💻 Tech Industry</span>
+        <span class="marquee-item">🌍 Global Portfolio</span>
       </div>
     </div>
   </section>
 
   <!-- Stats Section -->
-  <section class="py-40 border-b border-white/5">
+  <section class="py-40 border-b border-white/10 section-pattern">
     <div class="max-w-7xl mx-auto px-8">
       <div class="grid md:grid-cols-3 gap-24">
-        <div class="stat-item">
+        <div class="stat-item scroll-animate">
           <div class="stat-number">30+</div>
           <p class="text-gray-400 mt-8 text-lg font-medium">Proyectos en Producción</p>
         </div>
-        <div class="stat-item">
+        <div class="stat-item scroll-animate" style="animation-delay: 0.2s;">
           <div class="stat-number">5M+</div>
           <p class="text-gray-400 mt-8 text-lg font-medium">Usuarios Impactados</p>
         </div>
-        <div class="stat-item">
+        <div class="stat-item scroll-animate" style="animation-delay: 0.4s;">
           <div class="stat-number">+35%</div>
           <p class="text-gray-400 mt-8 text-lg font-medium">Mejora Conversión Promedio</p>
         </div>
@@ -523,9 +651,9 @@
   </section>
 
   <!-- Services Section -->
-  <section id="servicios" class="py-40 border-b border-white/5 section-light">
+  <section id="servicios" class="py-40 border-b border-white/10 section-light">
     <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-32">
+      <div class="mb-32 scroll-animate">
         <h2 class="text-8xl md:text-8xl font-black mb-8">
           <span class="gradient-text">Servicios</span><br>
           Populares
@@ -534,19 +662,19 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-12">
-        <div class="service-card">
+        <div class="service-card scroll-animate left">
           <div class="service-icon text-purple-400"><i class="fas fa-pencil-ruler"></i></div>
           <h3 class="text-3xl font-black mb-6">UX/UI Design</h3>
           <p class="text-gray-400 text-lg leading-relaxed">Investigación profunda, prototipos iterativos y diseño centrado en el usuario que convierte visitas en resultados.</p>
         </div>
 
-        <div class="service-card">
+        <div class="service-card scroll-animate scale" style="animation-delay: 0.2s;">
           <div class="service-icon text-indigo-400"><i class="fas fa-chart-line"></i></div>
           <h3 class="text-3xl font-black mb-6">Product Strategy</h3>
           <p class="text-gray-400 text-lg leading-relaxed">Análisis de datos, validación de mercado y roadmap basado en insights reales de usuarios y negocio.</p>
         </div>
 
-        <div class="service-card">
+        <div class="service-card scroll-animate right" style="animation-delay: 0.4s;">
           <div class="service-icon text-pink-400"><i class="fas fa-code"></i></div>
           <h3 class="text-3xl font-black mb-6">Design System</h3>
           <p class="text-gray-400 text-lg leading-relaxed">Componentes reutilizables, guías de diseño y tokens que escalan con tu producto a largo plazo.</p>
@@ -556,9 +684,9 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="proyectos" class="py-40 border-b border-white/5">
+  <section id="proyectos" class="py-40 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-32">
+      <div class="mb-32 scroll-animate">
         <h2 class="text-8xl md:text-8xl font-black mb-8">
           Hecho en<br>
           <span class="gradient-text">NeoProdUx</span>
@@ -568,8 +696,8 @@
 
       <div class="grid md:grid-cols-2 gap-16">
         <!-- PASEO -->
-        <div class="project-card">
-          <div class="project-image" style="--grad-from: #667eea; --grad-to: #764ba2;">
+        <div class="project-card scroll-animate left">
+          <div class="project-image" style="--grad-from: #667eea; --grad-to: #764ba2; background-image: url('images/projects/paseo.svg');">
             <div class="text-9xl">🐕</div>
           </div>
           <div class="project-content">
@@ -590,15 +718,15 @@
                 <p class="text-xs text-gray-400 mt-3 font-medium">Usuarios</p>
               </div>
             </div>
-            <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg">
+            <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg transition">
               Ver Repositorio <i class="fas fa-arrow-right ml-3"></i>
             </a>
           </div>
         </div>
 
         <!-- NEXUS -->
-        <div class="project-card">
-          <div class="project-image" style="--grad-from: #06b6d4; --grad-to: #0891b2;">
+        <div class="project-card scroll-animate right">
+          <div class="project-image" style="--grad-from: #06b6d4; --grad-to: #0891b2; background-image: url('images/projects/nexus.svg');">
             <div class="text-9xl">📊</div>
           </div>
           <div class="project-content">
@@ -619,15 +747,15 @@
                 <p class="text-xs text-gray-400 mt-3 font-medium">Capacitación</p>
               </div>
             </div>
-            <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg">
+            <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg transition">
               Ver Repositorio <i class="fas fa-arrow-right ml-3"></i>
             </a>
           </div>
         </div>
 
         <!-- LA CAROYENSE -->
-        <div class="project-card">
-          <div class="project-image" style="--grad-from: #f43f5e; --grad-to: #e11d48;">
+        <div class="project-card scroll-animate left" style="animation-delay: 0.2s;">
+          <div class="project-image" style="--grad-from: #f43f5e; --grad-to: #e11d48; background-image: url('images/projects/caroyense.svg');">
             <div class="text-9xl">🛍️</div>
           </div>
           <div class="project-content">
@@ -648,15 +776,15 @@
                 <p class="text-xs text-gray-400 mt-3 font-medium">Ingresos</p>
               </div>
             </div>
-            <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg">
+            <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg transition">
               Ver Repositorio <i class="fas fa-arrow-right ml-3"></i>
             </a>
           </div>
         </div>
 
         <!-- YALE -->
-        <div class="project-card">
-          <div class="project-image" style="--grad-from: #3b82f6; --grad-to: #1e40af;">
+        <div class="project-card scroll-animate right" style="animation-delay: 0.2s;">
+          <div class="project-image" style="--grad-from: #3b82f6; --grad-to: #1e40af; background-image: url('images/projects/yale.svg');">
             <div class="text-9xl">🎓</div>
           </div>
           <div class="project-content">
@@ -677,7 +805,7 @@
                 <p class="text-xs text-gray-400 mt-3 font-medium">Aplicaciones</p>
               </div>
             </div>
-            <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg">
+            <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="text-purple-400 font-bold hover:text-purple-300 flex items-center text-lg transition">
               Ver Repositorio <i class="fas fa-arrow-right ml-3"></i>
             </a>
           </div>
@@ -687,9 +815,9 @@
   </section>
 
   <!-- Process Section -->
-  <section id="proceso" class="py-40 border-b border-white/5 section-light">
+  <section id="proceso" class="py-40 border-b border-white/10 section-light">
     <div class="max-w-7xl mx-auto px-8">
-      <div class="text-center mb-32">
+      <div class="text-center mb-32 scroll-animate">
         <h2 class="text-8xl font-black mb-10">
           Cómo<br>
           <span class="gradient-text">Trabajamos</span>
@@ -698,22 +826,22 @@
       </div>
 
       <div class="grid md:grid-cols-4 gap-8">
-        <div class="process-step">
+        <div class="process-step scroll-animate left">
           <div class="step-circle">1</div>
           <h3 class="text-2xl font-black mb-6">Discovery</h3>
           <p class="text-gray-400 text-lg leading-relaxed">Entendemos tu negocio, usuarios y mercado mediante investigación profunda</p>
         </div>
-        <div class="process-step">
+        <div class="process-step scroll-animate scale" style="animation-delay: 0.1s;">
           <div class="step-circle">2</div>
           <h3 class="text-2xl font-black mb-6">Strategy</h3>
           <p class="text-gray-400 text-lg leading-relaxed">Definimos estrategia basada en insights, datos y oportunidades reales</p>
         </div>
-        <div class="process-step">
+        <div class="process-step scroll-animate scale" style="animation-delay: 0.2s;">
           <div class="step-circle">3</div>
           <h3 class="text-2xl font-black mb-6">Design</h3>
           <p class="text-gray-400 text-lg leading-relaxed">Creamos prototipos interactivos y testamos con usuarios reales</p>
         </div>
-        <div class="process-step">
+        <div class="process-step scroll-animate right" style="animation-delay: 0.3s;">
           <div class="step-circle">4</div>
           <h3 class="text-2xl font-black mb-6">Optimize</h3>
           <p class="text-gray-400 text-lg leading-relaxed">Medimos impacto, iteramos y optimizamos continuamente</p>
@@ -723,9 +851,9 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section class="py-40 border-b border-white/5">
+  <section class="py-40 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-24">
+      <div class="mb-24 scroll-animate">
         <h2 class="text-8xl font-black mb-8">
           Lo que dicen<br>
           <span class="gradient-text">clientes</span>
@@ -734,7 +862,7 @@
       </div>
 
       <div class="testimonial-carousel">
-        <div class="testimonial-card">
+        <div class="testimonial-card scroll-animate">
           <div class="testimonial-avatar">🐕</div>
           <h4 class="font-bold text-lg">CEO, Startup Tech</h4>
           <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
@@ -743,7 +871,7 @@
           </p>
         </div>
 
-        <div class="testimonial-card">
+        <div class="testimonial-card scroll-animate" style="animation-delay: 0.2s;">
           <div class="testimonial-avatar">📊</div>
           <h4 class="font-bold text-lg">Product Manager, Enterprise</h4>
           <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
@@ -752,7 +880,7 @@
           </p>
         </div>
 
-        <div class="testimonial-card">
+        <div class="testimonial-card scroll-animate" style="animation-delay: 0.4s;">
           <div class="testimonial-avatar">💰</div>
           <h4 class="font-bold text-lg">Founder, E-commerce</h4>
           <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
@@ -765,44 +893,44 @@
   </section>
 
   <!-- FAQ Section -->
-  <section id="faq" class="py-40 border-b border-white/5 section-light">
+  <section id="faq" class="py-40 border-b border-white/10 section-light">
     <div class="max-w-5xl mx-auto px-8">
-      <h2 class="text-8xl font-black mb-16 text-center">
+      <h2 class="text-8xl font-black mb-16 text-center scroll-animate">
         Preguntas<br>
         <span class="gradient-text">Frecuentes</span>
       </h2>
 
-      <details>
+      <details class="scroll-animate">
         <summary>¿Cuál es tu proceso de diseño?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed">
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
           Utilizamos un proceso iterativo basado en Design Thinking: Discovery → Strategy → Design → Validation → Optimization. Cada fase está fundamentada en investigación real y datos del usuario.
         </div>
       </details>
 
-      <details>
+      <details class="scroll-animate" style="animation-delay: 0.1s;">
         <summary>¿Cómo garantizas resultados measurables?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed">
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
           Todo proyecto tiene KPIs claros desde el inicio. Medimos conversión, retención, satisfacción y ROI. Mostro los números reales, no promesas bonitas.
         </div>
       </details>
 
-      <details>
+      <details class="scroll-animate" style="animation-delay: 0.2s;">
         <summary>¿Puedo solicitar cambios después de terminar?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed">
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
           Sí. Las iteraciones basadas en feedback real son parte fundamental del proceso. Trabajamos hasta que los resultados cumplan los objetivos definidos.
         </div>
       </details>
 
-      <details>
+      <details class="scroll-animate" style="animation-delay: 0.3s;">
         <summary>¿Qué herramientas utilizas?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed">
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
           Figma para diseño, Python/SQL para análisis, Power BI para reporting, Git para versionamiento. Las mejores herramientas para cada fase del proyecto.
         </div>
       </details>
 
-      <details>
+      <details class="scroll-animate" style="animation-delay: 0.4s;">
         <summary>¿Trabajas con equipos remotos?</summary>
-        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed">
+        <div class="p-8 text-gray-300 bg-white/[0.02] rounded-b-xl text-lg leading-relaxed border border-t-0 border-white/10">
           100% remoto. Timezone flexible. Comunicación clara y documentación detallada. Estoy acostumbrado a colaborar con equipos globales.
         </div>
       </details>
@@ -810,9 +938,9 @@
   </section>
 
   <!-- Blog Section -->
-  <section class="py-40 border-b border-white/5">
+  <section class="py-40 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-24">
+      <div class="mb-24 scroll-animate">
         <h2 class="text-8xl font-black mb-8">
           ¿Qué hay de<br>
           <span class="gradient-text">Tendencia?</span>
@@ -821,45 +949,45 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-10">
-        <div class="blog-card">
-          <div class="blog-image">
+        <div class="blog-card scroll-animate left">
+          <div class="blog-image" style="background-image: url('images/blog/research.svg');">
             <i class="fas fa-pen-fancy"></i>
           </div>
           <div class="p-10">
             <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Guía</span>
             <h3 class="text-2xl font-black mt-6 mb-4">Guía Completa de UX Research</h3>
             <p class="text-gray-400 text-lg mb-8">Metodologías modernas para entender realmente a tus usuarios</p>
-            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
+            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg transition">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
         </div>
 
-        <div class="blog-card">
-          <div class="blog-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+        <div class="blog-card scroll-animate scale" style="animation-delay: 0.2s;">
+          <div class="blog-image" style="background-image: url('images/blog/metrics.svg');">
             <i class="fas fa-chart-line"></i>
           </div>
           <div class="p-10">
             <span class="text-xs text-cyan-400 font-bold uppercase tracking-wider">Data</span>
             <h3 class="text-2xl font-black mt-6 mb-4">Métricas que Importan</h3>
             <p class="text-gray-400 text-lg mb-8">Cómo medir el impacto real de tus decisiones de diseño</p>
-            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
+            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg transition">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
         </div>
 
-        <div class="blog-card">
-          <div class="blog-image" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
+        <div class="blog-card scroll-animate right" style="animation-delay: 0.4s;">
+          <div class="blog-image" style="background-image: url('images/blog/errors.svg');">
             <i class="fas fa-lightbulb"></i>
           </div>
           <div class="p-10">
             <span class="text-xs text-rose-400 font-bold uppercase tracking-wider">Tips</span>
             <h3 class="text-2xl font-black mt-6 mb-4">5 Errores de UX Comunes</h3>
             <p class="text-gray-400 text-lg mb-8">Y cómo evitarlos en tu próximo proyecto</p>
-            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
+            <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-lg transition">Leer más <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
         </div>
       </div>
 
       <div class="text-center mt-16">
-        <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-xl">
+        <a href="#" class="text-purple-400 font-bold hover:text-purple-300 text-xl transition">
           Ver Todos los Artículos <i class="fas fa-arrow-right ml-3"></i>
         </a>
       </div>
@@ -869,7 +997,7 @@
   <!-- CTA Section -->
   <section id="contacto" class="py-40">
     <div class="max-w-6xl mx-auto px-8">
-      <div class="cta-button rounded-3xl p-28 text-center relative overflow-hidden">
+      <div class="cta-button rounded-3xl p-28 text-center relative overflow-hidden scroll-animate">
         <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
         <div class="relative z-10">
           <h2 class="text-8xl md:text-9xl font-black mb-10">¿Necesitas un Producto que Crezca?</h2>
@@ -888,7 +1016,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-24 border-t border-white/5">
+  <footer class="py-24 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-8">
       <div class="grid md:grid-cols-4 gap-16 mb-20">
         <div>
@@ -923,7 +1051,7 @@
         </div>
       </div>
 
-      <div class="border-t border-white/5 pt-12 text-center text-gray-400">
+      <div class="border-t border-white/10 pt-12 text-center text-gray-400">
         <p class="mb-3 font-medium">© 2026 NeoProdUx. All Rights Reserved.</p>
         <p class="italic text-sm">"El buen diseño no se ve. Solo sientes los resultados."</p>
       </div>
@@ -939,6 +1067,33 @@
       } else {
         navbar.classList.remove("scrolled");
       }
+    });
+
+    // Parallax effect
+    window.addEventListener("scroll", () => {
+      const parallax = document.getElementById("parallaxBg");
+      if (parallax) {
+        const scrollPosition = window.scrollY;
+        parallax.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+      }
+    });
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: "0px 0px -100px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".scroll-animate").forEach(element => {
+      observer.observe(element);
     });
 
     // Carousel
