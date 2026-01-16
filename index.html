@@ -3,43 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>David Sebastián Díaz - Diseñador de Productos Digitales</title>
+  <title>NeoProdUx - Diseño de Productos Digitales</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-    * { font-family: "Inter", sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    
+    * { 
+      font-family: "Plus Jakarta Sans", sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
     html { scroll-behavior: smooth; }
     body { background: #0a0a0a; color: #fff; overflow-x: hidden; }
     
-    .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    /* Hero Slider */
+    .hero-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .hero-slider::-webkit-scrollbar { display: none; }
+    .hero-slide {
+      min-width: 500px;
+      height: 400px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 20px;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1), transparent);
+    }
     
-    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
-    @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    /* Animations */
+    @keyframes slideInUp { 
+      from { opacity: 0; transform: translateY(30px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    @keyframes float { 
+      0%, 100% { transform: translateY(0px); } 
+      50% { transform: translateY(-20px); } 
+    }
+    @keyframes fadeIn { 
+      from { opacity: 0; } 
+      to { opacity: 1; } 
+    }
     
+    .animate-in { animation: slideInUp 0.6s ease-out; }
     .animate-float { animation: float 6s ease-in-out infinite; }
-    .carousel-container { overflow-x: auto; scroll-behavior: smooth; scrollbar-width: thin; }
-    .carousel-container::-webkit-scrollbar { height: 8px; }
-    .carousel-container::-webkit-scrollbar-thumb { background: #667eea; border-radius: 4px; }
     
-    .project-card { min-width: 350px; background: linear-gradient(145deg, #1a1a1a, #0f0f0f); border: 1px solid #2a2a2a; border-radius: 20px; padding: 24px; transition: all 0.3s; cursor: pointer; }
-    .project-card:hover { border-color: #667eea; transform: translateY(-8px); box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3); }
+    /* Glass effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+    }
     
-    .nav-sticky { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s; }
-    .nav-sticky.scrolled { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     
-    .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    /* Sticky nav */
+    .nav-sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+    .nav-sticky.scrolled {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
     
-    .stat-box { background: linear-gradient(145deg, #1a1a1a, #0f0f0f); border: 1px solid #2a2a2a; border-radius: 20px; padding: 30px; text-align: center; }
-    .stat-number { font-size: 3.5rem; font-weight: 900; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    /* Project card */
+    .project-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 40px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .project-card:hover {
+      border-color: #667eea;
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+    }
     
-    .page { display: none; }
-    .page.active { display: block; animation: fadeIn 0.3s ease-in; }
+    /* Stats */
+    .stat-box {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
     
-    .carousel-scroll { scroll-snap-type: x mandatory; }
-    .carousel-item { scroll-snap-align: start; }
+    /* Service card */
+    .service-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 30px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    .service-card:hover {
+      border-color: #667eea;
+      transform: translateY(-8px);
+    }
+    
+    /* Testimonial */
+    .testimonial-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 30px;
+      min-width: 350px;
+      flex-shrink: 0;
+    }
+    
+    /* Carousel */
+    .carousel {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+    }
+    .carousel::-webkit-scrollbar { height: 8px; }
+    .carousel::-webkit-scrollbar-thumb { background: #667eea; border-radius: 4px; }
+    
+    /* FAQ */
+    details {
+      margin-bottom: 15px;
+    }
+    details summary {
+      cursor: pointer;
+      padding: 15px;
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      font-weight: 600;
+      list-style: none;
+      transition: all 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    details summary:hover {
+      border-color: #667eea;
+    }
+    details summary::after {
+      content: '+';
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    details[open] summary::after {
+      content: '−';
+    }
+    details[open] summary {
+      border-color: #667eea;
+    }
+    
+    /* Process step */
+    .process-step {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+    }
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -48,733 +222,484 @@
   <nav class="nav-sticky py-6" id="navbar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center">
-        <div class="text-2xl font-bold gradient-text cursor-pointer" onclick="showPage('home')">
-          <i class="fas fa-code-branch mr-2"></i>DSD
+        <div class="text-2xl font-bold gradient-text">
+          <i class="fas fa-rocket mr-2"></i>NeoProdUx
         </div>
         <div class="hidden md:flex space-x-8 items-center">
-          <a href="#" onclick="showPage('home'); return false;" class="hover:text-purple-400 transition">Inicio</a>
-          <a href="#" onclick="showPage('proyectos'); return false;" class="hover:text-purple-400 transition">Proyectos</a>
-          <a href="#" onclick="showPage('sobre-mi'); return false;" class="hover:text-purple-400 transition">Sobre Mí</a>
-          <a href="#" onclick="showPage('contacto'); return false;" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition">Contacto</a>
+          <a href="#servicios" class="hover:text-purple-400 transition">Servicios</a>
+          <a href="#proyectos" class="hover:text-purple-400 transition">Proyectos</a>
+          <a href="#proceso" class="hover:text-purple-400 transition">Proceso</a>
+          <a href="#faq" class="hover:text-purple-400 transition">FAQ</a>
+          <a href="#contacto" class="gradient-bg text-white px-8 py-3 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition inline-block bg-gradient-to-r from-purple-600 to-purple-700">
+            Contacto
+          </a>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- HOME PAGE -->
-  <div id="home" class="page active">
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-indigo-900/20"></div>
-      <div class="absolute inset-0">
-        <div class="absolute top-40 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-20 right-20 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-float" style="animation-delay: 1s;"></div>
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-7xl mx-auto mb-20">
+      <div class="text-center mb-16 animate-in">
+        <h1 class="text-7xl md:text-8xl font-bold mb-6 leading-tight">
+          <span class="gradient-text">Diseño de Productos</span><br>
+          que Transforman
+        </h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+          Crear experiencias digitales excepcionales que crecen tu negocio. UX/UI, 
+          investigación de usuarios y soluciones basadas en datos.
+        </p>
       </div>
-      
-      <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
-        <div style="animation: slideInRight 0.6s ease-out;">
-          <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">
-            Diseñador de <span class="gradient-text">Productos</span><br>
-            Digitales que <span class="gradient-text">Crecen</span>
-          </h1>
-          <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            Resuelvo problemas complejos de UX/UI mediante investigación profunda,
-            análisis de datos y decisiones de diseño que impactan el negocio.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <a href="#" onclick="showPage('proyectos'); return false;" class="gradient-bg text-white px-10 py-5 rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition transform hover:scale-105">
-              Ver Proyectos
-            </a>
-            <a href="#" onclick="showPage('contacto'); return false;" class="border-2 border-white/20 glass text-white px-10 py-5 rounded-full text-lg font-semibold hover:border-purple-500 transition">
-              Hablemos
-            </a>
-          </div>
-          <p class="text-lg text-purple-400 font-semibold">No diseño interfaces. Diseño soluciones.</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Stats Section -->
-    <section class="py-20 border-y border-white/10">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="grid md:grid-cols-4 gap-8">
-          <div class="stat-box hover:border-purple-500 transition">
-            <div class="stat-number">30+</div>
-            <p class="text-gray-400 mt-4">Proyectos en Producción</p>
+      <!-- Hero Slider -->
+      <div class="hero-slider">
+        <div class="hero-slide">
+          <div class="relative z-10 text-center">
+            <div class="text-6xl mb-4">🐕</div>
+            <h3 class="text-2xl font-bold">PASEO App</h3>
+            <p class="text-gray-200 mt-2">+45K usuarios</p>
           </div>
-          <div class="stat-box hover:border-purple-500 transition">
-            <div class="stat-number">+35%</div>
-            <p class="text-gray-400 mt-4">Mejora Conversión Promedio</p>
+        </div>
+        <div class="hero-slide" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+          <div class="relative z-10 text-center">
+            <div class="text-6xl mb-4">📊</div>
+            <h3 class="text-2xl font-bold">Nexus Logistics</h3>
+            <p class="text-gray-200 mt-2">200+ empresas</p>
           </div>
-          <div class="stat-box hover:border-purple-500 transition">
-            <div class="stat-number">5M+</div>
-            <p class="text-gray-400 mt-4">Usuarios Impactados</p>
+        </div>
+        <div class="hero-slide" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
+          <div class="relative z-10 text-center">
+            <div class="text-6xl mb-4">🛍️</div>
+            <h3 class="text-2xl font-bold">La Caroyense</h3>
+            <p class="text-gray-200 mt-2">+$2.1M ingresos</p>
           </div>
-          <div class="stat-box hover:border-purple-500 transition">
-            <div class="stat-number">18+</div>
-            <p class="text-gray-400 mt-4">Certificaciones</p>
+        </div>
+        <div class="hero-slide" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">
+          <div class="relative z-10 text-center">
+            <div class="text-6xl mb-4">🎓</div>
+            <h3 class="text-2xl font-bold">Yale School</h3>
+            <p class="text-gray-200 mt-2">+60% visitas</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Featured Projects Carousel -->
-    <section class="py-32">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="mb-16">
-          <h2 class="text-5xl md:text-6xl font-bold mb-4">
-            Casos de <span class="gradient-text">Estudio Destacados</span>
-          </h2>
-          <p class="text-xl text-gray-400">Proyectos que generaron impacto real en el negocio</p>
+  <!-- Clients Section -->
+  <section class="py-16 border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="text-center text-gray-400 mb-8 uppercase text-sm tracking-wider">Confían en nosotros</p>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
+        <div class="text-center text-gray-400">GitHub</div>
+        <div class="text-center text-gray-400">LinkedIn</div>
+        <div class="text-center text-gray-400">Design</div>
+        <div class="text-center text-gray-400">Portfolio</div>
+        <div class="text-center text-gray-400">Community</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-32">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-16 text-center">
+        <div class="stat-box">
+          <div class="stat-number">30+</div>
+          <p class="text-gray-400 text-lg">Proyectos en Producción</p>
         </div>
-
-        <div class="carousel-container carousel-scroll flex gap-6 pb-4">
-          <!-- PASEO App -->
-          <div class="project-card carousel-item" onclick="showPage('paseo')">
-            <div class="mb-6">
-              <span class="inline-block px-4 py-2 bg-purple-500/20 rounded-full text-sm font-semibold text-purple-300 mb-4">⭐ Favorito del equipo</span>
-              <h3 class="text-3xl font-bold">PASEO App</h3>
-              <p class="text-gray-400 mt-2">Wellness App • 2024</p>
-            </div>
-            <div class="space-y-4">
-              <div>
-                <h4 class="text-purple-400 font-semibold mb-2">El Reto</h4>
-                <p class="text-gray-300 text-sm">55% abandono en onboarding, gamificación no motivaba, retención semanal 28%.</p>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">↑78% Completitud</span>
-                <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">↑89% Retención</span>
-              </div>
-              <p class="text-green-400 font-bold text-sm">+45K usuarios en 3 meses</p>
-            </div>
-            <div class="mt-6 pt-6 border-t border-white/10 flex items-center text-purple-400">
-              <span class="text-sm font-semibold">Ver caso completo</span>
-              <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-          </div>
-
-          <!-- Nexus Logistics -->
-          <div class="project-card carousel-item" onclick="showPage('nexus')">
-            <div class="mb-6">
-              <span class="inline-block px-4 py-2 bg-indigo-500/20 rounded-full text-sm font-semibold text-indigo-300 mb-4">🎯 Enterprise</span>
-              <h3 class="text-3xl font-bold">Nexus Logistics</h3>
-              <p class="text-gray-400 mt-2">SaaS B2B Dashboard • 2024</p>
-            </div>
-            <div class="space-y-4">
-              <div>
-                <h4 class="text-purple-400 font-semibold mb-2">El Reto</h4>
-                <p class="text-gray-300 text-sm">Plataforma compleja, usuarios frustrados, interfaz poco intuitiva.</p>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">+40% Usabilidad</span>
-                <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">200+ Empresas</span>
-              </div>
-              <p class="text-green-400 font-bold text-sm">30% reducción en capacitación</p>
-            </div>
-            <div class="mt-6 pt-6 border-t border-white/10 flex items-center text-purple-400">
-              <span class="text-sm font-semibold">Ver caso completo</span>
-              <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-          </div>
-
-          <!-- La Caroyense -->
-          <div class="project-card carousel-item" onclick="showPage('caroyense')">
-            <div class="mb-6">
-              <span class="inline-block px-4 py-2 bg-pink-500/20 rounded-full text-sm font-semibold text-pink-300 mb-4">🎨 Rediseño</span>
-              <h3 class="text-3xl font-bold">La Caroyense</h3>
-              <p class="text-gray-400 mt-2">E-commerce Redesign • 2024</p>
-            </div>
-            <div class="space-y-4">
-              <div>
-                <h4 class="text-purple-400 font-semibold mb-2">El Reto</h4>
-                <p class="text-gray-300 text-sm">Conversión baja, UX obsoleto, abandono carrito alto.</p>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">↑340% Conversión</span>
-                <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">↓45% Abandono</span>
-              </div>
-              <p class="text-green-400 font-bold text-sm">+$2.1M en ingresos</p>
-            </div>
-            <div class="mt-6 pt-6 border-t border-white/10 flex items-center text-purple-400">
-              <span class="text-sm font-semibold">Ver caso completo</span>
-              <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-          </div>
-
-          <!-- Yale School of Art -->
-          <div class="project-card carousel-item" onclick="showPage('yale')">
-            <div class="mb-6">
-              <span class="inline-block px-4 py-2 bg-blue-500/20 rounded-full text-sm font-semibold text-blue-300 mb-4">🎓 Educativo</span>
-              <h3 class="text-3xl font-bold">Yale School of Art</h3>
-              <p class="text-gray-400 mt-2">Website Redesign • 2023</p>
-            </div>
-            <div class="space-y-4">
-              <div>
-                <h4 class="text-purple-400 font-semibold mb-2">El Reto</h4>
-                <p class="text-gray-300 text-sm">Modernizar presencia digital, mejorar experiencia estudiantes.</p>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">↑60% Visitas</span>
-                <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">↑45% Engagement</span>
-              </div>
-              <p class="text-green-400 font-bold text-sm">Experiencia mejorada</p>
-            </div>
-            <div class="mt-6 pt-6 border-t border-white/10 flex items-center text-purple-400">
-              <span class="text-sm font-semibold">Ver caso completo</span>
-              <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-          </div>
+        <div class="stat-box">
+          <div class="stat-number">5M+</div>
+          <p class="text-gray-400 text-lg">Usuarios Impactados</p>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">+35%</div>
+          <p class="text-gray-400 text-lg">Mejora Conversión</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- My Difference -->
-    <section class="py-32 bg-gradient-to-b from-purple-900/10 to-transparent">
-      <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-5xl md:text-6xl font-bold mb-16 text-center">
-          Lo Que Me <span class="gradient-text">Diferencia</span>
+  <!-- Services Section -->
+  <section id="servicios" class="py-32">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="mb-20">
+        <h2 class="text-6xl md:text-7xl font-bold mb-6">
+          <span class="gradient-text">Servicios</span> Populares
         </h2>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="glass p-10 rounded-3xl">
-            <div class="text-4xl mb-4"><i class="fas fa-magnifying-glass text-purple-400"></i></div>
-            <h3 class="text-2xl font-bold mb-4">UX Research</h3>
-            <p class="text-gray-400">Entiendo por qué una decisión funciona. Cada cambio está respaldado por investigación. Cada métrica cuenta una historia.</p>
-          </div>
-          
-          <div class="glass p-10 rounded-3xl">
-            <div class="text-4xl mb-4"><i class="fas fa-chart-line text-indigo-400"></i></div>
-            <h3 class="text-2xl font-bold mb-4">Data-Driven</h3>
-            <p class="text-gray-400">Data-informed, no data-vanity. Los números hablan, pero entiendo el contexto detrás de cada métrica.</p>
-          </div>
-          
-          <div class="glass p-10 rounded-3xl">
-            <div class="text-4xl mb-4"><i class="fas fa-rocket text-pink-400"></i></div>
-            <h3 class="text-2xl font-bold mb-4">Impacto Real</h3>
-            <p class="text-gray-400">Orientado a impacto, no a premios de diseño. Éxito se mide en conversiones, retención y satisfacción del usuario.</p>
-          </div>
+        <p class="text-xl text-gray-400">Transforma tu presencia digital con soluciones de UX/UI y estrategia de producto</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="service-card">
+          <div class="text-5xl mb-4"><i class="fas fa-pencil-ruler text-purple-400"></i></div>
+          <h3 class="text-2xl font-bold mb-4">UX/UI Design</h3>
+          <p class="text-gray-400">Investigación profunda, prototipos iterativos y diseño centrado en el usuario que convierte.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="text-5xl mb-4"><i class="fas fa-chart-line text-indigo-400"></i></div>
+          <h3 class="text-2xl font-bold mb-4">Product Strategy</h3>
+          <p class="text-gray-400">Análisis de datos, validación de mercado y roadmap de producto basado en insights reales.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="text-5xl mb-4"><i class="fas fa-code text-pink-400"></i></div>
+          <h3 class="text-2xl font-bold mb-4">Design System</h3>
+          <p class="text-gray-400">Componentes reutilizables, guías de diseño y tokens que escalan con tu producto.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA -->
-    <section class="py-32">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="gradient-bg rounded-3xl p-16 text-center relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-          <div class="relative z-10">
-            <h2 class="text-5xl md:text-6xl font-bold mb-6">¿Necesitas un Producto que Crezca?</h2>
-            <p class="text-2xl mb-12 opacity-90">Hablemos sobre tu proyecto</p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-              <a href="#" onclick="showPage('contacto'); return false;" class="bg-white text-purple-600 px-10 py-5 rounded-full text-lg font-bold hover:shadow-2xl transition transform hover:scale-105">
-                Empezar
-              </a>
-              <a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="border-2 border-white text-white px-10 py-5 rounded-full text-lg font-bold hover:bg-white/10 transition">
-                Agendar Llamada
-              </a>
+  <!-- Projects Section -->
+  <section id="proyectos" class="py-32 bg-gradient-to-b from-purple-900/10 to-transparent">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="mb-20">
+        <h2 class="text-6xl md:text-7xl font-bold mb-6">
+          <span class="gradient-text">Casos de Estudio</span> Destacados
+        </h2>
+        <p class="text-xl text-gray-400">Proyectos que generaron impacto real en el negocio</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- PASEO -->
+        <div class="project-card">
+          <div class="mb-6">
+            <span class="inline-block px-4 py-2 bg-purple-500/20 rounded-full text-sm font-semibold text-purple-300 mb-4">⭐ Favorito</span>
+            <h3 class="text-4xl font-bold mb-2">PASEO App</h3>
+            <p class="text-gray-400">App de Paseadores • Wellness</p>
+          </div>
+          <div class="space-y-4 mb-8">
+            <div>
+              <h4 class="text-purple-400 font-semibold mb-2">Desafío</h4>
+              <p class="text-gray-300">55% abandono en onboarding, retención débil, falta de confianza en usuarios</p>
+            </div>
+            <div>
+              <h4 class="text-purple-400 font-semibold mb-2">Solución</h4>
+              <p class="text-gray-300">Onboarding progresivo, microinteracciones motivacionales, sistema de verificación</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑78% Completitud</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑89% Retención W1</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">+45K usuarios</span>
             </div>
           </div>
+          <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
+            Ver caso <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+        <!-- NEXUS -->
+        <div class="project-card">
+          <div class="mb-6">
+            <span class="inline-block px-4 py-2 bg-indigo-500/20 rounded-full text-sm font-semibold text-indigo-300 mb-4">🎯 Enterprise</span>
+            <h3 class="text-4xl font-bold mb-2">Nexus Logistics</h3>
+            <p class="text-gray-400">SaaS B2B Dashboard • Logística</p>
+          </div>
+          <div class="space-y-4 mb-8">
+            <div>
+              <h4 class="text-purple-400 font-semibold mb-2">Desafío</h4>
+              <p class="text-gray-300">Dashboard complejo, 200+ campos, usuarios frustrados, baja adopción</p>
+            </div>
+            <div>
+              <h4 class="text-purple-400 font-semibold mb-2">Solución</h4>
+              <p class="text-gray-300">Simplificación de interfaz, design system coherente, IA contextual</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">+40% Usabilidad</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">200+ Empresas</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">-30% Capacitación</span>
+            </div>
+          </div>
+          <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
+            Ver caso <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+        <!-- LA CAROYENSE -->
+        <div class="project-card">
+          <div class="mb-6">
+            <span class="inline-block px-4 py-2 bg-pink-500/20 rounded-full text-sm font-semibold text-pink-300 mb-4">💰 E-commerce</span>
+            <h3 class="text-4xl font-bold mb-2">La Caroyense</h3>
+            <p class="text-gray-400">Rediseño E-commerce • Retail</p>
+          </div>
+          <div class="space-y-4 mb-8">
+            <div>
+              <h4 class="text-purple-400 font-semibold mb-2">Desafío</h4>
+              <p class="text-gray-300">Conversión 1.2%, abandono carrito 78%, UX obsoleto</p>
+            </div>
+            <div>
+              <h4 class="text-purple-400 font-semibold mb-2">Solución</h4>
+              <p class="text-gray-300">Rediseño completo, checkout optimizado, trust signals estratégicos</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑340% Conversión</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↓45% Abandono</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">+$2.1M</span>
+            </div>
+          </div>
+          <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
+            Ver caso <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+        <!-- YALE -->
+        <div class="project-card">
+          <div class="mb-6">
+            <span class="inline-block px-4 py-2 bg-blue-500/20 rounded-full text-sm font-semibold text-blue-300 mb-4">🎓 Educativo</span>
+            <h3 class="text-4xl font-bold mb-2">Yale School of Art</h3>
+            <p class="text-gray-400">Rediseño Web • Institución</p>
+          </div>
+          <div class="space-y-4 mb-8">
+            <div>
+              <h4 class="text-purple-400 font-semibold mb-2">Desafío</h4>
+              <p class="text-gray-300">Presencia digital desactualizada, info desorganizada, baja aplicaciones</p>
+            </div>
+            <div>
+              <h4 class="text-purple-400 font-semibold mb-2">Solución</h4>
+              <p class="text-gray-300">Rediseño moderno, arquitectura clara, storytelling visual</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑60% Visitas</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑45% Engagement</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold text-green-400">↑35% Apps</span>
+            </div>
+          </div>
+          <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="text-purple-400 font-semibold hover:text-purple-300 flex items-center">
+            Ver caso <i class="fas fa-arrow-right ml-2"></i>
+          </a>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <!-- PROYECTOS PAGE -->
-  <div id="proyectos" class="page">
-    <section class="min-h-screen pt-40 pb-20">
-      <div class="max-w-7xl mx-auto px-4">
-        <h1 class="text-6xl md:text-7xl font-bold mb-6">
-          Todos los <span class="gradient-text">Proyectos</span>
-        </h1>
-        <p class="text-xl text-gray-400 mb-16">Soluciones de diseño que generan impacto</p>
+  <!-- Process Section -->
+  <section id="proceso" class="py-32">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="mb-20 text-center">
+        <h2 class="text-6xl md:text-7xl font-bold mb-6">
+          Cómo <span class="gradient-text">Trabajamos</span>
+        </h2>
+        <p class="text-xl text-gray-400">Un proceso probado para resultados excepcionales</p>
+      </div>
 
-        <div class="grid md:grid-cols-2 gap-12">
-          <div class="glass p-10 rounded-3xl cursor-pointer hover:border-purple-500 transition border-2 border-transparent" onclick="showPage('paseo')">
-            <div class="text-5xl mb-4">🐕</div>
-            <h3 class="text-3xl font-bold mb-2">PASEO App</h3>
-            <p class="text-gray-400 mb-4">Aplicación móvil para conectar dueños de mascotas con paseadores verificados</p>
-            <div class="flex items-center text-purple-400 font-semibold">
-              Explorar proyecto <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-          </div>
-
-          <div class="glass p-10 rounded-3xl cursor-pointer hover:border-purple-500 transition border-2 border-transparent" onclick="showPage('nexus')">
-            <div class="text-5xl mb-4">📊</div>
-            <h3 class="text-3xl font-bold mb-2">Nexus Logistics</h3>
-            <p class="text-gray-400 mb-4">SaaS B2B dashboard para gestión de logística empresarial</p>
-            <div class="flex items-center text-purple-400 font-semibold">
-              Explorar proyecto <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-          </div>
-
-          <div class="glass p-10 rounded-3xl cursor-pointer hover:border-purple-500 transition border-2 border-transparent" onclick="showPage('caroyense')">
-            <div class="text-5xl mb-4">🛍️</div>
-            <h3 class="text-3xl font-bold mb-2">La Caroyense</h3>
-            <p class="text-gray-400 mb-4">Rediseño e-commerce con enfoque en conversión y UX</p>
-            <div class="flex items-center text-purple-400 font-semibold">
-              Explorar proyecto <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-          </div>
-
-          <div class="glass p-10 rounded-3xl cursor-pointer hover:border-purple-500 transition border-2 border-transparent" onclick="showPage('yale')">
-            <div class="text-5xl mb-4">🎓</div>
-            <h3 class="text-3xl font-bold mb-2">Yale School of Art</h3>
-            <p class="text-gray-400 mb-4">Rediseño sitio web educativo con experiencia moderna</p>
-            <div class="flex items-center text-purple-400 font-semibold">
-              Explorar proyecto <i class="fas fa-arrow-right ml-2"></i>
-            </div>
-          </div>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3 class="text-2xl font-bold mb-4">Discovery</h3>
+          <p class="text-gray-400">Entendemos tu negocio, usuarios y mercado mediante investigación profunda</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3 class="text-2xl font-bold mb-4">Strategy</h3>
+          <p class="text-gray-400">Definimos estrategia basada en insights, datos y oportunidades reales</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3 class="text-2xl font-bold mb-4">Design</h3>
+          <p class="text-gray-400">Creamos prototipos interactivos y testamos con usuarios reales</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3 class="text-2xl font-bold mb-4">Optimize</h3>
+          <p class="text-gray-400">Medimos impacto, iteramos y optimizamos continuamente</p>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <!-- DETALLE PASEO -->
-  <div id="paseo" class="page">
-    <section class="min-h-screen pt-40 pb-20">
-      <div class="max-w-5xl mx-auto px-4">
-        <button onclick="showPage('proyectos')" class="mb-8 text-purple-400 hover:text-purple-300 flex items-center">
-          <i class="fas fa-arrow-left mr-2"></i> Volver a Proyectos
-        </button>
+  <!-- Testimonials Section -->
+  <section class="py-32 bg-gradient-to-b from-purple-900/10 to-transparent">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="mb-20">
+        <h2 class="text-6xl md:text-7xl font-bold mb-6">
+          Lo que dicen <span class="gradient-text">clientes</span>
+        </h2>
+        <p class="text-xl text-gray-400">Resultados reales de productos reales</p>
+      </div>
 
-        <div class="mb-12">
-          <span class="inline-block px-4 py-2 bg-purple-500/20 rounded-full text-sm font-semibold text-purple-300 mb-4">⭐ Caso de Estudio</span>
-          <h1 class="text-6xl md:text-7xl font-bold mb-4">PASEO App</h1>
-          <p class="text-2xl text-gray-300">Validación de Product-Market Fit para App de Paseadores</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 mb-16">
-          <div>
-            <h2 class="text-3xl font-bold mb-6">El Problema</h2>
-            <p class="text-gray-300 text-lg mb-6">
-              MVP sin validación. ¿Resuelve un problema real? ¿Pagarían por esto? Necesitaba validar antes de invertir en desarrollo.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-purple-400 mb-2">Desafíos Identificados:</h4>
-                <ul class="text-gray-400 space-y-2">
-                  <li>• 55% abandono en onboarding</li>
-                  <li>• Gamificación no motivaba usuarios</li>
-                  <li>• Retención semanal solo 28%</li>
-                  <li>• Falta de confianza en paseadores</li>
-                </ul>
-              </div>
+      <div class="carousel">
+        <div class="testimonial-card">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-user text-purple-400"></i>
+            </div>
+            <div>
+              <h4 class="font-bold">CEO, Startup Tech</h4>
+              <p class="text-gray-400 text-sm">⭐⭐⭐⭐⭐</p>
             </div>
           </div>
-
-          <div class="glass p-10 rounded-3xl">
-            <h3 class="text-2xl font-bold mb-6">Resultados Obtenidos</h3>
-            <div class="space-y-4">
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">↑78%</div>
-                <p class="text-gray-400">Completitud de Onboarding</p>
-              </div>
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">↑89%</div>
-                <p class="text-gray-400">Retención en Semana 1</p>
-              </div>
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">+3.2x</div>
-                <p class="text-gray-400">Engagement General</p>
-              </div>
-              <div class="pt-4">
-                <div class="text-3xl font-bold text-blue-400">+45K</div>
-                <p class="text-gray-400">Usuarios Retenidos en 3 Meses</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-16">
-          <h2 class="text-3xl font-bold mb-8">Mi Proceso</h2>
-          <div class="grid md:grid-cols-4 gap-6">
-            <div class="glass p-6 rounded-2xl text-center">
-              <div class="text-4xl mb-4 text-purple-400"><i class="fas fa-magnifying-glass"></i></div>
-              <h4 class="font-bold mb-2">Discovery</h4>
-              <p class="text-gray-400 text-sm">30+ entrevistas en campo + análisis competencia</p>
-            </div>
-            <div class="glass p-6 rounded-2xl text-center">
-              <div class="text-4xl mb-4 text-indigo-400"><i class="fas fa-pencil-ruler"></i></div>
-              <h4 class="font-bold mb-2">Diseño</h4>
-              <p class="text-gray-400 text-sm">Prototipo interactivo para testing rápido</p>
-            </div>
-            <div class="glass p-6 rounded-2xl text-center">
-              <div class="text-4xl mb-4 text-pink-400"><i class="fas fa-flask"></i></div>
-              <h4 class="font-bold mb-2">Validación</h4>
-              <p class="text-gray-400 text-sm">20 sesiones usability testing</p>
-            </div>
-            <div class="glass p-6 rounded-2xl text-center">
-              <div class="text-4xl mb-4 text-green-400"><i class="fas fa-lightbulb"></i></div>
-              <h4 class="font-bold mb-2">Insights</h4>
-              <p class="text-gray-400 text-sm">Roadmap basado en feedback real</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="glass p-12 rounded-3xl">
-          <h3 class="text-2xl font-bold mb-4">Lección Aprendida</h3>
-          <p class="text-gray-300 text-lg">
-            "La mejor solución no es siempre la que diseño. Es la que aprendo del usuario. La investigación early-stage no cuesta, invierte."
+          <p class="text-gray-300 italic">
+            "El trabajo de David transformó completamente nuestro producto. +78% en retención de usuarios en 3 meses. Recomendado 100%."
           </p>
         </div>
 
-        <div class="text-center mt-16">
-          <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" target="_blank" class="gradient-bg text-white px-10 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition inline-flex items-center">
-            Ver Repositorio <i class="fas fa-external-link-alt ml-2"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- DETALLE NEXUS -->
-  <div id="nexus" class="page">
-    <section class="min-h-screen pt-40 pb-20">
-      <div class="max-w-5xl mx-auto px-4">
-        <button onclick="showPage('proyectos')" class="mb-8 text-purple-400 hover:text-purple-300 flex items-center">
-          <i class="fas fa-arrow-left mr-2"></i> Volver a Proyectos
-        </button>
-
-        <div class="mb-12">
-          <span class="inline-block px-4 py-2 bg-indigo-500/20 rounded-full text-sm font-semibold text-indigo-300 mb-4">🎯 Enterprise SaaS</span>
-          <h1 class="text-6xl md:text-7xl font-bold mb-4">Nexus Logistics</h1>
-          <p class="text-2xl text-gray-300">Dashboard B2B para Gestión de Logística Empresarial</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 mb-16">
-          <div>
-            <h2 class="text-3xl font-bold mb-6">El Reto</h2>
-            <p class="text-gray-300 text-lg mb-6">
-              Plataforma de logística compleja. Usuarios frustrados, interfaz poco intuitiva, adopción lenta. Necesitaban simplificar 200+ campos en un dashboard usable.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-purple-400 mb-2">Desafíos:</h4>
-                <ul class="text-gray-400 space-y-2">
-                  <li>• Interfaz compleja con 200+ campos</li>
-                  <li>• Baja adopción por usuarios</li>
-                  <li>• Tiempo de capacitación alto</li>
-                  <li>• Falta de diseño system</li>
-                </ul>
-              </div>
+        <div class="testimonial-card">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-user text-indigo-400"></i>
             </div>
-          </div>
-
-          <div class="glass p-10 rounded-3xl">
-            <h3 class="text-2xl font-bold mb-6">Resultados Logrados</h3>
-            <div class="space-y-4">
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">+40%</div>
-                <p class="text-gray-400">Mejora en Usabilidad (SUS)</p>
-              </div>
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">200+</div>
-                <p class="text-gray-400">Empresas Implementadas</p>
-              </div>
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">-30%</div>
-                <p class="text-gray-400">Reducción Tiempo Capacitación</p>
-              </div>
-              <div class="pt-4">
-                <div class="text-3xl font-bold text-blue-400">92%</div>
-                <p class="text-gray-400">Satisfacción de Usuario</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-16">
-          <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="gradient-bg text-white px-10 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition inline-flex items-center">
-            Ver Repositorio <i class="fas fa-external-link-alt ml-2"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- DETALLE LA CAROYENSE -->
-  <div id="caroyense" class="page">
-    <section class="min-h-screen pt-40 pb-20">
-      <div class="max-w-5xl mx-auto px-4">
-        <button onclick="showPage('proyectos')" class="mb-8 text-purple-400 hover:text-purple-300 flex items-center">
-          <i class="fas fa-arrow-left mr-2"></i> Volver a Proyectos
-        </button>
-
-        <div class="mb-12">
-          <span class="inline-block px-4 py-2 bg-pink-500/20 rounded-full text-sm font-semibold text-pink-300 mb-4">🎨 E-commerce</span>
-          <h1 class="text-6xl md:text-7xl font-bold mb-4">La Caroyense</h1>
-          <p class="text-2xl text-gray-300">Rediseño E-commerce con Enfoque en Conversión</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 mb-16">
-          <div>
-            <h2 class="text-3xl font-bold mb-6">El Reto</h2>
-            <p class="text-gray-300 text-lg mb-6">
-              Tasa de conversión del 1.2% y abandono de carrito del 78%. Necesitaba modernizar la experiencia y optimizar el funnel de ventas.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-purple-400 mb-2">Problemas Encontrados:</h4>
-                <ul class="text-gray-400 space-y-2">
-                  <li>• Conversión muy baja (1.2%)</li>
-                  <li>• Abandono carrito alto (78%)</li>
-                  <li>• UX obsoleto</li>
-                  <li>• No optimizado mobile</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass p-10 rounded-3xl">
-            <h3 class="text-2xl font-bold mb-6">Resultados Obtenidos</h3>
-            <div class="space-y-4">
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">↑340%</div>
-                <p class="text-gray-400">Aumento en Conversión</p>
-              </div>
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">↓45%</div>
-                <p class="text-gray-400">Reducción Abandono</p>
-              </div>
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">+$2.1M</div>
-                <p class="text-gray-400">Ingresos Adicionales</p>
-              </div>
-              <div class="pt-4">
-                <div class="text-3xl font-bold text-blue-400">580%</div>
-                <p class="text-gray-400">ROI en 6 Meses</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-16">
-          <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="gradient-bg text-white px-10 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition inline-flex items-center">
-            Ver Repositorio <i class="fas fa-external-link-alt ml-2"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- DETALLE YALE -->
-  <div id="yale" class="page">
-    <section class="min-h-screen pt-40 pb-20">
-      <div class="max-w-5xl mx-auto px-4">
-        <button onclick="showPage('proyectos')" class="mb-8 text-purple-400 hover:text-purple-300 flex items-center">
-          <i class="fas fa-arrow-left mr-2"></i> Volver a Proyectos
-        </button>
-
-        <div class="mb-12">
-          <span class="inline-block px-4 py-2 bg-blue-500/20 rounded-full text-sm font-semibold text-blue-300 mb-4">🎓 Educativo</span>
-          <h1 class="text-6xl md:text-7xl font-bold mb-4">Yale School of Art</h1>
-          <p class="text-2xl text-gray-300">Rediseño de Sitio Web Educativo</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 mb-16">
-          <div>
-            <h2 class="text-3xl font-bold mb-6">El Reto</h2>
-            <p class="text-gray-300 text-lg mb-6">
-              Modernizar presencia digital y mejorar la experiencia de estudiantes y candidatos. Sitio con información desorganizada y navegación confusa.
-            </p>
-            <div class="space-y-4">
-              <div>
-                <h4 class="font-semibold text-purple-400 mb-2">Objetivos:</h4>
-                <ul class="text-gray-400 space-y-2">
-                  <li>• Mejorar experiencia de estudiantes</li>
-                  <li>• Aumentar aplicaciones</li>
-                  <li>• Modernizar visual</li>
-                  <li>• Organizar información</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass p-10 rounded-3xl">
-            <h3 class="text-2xl font-bold mb-6">Resultados Logrados</h3>
-            <div class="space-y-4">
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">↑60%</div>
-                <p class="text-gray-400">Aumento de Visitas</p>
-              </div>
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">↑45%</div>
-                <p class="text-gray-400">Mayor Engagement</p>
-              </div>
-              <div class="border-b border-white/10 pb-4">
-                <div class="text-3xl font-bold text-green-400">↑35%</div>
-                <p class="text-gray-400">Aumento Aplicaciones</p>
-              </div>
-              <div class="pt-4">
-                <div class="text-3xl font-bold text-blue-400">4.8/5</div>
-                <p class="text-gray-400">Satisfacción de Usuarios</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-16">
-          <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="gradient-bg text-white px-10 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition inline-flex items-center">
-            Ver Repositorio <i class="fas fa-external-link-alt ml-2"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- SOBRE MI PAGE -->
-  <div id="sobre-mi" class="page">
-    <section class="min-h-screen pt-40 pb-20">
-      <div class="max-w-5xl mx-auto px-4">
-        <h1 class="text-6xl md:text-7xl font-bold mb-6">
-          Sobre <span class="gradient-text">Mí</span>
-        </h1>
-        
-        <div class="grid md:grid-cols-2 gap-16 mb-20">
-          <div>
-            <div class="glass p-10 rounded-3xl mb-8">
-              <h3 class="text-2xl font-bold mb-4">Mi Historia</h3>
-              <p class="text-gray-300 mb-4">
-                Soy David Sebastián Díaz, diseñador de productos digitales que crecen. Mi pasión es resolver problemas complejos mediante UX/UI, investigación profunda y decisiones de diseño respaldadas por datos.
-              </p>
-              <p class="text-gray-300">
-                He trabajado en 30+ proyectos en producción, impactando a más de 5 millones de usuarios, con mejoras promedio de +35% en conversión.
-              </p>
-            </div>
-
-            <div class="glass p-10 rounded-3xl">
-              <h3 class="text-2xl font-bold mb-6">Certificaciones</h3>
-              <div class="space-y-4">
-                <div class="flex items-start">
-                  <i class="fas fa-certificate text-purple-400 mr-3 mt-1"></i>
-                  <div>
-                    <h4 class="font-bold">IBM Professional (V2)</h4>
-                    <p class="text-gray-400 text-sm">UX/UI Design</p>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <i class="fas fa-certificate text-purple-400 mr-3 mt-1"></i>
-                  <div>
-                    <h4 class="font-bold">Google Professional (v2)</h4>
-                    <p class="text-gray-400 text-sm">UX Design</p>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <i class="fas fa-certificate text-purple-400 mr-3 mt-1"></i>
-                  <div>
-                    <h4 class="font-bold">Google Advanced Analytics</h4>
-                    <p class="text-gray-400 text-sm">Data Analysis</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-2xl font-bold mb-8">Skillset</h3>
-            
-            <div class="mb-8">
-              <h4 class="text-purple-400 font-bold mb-4 uppercase text-sm tracking-wider">UX & Producto</h4>
-              <div class="flex flex-wrap gap-3">
-                <span class="px-4 py-2 glass rounded-full text-sm">User Research</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Product Strategy</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Journey Mapping</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Information Architecture</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Design Systems</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Accessibility</span>
-              </div>
-            </div>
-
-            <div class="mb-8">
-              <h4 class="text-indigo-400 font-bold mb-4 uppercase text-sm tracking-wider">UI & Visual</h4>
-              <div class="flex flex-wrap gap-3">
-                <span class="px-4 py-2 glass rounded-full text-sm">Figma</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Interaction Design</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Microinteractions</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Responsive Design</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Dark/Light Mode</span>
-              </div>
-            </div>
-
             <div>
-              <h4 class="text-pink-400 font-bold mb-4 uppercase text-sm tracking-wider">Data & Tech</h4>
-              <div class="flex flex-wrap gap-3">
-                <span class="px-4 py-2 glass rounded-full text-sm">Analytics</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Python</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">SQL</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Power BI</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">Git</span>
-                <span class="px-4 py-2 glass rounded-full text-sm">ML Basics</span>
-              </div>
+              <h4 class="font-bold">Product Manager, Enterprise</h4>
+              <p class="text-gray-400 text-sm">⭐⭐⭐⭐⭐</p>
             </div>
+          </div>
+          <p class="text-gray-300 italic">
+            "Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad mejoraron +40% post-rediseño."
+          </p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-pink-500/20 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-user text-pink-400"></i>
+            </div>
+            <div>
+              <h4 class="font-bold">Founder, E-commerce</h4>
+              <p class="text-gray-400 text-sm">⭐⭐⭐⭐⭐</p>
+            </div>
+          </div>
+          <p class="text-gray-300 italic">
+            "+$2.1M en ingresos tras rediseño. El mejor ROI que hemos visto. Profesional, preciso y orientado a resultados."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Section -->
+  <section class="py-32">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-6xl md:text-7xl font-bold mb-20 text-center">
+        Por qué <span class="gradient-text">elegirnos</span>
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="text-center">
+          <div class="stat-number text-3xl mb-4">30+</div>
+          <h3 class="text-2xl font-bold mb-4">Proyectos</h3>
+          <p class="text-gray-400">Experiencia comprobada en producción</p>
+        </div>
+        <div class="text-center">
+          <div class="stat-number text-3xl mb-4">5M+</div>
+          <h3 class="text-2xl font-bold mb-4">Usuarios</h3>
+          <p class="text-gray-400">Impacto real en millones de personas</p>
+        </div>
+        <div class="text-center">
+          <div class="stat-number text-3xl mb-4">18+</div>
+          <h3 class="text-2xl font-bold mb-4">Certificaciones</h3>
+          <p class="text-gray-400">Experto en UX, Data y Producto</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-32 bg-gradient-to-b from-purple-900/10 to-transparent">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-6xl md:text-7xl font-bold mb-20 text-center">
+        Preguntas <span class="gradient-text">Frecuentes</span>
+      </h2>
+
+      <details>
+        <summary>¿Cuál es tu proceso de diseño?</summary>
+        <div class="p-6 text-gray-300">
+          Utilizamos un proceso iterativo: Discovery → Strategy → Design → Validation → Optimization. Cada fase está basada en investigación real y datos del usuario.
+        </div>
+      </details>
+
+      <details>
+        <summary>¿Cómo garantizas resultados measurables?</summary>
+        <div class="p-6 text-gray-300">
+          Todo proyecto tiene KPIs claros desde el inicio. Medimos conversión, retención, satisfacción y ROI. Mostro los números reales, no promesas.
+        </div>
+      </details>
+
+      <details>
+        <summary>¿Puedo solicitar cambios después de terminar?</summary>
+        <div class="p-6 text-gray-300">
+          Sí. Las iteraciones basadas en feedback real son parte del proceso. Trabajamos hasta que los resultados cumplan los objetivos.
+        </div>
+      </details>
+
+      <details>
+        <summary>¿Qué herramientas utilizas?</summary>
+        <div class="p-6 text-gray-300">
+          Figma para diseño, Python/SQL para análisis, Power BI para reporting, Git para versionamiento. Las mejores herramientas para cada fase.
+        </div>
+      </details>
+
+      <details>
+        <summary>¿Trabajas con equipos remotos?</summary>
+        <div class="p-6 text-gray-300">
+          100% remoto. Timezone flexible. Comunicación clara y documentación detallada. Estoy acostumbrado a colaborar con equipos globales.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contacto" class="py-32">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="gradient-bg rounded-3xl p-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+        <div class="relative z-10">
+          <h2 class="text-6xl md:text-7xl font-bold mb-6">¿Necesitas un Producto que Crezca?</h2>
+          <p class="text-2xl mb-12 text-gray-100">Hablemos sobre tu proyecto</p>
+          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="bg-white text-purple-600 px-12 py-5 rounded-full text-lg font-bold hover:shadow-2xl transition transform hover:scale-105 inline-block">
+              Agendar Llamada
+            </a>
+            <a href="mailto:david.diaz.uxdata@gmail.com" class="border-2 border-white text-white px-12 py-5 rounded-full text-lg font-bold hover:bg-white/10 transition inline-block">
+              Enviar Email
+            </a>
           </div>
         </div>
       </div>
-    </section>
-  </div>
-
-  <!-- CONTACTO PAGE -->
-  <div id="contacto" class="page">
-    <section class="min-h-screen flex items-center justify-center py-20 pt-40">
-      <div class="max-w-4xl mx-auto px-4 w-full">
-        <h1 class="text-6xl md:text-7xl font-bold mb-12 text-center">
-          ¿Hablamos sobre tu <span class="gradient-text">proyecto?</span>
-        </h1>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-20">
-          <a href="mailto:david.diaz.uxdata@gmail.com" class="glass p-10 rounded-3xl text-center hover:border-purple-500 border-2 border-transparent transition">
-            <div class="text-4xl mb-4"><i class="fas fa-envelope text-purple-400"></i></div>
-            <h3 class="text-xl font-bold mb-2">Email</h3>
-            <p class="text-gray-400">david.diaz.uxdata@gmail.com</p>
-          </a>
-
-          <a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="glass p-10 rounded-3xl text-center hover:border-purple-500 border-2 border-transparent transition">
-            <div class="text-4xl mb-4"><i class="fas fa-calendar text-indigo-400"></i></div>
-            <h3 class="text-xl font-bold mb-2">Llamada Estratégica</h3>
-            <p class="text-gray-400">Agendar 30 min</p>
-          </a>
-
-          <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="glass p-10 rounded-3xl text-center hover:border-purple-500 border-2 border-transparent transition">
-            <div class="text-4xl mb-4"><i class="fab fa-linkedin text-blue-400"></i></div>
-            <h3 class="text-xl font-bold mb-2">LinkedIn</h3>
-            <p class="text-gray-400">Conectar</p>
-          </a>
-        </div>
-
-        <div class="glass p-12 rounded-3xl mb-8">
-          <h2 class="text-3xl font-bold mb-6">Busco colaborar en:</h2>
-          <ul class="space-y-4 text-gray-300">
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-green-400 mr-3 mt-1"></i>
-              <span>Productos digitales B2B/B2C en etapa de crecimiento</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-green-400 mr-3 mt-1"></i>
-              <span>Transformación UX de plataformas existentes</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-green-400 mr-3 mt-1"></i>
-              <span>Consultoría en UX para equipos sin expertise</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-green-400 mr-3 mt-1"></i>
-              <span>Mentorship en UX/UI para juniors serios</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="text-center">
-          <p class="text-gray-400 italic">100% remoto, timezone flexible</p>
-        </div>
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="py-12 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
-      <p class="mb-4">© 2026 David Sebastián Díaz. All Rights Reserved.</p>
-      <p class="text-sm italic">"El buen diseño es invisible. Solo ves los resultados."</p>
+  <footer class="py-20 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div>
+          <h3 class="text-2xl font-bold gradient-text mb-6">NeoProdUx</h3>
+          <p class="text-gray-400">Diseño de productos digitales que crecen.</p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-6">Navegación</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li><a href="#servicios" class="hover:text-purple-400">Servicios</a></li>
+            <li><a href="#proyectos" class="hover:text-purple-400">Proyectos</a></li>
+            <li><a href="#proceso" class="hover:text-purple-400">Proceso</a></li>
+            <li><a href="#faq" class="hover:text-purple-400">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-6">Redes</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="hover:text-purple-400">LinkedIn</a></li>
+            <li><a href="https://github.com/dsd228" target="_blank" class="hover:text-purple-400">GitHub</a></li>
+            <li><a href="https://dribbble.com" target="_blank" class="hover:text-purple-400">Dribbble</a></li>
+            <li><a href="https://behance.net" target="_blank" class="hover:text-purple-400">Behance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-6">Contacto</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li><a href="mailto:david.diaz.uxdata@gmail.com" class="hover:text-purple-400">Email</a></li>
+            <li><a href="https://calendly.com/david-sebastian-diaz" target="_blank" class="hover:text-purple-400">Calendly</a></li>
+            <li class="text-sm">100% Remoto</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-12 text-center text-gray-400">
+        <p>© 2026 NeoProdUx. All Rights Reserved.</p>
+        <p class="italic mt-2">"El buen diseño no es visible. Solo sientes los resultados."</p>
+      </div>
     </div>
   </footer>
 
@@ -789,25 +714,17 @@
       }
     });
 
-    // Page navigation
-    function showPage(pageId) {
-      // Hide all pages
-      document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
       });
-      
-      // Show selected page
-      document.getElementById(pageId).classList.add("active");
-      
-      // Scroll to top
-      window.scrollTo(0, 0);
-    }
-
-    // Keyboard navigation
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        showPage("home");
-      }
     });
   </script>
 </body>
