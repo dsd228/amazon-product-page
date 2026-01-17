@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diseño de Aplicaciones Móviles - NeoProdUx</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #ffffff; color: #1a1a1a; overflow-x: hidden; font-family: "Inter", sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: "Sora", sans-serif; font-weight: 700; }
+
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0; }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.3rem; font-weight: 800; color: #000; cursor: pointer; text-decoration: none; }
+    nav a { color: #666; font-size: 0.95rem; transition: color 0.3s; text-decoration: none; }
+    nav a:hover { color: #000; }
+    .nav-cta { background: #000; color: #fff; padding: 10px 24px; border-radius: 8px; transition: all 0.3s; }
+    .nav-cta:hover { background: #333; transform: scale(1.05); }
+
+    .hero { padding-top: 140px; padding-bottom: 100px; background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%); overflow: hidden; }
+    .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; text-align: center; }
+    .hero h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 24px; font-weight: 800; color: #000; }
+    .hero p { font-size: 1.15rem; color: #666; margin-bottom: 40px; line-height: 1.7; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 14px 32px; border-radius: 8px; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; }
+    .btn-primary { background: #000; color: #fff; }
+    .btn-primary:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
+    .btn-secondary { background: transparent; color: #000; border: 2px solid #000; }
+    .btn-secondary:hover { background: #000; color: #fff; }
+
+    .stats { padding: 60px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
+    .stats-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center; }
+    .stat-item h3 { font-size: 3rem; color: #000; margin-bottom: 12px; font-weight: 800; }
+    .stat-item p { color: #666; font-size: 1rem; font-weight: 500; }
+
+    .section-title { max-width: 1400px; margin: 0 auto 60px; padding: 0 40px; }
+    .section-title h2 { font-size: 3.5rem; color: #000; margin-bottom: 16px; line-height: 1.2; }
+    .section-title p { color: #666; font-size: 1.15rem; max-width: 600px; line-height: 1.6; }
+
+    .services { padding: 100px 40px; background: #fff; }
+    .services-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+    .service-card { background: #f9f9f9; padding: 40px; border-radius: 12px; transition: all 0.4s; border: 1px solid #e5e5e5; text-align: center; }
+    .service-card:hover { transform: translateY(-12px); border-color: #000; background: #fff; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .service-icon { width: 60px; height: 60px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; background: #000; color: #fff; border-radius: 50%; font-size: 1.5rem; }
+    .service-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: #000; }
+    .service-card p { color: #666; line-height: 1.7; font-size: 0.95rem; }
+
+    .benefits { padding: 100px 40px; background: #f9f9f9; }
+    .benefits-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+    .benefit-item { background: #fff; padding: 30px; border-radius: 12px; border: 1px solid #e5e5e5; }
+    .benefit-item h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .benefit-item p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+
+    .tech-stack { padding: 100px 40px; background: #fff; }
+    .tech-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; }
+    .tech-item { background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e5e5e5; }
+    .tech-item h4 { font-size: 1rem; color: #000; font-weight: 600; }
+
+    .process { padding: 100px 40px; background: #f9f9f9; }
+    .process-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; }
+    .process-step { text-align: center; }
+    .step-number { font-size: 3rem; font-weight: 800; color: #000; margin-bottom: 16px; }
+    .process-step h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .process-step p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+
+    .portfolio { padding: 100px 40px; background: #fff; }
+    .portfolio-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .portfolio-card { background: #f9f9f9; border-radius: 12px; overflow: hidden; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .portfolio-card:hover { transform: translateY(-12px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .portfolio-image { width: 100%; height: 250px; background: linear-gradient(135deg, #667eea, #764ba2); background-size: cover; background-position: center; }
+    .portfolio-content { padding: 24px; }
+    .portfolio-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: #000; }
+    .portfolio-card p { color: #666; font-size: 0.9rem; line-height: 1.5; }
+
+    .testimonials { padding: 100px 40px; background: #f9f9f9; }
+    .testimonials-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .testimonial-card { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .rating { color: #fbbf24; margin-bottom: 16px; font-size: 1.1rem; }
+    .testimonial-text { color: #333; font-style: italic; margin-bottom: 20px; line-height: 1.8; }
+    .testimonial-author { font-weight: 600; color: #000; margin-bottom: 4px; }
+    .testimonial-role { color: #999; font-size: 0.9rem; }
+
+    .pricing { padding: 100px 40px; background: #fff; }
+    .pricing-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .pricing-card { background: #f9f9f9; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; text-align: center; transition: all 0.4s; }
+    .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border-color: #000; }
+    .pricing-card h3 { font-size: 1.5rem; margin-bottom: 16px; color: #000; }
+    .pricing-card .price { font-size: 2.5rem; font-weight: 800; color: #000; margin-bottom: 8px; }
+    .pricing-card .duration { color: #666; font-size: 0.9rem; margin-bottom: 32px; }
+    .pricing-features { text-align: left; margin-bottom: 32px; }
+    .pricing-features li { color: #666; padding: 8px 0; font-size: 0.95rem; }
+
+    .cta { padding: 80px 40px; background: #000; color: #fff; text-align: center; }
+    .cta h2 { font-size: 2.5rem; margin-bottom: 24px; }
+    .cta p { font-size: 1.1rem; color: #ccc; margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-buttons .btn { background: #fff; color: #000; }
+    .cta-buttons .btn:hover { background: #e5e5e5; }
+
+    footer { background: #f9f9f9; padding: 60px 40px; border-top: 1px solid #e5e5e5; }
+    .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-section h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: #000; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-section ul { list-style: none; }
+    .footer-section li { margin-bottom: 12px; }
+    .footer-section a { color: #666; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+    .footer-section a:hover { color: #000; }
+    .footer-bottom { border-top: 1px solid #e5e5e5; padding-top: 40px; text-align: center; color: #999; font-size: 0.9rem; }
+    .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
+    .social-links a { color: #000; font-size: 1.25rem; transition: color 0.3s; text-decoration: none; }
+    .social-links a:hover { color: #667eea; }
+
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 6px; color: #666; font-size: 0.95rem; text-decoration: none; transition: color 0.3s; }
+    .dropdown-trigger:hover { color: #000; }
+    .dropdown-trigger::after { content: '⌄'; font-size: 0.7rem; transition: transform 0.3s; }
+    .nav-dropdown:hover .dropdown-trigger::after { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s; z-index: 999; margin-top: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { display: block; padding: 12px 20px; color: #666; text-decoration: none; transition: all 0.3s; }
+    .dropdown-menu a:hover { background: #f9f9f9; color: #000; }
+    .dropdown-menu a:first-child { border-radius: 8px 8px 0 0; }
+    .dropdown-menu a:last-child { border-radius: 0 0 8px 8px; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .section-title h2 { font-size: 2rem; }
+      .stat-item h3 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">NeoProdUx</a>
+    <div style="display: flex; gap: 40px; align-items: center;">
+      <div class="nav-dropdown">
+        <a href="#servicios" class="dropdown-trigger">Servicios</a>
+        <div class="dropdown-menu">
+          <a href="ui-ux-design.html">Diseño UI-UX</a>
+          <a href="mobile-app-design.html">Diseño de aplicaciones móviles</a>
+          <a href="website-design.html">Diseño de sitios web</a>
+          <a href="#servicios">Figma a HTML</a>
+          <a href="#servicios">Figma a WordPress</a>
+          <a href="#servicios">Figma a Webflow</a>
+        </div>
+      </div>
+      <a href="index.html#proyectos">Proyectos</a>
+      <a href="index.html#proceso">Proceso</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contacto" class="nav-cta">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Diseño de Aplicaciones Móviles</h1>
+    <p>Experiencias intuitivas y cautivadoras en móviles que generan resultados reales. Transformamos ideas en aplicaciones que tus usuarios adorarán.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="document.querySelector('#pricing').scrollIntoView({behavior: 'smooth'})">Ver Paquetes</button>
+      <button class="btn btn-secondary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Agendar Llamada</button>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item"><h3>50+</h3><p>Apps Móviles Diseñadas</p></div>
+    <div class="stat-item"><h3>100M+</h3><p>Descargas Acumuladas</p></div>
+    <div class="stat-item"><h3>+85%</h3><p>Retención de Usuarios</p></div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-title">
+    <h2>Nuestros Servicios de Diseño Móvil</h2>
+    <p>Soluciones completas de UI/UX para aplicaciones que cumplen objetivos de negocio</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-magnifying-glass"></i></div>
+      <h3>Investigación y Análisis</h3>
+      <p>Recolectamos y analizamos datos de usuarios para fundamentar cada decisión de diseño en insights reales.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-pen-fancy"></i></div>
+      <h3>Wireframing y Prototipos</h3>
+      <p>Creamos esqueletos funcionales y modelos interactivos que validan la solución antes de desarrollo.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-palette"></i></div>
+      <h3>Diseño Visual</h3>
+      <p>Elementos visuales cautivadores: colores, tipografía, iconografía e ilustraciones personalizadas.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-hand-pointer"></i></div>
+      <h3>Diseño de Interacción</h3>
+      <p>Definimos cómo los usuarios interactúan con la interfaz, optimizando cada gesto y micro-interacción.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-sparkles"></i></div>
+      <h3>Identidad y Design System</h3>
+      <p>Construimos guías visuales consistentes que escalan tu producto a largo plazo sin fricciones.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+      <h3>Iteración Post-Lanzamiento</h3>
+      <p>Medimos resultados y mejoramos continuamente basado en feedback real de usuarios y analíticas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="section-title">
+    <h2>Beneficios del Diseño Móvil Estratégico</h2>
+    <p>¿Por qué invertir en buen diseño de apps?</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <h3>Navegación Intuitiva</h3>
+      <p>Interfaces claras que permiten a los usuarios encontrar lo que necesitan sin frustración. Menos clics, mejor experiencia, más retención.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>Satisfacción del Usuario</h3>
+      <p>Diseño enfocado en user-centric que reduce fricción, simplifica tareas y crea experiencias memorables que generan engagement.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>Mayor Retención</h3>
+      <p>Interfaces pegajosas con interacciones bien pensadas, personalizaciones y elementos engaging que mantienen usuarios activos.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>Identidad Visual Sólida</h3>
+      <p>Diseño coherente que refuerza tu marca en cada pantalla, generando conexión instantánea y diferenciación en mercado competitivo.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>Mejor Conversión</h3>
+      <p>Flujos optimizados y llamadas a acción estratégicas que transforman visitas en acciones deseadas, maximizando ROI de tu app.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>Accesibilidad Inclusiva</h3>
+      <p>Diseñamos para todos: cumplimiento de estándares WCAG, soporte para discapacidades, interfaces que expanden tu mercado potencial.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tech-stack">
+  <div class="section-title">
+    <h2>Stack Tecnológico que Usamos</h2>
+    <p>Herramientas líderes en la industria del diseño móvil</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item"><h4>Figma</h4></div>
+    <div class="tech-item"><h4>Adobe XD</h4></div>
+    <div class="tech-item"><h4>Framer</h4></div>
+    <div class="tech-item"><h4>Miro</h4></div>
+    <div class="tech-item"><h4>Protopie</h4></div>
+    <div class="tech-item"><h4>Figma AI</h4></div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-title">
+    <h2>Nuestro Proceso Comprobado</h2>
+    <p>Metodología sistemática para resultados excepcionales</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h3>Ideation</h3>
+      <p>Entendemos tu visión. Comparte tus archivos Figma, requerimientos y expectativas.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h3>Research</h3>
+      <p>Análisis profundo de usuarios y competencia. Validamos ideas con data real antes de diseñar.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h3>Design</h3>
+      <p>Creatividad estratégica: wireframes, prototipos interactivos y diseño visual polished.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">4</div>
+      <h3>Build</h3>
+      <p>Traducimos diseño a código limpio, optimizado y listo para producción.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">5</div>
+      <h3>Testing</h3>
+      <p>Validamos con usuarios reales. Identificamos gaps y oportunidades de mejora.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">6</div>
+      <h3>Deliver</h3>
+      <p>Lanzamos producto pulido que cumple objetivos de negocio y supera expectativas de usuarios.</p>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="section-title">
+    <h2>Casos de Éxito en Aplicaciones Móviles</h2>
+    <p>Proyectos que transformaron negocios a través del diseño</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Home16 Pro - 2.png');"></div>
+      <div class="portfolio-content">
+        <h3>PASEO App</h3>
+        <p>App de paseadores con validación de identidad y tracking real-time. 45K usuarios, 89% retención, +78% engagement.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Iniciar sesion16 Pro - 16.png');"></div>
+      <div class="portfolio-content">
+        <h3>Auth Flow Redesign</h3>
+        <p>Simplificamos onboarding. Reducimos fricción en 60%, incrementamos completions de registro en +45%.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Mi cuenta ClientePro - 21.png');"></div>
+      <div class="portfolio-content">
+        <h3>Dashboard Mobile</h3>
+        <p>Panel de control optimizado para móvil. Mejora en usabilidad +40%, reducción en bounce rate -35%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-title">
+    <h2>Lo Que Dicen Nuestros Clientes</h2>
+    <p>Resultados reales de apps reales</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+      <p class="testimonial-text">"El diseño de David transformó completamente nuestra app. Los usuarios reportan 78% más satisfacción. Transparente, profesional y orientado a resultados."</p>
+      <p class="testimonial-author">CEO, Startup Fintech</p>
+      <p class="testimonial-role">Founder & CEO</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+      <p class="testimonial-text">"Excelente análisis de usuarios. El prototipo interactivo validó nuestras hipótesis antes de invertir en desarrollo. ROI impresionante."</p>
+      <p class="testimonial-author">Product Lead, Tech Company</p>
+      <p class="testimonial-role">Product Manager</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+      <p class="testimonial-text">"Rediseño completo de nuestra app generó +$4.5M en ingresos anuales. El mejor investment en design que hicimos."</p>
+      <p class="testimonial-author">Founder, Marketplace</p>
+      <p class="testimonial-role">CEO</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="section-title">
+    <h2>Paquetes de Diseño Móvil</h2>
+    <p>Opciones flexibles adaptadas a tu presupuesto y timeline</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Wireframes</h3>
+      <p class="duration">Esqueletos funcionales</p>
+      <div class="price">$2,400</div>
+      <p class="duration">Proyecto completo</p>
+      <ul class="pricing-features">
+        <li>✓ User flows completos</li>
+        <li>✓ Wireframes detallados</li>
+        <li>✓ Prototipos básicos</li>
+        <li>✓ 2 rondas de revisión</li>
+        <li>✓ Documentación</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Solicitar Propuesta</button>
+    </div>
+    <div class="pricing-card">
+      <h3>Diseño Completo</h3>
+      <p class="duration">UI/UX de producción</p>
+      <div class="price">$5,800</div>
+      <p class="duration">Proyecto completo</p>
+      <ul class="pricing-features">
+        <li>✓ Investigación UX</li>
+        <li>✓ Wireframes + mockups</li>
+        <li>✓ Prototipo interactivo</li>
+        <li>✓ Design system</li>
+        <li>✓ Testing con usuarios</li>
+        <li>✓ 4 rondas de revisión</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Solicitar Propuesta</button>
+    </div>
+    <div class="pricing-card">
+      <h3>Diseño + Desarrollo</h3>
+      <p class="duration">Solución end-to-end</p>
+      <div class="price">Desde $12,000</div>
+      <p class="duration">Proyecto personalizado</p>
+      <ul class="pricing-features">
+        <li>✓ Todo lo anterior +</li>
+        <li>✓ Código limpio React Native/Flutter</li>
+        <li>✓ API integration</li>
+        <li>✓ QA testing</li>
+        <li>✓ App store optimization</li>
+        <li>✓ Soporte 3 meses</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Solicitar Propuesta</button>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>¿Necesitas Diseñar tu Aplicación Móvil?</h2>
+  <p>Hablemos sobre tu visión. Agendar una llamada rápida o envía un email con tus detalles.</p>
+  <div class="cta-buttons">
+    <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Agendar Llamada</button>
+    <button class="btn btn-secondary" onclick="window.location.href='mailto:david.diaz.uxdata@gmail.com'">Enviar Email</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Compañía</h3>
+      <ul><li><a href="index.html#servicios">Servicios</a></li><li><a href="index.html#proyectos">Proyectos</a></li><li><a href="index.html#proceso">Proceso</a></li><li><a href="index.html#faq">FAQ</a></li></ul>
+    </div>
+    <div class="footer-section">
+      <h3>Redes</h3>
+      <ul><li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank">LinkedIn</a></li><li><a href="https://github.com/dsd228" target="_blank">GitHub</a></li><li><a href="https://dribbble.com" target="_blank">Dribbble</a></li><li><a href="https://behance.net" target="_blank">Behance</a></li></ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contacto</h3>
+      <ul><li><a href="mailto:david.diaz.uxdata@gmail.com">Email</a></li><li><a href="https://calendly.com/david-sebastian-diaz" target="_blank">Calendly</a></li><li>100% Remoto</li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 NeoProdUx. All Rights Reserved.</p>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/dsd228" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://dribbble.com" target="_blank"><i class="fab fa-dribbble"></i></a>
+      <a href="https://behance.net" target="_blank"><i class="fab fa-behance"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href !== '#' && document.querySelector(href)) {
+        e.preventDefault();
+        document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
