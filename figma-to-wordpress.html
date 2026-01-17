@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma a WordPress - Conversión de Diseños Profesionales</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #ffffff; color: #1a1a1a; overflow-x: hidden; font-family: "Inter", sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: "Sora", sans-serif; font-weight: 700; }
+
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0; }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.3rem; font-weight: 800; color: #000; cursor: pointer; text-decoration: none; }
+    nav a { color: #666; font-size: 0.95rem; transition: color 0.3s; text-decoration: none; }
+    nav a:hover { color: #000; }
+    .nav-cta { background: #000; color: #fff; padding: 10px 24px; border-radius: 8px; transition: all 0.3s; display: inline-block; }
+    .nav-cta:hover { background: #333; transform: scale(1.05); }
+
+    .hero { padding-top: 140px; padding-bottom: 80px; background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%); }
+    .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; text-align: center; }
+    .hero h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 24px; font-weight: 800; color: #000; }
+    .hero p { font-size: 1.15rem; color: #666; margin-bottom: 40px; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 14px 32px; border-radius: 8px; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; text-decoration: none; display: inline-block; }
+    .btn-primary { background: #000; color: #fff; }
+    .btn-primary:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
+    .btn-secondary { background: transparent; color: #000; border: 2px solid #000; }
+    .btn-secondary:hover { background: #000; color: #fff; }
+
+    .stats { padding: 60px 40px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+    .stats-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
+    .stat-item h3 { font-size: 3.5rem; color: #000; margin-bottom: 12px; font-weight: 800; }
+    .stat-item p { color: #666; font-size: 1rem; font-weight: 500; }
+
+    .services { padding: 100px 40px; background: #fff; }
+    .section-title { max-width: 1400px; margin: 0 auto 60px; }
+    .section-title h2 { font-size: 3.5rem; color: #000; margin-bottom: 16px; line-height: 1.2; }
+    .section-title p { color: #666; font-size: 1.15rem; max-width: 500px; line-height: 1.6; }
+    .services-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .service-card { background: #f9f9f9; padding: 40px; border-radius: 12px; transition: all 0.4s; border: 1px solid #e5e5e5; text-align: center; }
+    .service-card:hover { transform: translateY(-12px); border-color: #000; background: #fff; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .service-icon { font-size: 3rem; margin-bottom: 20px; color: #000; }
+    .service-card h3 { font-size: 1.5rem; margin-bottom: 16px; color: #000; }
+    .service-card p { color: #666; line-height: 1.7; font-size: 0.95rem; }
+
+    .benefits { padding: 100px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
+    .benefits-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .benefit-item { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; }
+    .benefit-item h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .benefit-item p { color: #666; line-height: 1.7; font-size: 0.95rem; }
+
+    .tech-stack { padding: 100px 40px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+    .tech-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; text-align: center; }
+    .tech-item { background: #f9f9f9; padding: 24px; border-radius: 8px; border: 1px solid #e5e5e5; }
+    .tech-item p { color: #666; font-weight: 500; }
+
+    .process { padding: 100px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
+    .process-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; }
+    .process-step { text-align: center; background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; }
+    .step-number { font-size: 3.5rem; font-weight: 800; color: #000; margin-bottom: 16px; }
+    .process-step h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .process-step p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+
+    .portfolio { padding: 100px 40px; background: #fff; }
+    .portfolio-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .portfolio-card { background: #f9f9f9; border-radius: 12px; overflow: hidden; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .portfolio-card:hover { transform: translateY(-12px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border-color: #000; }
+    .portfolio-image { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea, #764ba2); background-size: cover; background-position: center; }
+    .portfolio-content { padding: 24px; }
+    .portfolio-tag { display: inline-block; background: #f0f0f0; color: #666; padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; }
+    .portfolio-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .portfolio-card p { color: #666; font-size: 0.9rem; line-height: 1.5; }
+
+    .testimonials { padding: 100px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
+    .testimonials-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .testimonial-card { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .rating { color: #fbbf24; margin-bottom: 16px; font-size: 1.1rem; }
+    .testimonial-text { color: #333; font-style: italic; margin-bottom: 20px; line-height: 1.8; }
+    .testimonial-author { font-weight: 600; color: #000; margin-bottom: 4px; }
+    .testimonial-role { color: #999; font-size: 0.9rem; }
+
+    .pricing { padding: 100px 40px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+    .pricing-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .pricing-card { background: #f9f9f9; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .pricing-card:hover { transform: translateY(-12px); border-color: #000; background: #fff; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .pricing-card h3 { font-size: 1.5rem; margin-bottom: 16px; color: #000; }
+    .pricing-price { font-size: 2.5rem; font-weight: 800; color: #000; margin-bottom: 20px; }
+    .pricing-features { list-style: none; margin-bottom: 30px; }
+    .pricing-features li { padding: 12px 0; color: #666; border-bottom: 1px solid #e5e5e5; font-size: 0.95rem; }
+    .pricing-features li:before { content: "✓ "; color: #000; font-weight: 600; margin-right: 8px; }
+
+    .cta { padding: 80px 40px; background: #000; color: #fff; text-align: center; }
+    .cta h2 { font-size: 2.5rem; margin-bottom: 24px; }
+    .cta p { font-size: 1.1rem; color: #ccc; margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-buttons .btn { background: #fff; color: #000; }
+    .cta-buttons .btn:hover { background: #e5e5e5; }
+
+    footer { background: #f9f9f9; padding: 60px 40px; border-top: 1px solid #e5e5e5; }
+    .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-section h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: #000; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-section ul { list-style: none; }
+    .footer-section li { margin-bottom: 12px; }
+    .footer-section a { color: #666; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+    .footer-section a:hover { color: #000; }
+    .footer-bottom { border-top: 1px solid #e5e5e5; padding-top: 40px; text-align: center; color: #999; font-size: 0.9rem; }
+    .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
+    .social-links a { color: #000; font-size: 1.25rem; transition: color 0.3s; text-decoration: none; }
+    .social-links a:hover { color: #667eea; }
+
+    /* Dropdown Menu */
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 6px; color: #666; font-size: 0.95rem; text-decoration: none; transition: color 0.3s; }
+    .dropdown-trigger:hover { color: #000; }
+    .dropdown-trigger::after { content: '↓'; font-size: 0.7rem; transition: transform 0.3s; }
+    .nav-dropdown:hover .dropdown-trigger::after { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s; z-index: 999; margin-top: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { display: block; padding: 12px 20px; color: #666; text-decoration: none; transition: all 0.3s; }
+    .dropdown-menu a:hover { background: #f9f9f9; color: #000; }
+    .dropdown-menu a:first-child { border-radius: 8px 8px 0 0; }
+    .dropdown-menu a:last-child { border-radius: 0 0 8px 8px; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .section-title h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">NeoProdUx</a>
+    <div style="display: flex; gap: 40px; align-items: center;">
+      <div class="nav-dropdown">
+        <a href="#servicios" class="dropdown-trigger">Servicios</a>
+        <div class="dropdown-menu">
+          <a href="ui-ux-design.html">Diseño UI-UX</a>
+          <a href="mobile-app-design.html">Diseño de aplicaciones móviles</a>
+          <a href="website-design.html">Diseño de sitios web</a>
+          <a href="figma-to-wordpress.html">Figma a WordPress</a>
+          <a href="#servicios">Figma a HTML</a>
+          <a href="#servicios">Figma a Webflow</a>
+        </div>
+      </div>
+      <a href="index.html#proyectos">Proyectos</a>
+      <a href="index.html#proceso">Proceso</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contacto" class="nav-cta">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Figma a WordPress: Diseños Perfectos en Código</h1>
+    <p>Convierte tus diseños de Figma en sitios WordPress profesionales, pixel-perfect, responsive y optimizados para conversión. 360+ proyectos completados, 240+ clientes satisfechos.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="scrollTo('#precios')">Ver Precios</button>
+      <button class="btn btn-secondary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Agendar Llamada</button>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item"><h3>360+</h3><p>Proyectos Completados</p></div>
+    <div class="stat-item"><h3>240+</h3><p>Clientes Satisfechos</p></div>
+    <div class="stat-item"><h3>14+</h3><p>Años en Negocio</p></div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="section-title">
+    <h2>Servicios de Conversión Figma</h2>
+    <p>Especialistas en convertir tus diseños en sitios web WordPress funcionales y optimizados</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-paintbrush"></i></div>
+      <h3>Figma a WordPress</h3>
+      <p>Conversión pixel-perfect de diseños Figma a temas WordPress personalizados, completamente responsivos y listos para publicar.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-code"></i></div>
+      <h3>Figma a HTML</h3>
+      <p>Código HTML5 limpio, validado y optimizado. Perfectamente estructurado para SEO y performance máxima.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+      <h3>E-Commerce Figma</h3>
+      <p>Conversión de tiendas online en Figma a plataformas WordPress con WooCommerce integrado y funcionalidad de carrito.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+      <h3>Landing Pages Responsive</h3>
+      <p>Páginas de aterrizaje high-converting desde Figma. Totalmente responsive, rápidas y optimizadas para conversión.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-magic"></i></div>
+      <h3>Interacciones & Animaciones</h3>
+      <p>Implementación de hover effects, scroll animations y transiciones suaves que traen tus diseños a la vida.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-cogs"></i></div>
+      <h3>Setup & Mantenimiento</h3>
+      <p>Configuración completa del sitio, integración de plugins, optimización SEO y soporte post-lanzamiento.</p>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="section-title">
+    <h2>Beneficios de Nuestro Servicio</h2>
+    <p>Lo que obtienes al convertir tus diseños Figma con nosotros</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <h3>✓ Pixel Perfect</h3>
+      <p>Cada píxel revisado meticulosamente. Verificamos calidad antes del lanzamiento para identificar y corregir cualquier problema.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ Responsive & Mobile-Friendly</h3>
+      <p>Diseños responsivos que se adaptan perfectamente a todos los dispositivos. Funcionalidad fluida en móvil, tablet y desktop.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ Optimizado para SEO</h3>
+      <p>Código limpio, meta tags, títulos, descripciones y estructura de sitio optimizada para motores de búsqueda desde el inicio.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ Velocidad de Carga Máxima</h3>
+      <p>Sitios rápidos que cargan en segundos. Optimización de imágenes, caché y performance para mejor experiencia de usuario.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ Seguro & Confiable</h3>
+      <p>Código robusto con medidas de seguridad. Protección de datos, SSL ready y compatibilidad cross-browser garantizada.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ Fácil Mantenimiento</h3>
+      <p>Código limpio y bien documentado. Interfaz WordPress user-friendly para que edites contenido sin necesidad de código.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tech-stack">
+  <div class="section-title">
+    <h2>Tecnologías que Usamos</h2>
+    <p>Stack tecnológico profesional para conversión de alta calidad</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item"><p>Figma</p></div>
+    <div class="tech-item"><p>Adobe XD</p></div>
+    <div class="tech-item"><p>WordPress</p></div>
+    <div class="tech-item"><p>HTML5</p></div>
+    <div class="tech-item"><p>CSS3 / SCSS</p></div>
+    <div class="tech-item"><p>JavaScript</p></div>
+    <div class="tech-item"><p>WooCommerce</p></div>
+    <div class="tech-item"><p>Webflow</p></div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-title">
+    <h2>Nuestro Proceso de Conversión</h2>
+    <p>6 pasos probados para resultados excepcionales</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h3>Revisión Figma</h3>
+      <p>Analizamos tu diseño Figma: estructura, componentes, interacciones y especificaciones para entender completamente tu visión.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h3>Transferencia de Diseño</h3>
+      <p>Trasferimos fielmente el diseño a WordPress. Implementamos navegación, formularios y elementos interactivos según especificaciones.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h3>Interacciones & Animaciones</h3>
+      <p>Implementamos hover effects, animaciones de scroll y transiciones suaves. Traemos tu diseño a la vida con JavaScript/CSS.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">4</div>
+      <h3>Responsividad & QA</h3>
+      <p>Garantizamos que tu sitio funcione perfectamente en todos los dispositivos. Testing exhaustivo en desktop, tablet y móvil.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">5</div>
+      <h3>Optimización SEO</h3>
+      <p>Configuramos meta tags, títulos, descripciones, sitemap y estructura de URL. Código limpio optimizado para buscadores.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">6</div>
+      <h3>Lanzamiento & Soporte</h3>
+      <p>Revisión final, correcciones y lanzamiento de tu sitio. Soporte post-lanzamiento para ajustes y mantenimiento.</p>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="section-title">
+    <h2>Proyectos Recientes</h2>
+    <p>Conversiones Figma a WordPress que generaron resultados reales</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Home16Pro2.png');"></div>
+      <div class="portfolio-content">
+        <span class="portfolio-tag">WordPress</span>
+        <h3>Tech Startup Landing</h3>
+        <p>Conversión Figma a WordPress responsiva. +340% aumento en leads. Página ultra-rápida con conversión optimizada.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Desktop - 8.png');"></div>
+      <div class="portfolio-content">
+        <span class="portfolio-tag" style="background: #e0f7ff;">E-Commerce</span>
+        <h3>Tienda Online WooCommerce</h3>
+        <p>Diseño Figma convertido a WordPress con WooCommerce. +240% en ventas. Checkout fluido y experiencia mobile perfecta.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/EventsDesktop - 7.jpg');"></div>
+      <div class="portfolio-content">
+        <span class="portfolio-tag" style="background: #ffe0e0;">Corporativo</span>
+        <h3>Sitio Corporativo Moderno</h3>
+        <p>Rediseño Figma a WordPress. +180% en traffic. SEO optimizado con rápidez de carga excepcional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-title">
+    <h2>Lo que Dicen Nuestros Clientes</h2>
+    <p>Experiencias reales de conversión exitosa</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="rating">★★★★★ 5.0</div>
+      <p class="testimonial-text">"Impresionante conversión Figma a WordPress. El sitio quedó pixel-perfect, super rápido y nuestras conversiones subieron 340%. David entiende perfectamente qué hacemos. Recomendado 100%."</p>
+      <p class="testimonial-author">Carlos Mendez</p>
+      <p class="testimonial-role">Founder, SaaS Tech</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="rating">★★★★★ 5.0</div>
+      <p class="testimonial-text">"Excelente profesional. Mi diseño Figma se convirtió perfectamente en WordPress. Animaciones suaves, responsive en todos los devices y SEO optimizado desde el inicio."</p>
+      <p class="testimonial-author">María López</p>
+      <p class="testimonial-role">Product Manager, Startup</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="rating">★★★★★ 5.0</div>
+      <p class="testimonial-text">"Conversión profesional y rápida. El sitio carga en menos de 2 segundos, se ve exactamente como lo diseñé en Figma y nuestro ranking en Google mejoró considerablemente."</p>
+      <p class="testimonial-author">Pablo García</p>
+      <p class="testimonial-role">CEO, E-Commerce</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="precios">
+  <div class="section-title">
+    <h2>Planes de Precio</h2>
+    <p>Elige el plan perfecto para tu proyecto de conversión Figma a WordPress</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Landing Page</h3>
+      <div class="pricing-price">$1,800</div>
+      <ul class="pricing-features">
+        <li>Conversión de 1 página Figma a WordPress</li>
+        <li>Responsive design</li>
+        <li>Formulario de contacto</li>
+        <li>Pixel perfect implementation</li>
+        <li>Optimización básica de SEO</li>
+        <li>1 ronda de revisiones</li>
+        <li>Soporte de 2 semanas</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Contratar</button>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Sitio Profesional</h3>
+      <div class="pricing-price">$4,200</div>
+      <ul class="pricing-features">
+        <li>Conversión de sitio multi-página</li>
+        <li>5-7 páginas incluidas</li>
+        <li>WooCommerce (si aplica)</li>
+        <li>Animaciones y interacciones avanzadas</li>
+        <li>SEO completo + meta data</li>
+        <li>Integración de plugins</li>
+        <li>2 rondas de revisiones</li>
+        <li>Soporte de 1 mes</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Contratar</button>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Tienda E-Commerce</h3>
+      <div class="pricing-price">$8,500+</div>
+      <ul class="pricing-features">
+        <li>Conversión Figma a WordPress + WooCommerce</li>
+        <li>Múltiples páginas y categorías</li>
+        <li>Setup de gateway de pago</li>
+        <li>Carrito de compras avanzado</li>
+        <li>Gestión de inventario</li>
+        <li>SEO estratégico + blog</li>
+        <li>3 rondas de revisiones</li>
+        <li>Soporte ilimitado de 3 meses</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Contratar</button>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>¿Tienes un Diseño Figma Listo?</h2>
+  <p>Convierte tu visión en un sitio WordPress profesional, rápido y optimizado para resultados.</p>
+  <div class="cta-buttons">
+    <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Agendar Llamada</button>
+    <button class="btn btn-secondary" onclick="window.location.href='mailto:david.diaz.uxdata@gmail.com'">Enviar Proyecto</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Compañía</h3>
+      <ul><li><a href="index.html#servicios">Servicios</a></li><li><a href="index.html#proyectos">Proyectos</a></li><li><a href="index.html#proceso">Proceso</a></li><li><a href="index.html#faq">FAQ</a></li></ul>
+    </div>
+    <div class="footer-section">
+      <h3>Redes</h3>
+      <ul><li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank">LinkedIn</a></li><li><a href="https://github.com/dsd228" target="_blank">GitHub</a></li><li><a href="https://dribbble.com" target="_blank">Dribbble</a></li><li><a href="https://behance.net" target="_blank">Behance</a></li></ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contacto</h3>
+      <ul><li><a href="mailto:david.diaz.uxdata@gmail.com">Email</a></li><li><a href="https://calendly.com/david-sebastian-diaz" target="_blank">Calendly</a></li><li>100% Remoto</li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 NeoProdUx. All Rights Reserved.</p>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/dsd228" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://dribbble.com" target="_blank"><i class="fab fa-dribbble"></i></a>
+      <a href="https://behance.net" target="_blank"><i class="fab fa-behance"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function scrollTo(selector) {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>
+
+</body>
+</html>
