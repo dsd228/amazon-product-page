@@ -1472,73 +1472,157 @@
     <p>Templates profesionales para maximizar conversiones en e-commerce</p>
   </div>
   
+  <style>
+    .ejemplos-carousel-container { overflow: hidden; }
+    .ejemplos-rows { display: grid; gap: 24px; }
+    .ejemplos-rows { grid-template-rows: auto auto; }
+    .ejemplos-row { display: flex; gap: 24px; width: max-content; will-change: transform; }
+    .ejemplos-row-top { animation: scrollLeft 30s linear infinite; }
+    .ejemplos-row-bottom { animation: scrollRight 30s linear infinite; }
+    @keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes scrollRight { from { transform: translateX(0); } to { transform: translateX(50%); } }
+    .ejemplo-card-image { position: relative; }
+    .ejemplo-card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .ejemplo-card-image::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.08), rgba(0,0,0,0.04)); }
+    @media (max-width: 1024px) {
+      .ejemplos-row-top { animation-duration: 24s; }
+      .ejemplos-row-bottom { animation-duration: 24s; }
+      .ejemplo-card-img { height: 180px; }
+    }
+    @media (max-width: 640px) {
+      .ejemplos-row-top, .ejemplos-row-bottom { animation-duration: 18s; }
+      .ejemplo-card-img { height: 160px; }
+    }
+  </style>
   <div class="ejemplos-carousel-container">
-    <div class="ejemplos-carousel">
-      <!-- Row 1 -->
-      <div class="ejemplo-card">
-        <div class="ejemplo-card-image" style="background-image: url('screenshots/template-tech.svg'); background-size: cover; background-position: center;">
+    <div class="ejemplos-rows">
+      <!-- Fila superior (derecha → izquierda) -->
+      <div class="ejemplos-row ejemplos-row-top">
+        <!-- 3 cards (duplicadas para loop suave) -->
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Productos tecnológicos">
+            <img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?technology" alt="Vista de producto tecnológico" />
+          </div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Electrónica</p>
+            <h3>Tech Products</h3>
+            <p>Template especializado para productos tecnológicos con especificaciones detalladas.</p>
+            <a href="ejemplos/template-tech.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
         </div>
-        <div class="ejemplo-card-body">
-          <p class="ejemplo-card-category">Electrónica</p>
-          <h3>Tech Products</h3>
-          <p>Template especializado para productos tecnológicos con especificaciones detalladas.</p>
-          <a href="ejemplos/template-tech.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Productos de lujo">
+            <img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?luxury" alt="Detalle de producto premium" />
+          </div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Premium</p>
+            <h3>Productos de Lujo</h3>
+            <p>Diseño elegante y sofisticado para productos premium y de alto valor.</p>
+            <a href="ejemplos/template-premium.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
+        </div>
+
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Productos eco"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?eco,green" alt="Producto ecológico con naturaleza" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Sustentable</p>
+            <h3>Eco-Friendly</h3>
+            <p>Template enfocado en sostenibilidad y responsabilidad ambiental.</p>
+            <a href="ejemplos/template-eco.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
+        </div>
+
+        <!-- Duplicados -->
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Productos tecnológicos"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?technology" alt="Vista de producto tecnológico" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Electrónica</p>
+            <h3>Tech Products</h3>
+            <p>Template especializado para productos tecnológicos con especificaciones detalladas.</p>
+            <a href="ejemplos/template-tech.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
+        </div>
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Productos de lujo"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?luxury" alt="Detalle de producto premium" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Premium</p>
+            <h3>Productos de Lujo</h3>
+            <p>Diseño elegante y sofisticado para productos premium y de alto valor.</p>
+            <a href="ejemplos/template-premium.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
+        </div>
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Productos eco"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?eco,green" alt="Producto ecológico con naturaleza" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Sustentable</p>
+            <h3>Eco-Friendly</h3>
+            <p>Template enfocado en sostenibilidad y responsabilidad ambiental.</p>
+            <a href="ejemplos/template-eco.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
         </div>
       </div>
 
-      <div class="ejemplo-card">
-        <div class="ejemplo-card-image" style="background-image: url('screenshots/template-premium.svg'); background-size: cover; background-position: center;">
+      <!-- Fila inferior (izquierda → derecha) -->
+      <div class="ejemplos-row ejemplos-row-bottom">
+        <!-- 3 cards (duplicadas para loop suave) -->
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Artículos deportivos"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?sports" alt="Equipamiento deportivo" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Deportivo</p>
+            <h3>Artículos Deportivos</h3>
+            <p>Especializado en equipamiento con énfasis en performance y durabilidad.</p>
+            <a href="ejemplos/template-sport.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
         </div>
-        <div class="ejemplo-card-body">
-          <p class="ejemplo-card-category">Premium</p>
-          <h3>Productos de Lujo</h3>
-          <p>Diseño elegante y sofisticado para productos premium y de alto valor.</p>
-          <a href="ejemplos/template-premium.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
-        </div>
-      </div>
 
-      <div class="ejemplo-card">
-        <div class="ejemplo-card-image" style="background-image: url('screenshots/template-eco.svg'); background-size: cover; background-position: center;">
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Reseñas y calificaciones"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?reviews,ratings" alt="Testimonios y valoraciones" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Estrategia</p>
+            <h3>Social Proof</h3>
+            <p>Optimizado con testimonios y ratings para aumentar confianza.</p>
+            <a href="ejemplos/estilo-social-proof.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
         </div>
-        <div class="ejemplo-card-body">
-          <p class="ejemplo-card-category">Sustentable</p>
-          <h3>Eco-Friendly</h3>
-          <p>Template enfocado en sostenibilidad y responsabilidad ambiental.</p>
-          <a href="ejemplos/template-eco.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
-        </div>
-      </div>
 
-      <!-- Row 2 -->
-      <div class="ejemplo-card">
-        <div class="ejemplo-card-image" style="background-image: url('screenshots/template-sport.svg'); background-size: cover; background-position: center;">
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Analítica y datos"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?analytics,data" alt="Gráficos y métricas" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Data-Driven</p>
+            <h3>Estadísticas y Datos</h3>
+            <p>Diseño centrado en métricas que demuestran calidad y efectividad.</p>
+            <a href="ejemplos/estilo-data-driven.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
         </div>
-        <div class="ejemplo-card-body">
-          <p class="ejemplo-card-category">Deportivo</p>
-          <h3>Artículos Deportivos</h3>
-          <p>Especializado en equipamiento con énfasis en performance y durabilidad.</p>
-          <a href="ejemplos/template-sport.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
-        </div>
-      </div>
 
-      <div class="ejemplo-card">
-        <div class="ejemplo-card-image" style="background-image: url('screenshots/estilo-social-proof.svg'); background-size: cover; background-position: center;">
+        <!-- Duplicados -->
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Artículos deportivos"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?sports" alt="Equipamiento deportivo" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Deportivo</p>
+            <h3>Artículos Deportivos</h3>
+            <p>Especializado en equipamiento con énfasis en performance y durabilidad.</p>
+            <a href="ejemplos/template-sport.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
         </div>
-        <div class="ejemplo-card-body">
-          <p class="ejemplo-card-category">Estrategia</p>
-          <h3>Social Proof</h3>
-          <p>Optimizado con testimonios y ratings para aumentar confianza.</p>
-          <a href="ejemplos/estilo-social-proof.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Reseñas y calificaciones"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?reviews,ratings" alt="Testimonios y valoraciones" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Estrategia</p>
+            <h3>Social Proof</h3>
+            <p>Optimizado con testimonios y ratings para aumentar confianza.</p>
+            <a href="ejemplos/estilo-social-proof.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
         </div>
-      </div>
-
-      <div class="ejemplo-card">
-        <div class="ejemplo-card-image" style="background-image: url('screenshots/estilo-data-driven.svg'); background-size: cover; background-position: center;">
-        </div>
-        <div class="ejemplo-card-body">
-          <p class="ejemplo-card-category">Data-Driven</p>
-          <h3>Estadísticas y Datos</h3>
-          <p>Diseño centrado en métricas que demuestran calidad y efectividad.</p>
-          <a href="ejemplos/estilo-data-driven.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+        <div class="ejemplo-card">
+          <div class="ejemplo-card-image" role="img" aria-label="Analítica y datos"><img loading="lazy" class="ejemplo-card-img" src="https://source.unsplash.com/1600x900/?analytics,data" alt="Gráficos y métricas" /></div>
+          <div class="ejemplo-card-body">
+            <p class="ejemplo-card-category">Data-Driven</p>
+            <h3>Estadísticas y Datos</h3>
+            <p>Diseño centrado en métricas que demuestran calidad y efectividad.</p>
+            <a href="ejemplos/estilo-data-driven.html" class="ejemplo-card-link" target="_blank">Ver ejemplo →</a>
+          </div>
         </div>
       </div>
     </div>
