@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma a Webflow - Conversión No-Code Profesional</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #ffffff; color: #1a1a1a; overflow-x: hidden; font-family: "Inter", sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: "Sora", sans-serif; font-weight: 700; }
+
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0; }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.3rem; font-weight: 800; color: #000; cursor: pointer; text-decoration: none; }
+    nav a { color: #666; font-size: 0.95rem; transition: color 0.3s; text-decoration: none; }
+    nav a:hover { color: #000; }
+    .nav-cta { background: #000; color: #fff; padding: 10px 24px; border-radius: 8px; transition: all 0.3s; display: inline-block; }
+    .nav-cta:hover { background: #333; transform: scale(1.05); }
+
+    .hero { padding-top: 140px; padding-bottom: 80px; background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%); }
+    .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; text-align: center; }
+    .hero h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 24px; font-weight: 800; color: #000; }
+    .hero p { font-size: 1.15rem; color: #666; margin-bottom: 40px; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 14px 32px; border-radius: 8px; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; text-decoration: none; display: inline-block; }
+    .btn-primary { background: #000; color: #fff; }
+    .btn-primary:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
+    .btn-secondary { background: transparent; color: #000; border: 2px solid #000; }
+    .btn-secondary:hover { background: #000; color: #fff; }
+
+    .stats { padding: 60px 40px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+    .stats-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
+    .stat-item h3 { font-size: 3.5rem; color: #000; margin-bottom: 12px; font-weight: 800; }
+    .stat-item p { color: #666; font-size: 1rem; font-weight: 500; }
+
+    .services { padding: 100px 40px; background: #fff; }
+    .section-title { max-width: 1400px; margin: 0 auto 60px; }
+    .section-title h2 { font-size: 3.5rem; color: #000; margin-bottom: 16px; line-height: 1.2; }
+    .section-title p { color: #666; font-size: 1.15rem; max-width: 500px; line-height: 1.6; }
+    .services-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .service-card { background: #f9f9f9; padding: 40px; border-radius: 12px; transition: all 0.4s; border: 1px solid #e5e5e5; text-align: center; }
+    .service-card:hover { transform: translateY(-12px); border-color: #000; background: #fff; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .service-icon { font-size: 3rem; margin-bottom: 20px; color: #000; }
+    .service-card h3 { font-size: 1.5rem; margin-bottom: 16px; color: #000; }
+    .service-card p { color: #666; line-height: 1.7; font-size: 0.95rem; }
+
+    .benefits { padding: 100px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
+    .benefits-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .benefit-item { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; }
+    .benefit-item h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .benefit-item p { color: #666; line-height: 1.7; font-size: 0.95rem; }
+
+    .tech-stack { padding: 100px 40px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+    .tech-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; text-align: center; }
+    .tech-item { background: #f9f9f9; padding: 24px; border-radius: 8px; border: 1px solid #e5e5e5; }
+    .tech-item p { color: #666; font-weight: 500; }
+
+    .process { padding: 100px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
+    .process-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; }
+    .process-step { text-align: center; background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; }
+    .step-number { font-size: 3.5rem; font-weight: 800; color: #000; margin-bottom: 16px; }
+    .process-step h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .process-step p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+
+    .portfolio { padding: 100px 40px; background: #fff; }
+    .portfolio-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .portfolio-card { background: #f9f9f9; border-radius: 12px; overflow: hidden; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .portfolio-card:hover { transform: translateY(-12px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border-color: #000; }
+    .portfolio-image { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea, #764ba2); background-size: cover; background-position: center; }
+    .portfolio-content { padding: 24px; }
+    .portfolio-tag { display: inline-block; background: #f0f0f0; color: #666; padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; }
+    .portfolio-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .portfolio-card p { color: #666; font-size: 0.9rem; line-height: 1.5; }
+
+    .testimonials { padding: 100px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
+    .testimonials-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .testimonial-card { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .rating { color: #fbbf24; margin-bottom: 16px; font-size: 1.1rem; }
+    .testimonial-text { color: #333; font-style: italic; margin-bottom: 20px; line-height: 1.8; }
+    .testimonial-author { font-weight: 600; color: #000; margin-bottom: 4px; }
+    .testimonial-role { color: #999; font-size: 0.9rem; }
+
+    .pricing { padding: 100px 40px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+    .pricing-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .pricing-card { background: #f9f9f9; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .pricing-card:hover { transform: translateY(-12px); border-color: #000; background: #fff; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .pricing-card h3 { font-size: 1.5rem; margin-bottom: 16px; color: #000; }
+    .pricing-price { font-size: 2.5rem; font-weight: 800; color: #000; margin-bottom: 20px; }
+    .pricing-features { list-style: none; margin-bottom: 30px; }
+    .pricing-features li { padding: 12px 0; color: #666; border-bottom: 1px solid #e5e5e5; font-size: 0.95rem; }
+    .pricing-features li:before { content: "✓ "; color: #000; font-weight: 600; margin-right: 8px; }
+
+    .cta { padding: 80px 40px; background: #000; color: #fff; text-align: center; }
+    .cta h2 { font-size: 2.5rem; margin-bottom: 24px; }
+    .cta p { font-size: 1.1rem; color: #ccc; margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-buttons .btn { background: #fff; color: #000; }
+    .cta-buttons .btn:hover { background: #e5e5e5; }
+
+    footer { background: #f9f9f9; padding: 60px 40px; border-top: 1px solid #e5e5e5; }
+    .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-section h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: #000; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-section ul { list-style: none; }
+    .footer-section li { margin-bottom: 12px; }
+    .footer-section a { color: #666; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+    .footer-section a:hover { color: #000; }
+    .footer-bottom { border-top: 1px solid #e5e5e5; padding-top: 40px; text-align: center; color: #999; font-size: 0.9rem; }
+    .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
+    .social-links a { color: #000; font-size: 1.25rem; transition: color 0.3s; text-decoration: none; }
+    .social-links a:hover { color: #667eea; }
+
+    /* Dropdown Menu */
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 6px; color: #666; font-size: 0.95rem; text-decoration: none; transition: color 0.3s; }
+    .dropdown-trigger:hover { color: #000; }
+    .dropdown-trigger::after { content: '↓'; font-size: 0.7rem; transition: transform 0.3s; }
+    .nav-dropdown:hover .dropdown-trigger::after { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s; z-index: 999; margin-top: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { display: block; padding: 12px 20px; color: #666; text-decoration: none; transition: all 0.3s; }
+    .dropdown-menu a:hover { background: #f9f9f9; color: #000; }
+    .dropdown-menu a:first-child { border-radius: 8px 8px 0 0; }
+    .dropdown-menu a:last-child { border-radius: 0 0 8px 8px; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .section-title h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">NeoProdUx</a>
+    <div style="display: flex; gap: 40px; align-items: center;">
+      <div class="nav-dropdown">
+        <a href="#servicios" class="dropdown-trigger">Servicios</a>
+        <div class="dropdown-menu">
+          <a href="ui-ux-design.html">Diseño UI-UX</a>
+          <a href="mobile-app-design.html">Diseño de aplicaciones móviles</a>
+          <a href="website-design.html">Diseño de sitios web</a>
+          <a href="figma-to-wordpress.html">Figma a WordPress</a>
+          <a href="figma-to-html.html">Figma a HTML</a>
+          <a href="figma-to-webflow.html">Figma a Webflow</a>
+        </div>
+      </div>
+      <a href="index.html#proyectos">Proyectos</a>
+      <a href="index.html#proceso">Proceso</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contacto" class="nav-cta">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Figma a Webflow: Diseño No-Code de Primera Calidad</h1>
+    <p>Convierte tus diseños de Figma en sitios Webflow profesionales, interactivos y completamente editable. Pixel-perfect, animaciones suaves, CMS setup y totalmente responsivo. Sin necesidad de código.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="scrollTo('#precios')">Ver Precios</button>
+      <button class="btn btn-secondary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Agendar Llamada</button>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item"><h3>360+</h3><p>Proyectos Completados</p></div>
+    <div class="stat-item"><h3>240+</h3><p>Clientes Satisfechos</p></div>
+    <div class="stat-item"><h3>14+</h3><p>Años en Negocio</p></div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="section-title">
+    <h2>Servicios Figma a Webflow</h2>
+    <p>Conversión experta de tus diseños Figma a plataforma Webflow no-code profesional</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-magic"></i></div>
+      <h3>Landing Pages</h3>
+      <p>Páginas de aterrizaje high-converting convertidas de Figma a Webflow. Optimizadas para conversión y velocidad.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-sitemap"></i></div>
+      <h3>Multi-Page Sites</h3>
+      <p>Sitios completos con múltiples páginas, navegación fluida y estructura scalable. Totalmente editable sin código.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-database"></i></div>
+      <h3>Webflow CMS Setup</h3>
+      <p>Configuración completa de CMS Webflow. Gestiona contenido dinámico, blog, portfolio sin necesidad de developer.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+      <h3>Diseño Responsive</h3>
+      <p>Diseños completamente responsivos en Webflow. Perfecto en móvil, tablet y desktop con breakpoints inteligentes.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-animation"></i></div>
+      <h3>Animaciones Avanzadas</h3>
+      <p>Interacciones complejas, scroll animations, hover effects y micro-interactions. Webflow Interactions optimizado.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+      <h3>E-Commerce</h3>
+      <p>Tiendas online en Webflow con setup de productos, checkout y integración de pagos. Escalable y profesional.</p>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="section-title">
+    <h2>Beneficios de Webflow</h2>
+    <p>Por qué Webflow es la plataforma perfecta para tu sitio</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <h3>✓ No-Code, Todo Control</h3>
+      <p>Edita, actualiza y gestiona tu sitio sin programadores. Interfaz visual intuitiva con control total sobre diseño.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ CMS Poderoso</h3>
+      <p>Gestiona contenido dinámico, colecciones, filtros y búsqueda. Ideal para blogs, portfolios, catálogos.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ Hosting Incluido</h3>
+      <p>Hosting profesional, SSL, CDN global y backups automáticos incluidos. Velocidad y seguridad garantizadas.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ SEO Optimizado</h3>
+      <p>Herramientas SEO integradas, sitemaps automáticos, metas editables. Ready para ranking en Google.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ E-Commerce Ready</h3>
+      <p>Tienda online integrada con manejo de inventario, cupones, envíos y pagos. Todo en una plataforma.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>✓ Integraciones Poderosas</h3>
+      <p>Conecta con Zapier, APIs customizadas, formarios avanzados, analytics y herramientas de marketing.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tech-stack">
+  <div class="section-title">
+    <h2>Tecnologías que Usamos</h2>
+    <p>Stack profesional para Webflow no-code</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item"><p>Figma</p></div>
+    <div class="tech-item"><p>Webflow</p></div>
+    <div class="tech-item"><p>Webflow CMS</p></div>
+    <div class="tech-item"><p>Webflow E-Commerce</p></div>
+    <div class="tech-item"><p>Webflow Interactions</p></div>
+    <div class="tech-item"><p>Zapier</p></div>
+    <div class="tech-item"><p>APIs Custom</p></div>
+    <div class="tech-item"><p>HTML Embed</p></div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-title">
+    <h2>Nuestro Proceso</h2>
+    <p>6 pasos para tu sitio Webflow perfecto</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h3>Análisis Figma</h3>
+      <p>Revisamos tu diseño Figma en detalle: estructura, componentes, interacciones y especificaciones técnicas.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h3>Transferencia Webflow</h3>
+      <p>Transferimos fielmente tu diseño a Webflow. Implementamos componentes, estilos y estructura del sitio.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h3>Interacciones & Animaciones</h3>
+      <p>Configuramos interacciones complejas, animaciones y micro-interactions usando Webflow Interactions.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">4</div>
+      <h3>Responsividad</h3>
+      <p>Garantizamos diseño perfecto en todos los breakpoints. Testing exhaustivo en todos los dispositivos.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">5</div>
+      <h3>SEO & Optimización</h3>
+      <p>Configuramos meta tags, SEO settings, sitemaps. Optimizamos performance y velocidad de carga.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">6</div>
+      <h3>Lanzamiento & Soporte</h3>
+      <p>Testing final, publicación en Webflow. Capacitación básica y soporte post-lanzamiento incluido.</p>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="section-title">
+    <h2>Proyectos Webflow Recientes</h2>
+    <p>Conversiones Figma a Webflow que demuestran calidad excepcional</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Home16Pro2.png');"></div>
+      <div class="portfolio-content">
+        <span class="portfolio-tag">Webflow</span>
+        <h3>Landing Page SaaS</h3>
+        <p>Conversión pixel-perfect con animaciones suaves en Webflow. Formularios avanzados, video background, conversión optimizada.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Desktop - 8.png');"></div>
+      <div class="portfolio-content">
+        <span class="portfolio-tag" style="background: #e0f7ff;">CMS Webflow</span>
+        <h3>Blog & Portfolio</h3>
+        <p>Sitio con Webflow CMS configurado. Blog dinámico, galería de proyectos filtrable. Totalmente editable sin código.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/EventsDesktop - 7.jpg');"></div>
+      <div class="portfolio-content">
+        <span class="portfolio-tag" style="background: #ffe0e0;">E-Commerce</span>
+        <h3>Tienda Online</h3>
+        <p>Webflow E-Commerce con catálogo de productos, carrito, checkout y integración de pagos Stripe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-title">
+    <h2>Lo que Dicen Nuestros Clientes</h2>
+    <p>Experiencias reales con Webflow</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="rating">★★★★★ 5.0</div>
+      <p class="testimonial-text">"Mi sitio Webflow quedó exacto al diseño Figma. Las animaciones suaves, responsive perfecto, y ahora puedo editar contenido yo mismo sin programmer. Increíble."</p>
+      <p class="testimonial-author">Roberto Sánchez</p>
+      <p class="testimonial-role">Founder, Agency</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="rating">★★★★★ 5.0</div>
+      <p class="testimonial-text">"Conversión profesional a Webflow. El CMS está configurado perfectamente, mis clientes pueden actualizar contenido fácilmente. Trabajo excelente y comunicación clara."</p>
+      <p class="testimonial-author">Laura García</p>
+      <p class="testimonial-role">Marketing Manager</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="rating">★★★★★ 5.0</div>
+      <p class="testimonial-text">"Mi tienda Webflow funciona flawlessly. Las interacciones son suaves, el checkout optimizado y las conversiones aumentaron 45%. Muy recomendado."</p>
+      <p class="testimonial-author">José Martínez</p>
+      <p class="testimonial-role">E-Commerce Owner</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="precios">
+  <div class="section-title">
+    <h2>Planes de Precio</h2>
+    <p>Elige el plan perfecto para tu proyecto Webflow</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Landing Page</h3>
+      <div class="pricing-price">$2,400</div>
+      <ul class="pricing-features">
+        <li>1 página Webflow</li>
+        <li>Pixel-perfect design</li>
+        <li>Animaciones suaves</li>
+        <li>Formulario optimizado</li>
+        <li>SEO básico configurado</li>
+        <li>Responsive perfecto</li>
+        <li>1 ronda de ajustes</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Contratar</button>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Sitio Profesional</h3>
+      <div class="pricing-price">$5,800</div>
+      <ul class="pricing-features">
+        <li>3-5 páginas Webflow</li>
+        <li>Webflow CMS básico</li>
+        <li>Interacciones avanzadas</li>
+        <li>Integración Zapier</li>
+        <li>Formularios complejos</li>
+        <li>SEO optimizado</li>
+        <li>2 rondas de ajustes</li>
+        <li>Soporte 1 mes</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Contratar</button>
+    </div>
+
+    <div class="pricing-card">
+      <h3>E-Commerce Completo</h3>
+      <div class="pricing-price">$12,000+</div>
+      <ul class="pricing-features">
+        <li>Webflow E-Commerce setup</li>
+        <li>Múltiples colecciones</li>
+        <li>Checkout optimizado</li>
+        <li>Integración Stripe/Paypal</li>
+        <li>CMS avanzado</li>
+        <li>Animaciones complejas</li>
+        <li>3 rondas de ajustes</li>
+        <li>Soporte 3 meses</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Contratar</button>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>¿Listo para tu Sitio Webflow?</h2>
+  <p>Convierte tu diseño Figma en un sitio Webflow profesional, editable y sin código.</p>
+  <div class="cta-buttons">
+    <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Agendar Llamada</button>
+    <button class="btn btn-secondary" onclick="window.location.href='mailto:david.diaz.uxdata@gmail.com'">Enviar Proyecto</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Compañía</h3>
+      <ul><li><a href="index.html#servicios">Servicios</a></li><li><a href="index.html#proyectos">Proyectos</a></li><li><a href="index.html#proceso">Proceso</a></li><li><a href="index.html#faq">FAQ</a></li></ul>
+    </div>
+    <div class="footer-section">
+      <h3>Redes</h3>
+      <ul><li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank">LinkedIn</a></li><li><a href="https://github.com/dsd228" target="_blank">GitHub</a></li><li><a href="https://dribbble.com" target="_blank">Dribbble</a></li><li><a href="https://behance.net" target="_blank">Behance</a></li></ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contacto</h3>
+      <ul><li><a href="mailto:david.diaz.uxdata@gmail.com">Email</a></li><li><a href="https://calendly.com/david-sebastian-diaz" target="_blank">Calendly</a></li><li>100% Remoto</li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 NeoProdUx. All Rights Reserved.</p>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/dsd228" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://dribbble.com" target="_blank"><i class="fab fa-dribbble"></i></a>
+      <a href="https://behance.net" target="_blank"><i class="fab fa-behance"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function scrollTo(selector) {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>
+
+</body>
+</html>
