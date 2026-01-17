@@ -1,0 +1,17 @@
+:root {
+  --bg: #f5f7fa;
+  --surface: #f1f5f9;
+
+  --primary-blue: #567CA3;
+  --border-gray: #567CA3;
+  --text-gray: #567CA3;
+
+  --radius-pill: 30px;
+  --radius-button: 24px;
+
+  --shadow-neu:
+    -8px -8px 16px #ffffff,
+     8px  8px 16px #ced5e9;
+
+  --font: "Poppins", system-ui, sans-serif;
+}

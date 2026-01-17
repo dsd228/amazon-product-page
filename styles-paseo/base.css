@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  width: 402px;
+  height: 874px;
+  margin: 0 auto;
+  font-family: var(--font);
+  position: relative;
+}
