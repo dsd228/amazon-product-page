@@ -563,41 +563,60 @@
 </footer>
 
 <script>
+  <script>
   const slides = Array.from(document.querySelectorAll('.carousel-slide'));
   const dotsContainer = document.getElementById('carousel-dots');
-  const carousel = document.querySelector('.carousel-container');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  slides.forEach((_, index) => {
+  let active = Math.floor(slides.length / 2);
+
+  const spacing = 360;
+  const rotate = 18;
+
+  slides.forEach((_, i) => {
     const dot = document.createElement('div');
-    dot.className = `dot ${index === 0 ? 'active' : ''}`;
+    dot.className = `dot ${i === active ? 'active' : ''}`;
     dotsContainer.appendChild(dot);
   });
 
-  const dots = Array.from(dotsContainer.children);
-  let currentSlide = 0;
-  let autoTimer;
-  const angleStep = slides.length ? 360 / slides.length : 90;
+  const dots = [...dotsContainer.children];
 
-  const setSlide = (index) => {
-    if (!slides.length) return;
-    currentSlide = (index + slides.length) % slides.length;
-    const angle = -currentSlide * angleStep;
-    const angleX = Math.sin((currentSlide / slides.length) * Math.PI * 2) * 25;
-    carousel.style.setProperty('--angle', `${angle}deg`);
-    carousel.style.setProperty('--angle-x', `${angleX}deg`);
-    dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentSlide));
-  };
+  function render() {
+    slides.forEach((slide, i) => {
+      const offset = i - active;
 
-  const stopAuto = () => {
-    if (autoTimer) clearInterval(autoTimer);
-  };
+      slide.style.transform = `
+        translate(-50%, -50%)
+        translateX(${offset * spacing}px)
+        translateZ(${offset === 0 ? 140 : -Math.abs(offset) * 120}px)
+        rotateY(${offset * -rotate}deg)
+        scale(${offset === 0 ? 1.08 : 0.82})
+      `;
 
-  const startAuto = () => {
-    if (prefersReducedMotion) return;
-    stopAuto();
-    autoTimer = setInterval(() => setSlide(currentSlide + 1), 4500);
-  };
+      slide.style.opacity = offset === 0 ? '1' : '0.45';
+      slide.style.filter = offset === 0 ? 'none' : 'blur(2px)';
+      slide.style.zIndex = 100 - Math.abs(offset);
+    });
+
+    dots.forEach((d, i) =>
+      d.classList.toggle('active', i === active)
+    );
+  }
+
+  slides.forEach((slide, i) => {
+    slide.addEventListener('click', () => {
+      active = i;
+      render();
+    });
+  });
+
+  window.addEventListener('wheel', (e) => {
+    active += e.deltaY > 0 ? 1 : -1;
+    active = Math.max(0, Math.min(slides.length - 1, active));
+    render();
+  }, { passive: true });
+
+  render();
+</script>
 
   dots.forEach((dot, idx) => {
     dot.addEventListener('click', () => {
