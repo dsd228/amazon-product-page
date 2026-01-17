@@ -6,846 +6,462 @@
   <title>Diseño de Sitios Web - NeoProdUx</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
-    * {
-      font-family: 'Inter', sans-serif;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #ffffff; color: #1a1a1a; overflow-x: hidden; font-family: "Inter", sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: "Sora", sans-serif; font-weight: 700; }
+
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0; }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.3rem; font-weight: 800; color: #000; cursor: pointer; text-decoration: none; }
+    nav a { color: #666; font-size: 0.95rem; transition: color 0.3s; text-decoration: none; }
+    nav a:hover { color: #000; }
+    .nav-cta { background: #000; color: #fff; padding: 10px 24px; border-radius: 8px; transition: all 0.3s; }
+    .nav-cta:hover { background: #333; transform: scale(1.05); }
+
+    .hero { padding-top: 140px; padding-bottom: 100px; background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%); overflow: hidden; }
+    .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; text-align: center; }
+    .hero h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 24px; font-weight: 800; color: #000; }
+    .hero p { font-size: 1.15rem; color: #666; margin-bottom: 40px; line-height: 1.7; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 14px 32px; border-radius: 8px; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; }
+    .btn-primary { background: #000; color: #fff; }
+    .btn-primary:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
+    .btn-secondary { background: transparent; color: #000; border: 2px solid #000; }
+    .btn-secondary:hover { background: #000; color: #fff; }
+
+    .stats { padding: 60px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
+    .stats-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center; }
+    .stat-item h3 { font-size: 3rem; color: #000; margin-bottom: 12px; font-weight: 800; }
+    .stat-item p { color: #666; font-size: 1rem; font-weight: 500; }
+
+    .section-title { max-width: 1400px; margin: 0 auto 60px; padding: 0 40px; }
+    .section-title h2 { font-size: 3.5rem; color: #000; margin-bottom: 16px; line-height: 1.2; }
+    .section-title p { color: #666; font-size: 1.15rem; max-width: 600px; line-height: 1.6; }
+
+    .services { padding: 100px 40px; background: #fff; }
+    .services-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+    .service-card { background: #f9f9f9; padding: 40px; border-radius: 12px; transition: all 0.4s; border: 1px solid #e5e5e5; text-align: center; }
+    .service-card:hover { transform: translateY(-12px); border-color: #000; background: #fff; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .service-icon { width: 60px; height: 60px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; background: #000; color: #fff; border-radius: 50%; font-size: 1.5rem; }
+    .service-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: #000; }
+    .service-card p { color: #666; line-height: 1.7; font-size: 0.95rem; }
+
+    .benefits { padding: 100px 40px; background: #f9f9f9; }
+    .benefits-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+    .benefit-item { background: #fff; padding: 30px; border-radius: 12px; border: 1px solid #e5e5e5; }
+    .benefit-item h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .benefit-item p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+
+    .tech-stack { padding: 100px 40px; background: #fff; }
+    .tech-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; }
+    .tech-item { background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e5e5e5; }
+    .tech-item h4 { font-size: 1rem; color: #000; font-weight: 600; }
+
+    .process { padding: 100px 40px; background: #f9f9f9; }
+    .process-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; }
+    .process-step { text-align: center; }
+    .step-number { font-size: 3rem; font-weight: 800; color: #000; margin-bottom: 16px; }
+    .process-step h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
+    .process-step p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+
+    .portfolio { padding: 100px 40px; background: #fff; }
+    .portfolio-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .portfolio-card { background: #f9f9f9; border-radius: 12px; overflow: hidden; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .portfolio-card:hover { transform: translateY(-12px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .portfolio-image { width: 100%; height: 250px; background: linear-gradient(135deg, #667eea, #764ba2); background-size: cover; background-position: center; }
+    .portfolio-content { padding: 24px; }
+    .portfolio-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: #000; }
+    .portfolio-card p { color: #666; font-size: 0.9rem; line-height: 1.5; }
+
+    .testimonials { padding: 100px 40px; background: #f9f9f9; }
+    .testimonials-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .testimonial-card { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; transition: all 0.4s; }
+    .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
+    .rating { color: #fbbf24; margin-bottom: 16px; font-size: 1.1rem; }
+    .testimonial-text { color: #333; font-style: italic; margin-bottom: 20px; line-height: 1.8; }
+    .testimonial-author { font-weight: 600; color: #000; margin-bottom: 4px; }
+    .testimonial-role { color: #999; font-size: 0.9rem; }
+
+    .pricing { padding: 100px 40px; background: #fff; }
+    .pricing-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .pricing-card { background: #f9f9f9; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; text-align: center; transition: all 0.4s; }
+    .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border-color: #000; }
+    .pricing-card h3 { font-size: 1.5rem; margin-bottom: 16px; color: #000; }
+    .pricing-card .price { font-size: 2.5rem; font-weight: 800; color: #000; margin-bottom: 8px; }
+    .pricing-card .duration { color: #666; font-size: 0.9rem; margin-bottom: 32px; }
+    .pricing-features { text-align: left; margin-bottom: 32px; }
+    .pricing-features li { color: #666; padding: 8px 0; font-size: 0.95rem; }
+
+    .cta { padding: 80px 40px; background: #000; color: #fff; text-align: center; }
+    .cta h2 { font-size: 2.5rem; margin-bottom: 24px; }
+    .cta p { font-size: 1.1rem; color: #ccc; margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-buttons .btn { background: #fff; color: #000; }
+    .cta-buttons .btn:hover { background: #e5e5e5; }
+
+    footer { background: #f9f9f9; padding: 60px 40px; border-top: 1px solid #e5e5e5; }
+    .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-section h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: #000; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-section ul { list-style: none; }
+    .footer-section li { margin-bottom: 12px; }
+    .footer-section a { color: #666; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+    .footer-section a:hover { color: #000; }
+    .footer-bottom { border-top: 1px solid #e5e5e5; padding-top: 40px; text-align: center; color: #999; font-size: 0.9rem; }
+    .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
+    .social-links a { color: #000; font-size: 1.25rem; transition: color 0.3s; text-decoration: none; }
+    .social-links a:hover { color: #667eea; }
+
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 6px; color: #666; font-size: 0.95rem; text-decoration: none; transition: color 0.3s; }
+    .dropdown-trigger:hover { color: #000; }
+    .dropdown-trigger::after { content: '⌄'; font-size: 0.7rem; transition: transform 0.3s; }
+    .nav-dropdown:hover .dropdown-trigger::after { transform: rotate(180deg); }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s; z-index: 999; margin-top: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { display: block; padding: 12px 20px; color: #666; text-decoration: none; transition: all 0.3s; }
+    .dropdown-menu a:hover { background: #f9f9f9; color: #000; }
+    .dropdown-menu a:first-child { border-radius: 8px 8px 0 0; }
+    .dropdown-menu a:last-child { border-radius: 0 0 8px 8px; }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-    }
-
-    body {
-      background-color: #ffffff;
-      color: #000;
-    }
-
-    /* Navbar */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #e5e5e5;
-      padding: 1rem 2rem;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 0.95rem;
-      color: #000;
-      transition: color 0.3s;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      color: #667eea;
-    }
-
-    .nav-dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-trigger {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      text-decoration: none;
-      color: #000;
-      transition: color 0.3s;
-    }
-
-    .dropdown-trigger:hover {
-      color: #667eea;
-    }
-
-    .dropdown-trigger::after {
-      content: '▼';
-      font-size: 0.6rem;
-      transition: transform 0.3s;
-    }
-
-    .nav-dropdown:hover .dropdown-trigger::after {
-      transform: rotate(180deg);
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      padding: 0.5rem 0;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s;
-      min-width: 200px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      margin-top: 0.5rem;
-    }
-
-    .nav-dropdown:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 0.75rem 1.5rem;
-      color: #000;
-      text-decoration: none;
-      transition: all 0.3s;
-      font-size: 0.9rem;
-    }
-
-    .dropdown-menu a:hover {
-      background-color: #f5f5f5;
-      color: #667eea;
-      padding-left: 2rem;
-    }
-
-    .cta-button {
-      background: #000;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      transition: all 0.3s;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-
-    .cta-button:hover {
-      background: #667eea;
-      transform: translateY(-2px);
-    }
-
-    /* Hero Section */
-    .hero-service {
-      padding-top: 8rem;
-      padding-bottom: 4rem;
-      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    }
-
-    .hero-service h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .hero-service p {
-      font-size: 1.1rem;
-      color: #666;
-      margin-bottom: 2rem;
-      max-width: 600px;
-    }
-
-    /* Stats Section */
-    .stats-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      padding: 3rem 2rem;
-      background: #fff;
-      border-bottom: 1px solid #e5e5e5;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #667eea;
-    }
-
-    .stat-label {
-      font-size: 0.95rem;
-      color: #666;
-      margin-top: 0.5rem;
-    }
-
-    /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      background: #fff;
-      border: 1px solid #e5e5e5;
-      border-radius: 12px;
-      padding: 2rem;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-
-    .service-card:hover {
-      border-color: #667eea;
-      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.1);
-      transform: translateY(-8px);
-    }
-
-    .service-card-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .service-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
-      color: #000;
-    }
-
-    .service-card p {
-      color: #666;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    /* Process Section */
-    .process-section {
-      padding: 4rem 2rem;
-      background: #f8f9fa;
-    }
-
-    .process-title {
-      text-align: center;
-      margin-bottom: 3rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .process-title h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .process-title p {
-      color: #666;
-      font-size: 1.05rem;
-    }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .process-step {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      border-left: 4px solid #667eea;
-      transition: all 0.3s;
-    }
-
-    .process-step:hover {
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-      transform: translateY(-4px);
-    }
-
-    .step-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #667eea;
-      margin-bottom: 0.5rem;
-    }
-
-    .process-step h4 {
-      font-size: 1.2rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .process-step p {
-      color: #666;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    /* Benefits Section */
-    .benefits-section {
-      padding: 4rem 2rem;
-      background: white;
-    }
-
-    .benefits-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .benefits-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .benefits-content p {
-      color: #666;
-      line-height: 1.8;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .benefit-item {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .benefit-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      flex-shrink: 0;
-      font-size: 1.2rem;
-    }
-
-    .benefit-text h4 {
-      font-size: 1.05rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .benefit-text p {
-      margin: 0;
-      font-size: 0.9rem;
-    }
-
-    .benefits-image {
-      width: 100%;
-      height: 400px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.2rem;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    /* Tools Section */
-    .tools-section {
-      padding: 4rem 2rem;
-      background: #f8f9fa;
-    }
-
-    .tools-title {
-      text-align: center;
-      margin-bottom: 3rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .tools-title h2 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .tool-item {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      border: 1px solid #e5e5e5;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-
-    .tool-item:hover {
-      border-color: #667eea;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
-      transform: translateY(-4px);
-    }
-
-    .tool-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .tool-item h4 {
-      font-size: 1rem;
-      color: #000;
-    }
-
-    /* CTA Section */
-    .cta-section {
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, #000 0%, #333 100%);
-      color: white;
-      text-align: center;
-    }
-
-    .cta-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: #667eea;
-      color: white;
-      padding: 0.9rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .btn-primary:hover {
-      background: #764ba2;
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: white;
-      padding: 0.9rem 2rem;
-      border: 2px solid white;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.3s;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .btn-secondary:hover {
-      background: white;
-      color: #000;
-    }
-
-    /* Footer */
-    footer {
-      background: #000;
-      color: white;
-      padding: 3rem 2rem;
-      border-top: 1px solid #333;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-col h4 {
-      margin-bottom: 1rem;
-      font-size: 1.05rem;
-    }
-
-    .footer-col a {
-      display: block;
-      color: #999;
-      text-decoration: none;
-      margin-bottom: 0.5rem;
-      transition: color 0.3s;
-      font-size: 0.95rem;
-    }
-
-    .footer-col a:hover {
-      color: #667eea;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid #333;
-      color: #999;
-      font-size: 0.9rem;
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .hero-service h1 {
-        font-size: 2rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .benefits-container {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-      }
-
-      .nav-links {
-        gap: 1rem;
-      }
+      .hero h1 { font-size: 2.5rem; }
+      .section-title h2 { font-size: 2rem; }
+      .stat-item h3 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <div class="nav-container">
-      <div style="font-size: 1.3rem; font-weight: 700;">NeoProdUx</div>
-      <div class="nav-links">
-        <div class="nav-dropdown">
-          <a href="#" class="dropdown-trigger">Servicios</a>
-          <div class="dropdown-menu">
-            <a href="ui-ux-design.html">Diseño UI-UX</a>
-            <a href="#">Diseño de aplicaciones móviles</a>
-            <a href="#">Diseño de sitios web</a>
-            <a href="#">Figma a HTML</a>
-            <a href="#">Figma a WordPress</a>
-            <a href="#">Figma a Webflow</a>
-          </div>
-        </div>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#proceso">Proceso</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contacto" class="cta-button">Contacto</a>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-service">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-      <h1>Website Design Services</h1>
-      <p>Diseñamos sitios web altamente atractivos y escalables donde tus clientes aman navegar, explorar y comprar. Creamos experiencias web que convierten visitantes en clientes.</p>
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="#contacto" class="btn-primary">Comenzar Proyecto</a>
-        <a href="#servicios" class="btn-secondary">Ver Servicios</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section class="stats-section">
-    <div class="stat-item">
-      <div class="stat-number">15,000+</div>
-      <div class="stat-label">Diseños Completados</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">300+</div>
-      <div class="stat-label">Clientes Satisfechos</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">10+</div>
-      <div class="stat-label">Años de Experiencia</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">360+</div>
-      <div class="stat-label">Proyectos Completados</div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="servicios" style="padding: 4rem 2rem; background: white;">
-    <div style="max-width: 1200px; margin: 0 auto; margin-bottom: 3rem;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Nuestros Servicios de Diseño Web</h2>
-      <p style="color: #666; font-size: 1.05rem; max-width: 700px;">Hacemos esfuerzos conscientes para alinear los diseños web con tus objetivos de negocio y branding. Desde colores hasta tipografía e iconos, diseñamos sitios web que promueven tu marca de manera fácil de navegar y amigable.</p>
-    </div>
-    
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-card-icon">
-          <i class="fas fa-pen-ruler"></i>
-        </div>
-        <h3>Diseño Web</h3><p>Creamos diseños web estelares para capturar la atención de tus usuarios y mantenerlos comprometidos para siempre.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-card-icon">
-          <i class="fas fa-cube"></i>
-        </div>
-        <h3>Desarrollo Web</h3><p>Construimos y lanzamos sitios web personalizados antes de diseñar con nuestro equipo experimentado y tecnologías de vanguardia.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-card-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <h3>Estrategia de Marca</h3><p>Aseguramos que tu marca se mantenga por delante de sus pares y lidere la industria con nuestra estrategia y servicios de branding competitivos.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-card-icon">
-          <i class="fas fa-lightbulb"></i>
-        </div>
-        <h3>Wireframes y Prototipos</h3><p>Elaboramos wireframes y prototipos detallados, permitiendo a los diseñadores decidir el camino de diseño y elementos para el sitio web.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-card-icon">
-          <i class="fas fa-globe"></i>
-        </div>
-        <h3>Personalización Web</h3><p>Convierte tus diseños web obsoletos en modernos e interactivos con las habilidades creativas de nuestros diseñadores UI/UX.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-card-icon">
-          <i class="fas fa-mobile-alt"></i>
-        </div>
-        <h3>Desarrollo de Temas Web</h3><p>Crea temas web interactivos y hermosos para hacerlos lucir atractivos y destacar en el mercado.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section class="process-section" id="proceso">
-    <div class="process-title">
-      <h2>Nuestro Proceso de Diseño</h2>
-      <p>Un enfoque metodológico que garantiza resultados excepcionales en cada proyecto</p>
-    </div>
-
-    <div class="process-grid">
-      <div class="process-step">
-        <div class="step-number">01</div>
-        <h4>Ideación</h4>
-        <p>Entendemos tus objetivos y necesidades. Colaboramos contigo para definir la visión del proyecto y alinearnos en expectativas.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="step-number">02</div>
-        <h4>Research</h4>
-        <p>Investigamos tu audiencia, mercado y competencia. Los datos y insights guían nuestras decisiones de diseño.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="step-number">03</div>
-        <h4>Diseño</h4>
-        <p>Creamos diseños visuales cautivadores que combinan estrategia con creatividad. Cada elemento tiene propósito.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="step-number">04</div>
-        <h4>Desarrollo</h4>
-        <p>Convertimos diseños en interfaces funcionales. Trabajamos con front-end developers para implementación pixel-perfect.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="step-number">05</div>
-        <h4>Testing de Usuarios</h4>
-        <p>Validamos con usuarios reales. Identificamos friction points y oportunidades de optimización basadas en comportamiento.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="step-number">06</div>
-        <h4>Entrega</h4>
-        <p>Lanzamos diseños pulidos y de alto rendimiento. Aseguramos que todo cumpla con estándares de calidad y objetivos de negocio.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Benefits Section -->
-  <section class="benefits-section">
-    <div class="benefits-container">
-      <div class="benefits-content">
-        <h2>Beneficios de Nuestros Servicios de Diseño Web</h2>
-        <p>Nuestros diseños son como un libro cautivador: intuitivos, visualmente atractivos y dejan una impresión duradera. Permitimos que tu historia de negocio cobre vida.</p>
-
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <i class="fas fa-check"></i>
-          </div>
-          <div class="benefit-text">
-            <h4>Navegación Intuitiva</h4><p>La navegación intuitiva en el diseño web asegura que los usuarios puedan encontrar fácilmente lo que necesitan, mejorando la usabilidad y reduciendo la frustración.</p>
-          </div>
-        </div>
-
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <i class="fas fa-check"></i>
-          </div>
-          <div class="benefit-text">
-            <h4>Satisfacción del Usuario Mejorada</h4><p>El diseño web se enfoca en crear interfaces que deleitan a los usuarios siendo intuitivas, visualmente atractivas y eficientes, llevando a usuarios más felices y comprometidos.</p>
-          </div>
-        </div>
-
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <i class="fas fa-check"></i>
-          </div>
-          <div class="benefit-text">
-            <h4>Retención de Usuarios Mejorada</h4><p>El diseño web se enfoca en crear experiencias pegajosas. La UI/UX bien elaborada mantiene a los usuarios enganchados a través de interfaces intuitivas y elementos personalizados.</p>
-          </div>
-        </div>
-
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <i class="fas fa-check"></i>
-          </div>
-          <div class="benefit-text">
-            <h4>Identidad de Marca Fortalecida</h4><p>El diseño UI/UX orquesta color, tipografía e imágenes para componer la huella única de tu marca, creando una conexión instantánea con los usuarios.</p>
-          </div>
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">NeoProdUx</a>
+    <div style="display: flex; gap: 40px; align-items: center;">
+      <div class="nav-dropdown">
+        <a href="#servicios" class="dropdown-trigger">Servicios</a>
+        <div class="dropdown-menu">
+          <a href="ui-ux-design.html">Diseño UI-UX</a>
+          <a href="mobile-app-design.html">Diseño de aplicaciones móviles</a>
+          <a href="website-design.html">Diseño de sitios web</a>
+          <a href="#servicios">Figma a HTML</a>
+          <a href="#servicios">Figma a WordPress</a>
+          <a href="#servicios">Figma a Webflow</a>
         </div>
       </div>
+      <a href="index.html#proyectos">Proyectos</a>
+      <a href="index.html#proceso">Proceso</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contacto" class="nav-cta">Contacto</a>
+    </div>
+  </div>
+</nav>
 
-      <div class="benefits-image">
-        <div style="text-align: center;">
-          <i class="fas fa-pencil-ruler" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
-          <p>Diseño Estratégico & Creativo</p>
-        </div>
-      </div>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Diseño de Sitios Web Estratégico</h1>
+    <p>Sitios web cautivadores que generan conversiones. Experiencias multidevice optimizadas para resultados reales de negocio.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="document.querySelector('#pricing').scrollIntoView({behavior: 'smooth'})">Ver Paquetes</button>
+      <button class="btn btn-secondary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Agendar Llamada</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Tools Section -->
-  <section class="tools-section">
-    <div class="tools-title">
-      <h2>Stack Tecnológico que Utilizamos</h2>
-      <p>Herramientas profesionales para resultados excepcionales</p>
-    </div>
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item"><h3>80+</h3><p>Sitios Diseñados</p></div>
+    <div class="stat-item"><h3>500M+</h3><p>Visitantes Anuales</p></div>
+    <div class="stat-item"><h3>+65%</h3><p>Aumento en Conversión</p></div>
+  </div>
+</section>
 
-    <div class="tools-grid">
-      <div class="tool-item">
-        <div class="tool-icon">📐</div>
-        <h4>Figma</h4>
-      </div>
-      <div class="tool-item">
-        <div class="tool-icon">✎️</div>
-        <h4>Adobe XD</h4>
-      </div>
-      <div class="tool-item">
-        <div class="tool-icon">🖼️</div>
-        <h4>Photoshop</h4>
-      </div>
-      <div class="tool-item">
-        <div class="tool-icon">🗺️</div>
-        <h4>Miro</h4>
-      </div>
-      <div class="tool-item">
-        <div class="tool-icon">✨</div>
-        <h4>Jitter</h4>
-      </div>
-      <div class="tool-item">
-        <div class="tool-icon">🎬</div>
-        <h4>Framer</h4>
-      </div>
+<section class="services">
+  <div class="section-title">
+    <h2>Nuestros Servicios de Diseño Web</h2>
+    <p>Soluciones completas para presencia digital de alto impacto</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+      <h3>Diseño Web</h3>
+      <p>Creamos diseños web estelares que captan atención y generan engagement. Interfaces hermosas y funcionales.</p>
     </div>
-  </section>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-code"></i></div>
+      <h3>Desarrollo Web</h3>
+      <p>Desarrollo con tecnologías modernas. Sitios rápidos, seguros y escalables listos para producción.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-rocket"></i></div>
+      <h3>Estrategia de Marca</h3>
+      <p>Posicionamos tu marca adelante de competencia. Branding coherente que genera conexión con usuarios.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-pen-fancy"></i></div>
+      <h3>Wireframes y Prototipos</h3>
+      <p>Esquemas detallados e interactivos que validan el diseño antes de desarrollo. Decisiones informadas.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-magic"></i></div>
+      <h3>Modernización Web</h3>
+      <p>Transforma sitios obsoletos en plataformas modernas e interactivas. Rediseño completo con impacto.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-gem"></i></div>
+      <h3>Temas Web Personalizados</h3>
+      <p>Temas interactivos y bellos que destacan en mercado. Escalables y mantenibles a largo plazo.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <h2>¿Listo para Transformar tu Visión?</h2>
-    <p>Asociate con nuestro equipo de expertos en UI/UX para crear experiencias digitales excepcionales que cautiven a tu audiencia y generen resultados.</p>
-    <div class="cta-buttons">
-      <a href="#contacto" class="btn-primary">Comenzar Proyecto</a>
-      <a href="#" class="btn-secondary">Ver Portafolio</a>
+<section class="benefits">
+  <div class="section-title">
+    <h2>Beneficios del Diseño Web Moderno</h2>
+    <p>¿Por qué importa tu presencia digital?</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <h3>Fácil Navegación</h3>
+      <p>Usuarios encuentran lo que necesitan sin esfuerzo. Menús claros, flujos intuitivos, jerarquía visual óptima.</p>
     </div>
-  </section>
+    <div class="benefit-item">
+      <h3>Optimización Multi-dispositivo</h3>
+      <p>Perfecto en móvil, tablet y desktop. Responsive design que adapta contenido a cualquier pantalla.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>Rendimiento de Alta Velocidad</h3>
+      <p>Sitios rápidos que cargan en millisegundos. Optimización de assets, lazy loading, CDN global.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>Seguridad de Clase Empresarial</h3>
+      <p>SSL certificados, protección contra vulnerabilidades, cumplimiento normativo. Datos protegidos siempre.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>SEO Optimizado</h3>
+      <p>Rankings altos en buscadores. Arquitectura SEO-friendly, metadatos optimizados, velocidad indexada.</p>
+    </div>
+    <div class="benefit-item">
+      <h3>Conversión Maximizada</h3>
+      <p>CTA estratégicos, formularios intuitivos, checkout optimizado. Cada elemento enfocado en resultados.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-col">
-        <h4>Empresa</h4>
-        <a href="#">Sobre Nosotros</a>
-        <a href="#">Portafolio</a>
-        <a href="#">Blog</a>
-        <a href="#">Contacto</a>
-      </div>
-      <div class="footer-col">
-        <h4>Servicios</h4>
-        <a href="ui-ux-design.html">Diseño UI-UX</a>
-        <a href="#">Diseño de Aplicaciones</a>
-        <a href="#">Diseño Web</a>
-        <a href="#">Figma a HTML</a>
-      </div>
-      <div class="footer-col">
-        <h4>Recursos</h4>
-        <a href="#">Blog</a>
-        <a href="#">Recursos Figma</a>
-        <a href="#">Plantillas</a>
-        <a href="#">Guías</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <a href="mailto:info@neoprodux.com">info@neoprodux.com</a>
-        <a href="#">+1 (555) 123-4567</a>
-        <a href="#">LinkedIn</a>
-        <a href="#">Twitter</a>
+<section class="tech-stack">
+  <div class="section-title">
+    <h2>Stack Tecnológico Web</h2>
+    <p>Tecnologías líderes para sitios de alto rendimiento</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item"><h4>React</h4></div>
+    <div class="tech-item"><h4>Next.js</h4></div>
+    <div class="tech-item"><h4>Tailwind CSS</h4></div>
+    <div class="tech-item"><h4>Node.js</h4></div>
+    <div class="tech-item"><h4>PostgreSQL</h4></div>
+    <div class="tech-item"><h4>Vercel</h4></div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-title">
+    <h2>Proceso de Desarrollo Web</h2>
+    <p>Metodología comprobada para sitios excepcionales</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h3>Estrategia</h3>
+      <p>Auditoría competitiva y definición de objetivos. Arquitectura de información y user personas.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h3>Investigación</h3>
+      <p>Análisis de usuarios y comportamiento. Validamos hipótesis con datos reales antes de diseñar.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h3>Wireframing</h3>
+      <p>Esquemas funcionales detallados. Prototipado interactivo para validar flujos y experiencia.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">4</div>
+      <h3>Diseño Visual</h3>
+      <p>Diseño de interfaz polished. Brand colors, tipografía, componentes reutilizables, design tokens.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">5</div>
+      <h3>Desarrollo</h3>
+      <p>Código limpio y optimizado. Responsive, accesible, SEO-ready. Testing automatizado incluido.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">6</div>
+      <h3>Lanzamiento</h3>
+      <p>Deployment a producción. Monitoreo, analytics setup, handoff de documentación completa.</p>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="section-title">
+    <h2>Casos de Éxito Web</h2>
+    <p>Sitios que transformaron presencia digital</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/EventsDesktop - 7.jpg');"></div>
+      <div class="portfolio-content">
+        <h3>Yale School of Art</h3>
+        <p>Rediseño web moderno. +60% tráfico, +45% engagement, +35% aplicaciones de admisiones.</p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 NeoProdUx. Todos los derechos reservados.</p>
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Desktop - 3.png');"></div>
+      <div class="portfolio-content">
+        <h3>La Caroyense E-commerce</h3>
+        <p>Rediseño e-commerce completo. +340% conversión, -45% abandono de carrito, +$2.1M ingresos.</p>
+      </div>
     </div>
-  </footer>
+    <div class="portfolio-card">
+      <div class="portfolio-image" style="background-image: url('images/Home.png');"></div>
+      <div class="portfolio-content">
+        <h3>Nexus Logistics Portal</h3>
+        <p>Dashboard B2B escalable. 200+ empresas activas, +40% usabilidad, -30% capacitación requerida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-title">
+    <h2>Lo Que Dicen Nuestros Clientes Web</h2>
+    <p>Resultados reales de sitios reales</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+      <p class="testimonial-text">"El diseño web de David transformó completamente nuestra presencia online. Las conversiones aumentaron 340%. Profesional, estratégico y orientado a resultados."</p>
+      <p class="testimonial-author">CEO, E-commerce Shop</p>
+      <p class="testimonial-role">Founder & CEO</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+      <p class="testimonial-text">"Sitio rápido, hermoso y funcional. El proceso fue transparente desde ideación hasta lanzamiento. ROI impresionante en 3 meses."</p>
+      <p class="testimonial-author">Marketing Manager, B2B SaaS</p>
+      <p class="testimonial-role">Growth Lead</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+      <p class="testimonial-text">"Rediseño completo del sitio resultó en +60% tráfico y +45% engagement. El mejor investment en diseño que hicimos."</p>
+      <p class="testimonial-author">Dean, Universidad de Arte</p>
+      <p class="testimonial-role">Administración</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="section-title">
+    <h2>Paquetes de Diseño Web</h2>
+    <p>Opciones flexibles para tu presencia digital</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Landing Page</h3>
+      <p class="duration">Página única de alta conversión</p>
+      <div class="price">$3,200</div>
+      <p class="duration">Proyecto completo</p>
+      <ul class="pricing-features">
+        <li>✓ Diseño customizado</li>
+        <li>✓ Desarrollo responsivo</li>
+        <li>✓ Formularios optimizados</li>
+        <li>✓ Integración con CRM</li>
+        <li>✓ SEO básico</li>
+        <li>✓ 1 mes soporte</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Solicitar Propuesta</button>
+    </div>
+    <div class="pricing-card">
+      <h3>Sitio Corporativo</h3>
+      <p class="duration">Presencia web profesional</p>
+      <div class="price">$6,500</div>
+      <p class="duration">Proyecto completo</p>
+      <ul class="pricing-features">
+        <li>✓ 5-10 páginas diseñadas</li>
+        <li>✓ CMS integrado</li>
+        <li>✓ Blog optimizado</li>
+        <li>✓ SEO avanzado</li>
+        <li>✓ Analytics setup</li>
+        <li>✓ 3 meses soporte</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Solicitar Propuesta</button>
+    </div>
+    <div class="pricing-card">
+      <h3>E-commerce Completo</h3>
+      <p class="duration">Tienda online escalable</p>
+      <div class="price">Desde $14,000</div>
+      <p class="duration">Proyecto personalizado</p>
+      <ul class="pricing-features">
+        <li>✓ Diseño único y atractivo</li>
+        <li>✓ Carrito y pagos integrados</li>
+        <li>✓ Gestión de inventario</li>
+        <li>✓ Seguridad SSL avanzada</li>
+        <li>✓ Email marketing setup</li>
+        <li>✓ 6 meses soporte</li>
+      </ul>
+      <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Solicitar Propuesta</button>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>¿Necesitas un Sitio Web que Genere Resultados?</h2>
+  <p>Conversemos sobre tu proyecto. Agendar una llamada rápida o envía un email con tus detalles.</p>
+  <div class="cta-buttons">
+    <button class="btn btn-primary" onclick="window.open('https://calendly.com/david-sebastian-diaz', '_blank')">Agendar Llamada</button>
+    <button class="btn btn-secondary" onclick="window.location.href='mailto:david.diaz.uxdata@gmail.com'">Enviar Email</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>Compañía</h3>
+      <ul><li><a href="index.html#servicios">Servicios</a></li><li><a href="index.html#proyectos">Proyectos</a></li><li><a href="index.html#proceso">Proceso</a></li><li><a href="index.html#faq">FAQ</a></li></ul>
+    </div>
+    <div class="footer-section">
+      <h3>Redes</h3>
+      <ul><li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank">LinkedIn</a></li><li><a href="https://github.com/dsd228" target="_blank">GitHub</a></li><li><a href="https://dribbble.com" target="_blank">Dribbble</a></li><li><a href="https://behance.net" target="_blank">Behance</a></li></ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contacto</h3>
+      <ul><li><a href="mailto:david.diaz.uxdata@gmail.com">Email</a></li><li><a href="https://calendly.com/david-sebastian-diaz" target="_blank">Calendly</a></li><li>100% Remoto</li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 NeoProdUx. All Rights Reserved.</p>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/dsd228" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://dribbble.com" target="_blank"><i class="fab fa-dribbble"></i></a>
+      <a href="https://behance.net" target="_blank"><i class="fab fa-behance"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href !== '#' && document.querySelector(href)) {
+        e.preventDefault();
+        document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
