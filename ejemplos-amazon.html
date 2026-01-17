@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos de Páginas para Vender en Amazon - NeoProdUx</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", sans-serif; color: #1a1a1a; background: #f7f7f7; }
+    a { text-decoration: none; color: inherit; }
+    
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0; }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.6rem; font-weight: 800; color: #000; letter-spacing: -0.5px; }
+    nav a { color: #666; font-size: 0.95rem; transition: color 0.3s; text-decoration: none; }
+    nav a:hover { color: #000; }
+    
+    main { max-width: 1400px; margin: 140px auto 0; padding: 0 40px 80px; }
+    
+    .section-title { margin-bottom: 60px; text-align: center; }
+    .section-title h1 { font-family: "Sora", sans-serif; font-size: 3rem; font-weight: 800; margin-bottom: 12px; }
+    .section-title p { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 60px; }
+    
+    .card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e5e5; transition: all 0.3s ease; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    
+    .card-header { padding: 24px; background: linear-gradient(135deg, #ff6b35, #ff8c42); color: #fff; }
+    .card-header h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .card-header p { font-size: 0.95rem; opacity: 0.95; }
+    
+    .card-body { padding: 24px; }
+    .card-body p { font-size: 0.95rem; color: #666; margin-bottom: 16px; line-height: 1.6; }
+    
+    .card-footer { padding: 0 24px 24px; }
+    .btn { display: inline-block; padding: 12px 24px; background: #ff6b35; color: #fff; border-radius: 8px; font-weight: 600; transition: all 0.3s; }
+    .btn:hover { background: #ff5520; transform: scale(1.05); }
+    
+    .category-section { margin-bottom: 80px; }
+    .category-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 3px solid #ff6b35; }
+    
+    footer { text-align: center; padding: 40px 20px; color: #777; border-top: 1px solid #e5e5e5; }
+    
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      main { margin-top: 120px; padding: 0 20px 40px; }
+      .section-title h1 { font-size: 2rem; }
+      nav { padding: 12px 0; }
+      .nav-container { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo" style="text-decoration: none; color: #000;"><span style="color: #ff6b35;">N</span>eo<span style="color: #ff6b35;">P</span>rod<span style="color: #ff6b35;">U</span>x</a>
+    <a href="index.html" style="color: #ff6b35; font-weight: 600;">← Volver al inicio</a>
+  </div>
+</nav>
+
+<main>
+  <div class="section-title">
+    <h1>Ejemplos de Páginas para Vender en Amazon</h1>
+    <p>Plantillas y diseños profesionales para maximizar conversiones y ventas en plataformas de e-commerce</p>
+  </div>
+
+  <!-- LANDING PAGES -->
+  <div class="category-section">
+    <h2 class="category-title">🎯 Landing Pages Productos</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">
+          <h3>Smartwatch Fitness</h3>
+          <p>Reloj inteligente con análisis de salud</p>
+        </div>
+        <div class="card-body">
+          <p>Página optimizada para vender smartwatch con énfasis en features de salud y fitness tracking.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/landing-smartwatch.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Monitor 4K Ultra</h3>
+          <p>Pantalla de alta definición para profesionales</p>
+        </div>
+        <div class="card-body">
+          <p>Landing page para monitor 4K con especificaciones técnicas y comparativas con competencia.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/landing-monitor-4k.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Paneles Solares</h3>
+          <p>Energía renovable eficiente</p>
+        </div>
+        <div class="card-body">
+          <p>Página especializada en paneles solares con calculadora de ROI y testimonios de clientes.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/landing-paneles-solares.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Zapatillas Deportivas</h3>
+          <p>Calzado de alto rendimiento</p>
+        </div>
+        <div class="card-body">
+          <p>Landing page para zapatillas con énfasis en tecnología, comodidad y testimonios de atletas.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/landing-zapatillas.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPLATES POR ESTILO -->
+  <div class="category-section">
+    <h2 class="category-title">🎨 Templates por Estilo de Venta</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">
+          <h3>Storytelling</h3>
+          <p>Narrativa de marca y conexión emocional</p>
+        </div>
+        <div class="card-body">
+          <p>Template que cuenta la historia de la marca, orígenes y misión para generar conexión con clientes.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/estilo-storytelling.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Data-Driven</h3>
+          <p>Estadísticas y pruebas sociales</p>
+        </div>
+        <div class="card-body">
+          <p>Diseño centrado en datos, gráficos y métricas que demuestran calidad y eficacia.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/estilo-data-driven.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Social Proof</h3>
+          <p>Reseñas, testimonios y confianza</p>
+        </div>
+        <div class="card-body">
+          <p>Template optimizado con testimonios, ratings y pruebas sociales para aumentar conversión.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/estilo-social-proof.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Minimal Pro</h3>
+          <p>Diseño limpio y profesional</p>
+        </div>
+        <div class="card-body">
+          <p>Estilo minimalista con enfoque en la calidad y elegancia del producto.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/estilo-minimal-pro.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Lanzamiento</h3>
+          <p>Urgencia y exclusividad</p>
+        </div>
+        <div class="card-body">
+          <p>Template de lanzamiento con countdown, early bird offers y sensación de urgencia.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/estilo-lanzamiento.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Bundle</h3>
+          <p>Ofertas y combos atractivos</p>
+        </div>
+        <div class="card-body">
+          <p>Página especializada en bundles y ofertas combo para aumentar ticket promedio.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/estilo-bundle.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPLATES PRODUCTOS -->
+  <div class="category-section">
+    <h2 class="category-title">📦 Templates por Producto</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">
+          <h3>Tech Products</h3>
+          <p>Electrónica y tecnología</p>
+        </div>
+        <div class="card-body">
+          <p>Template especializado para productos tecnológicos con especificaciones y features.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/template-tech.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Premium</h3>
+          <p>Productos de lujo</p>
+        </div>
+        <div class="card-body">
+          <p>Diseño elegante y sofisticado para productos premium y de alto valor.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/template-premium.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Eco-Friendly</h3>
+          <p>Productos sustentables</p>
+        </div>
+        <div class="card-body">
+          <p>Template enfocado en sostenibilidad, materiales eco-friendly y impacto ambiental.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/template-eco.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Sport</h3>
+          <p>Artículos deportivos</p>
+        </div>
+        <div class="card-body">
+          <p>Página especializada en equipamiento deportivo con énfasis en performance y durabilidad.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/template-sport.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TENDENCIAS DE DISEÑO -->
+  <div class="category-section">
+    <h2 class="category-title">✨ Tendencias de Diseño 2025</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">
+          <h3>Motion Design</h3>
+          <p>Animaciones y movimiento</p>
+        </div>
+        <div class="card-body">
+          <p>Página con micro-interacciones y animaciones que capturan la atención del usuario.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/tendencia-motion.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Calm UX</h3>
+          <p>Diseño tranquilo y enfocado</p>
+        </div>
+        <div class="card-body">
+          <p>Interfaz minimalista que reduce la ansiedad del usuario y facilita la decisión de compra.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/tendencia-calm.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>IA UX</h3>
+          <p>Inteligencia artificial y personalización</p>
+        </div>
+        <div class="card-body">
+          <p>Página con elementos de IA que personalizan la experiencia para cada usuario.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/tendencia-ai-ux.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Neumorfismo</h3>
+          <p>Diseño suave y moderno</p>
+        </div>
+        <div class="card-body">
+          <p>Tendencia de diseño con sombras suaves y efectos 3D que crean profundidad visual.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/tendencia-neumorfismo.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEO CONTENT -->
+  <div class="category-section">
+    <h2 class="category-title">📝 SEO y Contenido</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">
+          <h3>Amazon SEO</h3>
+          <p>Optimización para Amazon A9</p>
+        </div>
+        <div class="card-body">
+          <p>Estructura optimizada para algoritmos de Amazon con keywords, bullets y descripción estratégica.</p>
+        </div>
+        <div class="card-footer">
+          <a href="ejemplos/amazon-seo-contenido.html" class="btn" target="_blank">Ver ejemplo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 NeoProdUx. Ejemplos de páginas para vender en Amazon. | <a href="index.html" style="color: #ff6b35;">Volver a inicio</a></p>
+</footer>
+
+</body>
+</html>
