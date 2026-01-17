@@ -209,14 +209,31 @@
     details[open] summary { background: #fff; border-color: #000; }
     details p { padding: 24px; color: #666; line-height: 1.8; }
 
-    .blog { padding: 100px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
-    .blog-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
-    .blog-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e5e5; transition: all 0.4s; }
-    .blog-card:hover { transform: translateY(-12px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
-    .blog-image { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea, #764ba2); background-size: cover; background-position: center; }
-    .blog-content { padding: 24px; }
-    .blog-card h3 { font-size: 1.25rem; margin-bottom: 12px; color: #000; }
-    .blog-card p { color: #666; font-size: 0.9rem; line-height: 1.6; }
+    .blog { padding: 100px 40px; background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%); border-bottom: 1px solid #e5e5e5; }
+    .blog-header { max-width: 900px; margin: 0 auto 48px; text-align: center; }
+    .blog-header .eyebrow { color: #ff6b35; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 12px; }
+    .blog-header h2 { font-size: 3rem; color: #000; margin-bottom: 12px; }
+    .blog-header p { color: #666; font-size: 1.05rem; line-height: 1.7; }
+    .blog-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+    .blog-card { background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid #e5e5e5; transition: all 0.35s ease; display: flex; flex-direction: column; min-height: 100%; }
+    .blog-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); border-color: #ff6b35; }
+    .blog-image { width: 100%; height: 220px; background-size: cover; background-position: center; background-repeat: no-repeat; }
+    .blog-content { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .post-date { color: #999; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .post-title { font-size: 1.25rem; color: #000; line-height: 1.5; }
+    .post-excerpt { color: #555; line-height: 1.6; font-size: 0.98rem; }
+    .post-link { color: #ff6b35; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .post-link:hover { color: #d9572b; }
+    .blog-cta { max-width: 1200px; margin: 48px auto 0; background: #0f0f0f; color: #fff; border-radius: 16px; padding: 28px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    .blog-cta h3 { font-size: 1.35rem; margin-bottom: 6px; }
+    .blog-cta p { color: rgba(255, 255, 255, 0.8); }
+    .blog-cta .btn { padding: 12px 20px; }
+    .blog-cta .btn-secondary { border-color: #fff; color: #fff; }
+    @media (max-width: 768px) {
+      .blog-header h2 { font-size: 2.3rem; }
+      .blog { padding: 80px 24px; }
+      .blog-cta { padding: 24px; }
+    }
 
     .cta { padding: 80px 40px; background: #000; color: #fff; text-align: center; }
     .cta h2 { font-size: 2.5rem; margin-bottom: 24px; }
@@ -277,6 +294,7 @@
       <a href="#proyectos">Proyectos</a>
       <a href="#proceso">Proceso</a>
       <a href="#faq">FAQ</a>
+      <a href="#blog">Blog</a>
       <a href="#contacto" class="nav-cta">Contacto</a>
     </div>
   </div>
@@ -441,15 +459,54 @@
   </div>
 </section>
 
-<section class="blog">
-  <div class="section-title">
-    <h2>¿Qué hay de Tendencia?</h2>
-    <p>Insights y tips sobre diseño, UX y producto</p>
+<section class="blog" id="blog">
+  <div class="blog-header">
+    <p class="eyebrow">Blog NeoProdUx</p>
+    <h2>Ideas, guías y tendencias de diseño</h2>
+    <p>Clon inspirado en Uistudioz Blog. Seleccionamos artículos clave para equipos de producto.</p>
   </div>
+
   <div class="blog-grid">
-    <div class="blog-card"><div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=200&fit=crop');"></div><div class="blog-content"><h3>Guía Completa de UX Research</h3><p>Metodologías modernas para entender realmente a tus usuarios y validar tus soluciones.</p></div></div>
-    <div class="blog-card"><div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=200&fit=crop');"></div><div class="blog-content"><h3>Métricas que Importan</h3><p>Cómo medir el impacto real de tus decisiones de diseño en el negocio.</p></div></div>
-    <div class="blog-card"><div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=200&fit=crop');"></div><div class="blog-content"><h3>5 Errores de UX Comunes</h3><p>Y cómo evitarlos en tu próximo proyecto de diseño.</p></div></div>
+    <article class="blog-card">
+      <div class="blog-image" style="background-image: url('https://uistudioz.com/wp-content/uploads/2025/09/From-Idea-to-Prototype-%E2%80%93-Master-Figma-Make-with-AI.png');"></div>
+      <div class="blog-content">
+        <span class="post-date">18 Sep 2025</span>
+        <h3 class="post-title">Mastering Figma Make: From Prompt to Prototype</h3>
+        <p class="post-excerpt">Guía 2025 para pasar de idea a prototipo con IA y Figma Make, cubriendo el flujo completo de diseño a entrega.</p>
+        <a class="post-link" href="https://uistudioz.com/master-figma-make-prompt-to-prototype/" target="_blank" rel="noopener">Leer artículo →</a>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-image" style="background-image: url('https://uistudioz.com/wp-content/uploads/2025/09/Avoid-These-7-UX-Errors-in-Grocery-Apps.png');"></div>
+      <div class="blog-content">
+        <span class="post-date">01 Sep 2025</span>
+        <h3 class="post-title">7 UX Mistakes That Can Break a Grocery Delivery App</h3>
+        <p class="post-excerpt">Los errores más comunes en apps de delivery y cómo resolverlos con patrones de UX comprobados.</p>
+        <a class="post-link" href="https://uistudioz.com/ux-mistakes-in-grocery-delivery-apps/" target="_blank" rel="noopener">Leer artículo →</a>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <div class="blog-image" style="background-image: url('https://uistudioz.com/wp-content/uploads/2025/08/Framer-Website-Design-Trends-You-Cant-Miss.png');"></div>
+      <div class="blog-content">
+        <span class="post-date">22 Ago 2025</span>
+        <h3 class="post-title">10 Framer Website Design Trends to Watch in 2025</h3>
+        <p class="post-excerpt">Tendencias clave en diseño web con Framer para crear experiencias 2025 listas para lanzar.</p>
+        <a class="post-link" href="https://uistudioz.com/framer-web-design-trends/" target="_blank" rel="noopener">Leer artículo →</a>
+      </div>
+    </article>
+  </div>
+
+  <div class="blog-cta">
+    <div>
+      <h3>¿Necesitas un diseño a medida?</h3>
+      <p>Agenda una llamada y te mostramos cómo lo llevamos a producción.</p>
+    </div>
+    <div class="blog-cta-actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a class="btn btn-primary" href="https://wa.me/543525300076?text=Hola%20David,%20quiero%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20a%20medida." target="_blank">Reservar llamada</a>
+      <a class="btn btn-secondary" href="contact.html">Ver contacto</a>
+    </div>
   </div>
 </section>
 
