@@ -52,9 +52,9 @@
       position: relative;
       transform-style: preserve-3d;
       --angle: 0deg;
-      transform: rotateY(var(--angle)) rotateX(10deg);
+      transform: rotateY(var(--angle)) rotateX(8deg) rotateZ(0deg);
       transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.3));
+      filter: drop-shadow(0 30px 100px rgba(0, 0, 0, 0.25));
     }
 
     .carousel-slide {
@@ -93,44 +93,44 @@
     }
 
     .carousel-slide:nth-child(1) {
-      transform: rotateY(0deg) translateZ(380px) scale(1.05);
+      transform: rotateY(0deg) translateZ(420px);
       z-index: 6;
       opacity: 1;
     }
 
     .carousel-slide:nth-child(2) {
-      transform: rotateY(60deg) translateZ(350px) scale(0.95);
+      transform: rotateY(60deg) translateZ(420px);
       z-index: 5;
-      opacity: 0.9;
-      filter: brightness(0.9);
+      opacity: 0.95;
+      filter: brightness(0.95);
     }
 
     .carousel-slide:nth-child(3) {
-      transform: rotateY(120deg) translateZ(320px) scale(0.9);
+      transform: rotateY(120deg) translateZ(420px);
       z-index: 4;
-      opacity: 0.75;
-      filter: brightness(0.75);
+      opacity: 0.9;
+      filter: brightness(0.85);
     }
 
     .carousel-slide:nth-child(4) {
-      transform: rotateY(180deg) translateZ(300px) scale(0.9);
+      transform: rotateY(180deg) translateZ(420px);
       z-index: 3;
-      opacity: 0.65;
-      filter: brightness(0.65);
+      opacity: 0.85;
+      filter: brightness(0.75);
     }
 
     .carousel-slide:nth-child(5) {
-      transform: rotateY(240deg) translateZ(320px) scale(0.95);
+      transform: rotateY(240deg) translateZ(420px);
       z-index: 4;
-      opacity: 0.75;
-      filter: brightness(0.8);
+      opacity: 0.9;
+      filter: brightness(0.85);
     }
 
     .carousel-slide:nth-child(6) {
-      transform: rotateY(300deg) translateZ(350px) scale(1);
+      transform: rotateY(300deg) translateZ(420px);
       z-index: 5;
-      opacity: 0.9;
-      filter: brightness(0.9);
+      opacity: 0.95;
+      filter: brightness(0.95);
     }
 
     .carousel-dots {
