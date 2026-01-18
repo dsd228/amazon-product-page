@@ -134,8 +134,9 @@
       transform: scale(1.05);
       background: #c27256;
     }
+
     /* ==============================
-       CAROUSEL 3D - COVERFLOW PREMIUM
+       CARRUSEL 3D - COVERFLOW PREMIUM
        ============================== */
     .hero-carousel {
       position: relative;
@@ -821,6 +822,79 @@
       background: rgba(0,0,0,0.06);
     }
 
+    /* DROPDOWN MENU */
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-trigger { 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+      color: #ffffff; 
+      font-size: 1.4rem; 
+      font-weight: 700;
+      font-family: "Sora", sans-serif;
+      text-decoration: none; 
+      transition: opacity 0.3s; 
+    }
+    .dropdown-trigger:hover { 
+      opacity: 0.7; 
+    }
+    .dropdown-trigger::after { 
+      content: '▾'; 
+      font-size: 0.9rem; 
+      transition: transform 0.3s; 
+      margin-left: 5px;
+    }
+    .nav-dropdown:hover .dropdown-trigger::after { 
+      transform: rotate(180deg); 
+    }
+    .dropdown-menu { 
+      position: absolute; 
+      top: 100%; 
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95); 
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.4); 
+      border-radius: 8px; 
+      min-width: 240px; 
+      opacity: 0; 
+      visibility: hidden; 
+      transform: translateX(-50%) translateY(-10px); 
+      transition: all 0.3s; 
+      z-index: 999; 
+      margin-top: 8px; 
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+      padding: 8px 0;
+    }
+    .nav-dropdown:hover .dropdown-menu { 
+      opacity: 1; 
+      visibility: visible; 
+      transform: translateX(-50%) translateY(0); 
+    }
+    .dropdown-menu a { 
+      display: block; 
+      padding: 12px 24px; 
+      color: #555; 
+      text-decoration: none; 
+      transition: all 0.3s; 
+      font-size: 1rem;
+      border-left: 3px solid transparent;
+    }
+    .dropdown-menu a:hover { 
+      background: rgba(255, 107, 53, 0.08); 
+      color: #FF6B35; 
+      border-left: 3px solid #FF6B35;
+      padding-left: 28px;
+    }
+    .dropdown-menu a:first-child { 
+      border-radius: 8px 8px 0 0; 
+    }
+    .dropdown-menu a:last-child { 
+      border-radius: 0 0 8px 8px; 
+    }
+
     /* PROCESS */
     .process { padding: 100px 40px; }
     .process-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; }
@@ -1258,18 +1332,17 @@
         <span class="orange">Neo</span><span class="black">ProdUx</span>
       </a>
       <div class="nav-links">
-        <<div style="display: flex; gap: 40px; align-items: center;">
-      <div class="nav-dropdown">
-        <a href="#servicios" class="dropdown-trigger">Servicios</a>
-        <div class="dropdown-menu">
-          <a href="ui-ux-design.html">Diseño UI-UX</a>
-          <a href="mobile-app-design.html">Diseño de aplicaciones móviles</a>
-          <a href="website-design.html">Diseño de sitios web</a>
-          <a href="figma-to-wordpress.html">Figma a WordPress</a>
-          <a href="figma-to-html.html">Figma a HTML</a>
-          <a href="figma-to-webflow.html">Figma a Webflow</a>
-          <a href="ejemplos-amazon.html">Ejemplos Amazon</a>
-        </div>
+        <div class="nav-dropdown">
+          <a href="#servicios" class="dropdown-trigger">Servicios</a>
+          <div class="dropdown-menu">
+            <a href="ui-ux-design.html">Diseño UI-UX</a>
+            <a href="mobile-app-design.html">Diseño de aplicaciones móviles</a>
+            <a href="website-design.html">Diseño de sitios web</a>
+            <a href="figma-to-wordpress.html">Figma a WordPress</a>
+            <a href="figma-to-html.html">Figma a HTML</a>
+            <a href="figma-to-webflow.html">Figma a Webflow</a>
+            <a href="ejemplos-amazon.html">Ejemplos Amazon</a>
+          </div>
         </div>
         <span class="nav-separator">|</span>
         <a href="#proyectos">Trabajos</a>
@@ -1291,6 +1364,22 @@
     </div>
   </div>
 </section>
+
+<!-- Carrusel 3D Coverflow Premium -->
+<div class="hero-carousel">
+  <div class="carousel-container" id="carousel-track">
+    <!-- Cards del carrusel - Mejores diseños web premium -->
+    <div class="carousel-slide" data-index="0" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="1" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="2" style="background-image: url('https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="3" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="4" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="5" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=90');"></div>
+  </div>
+  
+  <!-- Indicadores de navegación -->
+  <div class="carousel-dots" id="carousel-dots"></div>
+</div>
 
 <!-- Stats Section -->
 <section class="stats">
@@ -1768,17 +1857,7 @@
           <a class="post-link" href="blog-framer-trends.html">Leer artículo →</a>
         </div>
       </article>
-      <!-- Carrusel 3D Coverflow Premium -->
-<div class="hero-carousel">
-  <div class="carousel-container" id="carousel-track">
-    <!-- Cards del carrusel - Mejores diseños web premium -->
-    <div class="carousel-slide" data-index="0" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=90');"></div>
-    <div class="carousel-slide" data-index="1" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=90');"></div>
-    <div class="carousel-slide" data-index="2" style="background-image: url('https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1200&q=90');"></div>
-    <div class="carousel-slide" data-index="3" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1200&q=90');"></div>
-    <div class="carousel-slide" data-index="4" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=90');"></div>
-    <div class="carousel-slide" data-index="5" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=90');"></div>
-  </div>
+      
       <!-- Artículo 4 -->
       <article class="blog-card">
         <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=800&q=90');"></div>
@@ -1865,6 +1944,110 @@
 </footer>
 
 <script>
+  /* ========================================
+     COVERFLOW 3D - LÓGICA PRINCIPAL
+     ======================================== */
+  
+  const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+  const dotsContainer = document.getElementById('carousel-dots');
+  const carouselTrack = document.getElementById('carousel-track');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+
+  const CONFIG = {
+    slideSpacing: 180,
+    rotationAngle: 50,
+    depthOffset: -180,
+    inactiveOpacity: 0.4,
+    inactiveBlur: 2,
+    transitionDuration: 600
+  };
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.className = `dot ${index === 0 ? 'active' : ''}`;
+    dot.setAttribute('aria-label', `Ir a slide ${index + 1}`);
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = Array.from(dotsContainer.children);
+
+  function updateCarousel() {
+    slides.forEach((slide, index) => {
+      const offset = index - currentIndex;
+      const translateX = offset * CONFIG.slideSpacing;
+      const rotateY = offset * CONFIG.rotationAngle;
+      const translateZ = Math.abs(offset) > 0 ? CONFIG.depthOffset : 120;
+      const scale = Math.abs(offset) === 0 ? 1.05 : 1;
+      const opacity = Math.abs(offset) === 0 ? 1 : CONFIG.inactiveOpacity;
+      const blur = Math.abs(offset) === 0 ? 0 : CONFIG.inactiveBlur;
+      const zIndex = 100 - Math.abs(offset) * 10;
+      
+      slide.style.transform = `
+        translate(-50%, -50%)
+        translateX(${translateX}px)
+        translateZ(${translateZ}px)
+        rotateY(${rotateY}deg)
+        scale(${scale})
+      `;
+      
+      slide.style.opacity = opacity;
+      slide.style.filter = `blur(${blur}px) brightness(${opacity})`;
+      slide.style.zIndex = zIndex;
+      
+      if (index === currentIndex) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentIndex);
+    });
+  }
+
+  function goToSlide(index) {
+    currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  let isScrolling = false;
+  let scrollTimeout;
+
+  carouselTrack.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    
+    if (isScrolling) return;
+    isScrolling = true;
+    
+    const direction = e.deltaY > 0 ? 1 : -1;
+    goToSlide(currentIndex + direction);
+    
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      isScrolling = false;
+    }, CONFIG.transitionDuration);
+  }, { passive: false });
+
+  slides.forEach((slide, index) => {
+    slide.addEventListener('click', () => {
+      if (index !== currentIndex) {
+        goToSlide(index);
+      }
+    });
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      goToSlide(index);
+    });
+  });
+
+  updateCarousel();
+
   /* ========================================
      SERVICES CAROUSEL - STACK CARDS 3D
      ======================================== */
