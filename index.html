@@ -99,7 +99,75 @@
       justify-content: space-between; 
       align-items: center; 
     }
-    
+    /* --- Estilos de la Barra de Navegación (Añadir al CSS) --- */
+
+.site-header {
+    width: 100%;
+    position: sticky; /* O 'fixed' si prefieres que esté siempre visible */
+    top: 0;
+    z-index: 1000; /* Asegura que esté por encima de todo lo demás */
+    padding: 15px 0;
+    /* Efecto Glassmorphism */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+}
+
+/* Contenedor interno para centrar y limitar ancho */
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-header .logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.main-nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: 30px;
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.main-nav a:hover, .main-nav a.active {
+    color: #fff;
+    border-bottom: 2px solid #FF6B35; /* El color naranja principal */
+}
+
+.menu-toggle {
+    display: none; /* Oculto en desktop */
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Responsive para ocultar enlaces en móvil y mostrar el botón de menú */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none; /* Se manejaría con JS para toggle en móvil */
+    }
+    .menu-toggle {
+        display: block;
+    }
+}
+
     /* ==============================
        LOGO NARANJA CON EFECTO VIDRIO - CORREGIDO
        ============================== */
