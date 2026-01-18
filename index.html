@@ -6,16 +6,7 @@
   <title>NeoProdUx - UX/UI Design & Product Strategy Agency</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <style>
-    body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
-  background: url("background-glass.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
-
     @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -24,129 +15,338 @@
     body { background: #ffffff; color: #1a1a1a; overflow-x: hidden; font-family: "Inter", sans-serif; }
     h1, h2, h3, h4, h5, h6 { font-family: "Sora", sans-serif; font-weight: 700; }
 
-    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 16px 0; }
-    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.6rem; font-weight: 800; color: #000; letter-spacing: -0.5px; }
-    nav a { color: #666; font-size: 0.95rem; transition: color 0.3s; text-decoration: none; }
-    nav a:hover { color: #000; }
-    .nav-cta { background: #000; color: #fff; padding: 10px 24px; border-radius: 8px; transition: all 0.3s; }
-    .nav-cta:hover { background: #333; transform: scale(1.05); }
+    /* ==============================
+       NAVEGACIÓN ESTILO GLASSMORPHISM
+       ============================== */
+    nav { 
+      position: fixed; 
+      top: 0; 
+      width: 100%; 
+      background: rgba(255, 255, 255, 0.95); 
+      backdrop-filter: blur(15px); 
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 1000; 
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
+      padding: 16px 0; 
+    }
+    .nav-container { 
+      max-width: 1400px; 
+      margin: 0 auto; 
+      padding: 0 40px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+    }
+    .logo { 
+      font-size: 1.8rem; 
+      font-weight: 800; 
+      color: #000; 
+      letter-spacing: -0.5px; 
+      text-decoration: none;
+    }
+    nav a { 
+      color: #333; 
+      font-size: 0.95rem; 
+      transition: color 0.3s; 
+      text-decoration: none; 
+      font-weight: 500;
+    }
+    nav a:hover { 
+      color: #000; 
+    }
+    .nav-cta { 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+      color: #fff; 
+      padding: 10px 24px; 
+      border-radius: 8px; 
+      transition: all 0.3s; 
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    }
+    .nav-cta:hover { 
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%); 
+      transform: translateY(-2px); 
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    }
 
-    .hero-silent {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #0b0b0d;
-  padding: 0 24px;
-}
+    /* ==============================
+       HERO SECTION - ESTILO GLASSMORPHISM (Como la imagen)
+       ============================== */
+    .hero-glass {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 24px;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+    }
 
-.hero-silent__content {
-  max-width: 640px;
-  text-align: center;
-}
+    /* Fondo con efecto de partículas sutil */
+    .hero-glass::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 230, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(100, 220, 255, 0.1) 0%, transparent 50%);
+      z-index: 1;
+    }
 
-.hero-silent h1 {
-  font-size: clamp(2.4rem, 4.5vw, 3.2rem);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  margin-bottom: 24px;
-}
+    /* Contenedor de contenido con efecto glassmorphism */
+    .hero-content-glass {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 32px;
+      padding: 80px 60px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+      animation: fadeInUp 1s ease-out;
+    }
 
-.hero-silent p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #9a9aa3;
-  margin-bottom: 48px;
-}
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.btn-silent {
-  display: inline-block;
-  padding: 14px 36px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #0b0b0d;
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
+    /* Título principal - Estilo de la imagen */
+    .hero-glass h1 {
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    }
 
-.btn-silent:hover {
-  transform: translateY(-1px);
-  opacity: 0.9;
-}
+    .hero-glass h1 span {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
 
+    /* Subtítulo */
+    .hero-glass p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 48px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 300;
+    }
 
-    /* CAROUSEL 3D - ESFERA REAL */
-    /* ========================================
-       CAROUSEL 3D - COVERFLOW PREMIUM (APPLE STYLE)
-       ======================================== */
-    
-    /* Contenedor principal con perspectiva 3D */
+    /* Botón CTA - Estilo de la imagen */
+    .btn-glass {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 48px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 
+        0 12px 35px rgba(102, 126, 234, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-glass::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transition: left 0.7s;
+    }
+
+    .btn-glass:hover::before {
+      left: 100%;
+    }
+
+    .btn-glass:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 18px 50px rgba(102, 126, 234, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-glass:active {
+      transform: translateY(-1px);
+    }
+
+    /* Icono dentro del botón */
+    .btn-glass i {
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+
+    .btn-glass:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Navegación en el hero */
+    .hero-nav {
+      display: flex;
+      gap: 20px;
+      margin-top: 60px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-nav a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-nav a:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content-glass {
+        padding: 60px 40px;
+        margin: 0 20px;
+        backdrop-filter: blur(20px);
+      }
+      
+      .hero-glass h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero-glass p {
+        font-size: 1.1rem;
+      }
+      
+      .btn-glass {
+        padding: 16px 40px;
+        font-size: 1rem;
+      }
+      
+      .hero-nav {
+        gap: 12px;
+        margin-top: 40px;
+      }
+      
+      .hero-nav a {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content-glass {
+        padding: 50px 30px;
+      }
+      
+      .hero-glass h1 {
+        font-size: 2.2rem;
+      }
+      
+      .btn-glass {
+        padding: 14px 32px;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* ==============================
+       CAROUSEL 3D - COVERFLOW PREMIUM
+       ============================== */
     .hero-carousel {
       position: relative;
       width: 100%;
       height: 500px;
       border-radius: 20px;
-      overflow: hidden; /* Oculta cards fuera del viewport */
-      perspective: 1400px; /* Profundidad de la escena 3D */
+      overflow: hidden;
+      perspective: 1400px;
       background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-top: 60px;
     }
 
-    /* Track que contiene todas las cards - aquí ocurre la magia 3D */
     .carousel-container {
       position: relative;
       width: 100%;
       height: 100%;
-      transform-style: preserve-3d; /* Mantiene transformaciones 3D en hijos */
+      transform-style: preserve-3d;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* Card individual - posicionamiento absoluto centrado */
     .carousel-slide {
       position: absolute;
       width: 320px;
       height: 400px;
       left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%); /* Centrado inicial */
-      
-      /* Visual premium */
+      transform: translate(-50%, -50%);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 16px;
-      
-      /* Sombras para profundidad */
       box-shadow: 
         0 30px 80px rgba(0, 0, 0, 0.35),
         0 10px 30px rgba(0, 0, 0, 0.22),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      
-      /* Transición suave y natural */
       transition: 
         transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
         opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
         filter 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-      
-      /* Optimización de performance */
       will-change: transform, opacity;
       backface-visibility: hidden;
-      
-      /* Interactividad */
       cursor: pointer;
       user-select: none;
     }
 
-    /* Overlay sutil para efecto de vidrio */
     .carousel-slide::before {
       content: '';
       position: absolute;
@@ -162,12 +362,10 @@
       opacity: 0.8;
     }
 
-    /* Hover state para cards no activas */
     .carousel-slide:not(.active):hover {
       filter: brightness(1.1) !important;
     }
 
-    /* Card activa (al frente) */
     .carousel-slide.active {
       z-index: 100;
       transform: translate(-50%, -50%) translateZ(120px) scale(1.05);
@@ -175,7 +373,6 @@
       filter: brightness(1) blur(0px);
     }
 
-    /* Indicadores de navegación */
     .carousel-dots {
       position: absolute;
       bottom: 30px;
@@ -212,14 +409,12 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
-    /* Respeto a preferencias de accesibilidad */
     @media (prefers-reduced-motion: reduce) {
       .carousel-slide {
         transition: none;
       }
     }
 
-    /* Ajuste responsive */
     @media (max-width: 768px) {
       .hero-carousel {
         height: 380px;
@@ -230,6 +425,9 @@
       }
     }
 
+    /* ==============================
+       RESTANTE DEL CSS EXISTENTE
+       ============================== */
     .clients-section { padding: 60px 40px; background: #f9f9f9; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; }
     .clients-title { text-align: center; color: #999; font-size: 0.95rem; font-weight: 600; margin-bottom: 30px; letter-spacing: 0.5px; }
     .marquee-wrapper { overflow: hidden; }
@@ -262,15 +460,12 @@
     .stat-item h3 { font-size: 3.5rem; color: #000; margin-bottom: 12px; font-weight: 800; }
     .stat-item p { color: #666; font-size: 1rem; font-weight: 500; }
 
-    /* ========================================
-       SERVICES CAROUSEL - STACK CARDS 3D
-       ======================================== */
+    /* SERVICES CAROUSEL */
     .services { padding: 100px 40px; background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%); position: relative; overflow: hidden; }
     .section-title { max-width: 1400px; margin: 0 auto 60px; text-align: center; }
     .section-title h2 { font-size: 3.5rem; color: #000; margin-bottom: 16px; line-height: 1.2; }
     .section-title p { color: #666; font-size: 1.15rem; max-width: 600px; line-height: 1.6; margin: 0 auto; }
     
-    /* Contenedor del carrusel stack */
     .services-carousel {
       position: relative;
       max-width: 900px;
@@ -289,7 +484,6 @@
       transform-style: preserve-3d;
     }
     
-    /* Card individual en stack */
     .service-card {
       position: absolute;
       width: 100%;
@@ -314,7 +508,6 @@
       backface-visibility: hidden;
     }
     
-    /* Icono del servicio */
     .service-icon {
       width: 80px;
       height: 80px;
@@ -362,7 +555,6 @@
       border: 1px solid #e5e5e5;
     }
     
-    /* Estado activo (card frontal) */
     .service-card.active {
       z-index: 30;
       transform: translate(-50%, -50%) translateZ(0px) scale(1);
@@ -370,12 +562,10 @@
       filter: blur(0px) brightness(1);
     }
     
-    /* Cards en el stack (atrás) - efecto apilado */
     .service-card:not(.active) {
       pointer-events: none;
     }
     
-    /* Controles de navegación - Diseño elegante mejorado */
     .services-controls {
       position: absolute;
       bottom: 40px;
@@ -407,7 +597,6 @@
       overflow: hidden;
     }
     
-    /* Efecto de brillo al hover */
     .service-nav-btn::before {
       content: '';
       position: absolute;
@@ -444,7 +633,6 @@
       transform: scale(1.1);
     }
     
-    /* Indicadores de posición */
     .services-dots {
       position: absolute;
       top: 40px;
@@ -470,7 +658,6 @@
       border-radius: 5px;
     }
     
-    /* Responsive */
     @media (max-width: 768px) {
       .services-carousel {
         height: 580px;
@@ -487,10 +674,7 @@
       }
     }
 
-    /* ========================================
-       PROJECTS CAROUSEL - GALLERY SHOWCASE
-       Carrusel con imágenes grandes centradas arriba
-       ======================================== */
+    /* PROJECTS CAROUSEL */
     .projects { 
       padding: 100px 40px; 
       background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%); 
@@ -499,7 +683,6 @@
       overflow: hidden;
     }
     
-    /* Contenedor del carrusel */
     .projects-carousel {
       position: relative;
       max-width: 1200px;
@@ -519,7 +702,6 @@
       justify-content: center;
     }
     
-    /* Card del proyecto */
     .project-card {
       position: absolute;
       width: 550px;
@@ -538,7 +720,6 @@
       will-change: transform, opacity;
     }
     
-    /* Imagen centrada arriba - PROMINENTE */
     .project-image {
       width: 100%;
       height: 350px;
@@ -549,7 +730,6 @@
       overflow: hidden;
     }
     
-    /* Overlay sutil sobre la imagen */
     .project-image::after {
       content: '';
       position: absolute;
@@ -561,7 +741,6 @@
       );
     }
     
-    /* Contenido del proyecto */
     .project-content {
       padding: 32px 36px 36px;
       background: #fff;
@@ -594,7 +773,6 @@
       margin: 0;
     }
     
-    /* Estado activo (card central visible) */
     .project-card.active {
       z-index: 50;
       transform: translateX(0) scale(1);
@@ -602,12 +780,10 @@
       filter: blur(0px);
     }
     
-    /* Cards laterales */
     .project-card:not(.active) {
       pointer-events: none;
     }
     
-    /* Navegación con flechas elegantes mejoradas */
     .projects-nav {
       position: absolute;
       width: 100%;
@@ -643,7 +819,6 @@
       overflow: hidden;
     }
     
-    /* Efecto de onda al hover */
     .project-nav-btn::after {
       content: '';
       position: absolute;
@@ -683,7 +858,6 @@
       transform: scale(1.15);
     }
     
-    /* Indicadores inferiores */
     .projects-indicators {
       position: absolute;
       bottom: 30px;
@@ -716,7 +890,6 @@
       border-color: rgba(0, 0, 0, 0.1);
     }
     
-    /* Contador de proyectos */
     .projects-counter {
       position: absolute;
       top: 30px;
@@ -741,7 +914,6 @@
       opacity: 0.6;
     }
     
-    /* Responsive */
     @media (max-width: 768px) {
       .projects-carousel {
         height: 580px;
@@ -773,6 +945,27 @@
       }
     }
 
+    /* SECTION CTA */
+    .section-cta {
+      margin-top: 64px;
+      text-align: center;
+    }
+
+    .btn-silent-outline {
+      padding: 14px 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-silent-outline:hover {
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* PROCESS */
     .process { padding: 100px 40px; background: #fff; }
     .process-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; }
     .process-step { text-align: center; }
@@ -780,6 +973,7 @@
     .process-step h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
     .process-step p { color: #666; font-size: 0.95rem; line-height: 1.6; }
 
+    /* TESTIMONIALS */
     .testimonials { padding: 100px 40px; background: #f9f9f9; border-bottom: 1px solid #e5e5e5; }
     .testimonials-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
     .testimonial-card { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; transition: all 0.4s; }
@@ -789,7 +983,7 @@
     .testimonial-author { font-weight: 600; color: #000; margin-bottom: 4px; }
     .testimonial-role { color: #999; font-size: 0.9rem; }
 
-    /* Sección Ejemplos Amazon - Carrusel Vertical */
+    /* EJEMPLOS AMAZON */
     .ejemplos-amazon { padding: 100px 40px; background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%); }
     .ejemplos-amazon .section-title { margin-bottom: 60px; }
     
@@ -906,6 +1100,7 @@
       .ejemplo-card-image { height: 160px; }
     }
 
+    /* FAQ */
     .faq { padding: 100px 40px; background: #fff; }
     .faq-container { max-width: 800px; margin: 0 auto; }
     details { margin-bottom: 16px; }
@@ -916,10 +1111,7 @@
     details[open] summary { background: #fff; border-color: #000; }
     details p { padding: 24px; color: #666; line-height: 1.8; }
 
-    /* ========================================
-       BLOG CAROUSEL - HORIZONTAL SCROLL
-       Carrusel simple con scroll horizontal suave
-       ======================================== */
+    /* BLOG */
     .blog { 
       padding: 100px 0; 
       background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%); 
@@ -956,7 +1148,6 @@
       line-height: 1.7; 
     }
     
-    /* Contenedor del carrusel */
     .blog-carousel-wrapper {
       position: relative;
       max-width: 1400px;
@@ -970,15 +1161,14 @@
       overflow-x: auto;
       scroll-behavior: smooth;
       padding: 20px 0 40px;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
     
     .blog-carousel::-webkit-scrollbar {
-      display: none; /* Chrome, Safari */
+      display: none;
     }
     
-    /* Card del blog */
     .blog-card { 
       flex: 0 0 380px;
       background: #fff; 
@@ -1047,7 +1237,6 @@
       color: #d9572b; 
     }
     
-    /* Controles de navegación del carrusel */
     .blog-nav {
       position: absolute;
       top: 50%;
@@ -1094,7 +1283,6 @@
       cursor: not-allowed;
     }
     
-    /* Indicador de scroll */
     .blog-scroll-indicator {
       display: flex;
       justify-content: center;
@@ -1116,7 +1304,6 @@
       border-radius: 4px;
     }
     
-    /* CTA del blog */
     .blog-cta { 
       max-width: 1200px; 
       margin: 48px auto 0; 
@@ -1151,7 +1338,6 @@
       color: #fff; 
     }
     
-    /* Responsive */
     @media (max-width: 768px) {
       .blog-header h2 { 
         font-size: 2.3rem; 
@@ -1175,6 +1361,7 @@
       }
     }
 
+    /* CTA */
     .cta { padding: 80px 40px; background: #000; color: #fff; text-align: center; }
     .cta h2 { font-size: 2.5rem; margin-bottom: 24px; }
     .cta p { font-size: 1.1rem; color: #ccc; margin-bottom: 40px; }
@@ -1182,6 +1369,7 @@
     .cta-buttons .btn { background: #fff; color: #000; }
     .cta-buttons .btn:hover { background: #e5e5e5; }
 
+    /* FOOTER */
     footer { background: #f9f9f9; padding: 60px 40px; border-top: 1px solid #e5e5e5; }
     .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
     .footer-section h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: #000; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -1194,7 +1382,7 @@
     .social-links a { color: #000; font-size: 1.25rem; transition: color 0.3s; text-decoration: none; }
     .social-links a:hover { color: #667eea; }
 
-    /* Dropdown Menu */
+    /* DROPDOWN MENU */
     .nav-dropdown { position: relative; display: inline-block; }
     .dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: 6px; color: #666; font-size: 0.95rem; text-decoration: none; transition: color 0.3s; }
     .dropdown-trigger:hover { color: #000; }
@@ -1218,7 +1406,7 @@
 
 <nav>
   <div class="nav-container">
-    <a href="index.html" class="logo" style="text-decoration: none; color: #000;"><span style="color: #ff6b35;">N</span>eo<span style="color: #ff6b35;">P</span>rod<span style="color: #ff6b35;">U</span>x</a>
+    <a href="index.html" class="logo"><span style="color: #667eea;">N</span>eo<span style="color: #764ba2;">P</span>rod<span style="color: #667eea;">U</span>x</a>
     <div style="display: flex; gap: 40px; align-items: center;">
       <div class="nav-dropdown">
         <a href="#servicios" class="dropdown-trigger">Servicios</a>
@@ -1241,43 +1429,48 @@
   </div>
 </nav>
 
-<section class="hero-silent">
-  <div class="hero-silent__content">
-    <h1>Diseño UX/UI<br>pensado para escalar</h1>
-
+<!-- Hero Section - Glassmorphism Style -->
+<section class="hero-glass">
+  <div class="hero-content-glass">
+    <h1>3D <span>GLASSMORPHISM</span> LANDING PAGE</h1>
+    
     <p>
-      Plantillas premium creadas con criterio de producto.
-      Claridad, foco y decisiones bien tomadas desde el inicio.
+      Diseño UX/UI premium con efecto vidrio. Interfaces modernas, elegantes y funcionales 
+      que destacan tu producto en el mercado digital.
     </p>
-
-    <a href="#pricing" class="btn-silent">
-      Acceder
+    
+    <a href="#proyectos" class="btn-glass">
+      <span>QUICK HERE</span>
+      <i class="fas fa-arrow-right"></i>
     </a>
-  </div>
-</section>
-
-
-
-    <!-- Carrusel 3D Coverflow Premium -->
-    <div class="hero-carousel">
-      <div class="carousel-container" id="carousel-track">
-        <!-- Cards del carrusel - Mejores diseños web premium -->
-        <div class="carousel-slide" data-index="0" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=90');"></div>
-        <div class="carousel-slide" data-index="1" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=90');"></div>
-        <div class="carousel-slide" data-index="2" style="background-image: url('https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1200&q=90');"></div>
-        <div class="carousel-slide" data-index="3" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1200&q=90');"></div>
-        <div class="carousel-slide" data-index="4" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=90');"></div>
-        <div class="carousel-slide" data-index="5" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=90');"></div>
-      </div>
-      
-      <!-- Indicadores de navegación -->
-      <div class="carousel-dots" id="carousel-dots"></div>
+    
+    <div class="hero-nav">
+      <a href="#servicios">Servicios</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#contacto">Contacto</a>
     </div>
   </div>
 </section>
 
+<!-- Carrusel 3D Coverflow Premium -->
+<div class="hero-carousel">
+  <div class="carousel-container" id="carousel-track">
+    <!-- Cards del carrusel - Mejores diseños web premium -->
+    <div class="carousel-slide" data-index="0" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="1" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="2" style="background-image: url('https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="3" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="4" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=90');"></div>
+    <div class="carousel-slide" data-index="5" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=90');"></div>
+  </div>
+  
+  <!-- Indicadores de navegación -->
+  <div class="carousel-dots" id="carousel-dots"></div>
+</div>
+
 <section class="clients-section">
-  <div class="clients-title">CONFÍAN EN NEOPRODYUX</div>
+  <div class="clients-title">CONFÍAN EN NEOPRODUX</div>
   <div class="marquee-wrapper">
     <div class="marquee">
       <span class="marquee-item"><i class="fab fa-github"></i> GitHub</span>
@@ -1499,26 +1692,6 @@
     Ver cómo se ve en productos reales
   </a>
 </div>
-
-  .section-cta {
-  margin-top: 64px;
-  text-align: center;
-}
-
-.btn-silent-outline {
-  padding: 14px 34px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
-
-.btn-silent-outline:hover {
-  background: rgba(255,255,255,0.06);
-}
-
 
 <section class="process" id="proceso">
   <div class="section-title">
@@ -1877,32 +2050,25 @@
 <script>
   /* ========================================
      COVERFLOW 3D - LÓGICA PRINCIPAL
-     Apple-style carousel con navegación por scroll y click
      ======================================== */
   
-  // Selección de elementos del DOM
   const slides = Array.from(document.querySelectorAll('.carousel-slide'));
   const dotsContainer = document.getElementById('carousel-dots');
   const carouselTrack = document.getElementById('carousel-track');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Estado del carrusel
   let currentIndex = 0;
   const totalSlides = slides.length;
 
-  // Configuración del efecto Coverflow
   const CONFIG = {
-    slideSpacing: 180,        // Separación horizontal entre cards (px)
-    rotationAngle: 50,        // Ángulo de rotación lateral (deg)
-    depthOffset: -180,        // Profundidad de cards laterales (px)
-    inactiveOpacity: 0.4,     // Opacidad de cards no activas
-    inactiveBlur: 2,          // Blur de cards no activas (px)
-    transitionDuration: 600   // Duración de transición (ms)
+    slideSpacing: 180,
+    rotationAngle: 50,
+    depthOffset: -180,
+    inactiveOpacity: 0.4,
+    inactiveBlur: 2,
+    transitionDuration: 600
   };
 
-  // ========================================
-  // GENERACIÓN DE INDICADORES (DOTS)
-  // ========================================
   slides.forEach((_, index) => {
     const dot = document.createElement('div');
     dot.className = `dot ${index === 0 ? 'active' : ''}`;
@@ -1912,28 +2078,17 @@
 
   const dots = Array.from(dotsContainer.children);
 
-  // ========================================
-  // FUNCIÓN PRINCIPAL: ACTUALIZAR POSICIONES
-  // ========================================
   function updateCarousel() {
     slides.forEach((slide, index) => {
-      // Calcular distancia relativa al centro
       const offset = index - currentIndex;
-      
-      // Calcular transformaciones 3D
       const translateX = offset * CONFIG.slideSpacing;
       const rotateY = offset * CONFIG.rotationAngle;
       const translateZ = Math.abs(offset) > 0 ? CONFIG.depthOffset : 120;
       const scale = Math.abs(offset) === 0 ? 1.05 : 1;
-      
-      // Calcular opacidad y blur según distancia
       const opacity = Math.abs(offset) === 0 ? 1 : CONFIG.inactiveOpacity;
       const blur = Math.abs(offset) === 0 ? 0 : CONFIG.inactiveBlur;
-      
-      // Calcular z-index (cards más cercanas al centro = mayor z-index)
       const zIndex = 100 - Math.abs(offset) * 10;
       
-      // Aplicar transformaciones
       slide.style.transform = `
         translate(-50%, -50%)
         translateX(${translateX}px)
@@ -1946,7 +2101,6 @@
       slide.style.filter = `blur(${blur}px) brightness(${opacity})`;
       slide.style.zIndex = zIndex;
       
-      // Marcar card activa
       if (index === currentIndex) {
         slide.classList.add('active');
       } else {
@@ -1954,48 +2108,34 @@
       }
     });
 
-    // Actualizar indicadores
     dots.forEach((dot, idx) => {
       dot.classList.toggle('active', idx === currentIndex);
     });
   }
 
-  // ========================================
-  // NAVEGACIÓN: IR A SLIDE ESPECÍFICO
-  // ========================================
   function goToSlide(index) {
-    // Normalizar índice (wrap around)
     currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
     updateCarousel();
   }
 
-  // ========================================
-  // NAVEGACIÓN CON RUEDA DEL MOUSE (SCROLL)
-  // ========================================
   let isScrolling = false;
   let scrollTimeout;
 
   carouselTrack.addEventListener('wheel', (e) => {
     e.preventDefault();
     
-    // Prevenir scroll múltiple durante transición
     if (isScrolling) return;
     isScrolling = true;
     
-    // Determinar dirección del scroll
     const direction = e.deltaY > 0 ? 1 : -1;
     goToSlide(currentIndex + direction);
     
-    // Reset del flag después de la transición
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
       isScrolling = false;
     }, CONFIG.transitionDuration);
   }, { passive: false });
 
-  // ========================================
-  // NAVEGACIÓN POR CLICK EN CARD
-  // ========================================
   slides.forEach((slide, index) => {
     slide.addEventListener('click', () => {
       if (index !== currentIndex) {
@@ -2004,23 +2144,16 @@
     });
   });
 
-  // ========================================
-  // NAVEGACIÓN POR CLICK EN DOTS
-  // ========================================
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       goToSlide(index);
     });
   });
 
-  // ========================================
-  // INICIALIZACIÓN
-  // ========================================
   updateCarousel();
 
   /* ========================================
      SERVICES CAROUSEL - STACK CARDS 3D
-     Carrusel apilado con navegación por botones
      ======================================== */
   
   const serviceCards = Array.from(document.querySelectorAll('.service-card'));
@@ -2031,7 +2164,6 @@
   let currentServiceIndex = 0;
   const totalServices = serviceCards.length;
   
-  // Generar indicadores
   serviceCards.forEach((_, index) => {
     const dot = document.createElement('div');
     dot.className = `service-dot ${index === 0 ? 'active' : ''}`;
@@ -2041,24 +2173,20 @@
   
   const serviceDots = Array.from(servicesDotsContainer.children);
   
-  // Configuración del efecto stack
   const SERVICES_CONFIG = {
-    stackOffset: 20,      // Píxeles de separación en Y para efecto stack
-    scaleStep: 0.05,      // Reducción de escala por cada posición
-    opacityStep: 0.15,    // Reducción de opacidad
-    maxStackCards: 3,     // Máximo de cards visibles en el stack
-    autoplayDelay: 4000   // Delay de autoplay en ms
+    stackOffset: 20,
+    scaleStep: 0.05,
+    opacityStep: 0.15,
+    maxStackCards: 3,
+    autoplayDelay: 4000
   };
   
-  // Timer para autoplay
   let servicesAutoplayTimer = null;
   
-  // Función para actualizar el stack
   function updateServicesCarousel() {
     serviceCards.forEach((card, index) => {
       const relativePos = index - currentServiceIndex;
       
-      // Card activa (frontal)
       if (relativePos === 0) {
         card.classList.add('active');
         card.style.transform = 'translate(-50%, -50%) translateZ(0px) scale(1) rotateX(0deg)';
@@ -2066,21 +2194,19 @@
         card.style.filter = 'blur(0px)';
         card.style.zIndex = '30';
       } 
-      // Cards posteriores (stack hacia atrás)
       else if (relativePos > 0 && relativePos <= SERVICES_CONFIG.maxStackCards) {
         card.classList.remove('active');
         const stackPosition = relativePos;
         const translateY = stackPosition * SERVICES_CONFIG.stackOffset;
         const scale = 1 - (stackPosition * SERVICES_CONFIG.scaleStep);
         const opacity = 1 - (stackPosition * SERVICES_CONFIG.opacityStep);
-        const rotateX = stackPosition * 3; // Ligera rotación para profundidad
+        const rotateX = stackPosition * 3;
         
         card.style.transform = `translate(-50%, calc(-50% + ${translateY}px)) translateZ(-${stackPosition * 100}px) scale(${scale}) rotateX(${rotateX}deg)`;
         card.style.opacity = opacity;
         card.style.filter = `blur(${stackPosition}px)`;
         card.style.zIndex = 30 - stackPosition;
       }
-      // Cards fuera del stack (ocultas)
       else {
         card.classList.remove('active');
         card.style.transform = 'translate(-50%, -50%) translateZ(-500px) scale(0.7)';
@@ -2090,19 +2216,16 @@
       }
     });
     
-    // Actualizar dots
     serviceDots.forEach((dot, idx) => {
       dot.classList.toggle('active', idx === currentServiceIndex);
     });
   }
   
-  // Navegación
   function goToService(index) {
     currentServiceIndex = ((index % totalServices) + totalServices) % totalServices;
     updateServicesCarousel();
   }
   
-  // Funciones de autoplay
   function startServicesAutoplay() {
     stopServicesAutoplay();
     servicesAutoplayTimer = setInterval(() => {
@@ -2117,31 +2240,27 @@
     }
   }
   
-  // Event listeners para botones
   servicePrevBtn.addEventListener('click', () => {
     goToService(currentServiceIndex - 1);
-    startServicesAutoplay(); // Reiniciar autoplay
+    startServicesAutoplay();
   });
   
   serviceNextBtn.addEventListener('click', () => {
     goToService(currentServiceIndex + 1);
-    startServicesAutoplay(); // Reiniciar autoplay
+    startServicesAutoplay();
   });
   
-  // Event listeners para dots
   serviceDots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       goToService(index);
-      startServicesAutoplay(); // Reiniciar autoplay
+      startServicesAutoplay();
     });
   });
   
-  // Pausar autoplay en hover
   const servicesCarousel = document.querySelector('.services-carousel');
   servicesCarousel.addEventListener('mouseenter', stopServicesAutoplay);
   servicesCarousel.addEventListener('mouseleave', startServicesAutoplay);
   
-  // Event listener para keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       goToService(currentServiceIndex - 1);
@@ -2152,13 +2271,11 @@
     }
   });
   
-  // Inicializar
   updateServicesCarousel();
-  startServicesAutoplay(); // Iniciar autoplay
+  startServicesAutoplay();
 
   /* ========================================
      PROJECTS CAROUSEL - GALLERY SHOWCASE
-     Carrusel con imágenes grandes centradas
      ======================================== */
   
   const projectCards = Array.from(document.querySelectorAll('.project-card'));
@@ -2171,10 +2288,8 @@
   let currentProjectIndex = 0;
   const totalProjects = projectCards.length;
   
-  // Actualizar contador total
   projectTotalEl.textContent = totalProjects.toString().padStart(2, '0');
   
-  // Generar indicadores
   projectCards.forEach((_, index) => {
     const indicator = document.createElement('div');
     indicator.className = `project-indicator ${index === 0 ? 'active' : ''}`;
@@ -2184,25 +2299,21 @@
   
   const projectIndicators = Array.from(projectsIndicators.children);
   
-  // Configuración del efecto Gallery
   const PROJECTS_CONFIG = {
-    sideOffset: 450,      // Píxeles de separación lateral
-    sideScale: 0.85,      // Escala de cards laterales
-    sideOpacity: 0.4,     // Opacidad de cards laterales
-    sideBlur: 3,          // Blur de cards laterales
+    sideOffset: 450,
+    sideScale: 0.85,
+    sideOpacity: 0.4,
+    sideBlur: 3,
     transitionDuration: 800,
-    autoplayDelay: 5000   // Delay de autoplay en ms
+    autoplayDelay: 5000
   };
   
-  // Timer para autoplay
   let projectsAutoplayTimer = null;
   
-  // Función para actualizar el carrusel
   function updateProjectsCarousel() {
     projectCards.forEach((card, index) => {
       const relativePos = index - currentProjectIndex;
       
-      // Card activa (centro)
       if (relativePos === 0) {
         card.classList.add('active');
         card.style.transform = 'translateX(0) scale(1)';
@@ -2210,7 +2321,6 @@
         card.style.filter = 'blur(0px)';
         card.style.zIndex = '50';
       }
-      // Card a la derecha
       else if (relativePos === 1) {
         card.classList.remove('active');
         card.style.transform = `translateX(${PROJECTS_CONFIG.sideOffset}px) scale(${PROJECTS_CONFIG.sideScale})`;
@@ -2218,7 +2328,6 @@
         card.style.filter = `blur(${PROJECTS_CONFIG.sideBlur}px)`;
         card.style.zIndex = '40';
       }
-      // Card a la izquierda
       else if (relativePos === -1) {
         card.classList.remove('active');
         card.style.transform = `translateX(-${PROJECTS_CONFIG.sideOffset}px) scale(${PROJECTS_CONFIG.sideScale})`;
@@ -2226,7 +2335,6 @@
         card.style.filter = `blur(${PROJECTS_CONFIG.sideBlur}px)`;
         card.style.zIndex = '40';
       }
-      // Cards ocultas
       else {
         card.classList.remove('active');
         const direction = relativePos > 0 ? 1 : -1;
@@ -2237,22 +2345,18 @@
       }
     });
     
-    // Actualizar indicadores
     projectIndicators.forEach((indicator, idx) => {
       indicator.classList.toggle('active', idx === currentProjectIndex);
     });
     
-    // Actualizar contador
     projectCurrentEl.textContent = (currentProjectIndex + 1).toString().padStart(2, '0');
   }
   
-  // Navegación
   function goToProject(index) {
     currentProjectIndex = ((index % totalProjects) + totalProjects) % totalProjects;
     updateProjectsCarousel();
   }
   
-  // Funciones de autoplay
   function startProjectsAutoplay() {
     stopProjectsAutoplay();
     projectsAutoplayTimer = setInterval(() => {
@@ -2267,47 +2371,41 @@
     }
   }
   
-  // Event listeners para botones
   projectPrevBtn.addEventListener('click', () => {
     goToProject(currentProjectIndex - 1);
-    startProjectsAutoplay(); // Reiniciar autoplay
+    startProjectsAutoplay();
   });
   
   projectNextBtn.addEventListener('click', () => {
     goToProject(currentProjectIndex + 1);
-    startProjectsAutoplay(); // Reiniciar autoplay
+    startProjectsAutoplay();
   });
   
-  // Event listeners para indicadores
   projectIndicators.forEach((indicator, index) => {
     indicator.addEventListener('click', () => {
       goToProject(index);
-      startProjectsAutoplay(); // Reiniciar autoplay
+      startProjectsAutoplay();
     });
   });
   
-  // Click en cards laterales para navegación rápida
   projectCards.forEach((card, index) => {
     card.addEventListener('click', () => {
       if (index !== currentProjectIndex) {
         goToProject(index);
-        startProjectsAutoplay(); // Reiniciar autoplay
+        startProjectsAutoplay();
       }
     });
   });
   
-  // Pausar autoplay en hover
   const projectsCarousel = document.querySelector('.projects-carousel');
   projectsCarousel.addEventListener('mouseenter', stopProjectsAutoplay);
   projectsCarousel.addEventListener('mouseleave', startProjectsAutoplay);
   
-  // Inicializar
   updateProjectsCarousel();
-  startProjectsAutoplay(); // Iniciar autoplay
+  startProjectsAutoplay();
 
   /* ========================================
      BLOG CAROUSEL - HORIZONTAL SCROLL
-     Carrusel simple con scroll horizontal automático
      ======================================== */
   
   const blogCarousel = document.getElementById('blog-carousel');
@@ -2321,11 +2419,10 @@
   let blogAutoplayTimer = null;
   
   const BLOG_CONFIG = {
-    scrollAmount: 408,    // Ancho de card (380px) + gap (28px)
-    autoplayDelay: 6000   // Delay de autoplay en ms
+    scrollAmount: 408,
+    autoplayDelay: 6000
   };
   
-  // Generar indicadores
   const totalPages = Math.ceil(totalBlogCards / 3);
   for (let i = 0; i < totalPages; i++) {
     const dot = document.createElement('div');
@@ -2335,7 +2432,6 @@
   
   const blogDots = Array.from(blogIndicator.children);
   
-  // Actualizar indicadores basados en scroll
   function updateBlogIndicators() {
     const scrollPosition = blogCarousel.scrollLeft;
     const cardWidth = BLOG_CONFIG.scrollAmount;
@@ -2345,12 +2441,10 @@
       dot.classList.toggle('active', idx === currentPage);
     });
     
-    // Actualizar estado de botones
     blogPrevBtn.disabled = scrollPosition <= 0;
     blogNextBtn.disabled = scrollPosition >= blogCarousel.scrollWidth - blogCarousel.clientWidth - 10;
   }
   
-  // Scroll suave
   function scrollBlog(direction) {
     const scrollAmount = direction === 'next' ? BLOG_CONFIG.scrollAmount : -BLOG_CONFIG.scrollAmount;
     blogCarousel.scrollBy({
@@ -2359,14 +2453,12 @@
     });
   }
   
-  // Autoplay
   function startBlogAutoplay() {
     stopBlogAutoplay();
     blogAutoplayTimer = setInterval(() => {
       const isAtEnd = blogCarousel.scrollLeft >= blogCarousel.scrollWidth - blogCarousel.clientWidth - 10;
       
       if (isAtEnd) {
-        // Volver al inicio
         blogCarousel.scrollTo({
           left: 0,
           behavior: 'smooth'
@@ -2384,7 +2476,6 @@
     }
   }
   
-  // Event listeners
   blogPrevBtn.addEventListener('click', () => {
     scrollBlog('prev');
     startBlogAutoplay();
@@ -2395,14 +2486,11 @@
     startBlogAutoplay();
   });
   
-  // Pausar en hover
   blogCarousel.addEventListener('mouseenter', stopBlogAutoplay);
   blogCarousel.addEventListener('mouseleave', startBlogAutoplay);
   
-  // Actualizar indicadores en scroll
   blogCarousel.addEventListener('scroll', updateBlogIndicators);
   
-  // Inicializar
   updateBlogIndicators();
   startBlogAutoplay();
 
@@ -2432,4 +2520,3 @@
 
 </body>
 </html>
-
