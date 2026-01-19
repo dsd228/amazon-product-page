@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The future of technology is here. Discover our revolutionary product.">
-    <title>Tech Pro - Revolutionary Technology | TechCorp</title>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Neo Tech - The future redefined. Discover revolutionary technology with minimalist design.">
+    <title>Neo Tech | Redefining Technology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #1d1d1f;
+            --accent-color: #007aff;
+            --light-gray: #f5f5f7;
+            --medium-gray: #86868b;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,59 +25,84 @@
         }
 
         html, body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', Helvetica, Arial, sans-serif;
-            background: #fff;
-            color: #1d1d1d;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--white);
+            color: var(--primary-color);
             line-height: 1.5;
+            font-weight: 400;
+            overflow-x: hidden;
         }
 
         /* Navigation */
         header {
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #d5d5d7;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             padding: 0;
+            transition: var(--transition);
         }
 
         nav {
-            max-width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 52px;
+            height: 64px;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
-            color: #1d1d1d;
+            color: var(--primary-color);
             text-decoration: none;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            color: var(--accent-color);
+            font-size: 20px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 32px;
+            gap: 40px;
             flex: 1;
             justify-content: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #1d1d1d;
-            font-size: 12px;
+            color: var(--secondary-color);
+            font-size: 14px;
             font-weight: 500;
-            transition: opacity 0.3s;
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
         }
 
-        .nav-links a:hover {
-            opacity: 0.6;
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
         }
 
         .nav-right {
@@ -75,46 +111,30 @@
             gap: 16px;
         }
 
-        .nav-back {
-            background: transparent;
-            color: #1d1d1d;
-            border: 1px solid #d5d5d7;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 12px;
-            transition: all 0.3s;
-            text-decoration: none;
-            font-family: inherit;
-        }
-
-        .nav-back:hover {
-            background: #f5f5f7;
-            border-color: #1d1d1d;
-        }
-
         .nav-cta {
-            background: #0071e3;
-            color: white;
+            background: var(--primary-color);
+            color: var(--white);
             border: none;
-            padding: 8px 18px;
-            border-radius: 6px;
+            padding: 10px 22px;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: 500;
-            font-size: 12px;
-            transition: background 0.3s;
-            font-family: inherit;
+            font-size: 14px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav-cta:hover {
-            background: #0077ed;
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
-            padding: 0;
+            padding-top: 120px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -122,6 +142,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
         }
 
         .hero-content {
@@ -133,27 +154,31 @@
         }
 
         .hero-label {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
-            color: #555;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
+            color: var(--medium-gray);
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .hero-title {
-            font-size: 64px;
+            font-size: 72px;
             font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            letter-spacing: -1px;
+            margin-bottom: 24px;
+            line-height: 1.05;
+            letter-spacing: -2px;
         }
 
         .hero-subtitle {
-            font-size: 21px;
+            font-size: 24px;
             font-weight: 400;
-            color: #555;
-            margin-bottom: 40px;
+            color: var(--medium-gray);
+            margin-bottom: 48px;
             line-height: 1.4;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-buttons {
@@ -165,77 +190,69 @@
         }
 
         .btn {
-            padding: 11px 28px;
-            border-radius: 6px;
+            padding: 14px 32px;
+            border-radius: 50px;
             border: none;
             cursor: pointer;
             font-weight: 500;
-            font-size: 13px;
-            transition: all 0.3s;
+            font-size: 14px;
+            transition: var(--transition);
             text-decoration: none;
-            display: inline-block;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background: #0071e3;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #0077ed;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #0071e3;
-            border: 1px solid #0071e3;
-        }
-
-        .btn-secondary:hover {
-            background: #f5f5f7;
-        }
-
-        /* Botón Amazon */
-        .btn-amazon {
-            background: #FF9900;
-            color: #000;
-            font-weight: 600;
-            border: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
 
-        .btn-amazon:hover {
-            background: #F08804;
+        .btn-primary {
+            background: var(--accent-color);
+            color: var(--white);
         }
 
-        .amazon-icon {
-            font-weight: bold;
-            font-size: 14px;
+        .btn-primary:hover {
+            background: #0066d6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 114, 255, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 122, 255, 0.05);
+            transform: translateY(-2px);
         }
 
         .hero-image {
             width: 100%;
-            max-width: 1200px;
-            aspect-ratio: 16 / 10;
-            margin-top: 40px;
+            max-width: 1400px;
+            margin: 40px auto 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.08);
         }
 
         .hero-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
+            transition: transform 10s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
         }
 
         /* Section Divider */
         .section {
-            padding: 120px 24px;
+            padding: 160px 24px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
@@ -251,51 +268,57 @@
 
         .section-image {
             width: 100%;
-            aspect-ratio: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
         }
 
         .section-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
+            transition: transform 5s ease;
+        }
+
+        .section-image:hover img {
+            transform: scale(1.05);
         }
 
         .section-content h2 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             line-height: 1.1;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
         }
 
         .section-content p {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 400;
-            color: #555;
-            margin-bottom: 24px;
+            color: var(--medium-gray);
+            margin-bottom: 32px;
             line-height: 1.6;
         }
 
         .section-content a {
-            color: #0071e3;
+            color: var(--accent-color);
             text-decoration: none;
             font-weight: 500;
             font-size: 17px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: opacity 0.3s;
+            transition: var(--transition);
         }
 
         .section-content a:hover {
-            opacity: 0.7;
+            gap: 12px;
         }
 
         /* Specs Section */
         .specs {
-            background: #f5f5f7;
-            padding: 120px 24px;
+            background: var(--light-gray);
+            padding: 160px 24px;
         }
 
         .specs-container {
@@ -304,40 +327,55 @@
         }
 
         .specs-title {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 80px;
-            letter-spacing: -1px;
+            margin-bottom: 100px;
+            letter-spacing: -1.5px;
         }
 
         .specs-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
+            gap: 60px;
         }
 
         .spec-item {
             text-align: center;
+            padding: 40px 20px;
+            background: var(--white);
+            border-radius: 16px;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .spec-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         .spec-value {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 700;
-            margin-bottom: 8px;
-            color: #1d1d1d;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, #000000 0%, #434343 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .spec-label {
-            font-size: 13px;
-            color: #555;
+            font-size: 14px;
+            color: var(--medium-gray);
             font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Technology Section */
         .technology {
-            padding: 120px 24px;
-            background: linear-gradient(135deg, #ffffff 0%, #f5f5f7 100%);
+            padding: 160px 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
         }
 
         .tech-container {
@@ -346,18 +384,21 @@
         }
 
         .tech-title {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
         }
 
         .tech-subtitle {
-            font-size: 17px;
-            color: #555;
+            font-size: 18px;
+            color: var(--medium-gray);
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 100px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .tech-grid {
@@ -367,39 +408,43 @@
         }
 
         .tech-card {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
+            background: var(--white);
+            padding: 50px 40px;
+            border-radius: 16px;
             text-align: center;
-            border: 1px solid #e5e5e7;
-            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
         }
 
         .tech-card:hover {
-            border-color: #d5d5d7;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-10px);
+            border-color: rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         .tech-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
+            font-size: 48px;
+            margin-bottom: 28px;
+            color: var(--accent-color);
         }
 
         .tech-card h3 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .tech-card p {
-            font-size: 15px;
-            color: #555;
+            font-size: 16px;
+            color: var(--medium-gray);
             line-height: 1.6;
         }
 
         /* Testimonials */
         .testimonials {
-            padding: 120px 24px;
+            padding: 160px 24px;
+            background: var(--primary-color);
+            color: var(--white);
         }
 
         .testimonials-container {
@@ -408,11 +453,11 @@
         }
 
         .testimonials-title {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 80px;
-            letter-spacing: -1px;
+            margin-bottom: 100px;
+            letter-spacing: -1.5px;
         }
 
         .testimonials-grid {
@@ -422,53 +467,80 @@
         }
 
         .testimonial {
-            text-align: center;
+            padding: 40px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .testimonial:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
         }
 
         .testimonial-text {
-            font-size: 15px;
-            color: #555;
-            margin-bottom: 20px;
+            font-size: 16px;
+            margin-bottom: 24px;
             line-height: 1.8;
             font-style: italic;
         }
 
         .testimonial-author {
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
             margin-bottom: 4px;
         }
 
         .testimonial-role {
-            font-size: 12px;
-            color: #999;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* CTA Section */
         .cta-section {
-            background: #1d1d1d;
-            color: white;
-            padding: 120px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding: 160px 24px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
         }
 
         .cta-container {
             max-width: 980px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .cta-section h2 {
-            font-size: 56px;
+            font-size: 64px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             line-height: 1.1;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
         }
 
         .cta-section p {
-            font-size: 17px;
-            margin-bottom: 40px;
-            opacity: 0.8;
+            font-size: 20px;
+            margin-bottom: 48px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-buttons {
@@ -479,30 +551,33 @@
         }
 
         .btn-white {
-            background: white;
-            color: #1d1d1d;
+            background: var(--white);
+            color: var(--primary-color);
             border: none;
         }
 
         .btn-white:hover {
             background: #f5f5f7;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .btn-outline {
             background: transparent;
-            color: white;
-            border: 1px solid white;
+            color: var(--white);
+            border: 1px solid var(--white);
         }
 
         .btn-outline:hover {
             background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         /* Footer */
         footer {
-            background: #f5f5f7;
-            padding: 40px 24px;
-            border-top: 1px solid #d5d5d7;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 80px 24px 40px;
         }
 
         .footer-container {
@@ -512,16 +587,18 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
         }
 
         .footer-col h4 {
             font-weight: 700;
-            font-size: 13px;
-            margin-bottom: 16px;
-            color: #1d1d1d;
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: var(--white);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .footer-col ul {
@@ -529,31 +606,85 @@
         }
 
         .footer-col a {
-            color: #555;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-size: 12px;
+            font-size: 14px;
             display: block;
             margin-bottom: 12px;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .footer-col a:hover {
-            color: #1d1d1d;
+            color: var(--white);
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-logo .logo-icon {
+            color: var(--accent-color);
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+            transform: translateY(-3px);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #d5d5d7;
-            font-size: 12px;
-            color: #999;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 60px;
+            }
+            
+            .section-content h2,
+            .specs-title,
+            .tech-title,
+            .testimonials-title {
+                font-size: 48px;
+            }
+            
+            .cta-section h2 {
+                font-size: 56px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .section {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 60px;
+                padding: 120px 24px;
             }
 
             .section:nth-child(even) {
@@ -561,11 +692,11 @@
             }
 
             .hero-title {
-                font-size: 48px;
+                font-size: 52px;
             }
 
             .section-content h2 {
-                font-size: 36px;
+                font-size: 42px;
             }
 
             .specs-grid {
@@ -577,11 +708,12 @@
             }
 
             .testimonials-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
             }
 
             .nav-links {
@@ -589,26 +721,26 @@
             }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .hero-title {
-                font-size: 32px;
+                font-size: 42px;
             }
 
             .hero-subtitle {
-                font-size: 17px;
+                font-size: 20px;
             }
 
             .section {
-                padding: 60px 16px;
+                padding: 80px 16px;
             }
 
             .section-content h2 {
-                font-size: 28px;
+                font-size: 36px;
             }
 
             .specs-grid {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 30px;
             }
 
             .tech-grid {
@@ -627,166 +759,221 @@
                 padding: 0 16px;
             }
 
-            .nav-links {
-                gap: 16px;
-            }
-
             .nav-cta {
-                padding: 6px 14px;
-                font-size: 11px;
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+            
+            .hero,
+            .specs,
+            .technology,
+            .testimonials,
+            .cta-section {
+                padding: 120px 24px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .cta-section h2 {
+                font-size: 42px;
             }
         }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-content h2,
+            .specs-title,
+            .tech-title,
+            .testimonials-title {
+                font-size: 32px;
+            }
+            
+            .cta-section h2 {
+                font-size: 36px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+            }
+            
+            .hero-buttons,
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <a href="#" class="logo">Tech Pro</a>
+            <a href="#" class="logo">
+                <span class="logo-icon"><i class="fas fa-atom"></i></span>
+                Neo Tech
+            </a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#technology">Technology</a></li>
-                <li><a href="#specs">Specs</a></li>
+                <li><a href="#specs">Specifications</a></li>
                 <li><a href="#testimonials">Reviews</a></li>
             </ul>
             <div class="nav-right">
-                <a href="../index.html#templates-section" class="nav-back">← Back to Demos</a>
-                <button class="nav-cta" onclick="window.open('https://www.amazon.com', '_blank')">Buy on Amazon</button>
+                <button class="nav-cta">
+                    <i class="fas fa-shopping-bag"></i>
+                    Pre-order Now
+                </button>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-label">INTRODUCING</div>
-            <h1 class="hero-title">The future of technology is here</h1>
-            <p class="hero-subtitle">Designed for those who demand the impossible.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary">Learn more</button>
-                <button class="btn btn-secondary">Pre-order Now</button>
-                <button class="btn btn-amazon" onclick="window.open('https://www.amazon.com', '_blank')">
-                    <span class="amazon-icon">a</span> Buy on Amazon
+        <div class="hero-content fade-in">
+            <div class="hero-label delay-1">Introducing</div>
+            <h1 class="hero-title delay-2">Neo Tech Pro</h1>
+            <p class="hero-subtitle delay-3">The future of technology, redefined. Minimalist design meets unparalleled performance in a device that transforms how you work, create, and connect.</p>
+            <div class="hero-buttons delay-4">
+                <button class="btn btn-primary">
+                    <i class="fas fa-play-circle"></i>
+                    Watch the film
+                </button>
+                <button class="btn btn-secondary">
+                    Learn more
+                    <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
-            <div class="hero-image">
-                <img src="../screenshots/template-tech.svg" alt="Tech Products Template">
-            </div>
+        </div>
+        <div class="hero-image fade-in delay-4">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="Neo Tech Pro device">
         </div>
     </section>
 
     <!-- Feature Sections -->
-    <section class="section" id="features">
+    <section class="section fade-in" id="features">
         <div class="section-content">
-            <h2>Performance Without Compromise</h2>
-            <p>Lightning-fast processor, all-day battery, and advanced thermal management. The power you need with the efficiency you expect.</p>
-            <a href="#">Explore performance →</a>
-            <div style="margin-top: 20px;">
-                <button class="btn btn-amazon" onclick="window.open('https://www.amazon.com', '_blank')">
-                    <span class="amazon-icon">a</span> View on Amazon
-                </button>
-            </div>
+            <h2>Seamless Performance</h2>
+            <p>Experience lightning-fast processing with our custom Neural Engine. From intensive creative workflows to multitasking between apps, everything feels effortless and instant.</p>
+            <a href="#">
+                Explore performance
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
         <div class="section-image">
-            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=600&fit=crop&q=85" alt="Performance">
+            <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Performance">
         </div>
     </section>
 
-    <section class="section">
+    <section class="section fade-in">
         <div class="section-content">
-            <h2>Revolutionary Display</h2>
-            <p>Immersive visuals with our ProMotion technology. 120Hz refresh rate delivers buttery smooth scrolling and incredible responsiveness.</p>
-            <a href="#">Discover the display →</a>
-            <div style="margin-top: 20px;">
-                <button class="btn btn-amazon" onclick="window.open('https://www.amazon.com', '_blank')">
-                    <span class="amazon-icon">a</span> View on Amazon
-                </button>
-            </div>
+            <h2>Infinite Display</h2>
+            <p>Our edge-to-edge ProMotion XDR display with 120Hz adaptive refresh rate delivers breathtaking visuals. True blacks, brilliant highlights, and incredible color accuracy.</p>
+            <a href="#">
+                Discover the display
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
         <div class="section-image">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=600&fit=crop&q=85" alt="Display">
+            <img src="https://images.unsplash.com/photo-1600003263720-95b45a4035d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Display">
         </div>
     </section>
 
-    <section class="section">
+    <section class="section fade-in">
         <div class="section-content">
-            <h2>Advanced Camera System</h2>
-            <p>Professional-grade photography and videography in your pocket. Computational photography makes every shot extraordinary.</p>
-            <a href="#">See what's possible →</a>
-            <div style="margin-top: 20px;">
-                <button class="btn btn-amazon" onclick="window.open('https://www.amazon.com', '_blank')">
-                    <span class="amazon-icon">a</span> View on Amazon
-                </button>
-            </div>
+            <h2>Advanced Photography</h2>
+            <p>Capture moments with stunning clarity using our professional camera system. Computational photography powered by AI ensures perfect shots in any lighting condition.</p>
+            <a href="#">
+                See what's possible
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
         <div class="section-image">
-            <img src="https://images.unsplash.com/photo-1511376979264-c8ae135b11d0?w=600&h=600&fit=crop&q=85" alt="Camera">
+            <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Camera">
         </div>
     </section>
 
     <!-- Specs Section -->
-    <section class="specs" id="specs">
+    <section class="specs fade-in" id="specs">
         <div class="specs-container">
             <h2 class="specs-title">Technical Specifications</h2>
             <div class="specs-grid">
-                <div class="spec-item">
-                    <div class="spec-value">12-core</div>
+                <div class="spec-item fade-in delay-1">
+                    <div class="spec-value">16‑core</div>
                     <div class="spec-label">Neural Engine</div>
                 </div>
-                <div class="spec-item">
+                <div class="spec-item fade-in delay-2">
                     <div class="spec-value">120Hz</div>
-                    <div class="spec-label">ProMotion Display</div>
+                    <div class="spec-label">ProMotion XDR</div>
                 </div>
-                <div class="spec-item">
-                    <div class="spec-value">5nm</div>
+                <div class="spec-item fade-in delay-3">
+                    <div class="spec-value">3nm</div>
                     <div class="spec-label">Process Technology</div>
                 </div>
-                <div class="spec-item">
-                    <div class="spec-value">22h</div>
+                <div class="spec-item fade-in delay-4">
+                    <div class="spec-value">28h</div>
                     <div class="spec-label">Battery Life</div>
                 </div>
-            </div>
-            <div style="text-align: center; margin-top: 60px;">
-                <button class="btn btn-amazon" style="padding: 14px 32px; font-size: 15px;" onclick="window.open('https://www.amazon.com', '_blank')">
-                    <span class="amazon-icon">a</span> Buy Now on Amazon
-                </button>
             </div>
         </div>
     </section>
 
     <!-- Technology Section -->
-    <section class="technology" id="technology">
+    <section class="technology fade-in" id="technology">
         <div class="tech-container">
-            <h2 class="tech-title">Built on Innovation</h2>
-            <p class="tech-subtitle">Every component designed to work in harmony</p>
+            <h2 class="tech-title">Engineered to Perfection</h2>
+            <p class="tech-subtitle">Every component meticulously designed to deliver an unparalleled experience</p>
             <div class="tech-grid">
-                <div class="tech-card">
-                    <div class="tech-icon">⚡</div>
+                <div class="tech-card fade-in delay-1">
+                    <div class="tech-icon"><i class="fas fa-bolt"></i></div>
                     <h3>Lightning Fast</h3>
-                    <p>Next-generation processor delivers groundbreaking speed and power efficiency for seamless performance.</p>
+                    <p>Next-generation processor with groundbreaking speed and power efficiency for seamless performance.</p>
                 </div>
-                <div class="tech-card">
-                    <div class="tech-icon">🎥</div>
-                    <h3>Pro Cameras</h3>
-                    <p>Advanced optical system with computational photography that captures stunning images in any light.</p>
+                <div class="tech-card fade-in delay-2">
+                    <div class="tech-icon"><i class="fas fa-camera"></i></div>
+                    <h3>Pro Camera System</h3>
+                    <p>Advanced optics with computational photography that captures stunning images in any light.</p>
                 </div>
-                <div class="tech-card">
-                    <div class="tech-icon">🔋</div>
+                <div class="tech-card fade-in delay-3">
+                    <div class="tech-icon"><i class="fas fa-battery-full"></i></div>
                     <h3>All-Day Battery</h3>
                     <p>Intelligent power management keeps you going throughout the day and into the night.</p>
                 </div>
-                <div class="tech-card">
-                    <div class="tech-icon">🛡️</div>
+                <div class="tech-card fade-in delay-1">
+                    <div class="tech-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Privacy & Security</h3>
                     <p>Industry-leading security features protect your data with hardware-based security keys.</p>
                 </div>
-                <div class="tech-card">
-                    <div class="tech-icon">🌐</div>
+                <div class="tech-card fade-in delay-2">
+                    <div class="tech-icon"><i class="fas fa-wifi"></i></div>
                     <h3>5G Connectivity</h3>
                     <p>Ultra-fast 5G networks enable next-generation experiences with blazing-fast speeds.</p>
                 </div>
-                <div class="tech-card">
-                    <div class="tech-icon">♿</div>
+                <div class="tech-card fade-in delay-3">
+                    <div class="tech-icon"><i class="fas fa-universal-access"></i></div>
                     <h3>Accessibility</h3>
                     <p>Designed for everyone. Powerful accessibility features empower people of all abilities.</p>
                 </div>
@@ -795,39 +982,42 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <section class="testimonials fade-in" id="testimonials">
         <div class="testimonials-container">
-            <h2 class="testimonials-title">Loved by Professionals</h2>
+            <h2 class="testimonials-title">Praised by Experts</h2>
             <div class="testimonials-grid">
-                <div class="testimonial">
-                    <p class="testimonial-text">"This is the most impressive piece of technology I've ever used. The performance is incredible and the design is flawless."</p>
+                <div class="testimonial fade-in delay-1">
+                    <p class="testimonial-text">"Neo Tech Pro redefines what's possible in mobile technology. The performance is staggering, and the design is simply breathtaking."</p>
                     <div class="testimonial-author">Alex Chen</div>
-                    <div class="testimonial-role">Tech Reviewer, Digital Weekly</div>
+                    <div class="testimonial-role">Tech Editor, FutureTech Magazine</div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"As a photographer, I'm blown away by the camera system. The computational photography is a game-changer for my work."</p>
+                <div class="testimonial fade-in delay-2">
+                    <p class="testimonial-text">"As a photographer, I'm constantly amazed by the camera system. The computational photography is a genuine game-changer for professional work."</p>
                     <div class="testimonial-author">Sarah Martinez</div>
                     <div class="testimonial-role">Professional Photographer</div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"The battery life is unreal. I've been using it all day without worry. This is exactly what professionals need."</p>
+                <div class="testimonial fade-in delay-3">
+                    <p class="testimonial-text">"The battery life is unreal. I've been using it all day without worry. This is exactly what professionals have been waiting for."</p>
                     <div class="testimonial-author">James Wilson</div>
-                    <div class="testimonial-role">Software Developer</div>
+                    <div class="testimonial-role">Lead Developer, Silicon Studio</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section fade-in">
         <div class="cta-container">
-            <h2>Ready to Experience the Future?</h2>
-            <p>Pre-order now and be among the first to get Tech Pro.</p>
+            <h2>Experience the Future</h2>
+            <p>Join the next generation of technology. Pre-order Neo Tech Pro and be among the first to experience the future.</p>
             <div class="cta-buttons">
-                <button class="btn btn-white">Pre-order Now</button>
-                <button class="btn btn-outline">Learn More</button>
-                <button class="btn btn-amazon" onclick="window.open('https://www.amazon.com', '_blank')">
-                    <span class="amazon-icon">a</span> Buy on Amazon
+                <button class="btn btn-white">
+                    <i class="fas fa-shopping-bag"></i>
+                    Pre-order Now
+                </button>
+                <button class="btn btn-outline">
+                    <i class="fas fa-play-circle"></i>
+                    Watch the keynote
                 </button>
             </div>
         </div>
@@ -838,11 +1028,24 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Shop</h4>
+                    <div class="footer-logo">
+                        <span class="logo-icon"><i class="fas fa-atom"></i></span>
+                        Neo Tech
+                    </div>
+                    <p class="footer-about">Redefining technology through minimalist design and unparalleled performance. The future is here.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
                     <ul>
-                        <li><a href="#">Tech Pro</a></li>
+                        <li><a href="#">Neo Tech Pro</a></li>
+                        <li><a href="#">Neo Tech Air</a></li>
                         <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Bundles</a></li>
                         <li><a href="#">Compare</a></li>
                     </ul>
                 </div>
@@ -858,10 +1061,10 @@
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">About Neo Tech</a></li>
                         <li><a href="#">Careers</a></li>
                         <li><a href="#">Press</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Sustainability</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -875,28 +1078,68 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 TechCorp Inc. All rights reserved.</p>
+                <p>&copy; 2024 Neo Tech Inc. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Demo script for Amazon buttons
-        document.querySelectorAll('.btn-amazon').forEach(button => {
-            button.addEventListener('click', function() {
-                // Para demostración, puedes cambiar esta URL por un producto real de Amazon
-                window.open('https://www.amazon.com', '_blank');
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
             });
-        });
-
-        // Demo para otros botones de compra
-        document.querySelector('.nav-cta').addEventListener('click', function() {
-            window.open('https://www.amazon.com', '_blank');
-        });
-
-        document.querySelector('.btn-white').addEventListener('click', function() {
-            alert('En una implementación real, esto llevaría a un carrito de compras. ¡Demo de Amazon!');
-            window.open('https://www.amazon.com', '_blank');
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 1px 20px rgba(0, 0, 0, 0.05)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.85)';
+                    header.style.boxShadow = 'none';
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Button click handlers
+            document.querySelectorAll('.btn-primary, .btn-white, .nav-cta').forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('In a real implementation, this would open a purchase flow. For this demo, imagine you\'re pre-ordering the Neo Tech Pro!');
+                });
+            });
         });
     </script>
 </body>
