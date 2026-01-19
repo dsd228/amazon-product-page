@@ -895,192 +895,397 @@
     /* ==============================
        FORMULARIO DE CAPTURA PREMIUM - CORREGIDO
        ============================== */
-        .capture-form {
-      /* ... (resto del CSS del contenedor principal) ... */
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: var(--light-color);
-      padding: 80px 40px;
-      border-radius: 40px;
-      max-width: 1000px;
-      margin: 100px auto;
-      box-shadow: 
-        0 40px 100px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
+        /* ==============================
+   FORMULARIO DE CAPTURA PREMIUM - CORREGIDO
+   ============================== */
+.capture-form {
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: var(--light-color);
+  padding: 80px 40px;
+  border-radius: 40px;
+  max-width: 1000px;
+  margin: 100px auto;
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
 
-    /* ... (resto del CSS para ::before y form-header) ... */
+.capture-form::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
 
-    .form-grid {
-      /* Usar grid es una excelente opción. Mantenemos el auto-fit pero gestionamos el contenido. */
-      display: grid;
-      /* Ajustamos para asegurar que cada columna tenga al menos 250px, pero que se ajuste automáticamente. */
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px; /* Espaciado entre elementos de la cuadrícula */
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 1;
-    }
+.form-header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+}
 
-    /* Estilos para el contenedor de cada campo (form-group o floating-label) */
-    .form-group, .floating-label {
-      position: relative; /* CRUCIAL: El contenedor debe ser relativo para que la etiqueta absoluta se posicione correctamente dentro de él. */
-      /* Asegúrate de que tus inputs/selects/textareas ocupen todo el ancho de su contenedor. */
-      width: 100%; 
-    }
-    
-    /* Asegura que los campos internos tengan un ancho completo y padding adecuado */
-    .floating-label input,
-    .floating-label select,
-    .floating-label textarea {
-        width: 100%; /* Ocupa el 100% del ancho del .floating-label */
-        padding: 20px; /* Suficiente padding para acomodar la etiqueta flotante */
-        box-sizing: border-box; /* Asegura que padding y border estén incluidos en el width del 100% */
-        /* ... (otros estilos de input como bordes, background, etc. que no proporcionaste pero que deberías tener) ... */
-    }
+.form-header h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ffffff, #cccccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-    .floating-label label {
-      position: absolute;
-      /* Ajustamos el top y left inicial para que esté centrado verticalmente ANTES de flotar */
-      top: 50%; /* Cambiado de 20px a 50% */
-      left: 20px;
-      transform: translateY(-50%); /* Centrado verticalmente */
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 1rem;
-      pointer-events: none;
-      transition: all 0.3s ease;
-      /* transform-origin: left top; <--- Puedes quitar esto, ya no es necesario con el translateY */
-      background: transparent;
-      padding: 0;
-    }
-    
-    .floating-label input:focus + label,
-    .floating-label input:not(:placeholder-shown) + label,
-    .floating-label select:focus + label,
-    .floating-label select:valid + label,
-    .floating-label textarea:focus + label,
-    .floating-label textarea:not(:placeholder-shown) + label {
-      /* Cuando la etiqueta flota: */
-      top: -10px; /* Mover arriba del input */
-      left: 15px;
-      font-size: 0.85rem;
-      /* transform: scale(0.9) translateY(0); */ /* Resetear transform vertical si existía */
-      transform: none; /* Mejor resetear a none para evitar conflictos con el centrado inicial */
-      color: var(--primary-color);
-      background: #0f0f0f; /* Color de fondo del contenedor del formulario */
-      padding: 0 8px;
-    }
-    
-    /* ... (resto del CSS para select y placeholders) ... */
+.form-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
 
-    /* Estilos base de inputs */
-    .floating-label input,
-    .floating-label select,
-    .floating-label textarea {
-      width: 100%;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      color: var(--light-color);
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      font-family: "Inter", sans-serif;
-    }
-    
-    .floating-label textarea {
-      min-height: 150px;
-      resize: vertical;
-      padding-top: 25px;
-    }
-    
-    .floating-label input:focus,
-    .floating-label select:focus,
-    .floating-label textarea:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
-    }
-    
-    /* Efecto hover */
-    .floating-label input:hover,
-    .floating-label select:hover,
-    .floating-label textarea:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-    }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
 
-    .form-submit {
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
+/* ESTILOS CORREGIDOS - SIN SUPERPOSICIÓN */
+.form-group {
+  position: relative;
+  margin-bottom: 0;
+}
 
-    .btn-submit {
-      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-      color: var(--light-color);
-      padding: 22px 60px;
-      border-radius: 50px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      box-shadow: 
-        0 15px 35px rgba(255, 107, 53, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
-      position: relative;
-      overflow: hidden;
-    }
+/* Contenedor para el floating label */
+.form-field {
+  position: relative;
+  height: 70px;
+  margin-bottom: 10px;
+}
 
-    .btn-submit::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-      );
-      transition: left 0.6s ease;
-    }
+/* Inputs y selects base */
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  height: 60px;
+  padding: 20px 20px 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: var(--light-color);
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+}
 
-    .btn-submit:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 
-        0 25px 50px rgba(255, 107, 53, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
+/* Label que flota */
+.form-field label {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  font-weight: 400;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  transform-origin: left top;
+  z-index: 2;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
 
-    .btn-submit:hover::before {
-      left: 100%;
-    }
+/* Cuando el input está enfocado o tiene texto */
+.form-field input:focus,
+.form-field input:not(:placeholder-shown),
+.form-field select:focus,
+.form-field select:not([value=""]),
+.form-field textarea:focus,
+.form-field textarea:not(:placeholder-shown) {
+  padding-top: 25px;
+  padding-bottom: 5px;
+}
 
-    .form-assurance {
-      text-align: center;
-      margin-top: 30px;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9rem;
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
+.form-field input:focus + label,
+.form-field input:not(:placeholder-shown) + label,
+.form-field select:focus + label,
+.form-field select:not([value=""]) + label,
+.form-field textarea:focus + label,
+.form-field textarea:not(:placeholder-shown) + label {
+  top: 8px;
+  left: 20px;
+  font-size: 0.75rem;
+  color: var(--primary-color);
+  transform: translateY(0);
+  background: transparent;
+  padding: 0;
+}
 
-    .form-assurance i {
-      color: var(--primary-color);
-    }
+/* Textarea especial */
+.form-field.textarea-field {
+  height: auto;
+  min-height: 170px;
+}
+
+.form-field.textarea-field textarea {
+  height: 150px;
+  min-height: 150px;
+  padding-top: 30px;
+  resize: vertical;
+}
+
+.form-field.textarea-field label {
+  top: 25px;
+}
+
+.form-field.textarea-field textarea:focus,
+.form-field.textarea-field textarea:not(:placeholder-shown) {
+  padding-top: 40px;
+  padding-bottom: 15px;
+}
+
+.form-field.textarea-field textarea:focus + label,
+.form-field.textarea-field textarea:not(:placeholder-shown) + label {
+  top: 10px;
+}
+
+/* Select personalizado */
+.form-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+.form-field select option {
+  background: #1a1a1a;
+  color: white;
+  padding: 10px;
+}
+
+.form-field select option:first-child {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Estados de focus */
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+}
+
+/* Placeholders */
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: transparent;
+  opacity: 0;
+}
+
+.form-field input:focus::placeholder,
+.form-field textarea:focus::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+}
+
+/* Campo que ocupa dos columnas */
+.form-group[style*="grid-column: span 2"] {
+  grid-column: span 2;
+}
+
+.form-group[style*="grid-column: span 2"] .form-field {
+  height: auto;
+}
+
+.form-submit {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--light-color);
+  padding: 22px 60px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 
+    0 15px 35px rgba(255, 107, 53, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.btn-submit:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 25px 50px rgba(255, 107, 53, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-submit:hover::before {
+  left: 100%;
+}
+
+.form-assurance {
+  text-align: center;
+  margin-top: 30px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-assurance i {
+  color: var(--primary-color);
+}
+
+/* ==============================
+   RESPONSIVE DEL FORMULARIO
+   ============================== */
+@media (max-width: 992px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .form-group[style*="grid-column: span 2"] {
+    grid-column: span 1 !important;
+  }
+  
+  .capture-form {
+    padding: 60px 30px;
+    border-radius: 30px;
+  }
+  
+  .form-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .capture-form {
+    padding: 50px 25px;
+    border-radius: 25px;
+    margin: 80px 20px;
+  }
+  
+  .form-header h2 {
+    font-size: 2.2rem;
+  }
+  
+  .form-header p {
+    font-size: 1.1rem;
+  }
+  
+  .form-field {
+    height: 65px;
+  }
+  
+  .form-field input,
+  .form-field select {
+    height: 55px;
+    padding: 18px 18px 8px 18px;
+  }
+  
+  .form-field.textarea-field textarea {
+    height: 140px;
+    min-height: 140px;
+    padding-top: 28px;
+  }
+  
+  .form-field input:focus,
+  .form-field input:not(:placeholder-shown),
+  .form-field select:focus,
+  .form-field select:not([value=""]),
+  .form-field textarea:focus,
+  .form-field textarea:not(:placeholder-shown) {
+    padding-top: 22px;
+    padding-bottom: 4px;
+  }
+  
+  .form-field input:focus + label,
+  .form-field input:not(:placeholder-shown) + label,
+  .form-field select:focus + label,
+  .form-field select:not([value=""]) + label,
+  .form-field textarea:focus + label,
+  .form-field textarea:not(:placeholder-shown) + label {
+    top: 6px;
+    left: 18px;
+    font-size: 0.7rem;
+  }
+  
+  .btn-submit {
+    padding: 18px 50px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .capture-form {
+    padding: 40px 20px;
+    border-radius: 20px;
+    margin: 60px 15px;
+  }
+  
+  .form-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .btn-submit {
+    padding: 16px 40px;
+    font-size: 1rem;
+  }
+  
+  .form-assurance {
+    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
 
     /* ==============================
        TESTIMONIOS PREMIUM
