@@ -3,28 +3,1403 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estilo Lanzamiento · Guía Visual</title>
+  <title>Lanzamiento · Guía Visual Premium</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root { --fondo:#F0F4F8; --acento:#A4D2F4; --texto:#2E3A46; --sec:#3B4758; }
-    body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--fondo);color:var(--texto);} .wrap{max-width:1040px;margin:0 auto;padding:32px 20px 72px;}
-    .hero{background:linear-gradient(135deg,rgba(164,210,244,.18),rgba(247,199,210,.12));border:1.5px solid rgba(164,210,244,.35);border-radius:16px;padding:32px;box-shadow:0 12px 36px rgba(164,210,244,.18);} h1{margin:8px 0 12px;font-size:32px;} .eyebrow{text-transform:uppercase;letter-spacing:.08em;font-weight:800;font-size:12px;color:var(--acento);} p.lead{margin:0 0 14px;color:var(--sec);font-size:17px;}
-    .hero img{width:100%;border-radius:14px;margin-top:16px;box-shadow:0 12px 32px rgba(46,58,70,.18);} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:26px;} .card{background:#fff;border:1px solid rgba(164,210,244,.25);border-radius:14px;padding:18px;box-shadow:0 8px 22px rgba(46,58,70,.1);} .card h3{margin:0 0 10px;font-size:18px;} .card p{margin:0;color:var(--sec);font-size:14px;line-height:1.55;} .back{display:inline-block;margin-top:26px;color:var(--acento);text-decoration:none;font-weight:700;}
+    :root {
+      --primary-color: #FF6B8B;
+      --primary-light: #FF8FA3;
+      --primary-dark: #E05575;
+      --accent-color: #FF9F43;
+      --dark-color: #0F172A;
+      --light-color: #FFFFFF;
+      --gray-light: #F8FAFC;
+      --gray-medium: #64748B;
+      --gray-dark: #334155;
+      --urgent-color: #EF4444;
+      --success-color: #10B981;
+      --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.08);
+      --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.12);
+      --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.15);
+      --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 50%, #FBCFE8 100%);
+      color: var(--dark-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header Premium */
+    .header {
+      padding: 28px 0;
+      position: relative;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--dark-color);
+      font-weight: 800;
+      font-size: 1.5rem;
+      transition: transform var(--transition-fast);
+    }
+
+    .logo:hover {
+      transform: translateY(-2px);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light-color);
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--gray-dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all var(--transition-fast);
+      padding: 8px 16px;
+      border-radius: 50px;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+      background: rgba(255, 107, 139, 0.08);
+    }
+
+    .nav-link.active {
+      color: var(--primary-color);
+      background: rgba(255, 107, 139, 0.12);
+    }
+
+    /* Countdown Bar */
+    .countdown-bar {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--light-color);
+      padding: 15px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      box-shadow: 0 4px 20px rgba(255, 107, 139, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 4px 20px rgba(255, 107, 139, 0.3); }
+      50% { box-shadow: 0 4px 30px rgba(255, 107, 139, 0.5); }
+      100% { box-shadow: 0 4px 20px rgba(255, 107, 139, 0.3); }
+    }
+
+    .countdown-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-value {
+      font-size: 2rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 10px;
+      min-width: 70px;
+    }
+
+    .time-label {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+
+    /* Hero Premium */
+    .hero-section {
+      padding: 60px 0 100px;
+      position: relative;
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .hero-background::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 107, 139, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 159, 67, 0.12) 0%, transparent 50%);
+      animation: rotate 60s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 32px;
+      padding: 60px;
+      box-shadow: 
+        0 25px 50px rgba(15, 23, 42, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition-smooth);
+      border-top: 6px solid var(--primary-color);
+    }
+
+    .hero-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 
+        0 35px 70px rgba(15, 23, 42, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: var(--light-color);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--dark-color), var(--gray-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--gray-dark);
+      margin-bottom: 40px;
+      max-width: 800px;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .urgent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--urgent-color), #F87171);
+      color: var(--light-color);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      animation: shake 0.5s infinite alternate;
+    }
+
+    @keyframes shake {
+      from { transform: translateX(-2px); }
+      to { transform: translateX(2px); }
+    }
+
+    .hero-image-container {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-top: 40px;
+      box-shadow: var(--shadow-lg);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .hero-image-container:hover .hero-image {
+      transform: scale(1.05);
+    }
+
+    /* Bonuses Section */
+    .bonuses-section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-eyebrow {
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--dark-color), var(--gray-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--gray-medium);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .bonuses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .bonus-card {
+      background: var(--light-color);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+    }
+
+    .bonus-card:hover {
+      transform: translateY(-15px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
+    }
+
+    .bonus-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .bonus-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .bonus-tag {
+      background: linear-gradient(135deg, var(--accent-color), #FFB74D);
+      color: var(--light-color);
+      padding: 6px 15px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .bonus-expiry {
+      color: var(--urgent-color);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .bonus-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light-color);
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+      transition: transform var(--transition-fast);
+    }
+
+    .bonus-card:hover .bonus-icon {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .bonus-title {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--dark-color);
+    }
+
+    .bonus-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .bonus-text {
+      color: var(--gray-dark);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+    }
+
+    .bonus-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary-color);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .bonus-cta:hover {
+      gap: 15px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #FFF5F7, #FFEBF0);
+      border-radius: 40px;
+      margin-bottom: 80px;
+    }
+
+    .faq-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .faq-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--dark-color);
+    }
+
+    .faq-subtitle {
+      color: var(--gray-medium);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .faq-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .faq-item {
+      background: var(--light-color);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      border: 1px solid rgba(255, 107, 139, 0.1);
+    }
+
+    .faq-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-color);
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--dark-color);
+      margin-bottom: 0;
+      transition: margin-bottom 0.3s;
+    }
+
+    .faq-item.active .faq-question {
+      margin-bottom: 20px;
+    }
+
+    .faq-toggle {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.3s ease;
+      opacity: 0;
+      color: var(--gray-dark);
+      line-height: 1.7;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, var(--dark-color), #1E293B);
+      border-radius: 32px;
+      padding: 80px 60px;
+      text-align: center;
+      color: var(--light-color);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 107, 139, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(255, 159, 67, 0.15) 0%, transparent 50%);
+      animation: rotate 40s linear infinite reverse;
+    }
+
+    .cta-title {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-text {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--light-color);
+      padding: 22px 60px;
+      border-radius: 50px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all var(--transition-smooth);
+      box-shadow: 
+        0 15px 35px rgba(255, 107, 139, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.7s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 25px 50px rgba(255, 107, 139, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 60px 0 40px;
+      background: linear-gradient(135deg, #0F172A, #1E293B);
+      color: var(--light-color);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--light-color);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50px;
+      transition: all var(--transition-fast);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(-5px);
+      gap: 18px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light-color);
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-link:hover {
+      background: var(--primary-color);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    /* Urgency Counter */
+    .urgency-counter {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(135deg, var(--urgent-color), #F87171);
+      color: var(--light-color);
+      padding: 15px 25px;
+      border-radius: 50px;
+      margin: 30px auto;
+      max-width: 500px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .urgency-text {
+      font-weight: 600;
+    }
+
+    .urgency-timer {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .section-title, .cta-title {
+        font-size: 2.4rem;
+      }
+      
+      .hero-card, .cta-card {
+        padding: 40px 30px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .countdown-timer {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .hero-image {
+        height: 350px;
+      }
+      
+      .section-title, .cta-title {
+        font-size: 2rem;
+      }
+      
+      .bonuses-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+      
+      .container {
+        padding: 0 20px;
+      }
+      
+      .time-value {
+        font-size: 1.5rem;
+        min-width: 50px;
+      }
+      
+      .urgency-counter {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #FDF2F8;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--primary-dark), #FF8B36);
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="hero">
-      <div class="eyebrow">Estilos de Páginas de Venta</div>
-      <h1>Lanzamiento</h1>
-      <p class="lead">Ficha de campaña con urgencia: contador, bonus temporales y módulo de preguntas rápidas.</p>
-      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1400&q=80" alt="Landing de lanzamiento en móvil y desktop">
+
+  <!-- Countdown Bar -->
+  <div class="countdown-bar">
+    <div class="container">
+      <div class="countdown-text">🚀 OFERTA DE LANZAMIENTO EXCLUSIVA · TERMINA EN:</div>
+      <div class="countdown-timer">
+        <div class="time-unit">
+          <div class="time-value" id="hours">24</div>
+          <div class="time-label">HORAS</div>
+        </div>
+        <div class="time-unit">
+          <div class="time-value" id="minutes">59</div>
+          <div class="time-label">MINUTOS</div>
+        </div>
+        <div class="time-unit">
+          <div class="time-value" id="seconds">59</div>
+          <div class="time-label">SEGUNDOS</div>
+        </div>
+      </div>
     </div>
-    <div class="grid">
-      <div class="card"><h3>Hero con countdown</h3><p>Contador visible, beneficio clave y CTA promo.</p></div>
-      <div class="card"><h3>Bonos temporales</h3><p>Bloques de bonus con caducidad y etiquetas de urgencia.</p></div>
-      <div class="card"><h3>FAQ exprés</h3><p>Preguntas rápidas para resolver objeciones sin salir del hero.</p></div>
-    </div>
-    <a class="back" href="../index.html#sales-styles">← Volver</a>
   </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="../index.html" class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <span>Launch UX</span>
+        </a>
+        
+        <div class="nav-links">
+          <a href="#bonuses" class="nav-link">
+            <i class="fas fa-gift"></i>
+            Bonos
+          </a>
+          <a href="#faq" class="nav-link">
+            <i class="fas fa-question-circle"></i>
+            FAQ
+          </a>
+          <a href="#cta" class="nav-link">
+            <i class="fas fa-bolt"></i>
+            Oferta
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="container">
+      <div class="hero-card animate-fade-in">
+        <span class="eyebrow">Campaña de Lanzamiento Exclusiva</span>
+        <h1 class="hero-title">Estilo Lanzamiento · Guía Visual</h1>
+        <p class="hero-subtitle">
+          Ficha de campaña con urgencia psicológica: contador visible, bonos temporales exclusivos 
+          y módulo de preguntas rápidas para resolver objeciones sin salir de la página.
+        </p>
+        
+        <div class="urgent-badge animate-fade-in">
+          <i class="fas fa-exclamation-triangle"></i>
+          OFERTA VÁLIDA SOLO POR 24 HORAS · 87% DE DESCUENTO
+        </div>
+
+        <div class="hero-image-container">
+          <img 
+            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1400&q=80" 
+            alt="Landing de lanzamiento en móvil y desktop" 
+            class="hero-image"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bonuses Section -->
+  <section class="bonuses-section" id="bonuses">
+    <div class="container">
+      <div class="section-header animate-fade-in">
+        <span class="section-eyebrow">Bonos Exclusivos de Lanzamiento</span>
+        <h2 class="section-title">Ofertas Temporales que Caducan</h2>
+        <p class="section-subtitle">
+          Bloque de bonos con caducidad visible y etiquetas de urgencia para impulsar la acción inmediata
+        </p>
+      </div>
+      
+      <div class="bonuses-grid">
+        <!-- Bonus 1 -->
+        <div class="bonus-card animate-fade-in">
+          <div class="bonus-header">
+            <span class="bonus-tag">MÁS POPULAR</span>
+            <span class="bonus-expiry">
+              <i class="fas fa-clock"></i>
+              8h restantes
+            </span>
+          </div>
+          <div class="bonus-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="bonus-title">Curso Avanzado</h3>
+          <div class="bonus-value">$297</div>
+          <p class="bonus-text">
+            Acceso completo al curso premium de estrategias avanzadas. 
+            Incluye certificación y comunidad privada.
+          </p>
+          <a href="#" class="bonus-cta">
+            Reclamar bono
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <!-- Bonus 2 -->
+        <div class="bonus-card animate-fade-in" style="animation-delay: 0.2s;">
+          <div class="bonus-header">
+            <span class="bonus-tag">VALOR EXTREMO</span>
+            <span class="bonus-expiry">
+              <i class="fas fa-clock"></i>
+              12h restantes
+            </span>
+          </div>
+          <div class="bonus-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="bonus-title">Sesiones 1:1</h3>
+          <div class="bonus-value">3 Sesiones</div>
+          <p class="bonus-text">
+            Tres sesiones de mentoría personalizada para optimizar tu implementación.
+            Análisis de tu caso específico.
+          </p>
+          <a href="#" class="bonus-cta">
+            Reclamar bono
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <!-- Bonus 3 -->
+        <div class="bonus-card animate-fade-in" style="animation-delay: 0.4s;">
+          <div class="bonus-header">
+            <span class="bonus-tag">LIMITADO</span>
+            <span class="bonus-expiry">
+              <i class="fas fa-clock"></i>
+              5h restantes
+            </span>
+          </div>
+          <div class="bonus-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 class="bonus-title">Kit de Plantillas</h3>
+          <div class="bonus-value">+50 Plantillas</div>
+          <p class="bonus-text">
+            Colección completa de plantillas Figma, documentos de estrategia 
+            y guías de implementación paso a paso.
+          </p>
+          <a href="#" class="bonus-cta">
+            Reclamar bono
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Urgency Counter -->
+      <div class="urgency-counter animate-fade-in">
+        <div class="urgency-text">
+          <i class="fas fa-fire"></i>
+          Personas están comprando ahora:
+        </div>
+        <div class="urgency-timer" id="live-count">24</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="faq-container">
+        <div class="faq-header animate-fade-in">
+          <h2 class="faq-title">Preguntas Rápidas (FAQ Exprés)</h2>
+          <p class="faq-subtitle">
+            Resuelve objeciones comunes sin salir del flujo de conversión
+          </p>
+        </div>
+        
+        <div class="faq-grid">
+          <!-- FAQ 1 -->
+          <div class="faq-item animate-fade-in" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+              ¿Por qué es tan barato durante el lanzamiento?
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Durante el lanzamiento ofrecemos precios especiales para construir nuestra 
+              base de clientes inicial y obtener testimonios. El precio aumentará en un 300% 
+              una vez finalice esta ventana de 24 horas.
+            </div>
+          </div>
+          
+          <!-- FAQ 2 -->
+          <div class="faq-item animate-fade-in" style="animation-delay: 0.1s;" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+              ¿Qué pasa si no veo resultados?
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Ofrecemos garantía de 30 días. Si aplicas las estrategias y no ves mejoras 
+              medibles en tus métricas, te devolvemos el 100% de tu inversión.
+            </div>
+          </div>
+          
+          <!-- FAQ 3 -->
+          <div class="faq-item animate-fade-in" style="animation-delay: 0.2s;" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+              ¿Necesito experiencia técnica previa?
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              No, el sistema está diseñado para ser implementado por principiantes. 
+              Incluye tutoriales paso a paso, plantillas listas para usar y soporte 
+              personalizado para resolver cualquier duda.
+            </div>
+          </div>
+          
+          <!-- FAQ 4 -->
+          <div class="faq-item animate-fade-in" style="animation-delay: 0.3s;" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+              ¿Los bonos son realmente gratuitos?
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Sí, todos los bonos mostrados son 100% gratuitos al comprar durante el 
+              período de lanzamiento. Fuera de esta ventana, cada bono tiene un valor 
+              individual de entre $97 y $297.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <div class="cta-card animate-fade-in">
+        <h2 class="cta-title">¡No Pierdas Esta Oportunidad!</h2>
+        <p class="cta-text">
+          Obtén acceso inmediato al sistema completo + todos los bonos de lanzamiento 
+          con 87% de descuento. Precio aumenta en:
+        </p>
+        
+        <!-- Mini Countdown -->
+        <div class="countdown-timer" style="justify-content: center; margin-bottom: 40px;">
+          <div class="time-unit">
+            <div class="time-value" id="cta-hours">24</div>
+            <div class="time-label">HORAS</div>
+          </div>
+          <div class="time-unit">
+            <div class="time-value" id="cta-minutes">59</div>
+            <div class="time-label">MINUTOS</div>
+          </div>
+          <div class="time-unit">
+            <div class="time-value" id="cta-seconds">59</div>
+            <div class="time-label">SEGUNDOS</div>
+          </div>
+        </div>
+        
+        <button class="cta-button" onclick="handlePurchase()">
+          <i class="fas fa-bolt"></i>
+          Obtener Acceso Inmediato - 87% OFF
+        </button>
+        
+        <div style="margin-top: 30px; color: rgba(255,255,255,0.8); position: relative; z-index: 1;">
+          <i class="fas fa-lock"></i> Pago 100% seguro · Garantía de 30 días
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="../index.html#sales-styles" class="back-link">
+          <i class="fas fa-arrow-left"></i>
+          Volver a Estilos de Venta
+        </a>
+        
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Testimonios">
+            <i class="fas fa-star"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Garantía">
+            <i class="fas fa-shield-alt"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Soporte">
+            <i class="fas fa-headset"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Chat">
+            <i class="fas fa-comments"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2024 Launch UX Design System. Tasa de conversión promedio: 8.7% durante lanzamientos.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">
+          *Oferta válida solo durante el período de lanzamiento. Precio regular: $997.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Countdown Timer
+    function updateCountdown() {
+      const now = new Date();
+      const endTime = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours from now
+      
+      const diff = endTime - now;
+      
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      // Update all countdowns
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+      
+      document.getElementById('cta-hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('cta-minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('cta-seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    // Live counter for urgency
+    let liveCount = 24;
+    function updateLiveCounter() {
+      liveCount += Math.floor(Math.random() * 3);
+      if (liveCount > 150) liveCount = 24;
+      document.getElementById('live-count').textContent = liveCount;
+    }
+    
+    // FAQ Toggle
+    function toggleFAQ(element) {
+      const isActive = element.classList.contains('active');
+      
+      // Close all other FAQs
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Open clicked FAQ if it wasn't active
+      if (!isActive) {
+        element.classList.add('active');
+      }
+    }
+    
+    // Purchase Handler
+    function handlePurchase() {
+      const button = event.target.closest('.cta-button');
+      const originalHTML = button.innerHTML;
+      
+      // Create ripple effect
+      const ripple = document.createElement('span');
+      const rect = button.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = event.clientX - rect.left - size / 2;
+      const y = event.clientY - rect.top - size / 2;
+      
+      ripple.style.cssText = `
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.7);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        width: ${size}px;
+        height: ${size}px;
+        top: ${y}px;
+        left: ${x}px;
+        pointer-events: none;
+      `;
+      
+      button.appendChild(ripple);
+      
+      // Show loading state
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando compra...';
+      button.disabled = true;
+      
+      // Simulate API call
+      setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-check"></i> ¡Compra Exitosa!';
+        button.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+        
+        // Show success modal
+        showSuccessModal();
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          button.innerHTML = originalHTML;
+          button.disabled = false;
+          button.style.background = 'linear-gradient(135deg, var(--primary-color), var(--primary-dark))';
+        }, 3000);
+      }, 2000);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    }
+    
+    function showSuccessModal() {
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(10px);
+      `;
+      
+      modal.innerHTML = `
+        <div style="
+          background: linear-gradient(135deg, var(--dark-color), #1E293B);
+          padding: 60px;
+          border-radius: 30px;
+          max-width: 500px;
+          text-align: center;
+          box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+          border: 2px solid var(--primary-color);
+          animation: modalAppear 0.5s ease;
+        ">
+          <div style="
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3rem;
+            color: white;
+            animation: bounce 1s infinite alternate;
+          ">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h2 style="color: white; margin-bottom: 20px; font-size: 2.2rem;">¡Felicidades!</h2>
+          <p style="color: rgba(255,255,255,0.9); margin-bottom: 20px; line-height: 1.6;">
+            Has asegurado tu acceso al sistema completo + todos los bonos de lanzamiento.
+          </p>
+          <p style="color: var(--primary-color); font-weight: 600; margin-bottom: 30px;">
+            <i class="fas fa-envelope"></i> Te hemos enviado un email con los detalles de acceso.
+          </p>
+          <button onclick="this.parentElement.parentElement.remove()" style="
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+          ">
+            Continuar
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Add animations
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes modalAppear {
+          from {
+            opacity: 0;
+            transform: scale(0.8) translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+        
+        @keyframes bounce {
+          from { transform: translateY(0); }
+          to { transform: translateY(-20px); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    // Animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedElements = document.querySelectorAll('.animate-fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(el);
+      });
+      
+      // Initialize timers
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+      setInterval(updateLiveCounter, 5000);
+      
+      // Add ripple animation
+      const rippleStyle = document.createElement('style');
+      rippleStyle.textContent = `
+        @keyframes ripple {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(rippleStyle);
+    });
+  </script>
+
 </body>
 </html>
