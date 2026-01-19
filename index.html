@@ -2280,74 +2280,75 @@
   </section>
 
   <!-- Formulario de Captura Premium - CORREGIDO -->
-  <div class="form-group">
-  <div class="form-field">
-    <input type="text" id="name" name="name" required>
-    <label for="name">Nombre completo</label>
-  </div>
-</div>
-
-<div class="form-group">
-  <div class="form-field textarea-field">
-    <textarea id="message" name="message" required></textarea>
-    <label for="message">¿Qué desafío quieres resolver?</label>
-  </div>
-</div>
-        
-        <!-- Email profesional -->
-        <div class="form-group">
-          <div class="floating-label">
-            <input type="email" id="email" name="email" required>
-            <label for="email">Email profesional</label>
-          </div>
-        </div>
-        
-        <!-- Empresa / Proyecto -->
-        <div class="form-group">
-          <div class="floating-label">
-            <input type="text" id="company" name="company" required>
-            <label for="company">Empresa / Proyecto</label>
-          </div>
-        </div>
-        
-        <!-- Tipo de proyecto -->
-        <div class="form-group">
-          <div class="floating-label">
-            <select id="project-type" name="project-type" required>
-              <option value="" disabled selected></option>
-              <option value="ux-ui">Diseño UX/UI</option>
-              <option value="product">Estrategia de Producto</option>
-              <option value="mobile">App Móvil</option>
-              <option value="web">Diseño Web</option>
-              <option value="redesign">Rediseño</option>
-              <option value="other">Otro</option>
-            </select>
-            <label for="project-type">Tipo de proyecto</label>
-          </div>
-        </div>
-        
-        <!-- Mensaje -->
-        <div class="form-group" style="grid-column: span 2;">
-          <div class="floating-label">
-            <textarea id="message" name="message" required></textarea>
-            <label for="message">¿Qué desafío quieres resolver?</label>
-          </div>
+<section id="contacto">
+  <form class="capture-form" id="leadForm">
+    <div class="form-header">
+      <h2>Hablemos de tu proyecto</h2>
+      <p>Cuéntanos sobre tu negocio y te enviaremos una propuesta personalizada en 24 horas</p>
+    </div>
+    
+    <div class="form-grid">
+      <!-- Nombre completo -->
+      <div class="form-group">
+        <div class="form-field">
+          <input type="text" id="name" name="name" required>
+          <label for="name">Nombre completo</label>
         </div>
       </div>
       
-      <div class="form-submit">
-        <button type="submit" class="btn-submit">
-          <span>Enviar solicitud</span>
-          <i class="fas fa-paper-plane"></i>
-        </button>
-        <div class="form-assurance">
-          <i class="fas fa-lock"></i>
-          <span>Tu información está segura. No compartimos datos con terceros.</span>
+      <!-- Email profesional -->
+      <div class="form-group">
+        <div class="form-field">
+          <input type="email" id="email" name="email" required>
+          <label for="email">Email profesional</label>
         </div>
       </div>
-    </form>
-  </section>
-
+      
+      <!-- Empresa / Proyecto -->
+      <div class="form-group">
+        <div class="form-field">
+          <input type="text" id="company" name="company" required>
+          <label for="company">Empresa / Proyecto</label>
+        </div>
+      </div>
+      
+      <!-- Tipo de proyecto -->
+      <div class="form-group">
+        <div class="form-field">
+          <select id="project-type" name="project-type" required>
+            <option value="" disabled selected></option>
+            <option value="ux-ui">Diseño UX/UI</option>
+            <option value="product">Estrategia de Producto</option>
+            <option value="mobile">App Móvil</option>
+            <option value="web">Diseño Web</option>
+            <option value="redesign">Rediseño</option>
+            <option value="other">Otro</option>
+          </select>
+          <label for="project-type">Tipo de proyecto</label>
+        </div>
+      </div>
+      
+      <!-- Mensaje -->
+      <div class="form-group" style="grid-column: span 2;">
+        <div class="form-field textarea-field">
+          <textarea id="message" name="message" required></textarea>
+          <label for="message">¿Qué desafío quieres resolver?</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-submit">
+      <button type="submit" class="btn-submit">
+        <span>Enviar solicitud</span>
+        <i class="fas fa-paper-plane"></i>
+      </button>
+      <div class="form-assurance">
+        <i class="fas fa-lock"></i>
+        <span>Tu información está segura. No compartimos datos con terceros.</span>
+      </div>
+    </div>
+  </form>
+</section>
   <!-- Sección de Testimonios Premium -->
   <section class="testimonials" id="testimonios">
     <div class="section-title">
