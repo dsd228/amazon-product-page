@@ -472,40 +472,257 @@
       color: var(--primary-color);
     }
 
-    /* CTA Flotante Mobile */
-    .floating-cta {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 1000;
-      display: none;
+    /* ==============================
+       BANDA DE CONFIANZA INMEDIATA
+       ============================== */
+    .trust-band {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: white;
+      padding: 30px 40px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
-    .floating-cta-btn {
+    .trust-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      font-family: "Sora", sans-serif;
+      line-height: 1;
+    }
+
+    .trust-label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 140px;
+      line-height: 1.3;
+    }
+
+    .trust-stars {
+      color: #FFD700;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+    }
+
+    /* ==============================
+       MINI-TESTIMONIO
+       ============================== */
+    .mini-testimonial {
+      background: linear-gradient(135deg, #f8f9fa, #ffffff);
+      padding: 50px 40px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .mini-testimonial-content {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--dark-color);
+      line-height: 1.4;
+      position: relative;
+      padding: 0 30px;
+    }
+
+    .mini-testimonial-content::before,
+    .mini-testimonial-content::after {
+      content: '"';
+      font-size: 4rem;
+      color: var(--primary-color);
+      opacity: 0.3;
+      position: absolute;
+      font-family: Georgia, serif;
+    }
+
+    .mini-testimonial-content::before {
+      top: -20px;
+      left: 0;
+    }
+
+    .mini-testimonial-content::after {
+      bottom: -40px;
+      right: 0;
+    }
+
+    .mini-testimonial-author {
+      margin-top: 25px;
+      font-size: 0.95rem;
+      color: var(--gray-medium);
+      font-weight: 500;
+    }
+
+    .mini-testimonial-author strong {
+      color: var(--dark-color);
+    }
+
+    /* ==============================
+       CTA DE REFUERZO
+       ============================== */
+    .reinforcement-cta {
+      padding: 80px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, #fafafa, #ffffff);
+    }
+
+    .reinforcement-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .reinforcement-title {
+      font-size: 2.5rem;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .reinforcement-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray-medium);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-reinforcement {
+      background: linear-gradient(135deg, #FF6B35, #FF8E53);
+      color: var(--light-color);
+      padding: 20px 50px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: 
+        0 15px 35px rgba(255, 107, 53, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-reinforcement:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 20px 40px rgba(255, 107, 53, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    /* ==============================
+       SECCIÓN "CÓMO TRABAJO"
+       ============================== */
+    .how-i-work {
+      padding: 100px 40px;
+      background: linear-gradient(135deg, #ffffff, #fafafa);
+    }
+
+    .how-i-work-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .how-i-work-title {
+      text-align: center;
+      font-size: 2.8rem;
+      color: var(--dark-color);
+      margin-bottom: 60px;
+      background: linear-gradient(135deg, var(--dark-color), var(--gray-medium));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .work-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      counter-reset: step-counter;
+    }
+
+    .work-step {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      transition: transform var(--transition-fast);
+      border-top: 5px solid var(--primary-color);
+      counter-increment: step-counter;
+    }
+
+    .work-step:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .work-step::before {
+      content: counter(step-counter);
+      position: absolute;
+      top: -25px;
+      left: 30px;
+      width: 50px;
+      height: 50px;
       background: linear-gradient(135deg, #FF6B35, #FF8E53);
       color: white;
-      width: 60px;
-      height: 60px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      box-shadow: var(--shadow-lg);
-      border: none;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      animation: pulse 2s infinite;
+      font-weight: 700;
+      font-family: "Sora", sans-serif;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(255, 107, 53, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+    .step-title {
+      font-size: 1.4rem;
+      color: var(--dark-color);
+      margin-bottom: 15px;
+      margin-top: 10px;
     }
 
-    .floating-cta-btn:hover {
-      transform: scale(1.1) rotate(90deg);
+    .step-description {
+      color: var(--gray-medium);
+      line-height: 1.6;
+    }
+
+    /* ==============================
+       MICROCOPY DE SEGURIDAD
+       ============================== */
+    .security-microcopy {
+      text-align: center;
+      padding: 20px;
+      color: var(--gray-medium);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .security-microcopy i {
+      color: var(--primary-color);
     }
 
     /* ==============================
@@ -2014,6 +2231,36 @@
     </div>
   </section>
 
+  <!-- ✅ 1) BANDA DE CONFIANZA INMEDIATA -->
+  <div class="trust-band">
+    <div class="trust-item">
+      <div class="trust-number">30+</div>
+      <div class="trust-label">proyectos UX entregados</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-number">+35%</div>
+      <div class="trust-label">mejora promedio en conversión</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-number">Startups / SaaS / E-commerce</div>
+      <div class="trust-label">especialidades principales</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-stars">⭐⭐⭐⭐⭐</div>
+      <div class="trust-label">satisfacción clientes</div>
+    </div>
+  </div>
+
+  <!-- ✅ 2) MINI-TESTIMONIO CORTO ARRIBA -->
+  <div class="mini-testimonial">
+    <div class="mini-testimonial-content">
+      "El rediseño aumentó nuestra conversión un 32% en 6 semanas."
+    </div>
+    <div class="mini-testimonial-author">
+      — <strong>María Rodríguez</strong>, Product Lead en E-commerce
+    </div>
+  </div>
+
   <!-- Sección de Casos de Estudio - Mejorada -->
   <section class="cases-section" id="casos">
     <div class="cases-container">
@@ -2029,6 +2276,31 @@
         <a href="#caso-caroyense" class="case-anchor">La Caroyense</a>
         <a href="#caso-yale" class="case-anchor">Yale School</a>
       </div>
+      <nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo" style="text-decoration: none; color: #000;"><span style="color: #ff6b35;">N</span>eo<span style="color: #ff6b35;">P</span>rod<span style="color: #ff6b35;">U</span>x</a>
+    <div style="display: flex; gap: 40px; align-items: center;">
+      <div class="nav-dropdown">
+        <a href="#servicios" class="dropdown-trigger">Servicios</a>
+        <div class="dropdown-menu">
+          <a href="ui-ux-design.html">Diseño UI-UX</a>
+          <a href="mobile-app-design.html">Diseño de aplicaciones móviles</a>
+          <a href="website-design.html">Diseño de sitios web</a>
+          <a href="figma-to-wordpress.html">Figma a WordPress</a>
+          <a href="figma-to-html.html">Figma a HTML</a>
+          <a href="figma-to-webflow.html">Figma a Webflow</a>
+          <a href="ejemplos-amazon.html">Ejemplos Amazon</a>
+        </div>
+      </div>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#faq">FAQ</a>
+      <a href="blog.html">Blog</a>
+      <a href="#contacto" class="nav-cta">Contacto</a>
+    </div>
+  </div>
+</nav>
+
 
       <!-- Caso 1 -->
       <div id="caso-paseo" class="case-study animate-fade-in">
@@ -2272,6 +2544,39 @@
     </div>
   </section>
 
+  <!-- ✅ 3) CTA DE REFUERZO DESPUÉS DE LOS PRIMEROS CASOS -->
+  <div class="reinforcement-cta">
+    <div class="reinforcement-content">
+      <h2 class="reinforcement-title">¿Querés resultados similares en tu producto?</h2>
+      <p class="reinforcement-subtitle">Nuestro enfoque basado en datos y mejores prácticas de UX/UI garantiza mejoras medibles en conversión y experiencia de usuario.</p>
+      <a href="#contacto" class="btn-reinforcement">
+        Solicitar auditoría UX
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- ✅ 4) SECCIÓN "CÓMO TRABAJO" ULTRA RESUMIDA -->
+  <section class="how-i-work">
+    <div class="how-i-work-container">
+      <h2 class="how-i-work-title">Cómo trabajo</h2>
+      <div class="work-steps">
+        <div class="work-step">
+          <h3 class="step-title">1. Análisis UX + datos</h3>
+          <p class="step-description">Evaluación detallada de métricas, comportamiento de usuarios y puntos de fricción para identificar oportunidades de mejora.</p>
+        </div>
+        <div class="work-step">
+          <h3 class="step-title">2. Diseño y validación</h3>
+          <p class="step-description">Creación de prototipos interactivos, testing con usuarios reales y refinamiento iterativo basado en feedback.</p>
+        </div>
+        <div class="work-step">
+          <h3 class="step-title">3. Mejora medible</h3>
+          <p class="step-description">Implementación del diseño optimizado con seguimiento de métricas clave para garantizar resultados tangibles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Formulario de Captura Premium - CORREGIDO -->
 <section id="contacto">
   <form class="capture-form" id="leadForm">
@@ -2335,6 +2640,11 @@
         <span>Enviar solicitud</span>
         <i class="fas fa-paper-plane"></i>
       </button>
+      <!-- ✅ 5) MICROCOPY DE SEGURIDAD EN CONTACTO -->
+      <div class="security-microcopy">
+        <i class="fas fa-shield-alt"></i>
+        <span>Sin spam. Respuesta garantizada en 24–48 horas hábiles.</span>
+      </div>
       <div class="form-assurance">
         <i class="fas fa-lock"></i>
         <span>Tu información está segura. No compartimos datos con terceros.</span>
@@ -2342,6 +2652,7 @@
     </div>
   </form>
 </section>
+
   <!-- Sección de Testimonios Premium -->
   <section class="testimonials" id="testimonios">
     <div class="section-title">
