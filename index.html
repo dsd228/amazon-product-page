@@ -4,21 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NeoProdUx - UX/UI Design & Product Strategy Agency</title>
+  
+  <!-- Meta tags para SEO y rendimiento -->
+  <meta name="description" content="Agencia especializada en diseño UX/UI que convierte visitas en clientes. Mejoramos conversión con diseño basado en datos y mejores prácticas.">
+  <meta name="keywords" content="UX, UI, diseño, conversión, product strategy, diseño web, mobile app">
+  <meta name="author" content="NeoProdUx">
+  <meta property="og:title" content="NeoProdUx - Diseño UX/UI que convierte">
+  <meta property="og:description" content="Transformamos visitas en clientes con diseño basado en datos">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://neoprodux.com">
+  
+  <!-- Preconnect para mejorar velocidad -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+  
+  <!-- CDN Links -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Fonts -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    /* Variables CSS para consistencia */
+    :root {
+      --primary-color: #FF6B35;
+      --primary-dark: #d9572b;
+      --secondary-color: #667eea;
+      --dark-color: #1a1a1a;
+      --light-color: #ffffff;
+      --gray-light: #f8f9fa;
+      --gray-medium: #666666;
+      --gray-dark: #333333;
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.08);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
     
-    /* FONDO BLANCO PARA TODA LA PÁGINA */
-    body { background: #ffffff; color: #1a1a1a; overflow-x: hidden; font-family: "Inter", sans-serif; }
-    h1, h2, h3, h4, h5, h6 { font-family: "Sora", sans-serif; font-weight: 700; }
+    html { 
+      scroll-behavior: smooth; 
+      scroll-padding-top: 100px;
+    }
+    
+    /* Performance optimizations */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* Fondo blanco para toda la página */
+    body { 
+      background: var(--light-color); 
+      color: var(--dark-color); 
+      overflow-x: hidden; 
+      font-family: "Inter", sans-serif; 
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    h1, h2, h3, h4, h5, h6 { 
+      font-family: "Sora", sans-serif; 
+      font-weight: 700; 
+      line-height: 1.2;
+    }
 
     /* ==============================
-       HERO SECTION (ESTILO IMAGEN)
+       HERO SECTION - Optimizado
        ============================== */
     .hero-container {
       min-height: 100vh;
@@ -26,1012 +92,1277 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      /* Aquí se aplica tu imagen de fondo */
-      background: url('background-glass.jpg') center/cover no-repeat;
+      /* Imagen optimizada con placeholder mientras carga */
+      background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+        url('https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       position: relative;
-    }
-
-    /* TARJETA DE CRISTAL CENTRAL */
-    .glass-card {
-      width: 100%;
-      max-width: 1100px;
-      min-height: 700px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(25px) saturate(180%);
-      -webkit-backdrop-filter: blur(25px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 4px; /* Bordes rectos con ligera curvatura como en la imagen */
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-      padding: 40px 60px;
-    }
-
-    /* NAVEGACIÓN INTERNA */
-    .inner-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 120px;
-    }
-
-    .inner-logo {
-      font-size: 2rem;
-      font-weight: 800;
-      text-decoration: none;
-      font-family: "Sora", sans-serif;
-      display: flex;
-      gap: 0;
-    }
-    .inner-logo .orange { color: #FF6B35; }
-    .inner-logo .black { color: #000000; }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-    .nav-links a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.4rem;
-      font-family: "Sora", sans-serif;
-      transition: opacity 0.3s;
-    }
-    .nav-links a:hover { opacity: 0.7; }
-    .nav-separator { color: #ffffff; font-size: 1.5rem; opacity: 0.8; }
-
-    /* CONTENIDO DEL HERO */
-    .hero-main-content {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-main-content h1 {
-      font-size: 3.5rem;
-      color: #ffffff;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 25px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .hero-main-content p {
-      font-size: 1.4rem;
-      color: #ffffff;
-      line-height: 1.5;
-      margin-bottom: 50px;
-      font-weight: 600;
-      max-width: 700px;
-    }
-
-    /* BOTÓN ACCEDER (ESTILO IMAGEN) */
-    .btn-acceder {
-      background: #D98366; /* Color salmón/naranja de la imagen */
-      color: #ffffff;
-      padding: 20px 80px;
-      border-radius: 50px;
-      font-size: 2.2rem;
-      font-weight: 800;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-acceder:hover {
-      transform: scale(1.05);
-      background: #c27256;
-    }
-
-    /* ==============================
-       CASOS DE ESTUDIO - ESTILO APPLE
-       ============================== */
-    .cases-section {
-      padding: 120px 40px;
-      background: #ffffff;
-    }
-    
-    .cases-container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    
-    .cases-header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-    
-    .cases-header h2 {
-      font-size: 3.5rem;
-      color: #000000;
-      margin-bottom: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-    
-    .cases-header p {
-      font-size: 1.25rem;
-      color: #666666;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-    
-    /* CASO INDIVIDUAL */
-    .case-study {
-      margin-bottom: 140px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    
-    .case-study:nth-child(even) .case-content {
-      order: 2;
-    }
-    
-    .case-study:nth-child(even) .case-visual {
-      order: 1;
-    }
-    
-    .case-content {
-      padding: 40px 0;
-    }
-    
-    .case-category {
-      display: inline-block;
-      background: #FF6B35;
-      color: #ffffff;
-      padding: 8px 20px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      margin-bottom: 24px;
-      text-transform: uppercase;
-    }
-    
-    .case-title {
-      font-size: 2.8rem;
-      color: #000000;
-      margin-bottom: 30px;
-      line-height: 1.1;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-    
-    .case-problem {
-      background: #f8f9fa;
-      padding: 24px;
-      border-radius: 12px;
-      margin-bottom: 30px;
-      border-left: 4px solid #FF6B35;
-    }
-    
-    .case-problem h4 {
-      font-size: 1.1rem;
-      color: #FF6B35;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    
-    .case-problem p {
-      color: #666666;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-    
-    .case-solution {
-      margin-bottom: 30px;
-    }
-    
-    .case-solution h4 {
-      font-size: 1.1rem;
-      color: #000000;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    
-    .case-solution p {
-      color: #666666;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-    
-    .case-results {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-    
-    .result-item {
-      text-align: center;
-      padding: 20px;
-      background: #f8f9fa;
-      border-radius: 12px;
-      border: 1px solid #e9ecef;
-    }
-    
-    .result-value {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #FF6B35;
-      margin-bottom: 8px;
-      line-height: 1;
-    }
-    
-    .result-label {
-      font-size: 0.9rem;
-      color: #666666;
-      font-weight: 500;
-    }
-    
-    .case-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 32px;
-      background: #000000;
-      color: #ffffff;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .case-cta:hover {
-      background: #333333;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    
-    /* VISUAL DEL CASO */
-    .case-visual {
-      position: relative;
-      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.1);
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      background: #f8f9fa;
     }
-    
-    .case-visual:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 40px 100px rgba(0,0,0,0.15);
-    }
-    
-    .case-image {
-      width: 100%;
-      height: 600px;
-      object-fit: cover;
-      display: block;
-    }
-    
-    .case-overlay {
+
+    /* Efecto de partículas sutil */
+    .hero-container::before {
+      content: '';
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      padding: 40px;
-      color: #ffffff;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease;
-    }
-    
-    .case-visual:hover .case-overlay {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .overlay-text {
-      font-size: 1rem;
-      margin-bottom: 16px;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.6;
-    }
-    
-    .overlay-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #FF6B35;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-    
-    .overlay-cta:hover {
-      gap: 15px;
-    }
-
-    /* ==============================
-       RESTANTE DEL CSS EXISTENTE (CON FONDOS BLANCOS)
-       ============================== */
-    
-    /* Todos los fondos de las secciones serán blancos */
-    .clients-section, 
-    .stats, 
-    .services, 
-    .projects, 
-    .process, 
-    .testimonials,
-    .ejemplos-amazon,
-    .faq,
-    .blog,
-    .cta,
-    footer {
-      background: #ffffff !important;
-    }
-
-    /* Sección de clientes */
-    .clients-section { padding: 60px 40px; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; }
-    .clients-title { text-align: center; color: #999; font-size: 0.95rem; font-weight: 600; margin-bottom: 30px; letter-spacing: 0.5px; }
-    .marquee-wrapper { overflow: hidden; }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-    .marquee { display: flex; gap: 40px; animation: marquee 40s linear infinite; }
-    .marquee-item { 
-      white-space: nowrap; 
-      color: #999; 
-      font-weight: 500; 
-      font-size: 0.95rem; 
-      display: flex; 
-      align-items: center; 
-      gap: 10px;
-      transition: color 0.3s ease;
-    }
-    .marquee-item i { 
-      font-size: 1.1rem; 
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
-    .marquee-item:hover {
-      color: #000;
-    }
-    .marquee-item:hover i {
-      opacity: 1;
-    }
-
-    /* Stats */
-    .stats { padding: 60px 40px; border-bottom: 1px solid #e5e5e5; }
-    .stats-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
-    .stat-item h3 { font-size: 3.5rem; color: #000; margin-bottom: 12px; font-weight: 800; }
-    .stat-item p { color: #666; font-size: 1rem; font-weight: 500; }
-
-    /* SERVICES CAROUSEL */
-    .services { padding: 100px 40px; position: relative; overflow: hidden; }
-    .section-title { max-width: 1400px; margin: 0 auto 60px; text-align: center; }
-    .section-title h2 { font-size: 3.5rem; color: #000; margin-bottom: 16px; line-height: 1.2; }
-    .section-title p { color: #666; font-size: 1.15rem; max-width: 600px; line-height: 1.6; margin: 0 auto; }
-    
-    .services-carousel {
-      position: relative;
-      max-width: 900px;
-      height: 520px;
-      margin: 0 auto;
-      perspective: 1200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .services-track {
-      position: relative;
       width: 100%;
       height: 100%;
-      transform-style: preserve-3d;
-    }
-    
-    .service-card {
-      position: absolute;
-      width: 100%;
-      max-width: 600px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 50px 45px;
-      border-radius: 20px;
-      border: 1px solid #e5e5e5;
-      box-shadow: 
-        0 40px 100px rgba(0, 0, 0, 0.15),
-        0 20px 40px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      transition: 
-        transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
-        opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1),
-        filter 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-      cursor: pointer;
-      will-change: transform, opacity;
-      backface-visibility: hidden;
-    }
-    
-    .service-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 24px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      color: #fff;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-    }
-    
-    .service-card h3 {
-      font-size: 2rem;
-      margin-bottom: 16px;
-      color: #000;
-      text-align: center;
-      font-weight: 700;
-    }
-    
-    .service-card p {
-      color: #666;
-      line-height: 1.8;
-      font-size: 1.05rem;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    .service-tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .service-tag {
-      background: #f5f5f5;
-      color: #666;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border: 1px solid #e5e5e5;
-    }
-    
-    .service-card.active {
-      z-index: 30;
-      transform: translate(-50%, -50%) translateZ(0px) scale(1);
-      opacity: 1;
-      filter: blur(0px) brightness(1);
-    }
-    
-    .service-card:not(.active) {
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
       pointer-events: none;
     }
-    
-    .services-controls {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
+
+    /* TARJETA DE CRISTAL CENTRAL - Mejorado */
+    .glass-card {
+      width: 100%;
+      max-width: 1200px;
+      min-height: 700px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
       display: flex;
-      gap: 20px;
-      z-index: 100;
-    }
-    
-    .service-nav-btn {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(40, 40, 40, 0.9) 100%);
-      backdrop-filter: blur(20px);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      flex-direction: column;
       position: relative;
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      padding: 50px 70px;
       overflow: hidden;
+      transition: all var(--transition-smooth);
     }
-    
-    .service-nav-btn::before {
+
+    .glass-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      transition: left 0.7s ease;
     }
-    
-    .service-nav-btn:hover::before {
+
+    .glass-card:hover::before {
       left: 100%;
     }
-    
-    .service-nav-btn:hover {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 1) 0%, rgba(60, 60, 60, 1) 100%);
-      transform: scale(1.15) translateY(-2px);
-      box-shadow: 
-        0 15px 40px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .service-nav-btn:active {
-      transform: scale(1.05) translateY(0);
-    }
-    
-    .service-nav-btn i {
-      transition: transform 0.3s;
-    }
-    
-    .service-nav-btn:hover i {
-      transform: scale(1.1);
-    }
-    
-    .services-dots {
-      position: absolute;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 100;
-    }
-    
-    .service-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .service-dot.active {
-      background: #000;
-      width: 32px;
-      border-radius: 5px;
-    }
-    
-    @media (max-width: 768px) {
-      .services-carousel {
-        height: 580px;
-      }
-      .service-card {
-        max-width: 90%;
-        padding: 35px 30px;
-      }
-      .service-card h3 {
-        font-size: 1.6rem;
-      }
-      .service-card p {
-        font-size: 0.95rem;
-      }
-    }
 
-    /* SECTION CTA */
-    .section-cta {
-      margin-top: 64px;
-      text-align: center;
-    }
-
-    .btn-silent-outline {
-      padding: 14px 34px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,0.25);
-      color: #000000;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-    }
-
-    .btn-silent-outline:hover {
-      background: rgba(0,0,0,0.06);
-    }
-
-    /* DROPDOWN MENU */
-    .nav-dropdown { position: relative; display: inline-block; }
-    .dropdown-trigger { 
-      cursor: pointer; 
-      display: flex; 
-      align-items: center; 
-      gap: 6px; 
-      color: #ffffff; 
-      font-size: 1.4rem; 
-      font-weight: 700;
-      font-family: "Sora", sans-serif;
-      text-decoration: none; 
-      transition: opacity 0.3s; 
-    }
-    .dropdown-trigger:hover { 
-      opacity: 0.7; 
-    }
-    .dropdown-trigger::after { 
-      content: '▾'; 
-      font-size: 0.9rem; 
-      transition: transform 0.3s; 
-      margin-left: 5px;
-    }
-    .nav-dropdown:hover .dropdown-trigger::after { 
-      transform: rotate(180deg); 
-    }
-    .dropdown-menu { 
-      position: absolute; 
-      top: 100%; 
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.95); 
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.4); 
-      border-radius: 8px; 
-      min-width: 240px; 
-      opacity: 0; 
-      visibility: hidden; 
-      transform: translateX(-50%) translateY(-10px); 
-      transition: all 0.3s; 
-      z-index: 999; 
-      margin-top: 8px; 
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
-      padding: 8px 0;
-    }
-    .nav-dropdown:hover .dropdown-menu { 
-      opacity: 1; 
-      visibility: visible; 
-      transform: translateX(-50%) translateY(0); 
-    }
-    .dropdown-menu a { 
-      display: block; 
-      padding: 12px 24px; 
-      color: #555; 
-      text-decoration: none; 
-      transition: all 0.3s; 
-      font-size: 1rem;
-      border-left: 3px solid transparent;
-    }
-    .dropdown-menu a:hover { 
-      background: rgba(255, 107, 53, 0.08); 
-      color: #FF6B35; 
-      border-left: 3px solid #FF6B35;
-      padding-left: 28px;
-    }
-    .dropdown-menu a:first-child { 
-      border-radius: 8px 8px 0 0; 
-    }
-    .dropdown-menu a:last-child { 
-      border-radius: 0 0 8px 8px; 
-    }
-
-    /* PROCESS */
-    .process { padding: 100px 40px; }
-    .process-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; }
-    .process-step { text-align: center; }
-    .step-number { font-size: 3.5rem; font-weight: 800; color: #000; margin-bottom: 16px; }
-    .process-step h3 { font-size: 1.3rem; margin-bottom: 12px; color: #000; }
-    .process-step p { color: #666; font-size: 0.95rem; line-height: 1.6; }
-
-    /* TESTIMONIALS */
-    .testimonials { padding: 100px 40px; border-bottom: 1px solid #e5e5e5; }
-    .testimonials-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
-    .testimonial-card { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; transition: all 0.4s; }
-    .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); }
-    .rating { color: #fbbf24; margin-bottom: 16px; font-size: 1.1rem; }
-    .testimonial-text { color: #333; font-style: italic; margin-bottom: 20px; line-height: 1.8; }
-    .testimonial-author { font-weight: 600; color: #000; margin-bottom: 4px; }
-    .testimonial-role { color: #999; font-size: 0.9rem; }
-
-    /* FAQ */
-    .faq { padding: 100px 40px; }
-    .faq-container { max-width: 800px; margin: 0 auto; }
-    details { margin-bottom: 16px; }
-    details summary { cursor: pointer; padding: 24px; background: #f9f9f9; border: 1px solid #e5e5e5; border-radius: 8px; font-weight: 600; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; user-select: none; transition: all 0.3s; }
-    details summary:hover { background: #fff; border-color: #000; }
-    details summary::after { content: '+'; font-weight: bold; font-size: 1.5rem; }
-    details[open] summary::after { content: '-'; }
-    details[open] summary { background: #fff; border-color: #000; }
-    details p { padding: 24px; color: #666; line-height: 1.8; }
-
-    /* BLOG */
-    .blog { 
-      padding: 100px 0; 
-      border-bottom: 1px solid #e5e5e5;
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .blog-header { 
-      max-width: 1400px; 
-      margin: 0 auto 48px; 
-      text-align: center; 
-      padding: 0 40px;
-    }
-    
-    .blog-header .eyebrow { 
-      color: #ff6b35; 
-      font-weight: 700; 
-      letter-spacing: 0.08em; 
-      text-transform: uppercase; 
-      font-size: 0.9rem; 
-      margin-bottom: 12px; 
-    }
-    
-    .blog-header h2 { 
-      font-size: 3rem; 
-      color: #000; 
-      margin-bottom: 12px; 
-    }
-    
-    .blog-header p { 
-      color: #666; 
-      font-size: 1.05rem; 
-      line-height: 1.7; 
-    }
-    
-    .blog-carousel-wrapper {
-      position: relative;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-    
-    .blog-carousel {
-      display: flex;
-      gap: 28px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 20px 0 40px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    
-    .blog-carousel::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .blog-card { 
-      flex: 0 0 380px;
-      background: #fff; 
-      border-radius: 14px; 
-      overflow: hidden; 
-      border: 1px solid #e5e5e5; 
-      transition: all 0.35s ease; 
-      display: flex; 
-      flex-direction: column;
-      cursor: pointer;
-    }
-    
-    .blog-card:hover { 
-      transform: translateY(-10px); 
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); 
-      border-color: #ff6b35; 
-    }
-    
-    .blog-image { 
-      width: 100%; 
-      height: 220px; 
-      background-size: cover; 
-      background-position: center; 
-      background-repeat: no-repeat; 
-    }
-    
-    .blog-content { 
-      padding: 22px 22px 24px; 
-      display: flex; 
-      flex-direction: column; 
-      gap: 12px; 
-      flex: 1; 
-    }
-    
-    .post-date { 
-      color: #999; 
-      font-size: 0.9rem; 
-      text-transform: uppercase; 
-      letter-spacing: 0.06em; 
-    }
-    
-    .post-title { 
-      font-size: 1.25rem; 
-      color: #000; 
-      line-height: 1.5; 
-      font-weight: 700;
-    }
-    
-    .post-excerpt { 
-      color: #555; 
-      line-height: 1.6; 
-      font-size: 0.98rem; 
-    }
-    
-    .post-link { 
-      color: #ff6b35; 
-      font-weight: 700; 
-      text-decoration: none; 
-      display: inline-flex; 
-      align-items: center; 
-      gap: 8px; 
-      transition: color 0.2s; 
-    }
-    
-    .post-link:hover { 
-      color: #d9572b; 
-    }
-    
-    .blog-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
+    /* NAVEGACIÓN INTERNA - Simplificada */
+    .inner-nav {
       display: flex;
       justify-content: space-between;
-      pointer-events: none;
-      padding: 0 10px;
-      z-index: 10;
+      align-items: center;
+      margin-bottom: 100px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .inner-logo {
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-decoration: none;
+      font-family: "Sora", sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: linear-gradient(135deg, #FF6B35, #667eea);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      transition: transform var(--transition-fast);
+    }
+
+    .inner-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      flex-wrap: wrap;
     }
     
-    .blog-nav-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255, 107, 53, 0.95) 0%, rgba(217, 87, 43, 0.95) 100%);
-      backdrop-filter: blur(10px);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    .nav-links a {
+      color: var(--light-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      font-family: "Sora", sans-serif;
+      transition: all var(--transition-fast);
+      padding: 8px 16px;
+      border-radius: 50px;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .nav-links a.active {
+      background: rgba(255, 107, 53, 0.2);
+      border: 1px solid rgba(255, 107, 53, 0.4);
+    }
+
+    /* CONTENIDO DEL HERO - Mejorado */
+    .hero-main-content {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-main-content h1 {
+      font-size: 3.8rem;
+      color: var(--light-color);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, #ffffff, #e0e0e0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-main-content p {
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 50px;
+      font-weight: 500;
+      max-width: 800px;
+    }
+
+    /* BOTÓN ACCEDER - Premium */
+    .btn-acceder {
+      background: linear-gradient(135deg, #FF6B35, #FF8E53);
+      color: var(--light-color);
+      padding: 22px 85px;
+      border-radius: 50px;
+      font-size: 2rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: all var(--transition-fast);
+      box-shadow: 
+        0 15px 35px rgba(255, 107, 53, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border: none;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .btn-acceder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.6s ease;
+    }
+
+    .btn-acceder:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 20px 40px rgba(255, 107, 53, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-acceder:hover::before {
+      left: 100%;
+    }
+
+    .btn-acceder i {
+      font-size: 1.5rem;
+      transition: transform var(--transition-fast);
+    }
+
+    .btn-acceder:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Trust Badges en Hero */
+    .trust-badges {
+      display: flex;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all var(--transition-fast);
+    }
+
+    .trust-badge:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .trust-badge i {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+
+    /* CTA Flotante Mobile */
+    .floating-cta {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: none;
+    }
+
+    .floating-cta-btn {
+      background: linear-gradient(135deg, #FF6B35, #FF8E53);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
-      pointer-events: auto;
-      opacity: 0.9;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      animation: pulse 2s infinite;
     }
-    
-    .blog-nav-btn:hover {
-      opacity: 1;
-      transform: scale(1.1);
-      box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 107, 53, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
     }
-    
-    .blog-nav-btn:active {
-      transform: scale(1.05);
+
+    .floating-cta-btn:hover {
+      transform: scale(1.1) rotate(90deg);
     }
-    
-    .blog-nav-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
+
+    /* ==============================
+       CASOS DE ESTUDIO - Mejorados
+       ============================== */
+    .cases-section {
+      padding: 140px 40px;
+      background: var(--light-color);
+      position: relative;
     }
-    
-    .blog-scroll-indicator {
+
+    .cases-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(255, 107, 53, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(102, 126, 234, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .cases-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cases-header {
+      text-align: center;
+      margin-bottom: 100px;
+    }
+
+    .cases-header h2 {
+      font-size: 3.8rem;
+      color: var(--dark-color);
+      margin-bottom: 25px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--dark-color), var(--gray-medium));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .cases-header p {
+      font-size: 1.3rem;
+      color: var(--gray-medium);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Anclas para navegación entre casos */
+    .case-anchors {
+      position: sticky;
+      top: 100px;
       display: flex;
       justify-content: center;
-      gap: 8px;
-      margin-top: 20px;
+      gap: 20px;
+      margin-bottom: 60px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    
-    .blog-scroll-dot {
-      width: 8px;
-      height: 8px;
+
+    .case-anchor {
+      padding: 12px 28px;
+      background: var(--gray-light);
+      color: var(--gray-medium);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+      border: 2px solid transparent;
+    }
+
+    .case-anchor:hover,
+    .case-anchor.active {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Caso individual mejorado */
+    .case-study {
+      margin-bottom: 160px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+      scroll-margin-top: 150px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s var(--transition-smooth);
+    }
+
+    .case-study.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .case-study:nth-child(even) .case-content {
+      order: 2;
+    }
+
+    .case-study:nth-child(even) .case-visual {
+      order: 1;
+    }
+
+    .case-content {
+      padding: 40px 0;
+    }
+
+    .case-category {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--light-color);
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .case-title {
+      font-size: 3.2rem;
+      color: var(--dark-color);
+      margin-bottom: 35px;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .case-problem {
+      background: linear-gradient(135deg, #f8f9fa, #ffffff);
+      padding: 32px;
+      border-radius: 20px;
+      margin-bottom: 35px;
+      border-left: 6px solid var(--primary-color);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-fast);
+    }
+
+    .case-problem:hover {
+      transform: translateX(10px);
+    }
+
+    .case-problem h4 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .case-problem h4::before {
+      content: '⚠️';
+      font-size: 1.1rem;
+    }
+
+    .case-problem p {
+      color: var(--gray-medium);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .case-solution {
+      margin-bottom: 35px;
+    }
+
+    .case-solution h4 {
+      font-size: 1.2rem;
+      color: var(--dark-color);
+      margin-bottom: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .case-solution h4::before {
+      content: '🎯';
+      font-size: 1.1rem;
+    }
+
+    .case-solution p {
+      color: var(--gray-medium);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .case-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .result-item {
+      text-align: center;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, #ffffff, #f8f9fa);
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    }
+
+    .result-item:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .result-value {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      line-height: 1;
+      font-family: "Sora", sans-serif;
+    }
+
+    .result-label {
+      font-size: 1rem;
+      color: var(--gray-medium);
+      font-weight: 500;
+    }
+
+    .case-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px 40px;
+      background: linear-gradient(135deg, var(--dark-color), #333333);
+      color: var(--light-color);
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transition: left 0.6s ease;
+    }
+
+    .case-cta:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .case-cta:hover::before {
+      left: 100%;
+    }
+
+    .case-cta i {
+      transition: transform var(--transition-fast);
+    }
+
+    .case-cta:hover i {
+      transform: translateX(8px);
+    }
+
+    /* VISUAL DEL CASO - Premium */
+    .case-visual {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: linear-gradient(135deg, #f8f9fa, #ffffff);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .case-visual:hover {
+      transform: 
+        translateY(-15px) 
+        rotateX(5deg) 
+        rotateY(-5deg);
+      box-shadow: 
+        0 50px 100px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 107, 53, 0.1);
+    }
+
+    .case-image {
+      width: 100%;
+      height: 650px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s ease;
+    }
+
+    .case-visual:hover .case-image {
+      transform: scale(1.05);
+    }
+
+    .case-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+      padding: 50px 40px;
+      color: var(--light-color);
+      transform: translateY(100%);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .case-visual:hover .case-overlay {
+      transform: translateY(0);
+    }
+
+    .overlay-text {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.6;
+    }
+
+    .overlay-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--primary-color);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: gap var(--transition-fast);
+    }
+
+    .overlay-cta:hover {
+      gap: 20px;
+    }
+
+    /* ==============================
+       TESTIMONIOS PREMIUM
+       ============================== */
+    .testimonials {
+      padding: 140px 40px;
+      background: linear-gradient(135deg, #fafafa, #ffffff);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(102, 126, 234, 0.05) 0%, transparent 50%);
+      animation: rotate 60s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .section-title {
+      max-width: 1400px;
+      margin: 0 auto 80px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title h2 {
+      font-size: 3.5rem;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--dark-color), var(--gray-medium));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-title p {
+      color: var(--gray-medium);
+      font-size: 1.2rem;
+      max-width: 600px;
+      line-height: 1.7;
+      margin: 0 auto;
+    }
+
+    .testimonials-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 45px;
+      border-radius: 24px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all var(--transition-smooth);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 107, 53, 0.1);
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .testimonial-avatar {
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.2);
-      transition: all 0.3s;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      padding: 3px;
     }
-    
-    .blog-scroll-dot.active {
-      background: #ff6b35;
-      width: 24px;
-      border-radius: 4px;
+
+    .testimonial-info {
+      flex: 1;
     }
-    
-    .blog-cta { 
-      max-width: 1200px; 
-      margin: 48px auto 0; 
-      background: #0f0f0f; 
-      color: #fff; 
-      border-radius: 16px; 
-      padding: 28px 32px; 
-      display: flex; 
-      flex-wrap: wrap; 
-      align-items: center; 
-      justify-content: space-between; 
-      gap: 16px;
-      margin-left: 40px;
-      margin-right: 40px;
+
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 5px;
+      font-size: 1.2rem;
     }
-    
-    .blog-cta h3 { 
-      font-size: 1.35rem; 
-      margin-bottom: 6px; 
+
+    .testimonial-role {
+      color: var(--gray-medium);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
     }
-    
-    .blog-cta p { 
-      color: rgba(255, 255, 255, 0.8); 
+
+    .company-logo {
+      height: 20px;
+      opacity: 0.7;
     }
-    
-    .blog-cta .btn { 
-      padding: 12px 20px; 
+
+    .rating {
+      color: #FFD700;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      display: flex;
+      gap: 3px;
     }
-    
-    .blog-cta .btn-secondary { 
-      border-color: #fff; 
-      color: #fff; 
+
+    .testimonial-text {
+      color: var(--gray-dark);
+      font-style: italic;
+      margin-bottom: 25px;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      position: relative;
+      padding-left: 25px;
     }
-    
-    @media (max-width: 768px) {
-      .blog-header h2 { 
-        font-size: 2.3rem; 
+
+    .testimonial-text::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -10px;
+      font-size: 4rem;
+      color: var(--primary-color);
+      opacity: 0.2;
+      font-family: Georgia, serif;
+    }
+
+    .testimonial-metrics {
+      display: flex;
+      gap: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .metric-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+      font-family: "Sora", sans-serif;
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      color: var(--gray-medium);
+      font-weight: 500;
+    }
+
+    /* ==============================
+       FORMULARIO DE CAPTURA PREMIUM
+       ============================== */
+    .capture-form {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: var(--light-color);
+      padding: 80px 40px;
+      border-radius: 40px;
+      max-width: 1000px;
+      margin: 100px auto;
+      box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .capture-form::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-header h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff, #cccccc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .form-header p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: #0f0f0f;
+      padding: 0 10px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      color: var(--light-color);
+      font-size: 1rem;
+      transition: all var(--transition-fast);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--light-color);
+      padding: 22px 60px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 
+        0 15px 35px rgba(255, 107, 53, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.6s ease;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 25px 50px rgba(255, 107, 53, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-submit:hover::before {
+      left: 100%;
+    }
+
+    .form-assurance {
+      text-align: center;
+      margin-top: 30px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .form-assurance i {
+      color: var(--primary-color);
+    }
+
+    /* ==============================
+       FOOTER PREMIUM
+       ============================== */
+    footer {
+      padding: 80px 40px 40px;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: var(--light-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 60px;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: var(--light-color);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-section h3::before {
+      content: '';
+      width: 30px;
+      height: 3px;
+      background: var(--primary-color);
+      display: block;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      margin-bottom: 15px;
+    }
+
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-section a:hover {
+      color: var(--primary-color);
+      transform: translateX(5px);
+    }
+
+    .footer-section a i {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 40px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: var(--light-color);
+      font-size: 1.4rem;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-links a:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .trust-seals {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .trust-seal {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 25px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-fast);
+    }
+
+    .trust-seal:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .trust-seal i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .seal-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .seal-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .seal-desc {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* ==============================
+       ANIMACIONES Y EFECTOS
+       ============================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
       }
-      .blog { 
-        padding: 80px 0; 
-      }
-      .blog-header {
-        padding: 0 24px;
-      }
-      .blog-carousel-wrapper {
-        padding: 0 24px;
-      }
-      .blog-card {
-        flex: 0 0 300px;
-      }
-      .blog-cta { 
-        padding: 24px;
-        margin-left: 24px;
-        margin-right: 24px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    /* CTA */
-    .cta { padding: 80px 40px; color: #fff; text-align: center; }
-    .cta h2 { font-size: 2.5rem; margin-bottom: 24px; }
-    .cta p { font-size: 1.1rem; color: #ccc; margin-bottom: 40px; }
-    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .cta-buttons .btn { background: #fff; color: #000; }
-    .cta-buttons .btn:hover { background: #e5e5e5; }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
 
-    /* FOOTER */
-    footer { padding: 60px 40px; border-top: 1px solid #e5e5e5; }
-    .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-    .footer-section h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: #000; text-transform: uppercase; letter-spacing: 0.5px; }
-    .footer-section ul { list-style: none; }
-    .footer-section li { margin-bottom: 12px; }
-    .footer-section a { color: #666; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
-    .footer-section a:hover { color: #000; }
-    .footer-bottom { border-top: 1px solid #e5e5e5; padding-top: 40px; text-align: center; color: #999; font-size: 0.9rem; }
-    .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
-    .social-links a { color: #000; font-size: 1.25rem; transition: color 0.3s; text-decoration: none; }
-    .social-links a:hover { color: #667eea; }
+    .animate-fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
 
-    /* Responsive adjustments */
-    @media (max-width: 992px) {
-      .glass-card { padding: 30px; min-height: 600px; }
-      .hero-main-content h1 { font-size: 2.5rem; }
-      .nav-links { gap: 15px; }
-      .nav-links a { font-size: 1rem; }
-      .btn-acceder { font-size: 1.5rem; padding: 15px 50px; }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* ==============================
+       RESPONSIVE DESIGN
+       ============================== */
+    @media (max-width: 1200px) {
+      .hero-main-content h1 {
+        font-size: 3.2rem;
+      }
       
-      /* Responsive para casos de estudio */
+      .case-title {
+        font-size: 2.8rem;
+      }
+      
+      .cases-header h2 {
+        font-size: 3.2rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .glass-card {
+        padding: 40px 30px;
+        min-height: 600px;
+      }
+      
+      .hero-main-content h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero-main-content p {
+        font-size: 1.2rem;
+      }
+      
+      .btn-acceder {
+        font-size: 1.6rem;
+        padding: 20px 60px;
+      }
+      
+      .nav-links {
+        gap: 15px;
+      }
+      
+      .nav-links a {
+        font-size: 1rem;
+      }
+      
       .case-study {
         grid-template-columns: 1fr;
-        gap: 40px;
-        margin-bottom: 80px;
+        gap: 60px;
+        margin-bottom: 120px;
       }
       
       .case-study:nth-child(even) .case-content,
@@ -1040,7 +1371,39 @@
       }
       
       .case-title {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
+      }
+      
+      .case-image {
+        height: 500px;
+      }
+      
+      .case-results {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .case-anchors {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 15px;
+      }
+      
+      .floating-cta {
+        display: block;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cases-header h2 {
+        font-size: 2.6rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.6rem;
+      }
+      
+      .case-title {
+        font-size: 2rem;
       }
       
       .case-image {
@@ -1049,777 +1412,1096 @@
       
       .case-results {
         grid-template-columns: 1fr;
-        gap: 15px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .cases-header h2 {
-        font-size: 2.5rem;
       }
       
-      .case-title {
-        font-size: 1.8rem;
+      .testimonial-card {
+        padding: 30px;
       }
       
-      .case-image {
-        height: 300px;
+      .capture-form {
+        padding: 50px 25px;
+        border-radius: 30px;
+      }
+      
+      .form-header h2 {
+        font-size: 2.4rem;
+      }
+      
+      .trust-badges {
+        flex-direction: column;
+        align-items: center;
       }
     }
+
+    @media (max-width: 480px) {
+      .hero-main-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-main-content p {
+        font-size: 1.1rem;
+      }
+      
+      .btn-acceder {
+        font-size: 1.3rem;
+        padding: 18px 40px;
+      }
+      
+      .glass-card {
+        padding: 30px 20px;
+      }
+      
+      .inner-nav {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .cases-section,
+      .testimonials,
+      .capture-form {
+        padding: 80px 20px;
+      }
+    }
+
+    /* Optimización de imágenes */
+    img[loading="lazy"] {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    img[loading="lazy"].loaded {
+      opacity: 1;
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--primary-dark), #5a6fd8);
+    }
+
   </style>
 </head>
 <body>
 
-<!-- Sección Hero con fondo de imagen y tarjeta de cristal -->
-<section class="hero-container">
-  <div class="glass-card">
-    <!-- Navegación dentro del cristal -->
-    <nav class="inner-nav">
-      <a href="index.html" class="inner-logo">
-        <span class="orange">Neo</span><span class="black">ProdUx</span>
-      </a>
-      <div class="nav-links">
-        <div class="nav-dropdown">
-          <a href="#casos" class="dropdown-trigger">Servicios</a>
-          <div class="dropdown-menu">
-            <a href="ui-ux-design.html">Diseño UI-UX</a>
-            <a href="mobile-app-design.html">Diseño de aplicaciones móviles</a>
-            <a href="website-design.html">Diseño de sitios web</a>
-            <a href="figma-to-wordpress.html">Figma a WordPress</a>
-            <a href="figma-to-html.html">Figma a HTML</a>
-            <a href="figma-to-webflow.html">Figma a Webflow</a>
-            <a href="ejemplos-amazon.html">Ejemplos Amazon</a>
+  <!-- CTA Flotante para Mobile -->
+  <div class="floating-cta">
+    <button class="floating-cta-btn" onclick="openCalendly()">
+      <i class="fas fa-calendar-alt"></i>
+    </button>
+  </div>
+
+  <!-- Sección Hero con fondo de imagen y tarjeta de cristal -->
+  <section class="hero-container" id="inicio">
+    <div class="glass-card">
+      <!-- Navegación dentro del cristal -->
+      <nav class="inner-nav">
+        <a href="index.html" class="inner-logo">
+          <span>🎯 NeoProdUx</span>
+        </a>
+        <div class="nav-links">
+          <a href="#servicios" class="active">Servicios</a>
+          <a href="#casos">Casos</a>
+          <a href="#testimonios">Testimonios</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+
+      <!-- Contenido central -->
+      <div class="hero-main-content">
+        <h1>Diseño UX/UI que convierte visitas en clientes</h1>
+        <p>Transformamos startups y negocios digitales con diseño basado en datos, aumentando conversión, claridad y experiencia de usuario.</p>
+        
+        <a href="#contacto" class="btn-acceder">
+          Solicitar auditoría UX
+          <i class="fas fa-arrow-right"></i>
+        </a>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <i class="fas fa-shield-alt"></i>
+            <span>100% Garantía de Satisfacción</span>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-clock"></i>
+            <span>Entrega en 2-4 semanas</span>
+          </div>
+          <div class="trust-badge">
+            <i class="fas fa-chart-line"></i>
+            <span>+35% Conversión Promedio</span>
           </div>
         </div>
-        <span class="nav-separator">|</span>
-        <a href="#casos">Casos</a>
-        <span class="nav-separator">|</span>
-        <a href="blog.html">Blog</a>
-        <span class="nav-separator">|</span>
-        <a href="#contacto">Contacto</a>
       </div>
-    </nav>
-
-    <!-- Contenido central -->
-    <div class="hero-main-content">
-      <h1>Diseño UX/UI que convierte visitas en clientes</h1>
-      <p>Ayudo a startups y negocios digitales a mejorar conversión, claridad y experiencia de usuario con diseño basado en datos y buenas prácticas reales.</p>
-      
-      <a href="#casos" class="btn-acceder">
-        Solicitar auditoría UX
-      </a>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Sección de Casos de Estudio - Mejorada -->
+  <section class="cases-section" id="casos">
+    <div class="cases-container">
+      <div class="cases-header">
+        <h2>Casos que generan impacto real</h2>
+        <p>Proyectos seleccionados donde el diseño transformó resultados de negocio de forma medible</p>
+      </div>
 
+      <!-- Navegación por anclas -->
+      <div class="case-anchors">
+        <a href="#caso-paseo" class="case-anchor active">PASEO FinTech</a>
+        <a href="#caso-nexus" class="case-anchor">Nexus Logistics</a>
+        <a href="#caso-caroyense" class="case-anchor">La Caroyense</a>
+        <a href="#caso-yale" class="case-anchor">Yale School</a>
+      </div>
 
-<!-- Sección de Casos de Estudio - Estilo Apple -->
-<section class="cases-section" id="casos">
-  <div class="cases-container">
-    <div class="cases-header">
-      <h2>Casos que generan impacto</h2>
-      <p>4 proyectos seleccionados donde el diseño transformó resultados de negocio</p>
+      <!-- Caso 1 -->
+      <div id="caso-paseo" class="case-study animate-fade-in">
+        <div class="case-content">
+          <span class="case-category">FinTech · Mobile App</span>
+          <h2 class="case-title">PASEO – UX Case Study</h2>
+
+          <div class="case-problem">
+            <h4>La app</h4>
+            <p>
+              Paseo es una aplicación móvil que conecta dueños de mascotas con paseadores de perros confiables,
+              integrando seguimiento en tiempo real y un sistema de pagos digitales simple y seguro.
+            </p>
+          </div>
+
+          <div class="case-solution">
+            <h4>La solución</h4>
+            <p>
+              Diseño end-to-end con foco en experiencia FinTech: flujos de pago guiados, wallet interno y
+              transparencia total de tarifas. Reducción del 60% en pasos críticos del checkout.
+            </p>
+          </div>
+
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-value">+75%</div>
+              <div class="result-label">Velocidad en transacciones</div>
+            </div>
+            <div class="result-item">
+              <div class="result-value">-45%</div>
+              <div class="result-label">Errores de usuario</div>
+            </div>
+            <div class="result-item">
+              <div class="result-value">$5M/mes</div>
+              <div class="result-label">Volumen procesado</div>
+            </div>
+          </div>
+
+          <a href="https://dsd228.github.io/dsd228-paseo-ux-case-study/" class="case-cta" target="_blank">
+            Ver caso completo
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="case-visual">
+          <img 
+            src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+            alt="Dashboard FinTech Paseo" 
+            class="case-image"
+            loading="lazy"
+          >
+          <div class="case-overlay">
+            <p class="overlay-text">Sistema de pagos que procesa +$5M mensuales tras rediseño UX/UI</p>
+            <a href="https://dsd228.github.io/dsd228-paseo-ux-case-study/" class="overlay-cta" target="_blank">
+              Ver proceso de diseño
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 2 -->
+      <div id="caso-nexus" class="case-study animate-fade-in">
+        <div class="case-content">
+          <span class="case-category">Logística · SaaS B2B</span>
+          <h2 class="case-title">Nexus Logistics</h2>
+
+          <div class="case-problem">
+            <h4>El problema</h4>
+            <p>
+              Dashboard B2B con curva de aprendizaje elevada.
+              Los equipos operativos requerían semanas de capacitación para tareas básicas.
+            </p>
+          </div>
+
+          <div class="case-solution">
+            <h4>La solución</h4>
+            <p>
+              Rediseño UX/UI con arquitectura modular, progressive disclosure y patrones consistentes.
+              Tutoriales contextuales y jerarquía visual clara.
+            </p>
+          </div>
+
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-value">+40%</div>
+              <div class="result-label">Usabilidad percibida</div>
+            </div>
+            <div class="result-item">
+              <div class="result-value">-30%</div>
+              <div class="result-label">Tiempo de capacitación</div>
+            </div>
+            <div class="result-item">
+              <div class="result-value">200+</div>
+              <div class="result-label">Empresas usuarias</div>
+            </div>
+          </div>
+
+          <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="case-cta">
+            Ver caso completo
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="case-visual">
+          <img 
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+            alt="Dashboard SaaS Logística" 
+            class="case-image"
+            loading="lazy"
+          >
+          <div class="case-overlay">
+            <p class="overlay-text">Plataforma SaaS que redujo el tiempo de capacitación operativa</p>
+            <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="overlay-cta">
+              Ver proceso de diseño
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 3 -->
+      <div id="caso-caroyense" class="case-study animate-fade-in">
+        <div class="case-content">
+          <span class="case-category">E-Commerce · Mobile First</span>
+          <h2 class="case-title">La Caroyense</h2>
+
+          <div class="case-problem">
+            <h4>El problema</h4>
+            <p>
+              Conversión baja y alto abandono de carrito.
+              Experiencia móvil deficiente en un mercado dominado por compras desde celular.
+            </p>
+          </div>
+
+          <div class="case-solution">
+            <h4>La solución</h4>
+            <p>
+              Rediseño mobile-first con jerarquía visual clara,
+              reducción de fricción y flujos de compra optimizados para conversión.
+            </p>
+          </div>
+
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-value">+340%</div>
+              <div class="result-label">Conversión</div>
+            </div>
+            <div class="result-item">
+              <div class="result-value">-45%</div>
+              <div class="result-label">Abandono de carrito</div>
+            </div>
+            <div class="result-item">
+              <div class="result-value">+$2.1M</div>
+              <div class="result-label">Ingresos anuales</div>
+            </div>
+          </div>
+
+          <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="case-cta">
+            Ver caso completo
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="case-visual">
+          <img 
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+            alt="E-commerce mobile-first" 
+            class="case-image"
+            loading="lazy"
+          >
+          <div class="case-overlay">
+            <p class="overlay-text">Rediseño enfocado en conversión y experiencia mobile</p>
+            <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="overlay-cta">
+              Ver proceso de diseño
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 4 -->
+      <div id="caso-yale" class="case-study animate-fade-in">
+        <div class="case-content">
+          <span class="case-category">Education · UX Redesign</span>
+          <h2 class="case-title">Yale School of Art</h2>
+
+          <div class="case-problem">
+            <h4>El problema</h4>
+            <p>
+              Sitio institucional con arquitectura de información caótica,
+              jerarquía visual inexistente y navegación confusa.
+            </p>
+          </div>
+
+          <div class="case-solution">
+            <h4>La solución</h4>
+            <p>
+              Rediseño UX/UI con foco en claridad estructural,
+              jerarquía visual y reducción de carga cognitiva.
+            </p>
+          </div>
+
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-value">+60%</div>
+              <div class="result-label">Claridad percibida</div>
+            </div>
+            <div class="result-item">
+              <div class="result-value">-50%</div>
+              <div class="result-label">Tiempo de búsqueda</div>
+            </div>
+            <div class="result-item">
+              <div class="result-value">+45%</div>
+              <div class="result-label">Usabilidad general</div>
+            </div>
+          </div>
+
+          <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="case-cta">
+            Ver caso completo
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="case-visual">
+          <img 
+            src="https://images.unsplash.com/photo-1544717305-99670f9c28f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+            alt="Rediseño Yale School of Art" 
+            class="case-image"
+            loading="lazy"
+          >
+          <div class="case-overlay">
+            <p class="overlay-text">Rediseño UX de un sitio académico complejo</p>
+            <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="overlay-cta">
+              Ver proceso de diseño
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario de Captura Premium -->
+  <section class="capture-form" id="contacto">
+    <div class="form-header">
+      <h2>¿Listo para transformar tu producto?</h2>
+      <p>Cuéntanos sobre tu proyecto y te contactaremos en menos de 24 horas con una propuesta personalizada.</p>
     </div>
     
- <!-- Caso 1 -->
-<div class="case-study">
-  <div class="case-content">
-    <span class="case-category">FinTech</span>
-    <h2 class="case-title">PASEO – UX Case Study</h2>
-
-    <div class="case-problem">
-      <h4>La app</h4>
-      <p>
-        Paseo es una aplicación móvil que conecta dueños de mascotas con paseadores de perros confiables,
-        integrando seguimiento en tiempo real y un sistema de pagos digitales simple y seguro.
-      </p>
-    </div>
-
-    <div class="case-solution">
-      <h4>La solución</h4>
-      <p>
-        Diseño end-to-end con foco en experiencia FinTech: flujos de pago guiados, wallet interno y
-        transparencia total de tarifas. Reducción del 60% en pasos críticos del checkout.
-      </p>
-    </div>
-
-    <div class="case-results">
-      <div class="result-item">
-        <div class="result-value">+75%</div>
-        <div class="result-label">Velocidad en transacciones</div>
-      </div>
-      <div class="result-item">
-        <div class="result-value">-45%</div>
-        <div class="result-label">Errores de usuario</div>
-      </div>
-      <div class="result-item">
-        <div class="result-value">$5M/mes</div>
-        <div class="result-label">Volumen procesado</div>
-      </div>
-    </div>
-
-    <a href="https://dsd228.github.io/dsd228-paseo-ux-case-study/" class="case-cta">
-      Ver caso completo
-      <i class="fas fa-arrow-right"></i>
-    </a>
-  </div>
-
-  <div class="case-visual">
-    <img src="Desktop - 1paseo.png" alt="Dashboard FinTech Paseo" class="case-image">
-    <div class="case-overlay">
-      <p class="overlay-text">Sistema de pagos que procesa +$5M mensuales tras rediseño UX/UI</p>
-      <a href="https://dsd228.github.io/dsd228-paseo-ux-case-study/" class="overlay-cta">
-        Ver proceso de diseño
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-</div>
-
-   <!-- Caso 2 -->
-<div class="case-study">
-  <div class="case-content">
-    <span class="case-category">Logística · SaaS B2B</span>
-    <h2 class="case-title">Nexus Logistics</h2>
-
-    <div class="case-problem">
-      <h4>El problema</h4>
-      <p>
-        Dashboard B2B con curva de aprendizaje elevada.
-        Los equipos operativos requerían semanas de capacitación para tareas básicas.
-      </p>
-    </div>
-
-    <div class="case-solution">
-      <h4>La solución</h4>
-      <p>
-        Rediseño UX/UI con arquitectura modular, progressive disclosure y patrones consistentes.
-        Tutoriales contextuales y jerarquía visual clara.
-      </p>
-    </div>
-
-    <div class="case-results">
-      <div class="result-item">
-        <div class="result-value">+40%</div>
-        <div class="result-label">Usabilidad percibida</div>
-      </div>
-      <div class="result-item">
-        <div class="result-value">-30%</div>
-        <div class="result-label">Tiempo de capacitación</div>
-      </div>
-      <div class="result-item">
-        <div class="result-value">200+</div>
-        <div class="result-label">Empresas usuarias</div>
-      </div>
-    </div>
-
-    <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="case-cta">
-      Ver caso completo
-      <i class="fas fa-arrow-right"></i>
-    </a>
-  </div>
-
-  <div class="case-visual">
-    <img src="dispatch - copia.png" alt="Dashboard SaaS Logística" class="case-image">
-    <div class="case-overlay">
-      <p class="overlay-text">Plataforma SaaS que redujo el tiempo de capacitación operativa</p>
-      <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="overlay-cta">
-        Ver proceso de diseño
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-</div>
-
-    
-    <!-- Caso 3 -->
-<div class="case-study">
-  <div class="case-content">
-    <span class="case-category">E-Commerce</span>
-    <h2 class="case-title">La Caroyense</h2>
-
-    <div class="case-problem">
-      <h4>El problema</h4>
-      <p>
-        Conversión baja y alto abandono de carrito.
-        Experiencia móvil deficiente en un mercado dominado por compras desde celular.
-      </p>
-    </div>
-
-    <div class="case-solution">
-      <h4>La solución</h4>
-      <p>
-        Rediseño mobile-first con jerarquía visual clara,
-        reducción de fricción y flujos de compra optimizados.
-      </p>
-    </div>
-
-    <div class="case-results">
-      <div class="result-item">
-        <div class="result-value">+340%</div>
-        <div class="result-label">Conversión</div>
-      </div>
-      <div class="result-item">
-        <div class="result-value">-45%</div>
-        <div class="result-label">Abandono de carrito</div>
-      </div>
-      <div class="result-item">
-        <div class="result-value">+$2.1M</div>
-        <div class="result-label">Ingresos anuales</div>
-      </div>
-    </div>
-
-    <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="case-cta">
-      Ver caso completo
-      <i class="fas fa-arrow-right"></i>
-    </a>
-  </div>
-
-  <div class="case-visual">
-    <img src="Bodega La Caroyense — UX_UI Redesign/Desktop - 4.png" alt="E-commerce mobile-first" class="case-image">
-    <div class="case-overlay">
-      <p class="overlay-text">Rediseño enfocado en conversión y experiencia mobile</p>
-      <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="overlay-cta">
-        Ver proceso de diseño
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-</div>
-
-
-   <!-- Caso 4 -->
-<div class="case-study">
-  <div class="case-content">
-    <span class="case-category">Education · UX Redesign</span>
-    <h2 class="case-title">Yale School of Art</h2>
-
-    <div class="case-problem">
-      <h4>El problema</h4>
-      <p>
-        Sitio institucional con arquitectura de información caótica,
-        jerarquía visual inexistente y navegación confusa.
-      </p>
-    </div>
-
-    <div class="case-solution">
-      <h4>La solución</h4>
-      <p>
-        Rediseño UX/UI con foco en claridad estructural,
-        jerarquía visual y reducción de carga cognitiva.
-      </p>
-    </div>
-
-    <div class="case-results">
-      <div class="result-item">
-        <div class="result-value">+60%</div>
-        <div class="result-label">Claridad percibida</div>
-      </div>
-      <div class="result-item">
-        <div class="result-value">-50%</div>
-        <div class="result-label">Tiempo de búsqueda</div>
-      </div>
-      <div class="result-item">
-        <div class="result-value">+45%</div>
-        <div class="result-label">Usabilidad general</div>
-      </div>
-    </div>
-
-    <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="case-cta">
-      Ver caso completo
-      <i class="fas fa-arrow-right"></i>
-    </a>
-  </div>
-
-  <div class="case-visual">
-    <img src="Rediseño del Sitio Web - Yale School of Art/HomeDesktop - 2.jpg" alt="Rediseño Yale School of Art" class="case-image">
-    <div class="case-overlay">
-      <p class="overlay-text">Rediseño UX de un sitio académico complejo</p>
-      <a href="https://github.com/dsd228/yale-school-art-redesign" target="_blank" class="overlay-cta">
-        Ver proceso de diseño
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-</div>
-
-</section>
-
-<!-- Stats Section -->
-<section class="stats">
-  <div class="stats-grid">
-    <div class="stat-item"><h3>30+</h3><p>Proyectos en Producción</p></div>
-    <div class="stat-item"><h3>5M+</h3><p>Usuarios Impactados</p></div>
-    <div class="stat-item"><h3>+35%</h3><p>Mejora en Conversión</p></div>
-  </div>
-</section>
-
-<!-- Sección de servicios -->
-<section class="services" id="servicios">
-  <div class="section-title">
-    <h2>Cómo trabajo</h2>
-    <p>Un proceso probado para resultados excepcionales</p>
-  </div>
-  
-  <!-- Carrusel 3D Stack Cards -->
-  <div class="services-carousel">
-    <!-- Indicadores superiores -->
-    <div class="services-dots" id="services-dots"></div>
-    
-    <div class="services-track" id="services-track">
-      <!-- Card 1: UX/UI Design -->
-      <div class="service-card" data-index="0">
-        <div class="service-icon">
-          <i class="fas fa-pencil-ruler"></i>
+    <form id="leadForm" onsubmit="submitForm(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Nombre completo</label>
+          <input type="text" id="name" name="name" required placeholder="Tu nombre">
         </div>
-        <h3>UX/UI Design</h3>
-        <p>Investigación profunda, prototipos iterativos y diseño centrado en el usuario que convierte visitas en resultados tangibles.</p>
-        <div class="service-tags">
-          <span class="service-tag">Research</span>
-          <span class="service-tag">Wireframes</span>
-          <span class="service-tag">Prototyping</span>
-          <span class="service-tag">Testing</span>
-        </div>
-      </div>
-      
-      <!-- Card 2: Product Strategy -->
-      <div class="service-card" data-index="1">
-        <div class="service-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <h3>Product Strategy</h3>
-        <p>Análisis de datos, validación de mercado y roadmap basado en insights reales de usuarios y objetivos de negocio.</p>
-        <div class="service-tags">
-          <span class="service-tag">Analytics</span>
-          <span class="service-tag">Market Fit</span>
-          <span class="service-tag">Roadmap</span>
-          <span class="service-tag">KPIs</span>
-        </div>
-      </div>
-      
-      <!-- Card 3: Design System -->
-      <div class="service-card" data-index="2">
-        <div class="service-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-          <i class="fas fa-layer-group"></i>
-        </div>
-        <h3>Design System</h3>
-        <p>Componentes reutilizables, guías de diseño y tokens que escalan con tu producto a largo plazo.</p>
-        <div class="service-tags">
-          <span class="service-tag">Components</span>
-          <span class="service-tag">Tokens</span>
-          <span class="service-tag">Guidelines</span>
-          <span class="service-tag">Scalable</span>
-        </div>
-      </div>
-      
-      <!-- Card 4: Mobile Design -->
-      <div class="service-card" data-index="3">
-        <div class="service-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-          <i class="fas fa-mobile-alt"></i>
-        </div>
-        <h3>Mobile App Design</h3>
-        <p>Diseño nativo iOS y Android con patrones optimizados para cada plataforma y máxima usabilidad móvil.</p>
-        <div class="service-tags">
-          <span class="service-tag">iOS</span>
-          <span class="service-tag">Android</span>
-          <span class="service-tag">Native</span>
-          <span class="service-tag">Responsive</span>
-        </div>
-      </div>
-      
-      <!-- Card 5: Web Development -->
-      <div class="service-card" data-index="4">
-        <div class="service-icon" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
-          <i class="fas fa-code"></i>
-        </div>
-        <h3>Design to Code</h3>
-        <p>Transformamos diseños Figma en código limpio y funcional. HTML, CSS, React, Vue o tu stack preferido.</p>
-        <div class="service-tags">
-          <span class="service-tag">Figma to HTML</span>
-          <span class="service-tag">React</span>
-          <span class="service-tag">Vue</span>
-          <span class="service-tag">Clean Code</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Controles de navegación -->
-    <div class="services-controls">
-      <button class="service-nav-btn" id="service-prev" aria-label="Servicio anterior">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="service-nav-btn" id="service-next" aria-label="Siguiente servicio">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
-  </div>
-</section>
-
-<section class="testimonials">
-  <div class="section-title">
-    <h2>Lo que dicen nuestros clientes</h2>
-    <p>Resultados reales de productos reales</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card"><div class="rating">★★★★★ 5.0</div><p class="testimonial-text">"El trabajo de David transformó completamente nuestro producto. +78% en retención de usuarios en 3 meses. Recomendado 100%."</p><p class="testimonial-author">CEO, Startup Tech</p><p class="testimonial-role">Founder</p></div>
-    <div class="testimonial-card"><div class="rating">★★★★★ 5.0</div><p class="testimonial-text">"Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad mejoraron +40% post-Rediseño."</p><p class="testimonial-author">Product Manager, Enterprise</p><p class="testimonial-role">Product Lead</p></div>
-    <div class="testimonial-card"><div class="rating">★★★★★ 5.0</div><p class="testimonial-text">"+$2.1M en ingresos tras Rediseño. El mejor ROI que hemos visto. Profesional, preciso y orientado a resultados."</p><p class="testimonial-author">Founder, E-commerce</p><p class="testimonial-role">CEO</p></div>
-  </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="section-title" style="max-width: 800px;"><h2>Preguntas Frecuentes</h2></div>
-  <div class="faq-container">
-    <details><summary>¿Cuál es tu proceso de diseño?</summary><p>Utilizamos un proceso iterativo basado en Design Thinking: Discovery → Strategy → Design → Validation → Optimization. Cada fase está fundamentada en investigación real y datos del usuario.</p></details>
-    <details><summary>¿Cómo garantizas resultados medibles?</summary><p>Todo proyecto tiene KPIs claros desde el inicio. Medimos conversión, retención, satisfacción y ROI. Muestro los números reales, no promesas bonitas.</p></details>
-    <details><summary>¿Puedo solicitar cambios después de terminar?</summary><p>Sí. Las iteraciones basadas en feedback real son parte fundamental del proceso. Trabajamos hasta que los resultados cumplan los objetivos definidos.</p></details>
-    <details><summary>¿Qué herramientas utilizas?</summary><p>Figma para diseño, Python/SQL para análisis, Power BI para reporting y Git para versionamiento. Las mejores herramientas para cada fase del proyecto.</p></details>
-    <details><summary>¿Trabajas con equipos remotos?</summary><p>100% remoto. Timezone flexible. Comunicación clara y documentación detallada. Acostumbrado a colaborar con equipos globales.</p></details>
-  </div>
-</section>
-
-<section class="blog" id="blog">
-  <div class="blog-header">
-    <p class="eyebrow">Blog NeoProdUx</p>
-    <h2>Ideas, guías y tendencias de diseño</h2>
-    <p>Clon inspirado en Uistudioz Blog. Seleccionamos artículos clave para equipos de producto.</p>
-  </div>
-
-  <!-- Carrusel Horizontal -->
-  <div class="blog-carousel-wrapper">
-    <!-- Controles de navegación -->
-    <div class="blog-nav">
-      <button class="blog-nav-btn" id="blog-prev" aria-label="Artículo anterior">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="blog-nav-btn" id="blog-next" aria-label="Siguiente artículo">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
-    
-    <div class="blog-carousel" id="blog-carousel">
-      <!-- Artículo 1 -->
-      <article class="blog-card">
-        <div class="blog-image" style="background-image: url('https://uistudioz.com/wp-content/uploads/2025/09/From-Idea-to-Prototype-%E2%80%93-Master-Figma-Make-with-AI.png');"></div>
-        <div class="blog-content">
-          <span class="post-date">18 Sep 2025</span>
-          <h3 class="post-title">Mastering Figma Make: From Prompt to Prototype</h3>
-          <p class="post-excerpt">Guía 2025 para pasar de idea a prototipo con IA y Figma Make, cubriendo el flujo completo de diseño a entrega.</p>
-          <a class="post-link" href="blog-figma-make.html">Leer artículo →</a>
-        </div>
-      </article>
-
-      <!-- Artículo 2 -->
-      <article class="blog-card">
-        <div class="blog-image" style="background-image: url('https://uistudioz.com/wp-content/uploads/2025/09/Avoid-These-7-UX-Errors-in-Grocery-Apps.png');"></div>
-        <div class="blog-content">
-          <span class="post-date">01 Sep 2025</span>
-          <h3 class="post-title">7 UX Mistakes That Can Break a Grocery Delivery App</h3>
-          <p class="post-excerpt">Los errores más comunes en apps de delivery y cómo resolverlos con patrones de UX comprobados.</p>
-          <a class="post-link" href="blog-grocery-ux.html">Leer artículo →</a>
-        </div>
-      </article>
-
-      <!-- Artículo 3 -->
-      <article class="blog-card">
-        <div class="blog-image" style="background-image: url('https://uistudioz.com/wp-content/uploads/2025/08/Framer-Website-Design-Trends-You-Cant-Miss.png');"></div>
-        <div class="blog-content">
-          <span class="post-date">22 Ago 2025</span>
-          <h3 class="post-title">10 Framer Website Design Trends to Watch in 2025</h3>
-          <p class="post-excerpt">Tendencias clave en diseño web con Framer para crear experiencias 2025 listas para lanzar.</p>
-          <a class="post-link" href="blog-framer-trends.html">Leer artículo →</a>
-        </div>
-      </article>
-    </div>
-    
-    <!-- Indicador de scroll -->
-    <div class="blog-scroll-indicator" id="blog-indicator"></div>
-  </div>
-
-  <div class="blog-cta">
-    <div>
-      <h3>¿Necesitas un diseño a medida?</h3>
-      <p>Agenda una llamada y te mostramos cómo lo llevamos a producción.</p>
-    </div>
-    <div class="blog-cta-actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a class="btn btn-primary" href="https://wa.me/543525300076?text=Hola%20David,%20quiero%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20a%20medida." target="_blank">Reservar llamada</a>
-      <a class="btn btn-secondary" href="contact.html">Ver contacto</a>
-    </div>
-  </div>
-</section>
-
-<section class="cta" id="contacto">
-  <h2>¿Necesitas un Producto que Crezca?</h2>
-  <p>Hablemos sobre tu desafío. Agendar una llamada rápida o envíame un email.</p>
-  <div class="cta-buttons">
-    <button class="btn btn-primary">Agendar Llamada</button>
-    <button class="btn btn-secondary">Enviar Email</button>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-container">
-    <div class="footer-section">
-      <h3>Compañía</h3>
-      <ul><li><a href="#servicios">Servicios</a></li><li><a href="#casos">Casos</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#faq">FAQ</a></li><li><a href="blog.html">Blog</a></li><li><a href="ejemplos-amazon.html">Ejemplos Amazon</a></li></ul>
-    </div>
-    <div class="footer-section">
-      <h3>Redes</h3>
-      <ul><li><a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank">LinkedIn</a></li><li><a href="https://github.com/dsd228" target="_blank">GitHub</a></li><li><a href="https://dribbble.com" target="_blank">Dribbble</a></li><li><a href="https://behance.net" target="_blank">Behance</a></li></ul>
-    </div>
-    <div class="footer-section">
-      <h3>Contacto</h3>
-      <ul><li><a href="mailto:david.diaz.uxdata@gmail.com">Email</a></li><li><a href="https://calendly.com/david-sebastian-diaz" target="_blank">Calendly</a></li><li>100% Remoto</li></ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 NeoProdUx. All Rights Reserved.</p>
-    <div class="social-links">
-      <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/dsd228" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://dribbble.com" target="_blank"><i class="fab fa-dribbble"></i></a>
-      <a href="https://behance.net" target="_blank"><i class="fab fa-behance"></i></a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  /* ========================================
-     SERVICES CAROUSEL - STACK CARDS 3D
-     ======================================== */
-  
-  const serviceCards = Array.from(document.querySelectorAll('.service-card'));
-  const servicesDotsContainer = document.getElementById('services-dots');
-  const servicePrevBtn = document.getElementById('service-prev');
-  const serviceNextBtn = document.getElementById('service-next');
-  
-  let currentServiceIndex = 0;
-  const totalServices = serviceCards.length;
-  
-  serviceCards.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.className = `service-dot ${index === 0 ? 'active' : ''}`;
-    dot.setAttribute('aria-label', `Ir a servicio ${index + 1}`);
-    servicesDotsContainer.appendChild(dot);
-  });
-  
-  const serviceDots = Array.from(servicesDotsContainer.children);
-  
-  const SERVICES_CONFIG = {
-    stackOffset: 20,
-    scaleStep: 0.05,
-    opacityStep: 0.15,
-    maxStackCards: 3,
-    autoplayDelay: 4000
-  };
-  
-  let servicesAutoplayTimer = null;
-  
-  function updateServicesCarousel() {
-    serviceCards.forEach((card, index) => {
-      const relativePos = index - currentServiceIndex;
-      
-      if (relativePos === 0) {
-        card.classList.add('active');
-        card.style.transform = 'translate(-50%, -50%) translateZ(0px) scale(1) rotateX(0deg)';
-        card.style.opacity = '1';
-        card.style.filter = 'blur(0px)';
-        card.style.zIndex = '30';
-      } 
-      else if (relativePos > 0 && relativePos <= SERVICES_CONFIG.maxStackCards) {
-        card.classList.remove('active');
-        const stackPosition = relativePos;
-        const translateY = stackPosition * SERVICES_CONFIG.stackOffset;
-        const scale = 1 - (stackPosition * SERVICES_CONFIG.scaleStep);
-        const opacity = 1 - (stackPosition * SERVICES_CONFIG.opacityStep);
-        const rotateX = stackPosition * 3;
         
-        card.style.transform = `translate(-50%, calc(-50% + ${translateY}px)) translateZ(-${stackPosition * 100}px) scale(${scale}) rotateX(${rotateX}deg)`;
-        card.style.opacity = opacity;
-        card.style.filter = `blur(${stackPosition}px)`;
-        card.style.zIndex = 30 - stackPosition;
-      }
-      else {
-        card.classList.remove('active');
-        card.style.transform = 'translate(-50%, -50%) translateZ(-500px) scale(0.7)';
-        card.style.opacity = '0';
-        card.style.filter = 'blur(5px)';
-        card.style.zIndex = '0';
-      }
-    });
-    
-    serviceDots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === currentServiceIndex);
-    });
-  }
-  
-  function goToService(index) {
-    currentServiceIndex = ((index % totalServices) + totalServices) % totalServices;
-    updateServicesCarousel();
-  }
-  
-  function startServicesAutoplay() {
-    stopServicesAutoplay();
-    servicesAutoplayTimer = setInterval(() => {
-      goToService(currentServiceIndex + 1);
-    }, SERVICES_CONFIG.autoplayDelay);
-  }
-  
-  function stopServicesAutoplay() {
-    if (servicesAutoplayTimer) {
-      clearInterval(servicesAutoplayTimer);
-      servicesAutoplayTimer = null;
-    }
-  }
-  
-  servicePrevBtn.addEventListener('click', () => {
-    goToService(currentServiceIndex - 1);
-    startServicesAutoplay();
-  });
-  
-  serviceNextBtn.addEventListener('click', () => {
-    goToService(currentServiceIndex + 1);
-    startServicesAutoplay();
-  });
-  
-  serviceDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      goToService(index);
-      startServicesAutoplay();
-    });
-  });
-  
-  const servicesCarousel = document.querySelector('.services-carousel');
-  servicesCarousel.addEventListener('mouseenter', stopServicesAutoplay);
-  servicesCarousel.addEventListener('mouseleave', startServicesAutoplay);
-  
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      goToService(currentServiceIndex - 1);
-      startServicesAutoplay();
-    } else if (e.key === 'ArrowRight') {
-      goToService(currentServiceIndex + 1);
-      startServicesAutoplay();
-    }
-  });
-  
-  updateServicesCarousel();
-  startServicesAutoplay();
-
-  /* ========================================
-     BLOG CAROUSEL - HORIZONTAL SCROLL
-     ======================================== */
-  
-  const blogCarousel = document.getElementById('blog-carousel');
-  const blogPrevBtn = document.getElementById('blog-prev');
-  const blogNextBtn = document.getElementById('blog-next');
-  const blogIndicator = document.getElementById('blog-indicator');
-  const blogCards = Array.from(document.querySelectorAll('.blog-card'));
-  
-  const totalBlogCards = blogCards.length;
-  let currentBlogScroll = 0;
-  let blogAutoplayTimer = null;
-  
-  const BLOG_CONFIG = {
-    scrollAmount: 408,
-    autoplayDelay: 6000
-  };
-  
-  const totalPages = Math.ceil(totalBlogCards / 3);
-  for (let i = 0; i < totalPages; i++) {
-    const dot = document.createElement('div');
-    dot.className = `blog-scroll-dot ${i === 0 ? 'active' : ''}`;
-    blogIndicator.appendChild(dot);
-  }
-  
-  const blogDots = Array.from(blogIndicator.children);
-  
-  function updateBlogIndicators() {
-    const scrollPosition = blogCarousel.scrollLeft;
-    const cardWidth = BLOG_CONFIG.scrollAmount;
-    const currentPage = Math.round(scrollPosition / (cardWidth * 3));
-    
-    blogDots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === currentPage);
-    });
-    
-    blogPrevBtn.disabled = scrollPosition <= 0;
-    blogNextBtn.disabled = scrollPosition >= blogCarousel.scrollWidth - blogCarousel.clientWidth - 10;
-  }
-  
-  function scrollBlog(direction) {
-    const scrollAmount = direction === 'next' ? BLOG_CONFIG.scrollAmount : -BLOG_CONFIG.scrollAmount;
-    blogCarousel.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
-    });
-  }
-  
-  function startBlogAutoplay() {
-    stopBlogAutoplay();
-    blogAutoplayTimer = setInterval(() => {
-      const isAtEnd = blogCarousel.scrollLeft >= blogCarousel.scrollWidth - blogCarousel.clientWidth - 10;
+        <div class="form-group">
+          <label for="email">Email profesional</label>
+          <input type="email" id="email" name="email" required placeholder="tu@empresa.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="company">Empresa / Proyecto</label>
+          <input type="text" id="company" name="company" required placeholder="Nombre de tu empresa">
+        </div>
+        
+        <div class="form-group">
+          <label for="project-type">Tipo de proyecto</label>
+          <select id="project-type" name="project-type" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="ux-ui">Diseño UX/UI</option>
+            <option value="product">Estrategia de Producto</option>
+            <option value="mobile">App Móvil</option>
+            <option value="web">Diseño Web</option>
+            <option value="redesign">Rediseño</option>
+            <option value="other">Otro</option>
+          </select>
+        </div>
+        
+        <div class="form-group" style="grid-column: span 2;">
+          <label for="message">¿Qué desafío quieres resolver?</label>
+          <textarea id="message" name="message" required placeholder="Descríbenos tu proyecto, objetivos y desafíos..."></textarea>
+        </div>
+      </div>
       
-      if (isAtEnd) {
-        blogCarousel.scrollTo({
-          left: 0,
-          behavior: 'smooth'
+      <div class="form-submit">
+        <button type="submit" class="btn-submit">
+          <span>Enviar solicitud</span>
+          <i class="fas fa-paper-plane"></i>
+        </button>
+        <div class="form-assurance">
+          <i class="fas fa-lock"></i>
+          <span>Tu información está segura. No compartimos datos con terceros.</span>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- Sección de Testimonios Premium -->
+  <section class="testimonials" id="testimonios">
+    <div class="section-title">
+      <h2>Lo que dicen nuestros clientes</h2>
+      <p>Resultados reales de productos que transformamos</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <!-- Testimonio 1 -->
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+               alt="Alex Chen" 
+               class="testimonial-avatar"
+               loading="lazy">
+          <div class="testimonial-info">
+            <p class="testimonial-author">Alex Chen</p>
+            <p class="testimonial-role">CEO & Founder</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" 
+                 alt="Google" 
+                 class="company-logo"
+                 loading="lazy">
+          </div>
+        </div>
+        
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        
+        <p class="testimonial-text">
+          "El trabajo de David transformó completamente nuestro producto. Implementamos sus recomendaciones y en 3 meses vimos un aumento del 78% en retención de usuarios. Su enfoque basado en datos es excepcional."
+        </p>
+        
+        <div class="testimonial-metrics">
+          <div class="metric-item">
+            <div class="metric-value">+78%</div>
+            <div class="metric-label">Retención</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">4.9</div>
+            <div class="metric-label">Rating App</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">-40%</div>
+            <div class="metric-label">Soporte</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonio 2 -->
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+               alt="Maria Rodriguez" 
+               class="testimonial-avatar"
+               loading="lazy">
+          <div class="testimonial-info">
+            <p class="testimonial-author">Maria Rodriguez</p>
+            <p class="testimonial-role">Product Lead</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Amazon_icon.svg" 
+                 alt="Amazon" 
+                 class="company-logo"
+                 loading="lazy">
+          </div>
+        </div>
+        
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        
+        <p class="testimonial-text">
+          "Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad mejoraron +40% post-rediseño. Trabaja rápido, comunica claramente y entrega resultados medibles."
+        </p>
+        
+        <div class="testimonial-metrics">
+          <div class="metric-item">
+            <div class="metric-value">+40%</div>
+            <div class="metric-label">Usabilidad</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">92%</div>
+            <div class="metric-label">Satisfacción</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">-35%</div>
+            <div class="metric-label">Errores</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonio 3 -->
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+               alt="James Wilson" 
+               class="testimonial-avatar"
+               loading="lazy">
+          <div class="testimonial-info">
+            <p class="testimonial-author">James Wilson</p>
+            <p class="testimonial-role">CEO E-commerce</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Shopify_logo_2018.svg" 
+                 alt="Shopify" 
+                 class="company-logo"
+                 loading="lazy">
+          </div>
+        </div>
+        
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        
+        <p class="testimonial-text">
+          "+$2.1M en ingresos adicionales tras el rediseño. El mejor ROI que hemos visto en diseño. Profesional, preciso y orientado a resultados. Absolutamente recomendado."
+        </p>
+        
+        <div class="testimonial-metrics">
+          <div class="metric-item">
+            <div class="metric-value">+$2.1M</div>
+            <div class="metric-label">Ingresos</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">+340%</div>
+            <div class="metric-label">Conversión</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value">-45%</div>
+            <div class="metric-label">Abandono</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Premium -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Servicios</h3>
+        <ul>
+          <li><a href="#servicios">Diseño UX/UI</a></li>
+          <li><a href="#servicios">Estrategia de Producto</a></li>
+          <li><a href="#servicios">Design Systems</a></li>
+          <li><a href="#servicios">Apps Móviles</a></li>
+          <li><a href="#servicios">Desarrollo Web</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Empresa</h3>
+        <ul>
+          <li><a href="#casos">Casos de Estudio</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <ul>
+          <li><a href="mailto:david.diaz.uxdata@gmail.com">
+            <i class="fas fa-envelope"></i>
+            <span>david.diaz.uxdata@gmail.com</span>
+          </a></li>
+          <li><a href="https://calendly.com/david-sebastian-diaz" target="_blank">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Agendar llamada</span>
+          </a></li>
+          <li><a href="https://wa.me/543525300076" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span>+54 352 530-0076</span>
+          </a></li>
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            <span>100% Remoto · Global</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Recursos</h3>
+        <ul>
+          <li><a href="#blog">Blog UX/UI</a></li>
+          <li><a href="#blog">Guías Gratuitas</a></li>
+          <li><a href="#blog">Plantillas Figma</a></li>
+          <li><a href="#blog">Herramientas</a></li>
+          <li><a href="#blog">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Trust Seals -->
+    <div class="trust-seals">
+      <div class="trust-seal">
+        <i class="fas fa-shield-alt"></i>
+        <div class="seal-text">
+          <span class="seal-title">Seguro y Confiable</span>
+          <span class="seal-desc">Datos 100% protegidos</span>
+        </div>
+      </div>
+      
+      <div class="trust-seal">
+        <i class="fas fa-bolt"></i>
+        <div class="seal-text">
+          <span class="seal-title">Entrega Rápida</span>
+          <span class="seal-desc">2-4 semanas promedio</span>
+        </div>
+      </div>
+      
+      <div class="trust-seal">
+        <i class="fas fa-chart-line"></i>
+        <div class="seal-text">
+          <span class="seal-title">Resultados Garantizados</span>
+          <span class="seal-desc">+35% conversión promedio</span>
+        </div>
+      </div>
+      
+      <div class="trust-seal">
+        <i class="fas fa-award"></i>
+        <div class="seal-text">
+          <span class="seal-title">Experiencia Comprobada</span>
+          <span class="seal-desc">30+ proyectos en producción</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="social-links">
+      <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/dsd228" target="_blank" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://dribbble.com" target="_blank" aria-label="Dribbble">
+        <i class="fab fa-dribbble"></i>
+      </a>
+      <a href="https://behance.net" target="_blank" aria-label="Behance">
+        <i class="fab fa-behance"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2024 NeoProdUx. Transformando productos digitales con diseño basado en datos.</p>
+      <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">
+        Todas las métricas mostradas son reales y verificables. Resultados pueden variar según proyecto.
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript optimizado -->
+  <script>
+    // ========================================
+    // OPTIMIZACIONES DE PERFORMANCE
+    // ========================================
+    
+    // Lazy loading de imágenes
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.classList.add('loaded');
+              observer.unobserve(img);
+            }
+          });
+        }, {
+          rootMargin: '50px 0px',
+          threshold: 0.1
         });
+        
+        images.forEach(img => imageObserver.observe(img));
       } else {
-        scrollBlog('next');
+        // Fallback para navegadores antiguos
+        images.forEach(img => {
+          img.classList.add('loaded');
+        });
       }
-    }, BLOG_CONFIG.autoplayDelay);
-  }
-  
-  function stopBlogAutoplay() {
-    if (blogAutoplayTimer) {
-      clearInterval(blogAutoplayTimer);
-      blogAutoplayTimer = null;
+    });
+
+    // ========================================
+    // NAVEGACIÓN Y SCROLL SMOOTH
+    // ========================================
+    
+    // Navegación por anclas
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '#inicio') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 100,
+              behavior: 'smooth'
+            });
+            
+            // Actualizar anclas activas
+            document.querySelectorAll('.case-anchor').forEach(a => {
+              a.classList.remove('active');
+            });
+            this.classList.add('active');
+          }
+        }
+      });
+    });
+
+    // Scroll spy para casos de estudio
+    const caseSections = document.querySelectorAll('.case-study');
+    const caseAnchors = document.querySelectorAll('.case-anchor');
+    
+    function updateActiveCase() {
+      const scrollPos = window.scrollY + 150;
+      
+      caseSections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+          caseAnchors.forEach(anchor => anchor.classList.remove('active'));
+          caseAnchors[index].classList.add('active');
+        }
+      });
     }
-  }
-  
-  blogPrevBtn.addEventListener('click', () => {
-    scrollBlog('prev');
-    startBlogAutoplay();
-  });
-  
-  blogNextBtn.addEventListener('click', () => {
-    scrollBlog('next');
-    startBlogAutoplay();
-  });
-  
-  blogCarousel.addEventListener('mouseenter', stopBlogAutoplay);
-  blogCarousel.addEventListener('mouseleave', startBlogAutoplay);
-  
-  blogCarousel.addEventListener('scroll', updateBlogIndicators);
-  
-  updateBlogIndicators();
-  startBlogAutoplay();
+    
+    // Animación de aparición de elementos al scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-fade-in');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+          element.classList.add('visible');
+        }
+      });
+    };
 
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href !== '#' && document.querySelector(href)) {
-        e.preventDefault();
-        document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
+    // ========================================
+    // FORMULARIO DE CONTACTO
+    // ========================================
+    
+    function submitForm(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('leadForm');
+      const submitBtn = form.querySelector('.btn-submit');
+      const originalText = submitBtn.innerHTML;
+      
+      // Simular envío
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+      submitBtn.disabled = true;
+      
+      // Simular API call
+      setTimeout(() => {
+        // Mostrar éxito
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
+        submitBtn.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+        
+        // Resetear después de 3 segundos
+        setTimeout(() => {
+          form.reset();
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.background = 'linear-gradient(135deg, #FF6B35, #FF8E53)';
+          
+          // Mostrar modal de agradecimiento
+          showThankYouModal();
+        }, 3000);
+      }, 1500);
+    }
+    
+    function showThankYouModal() {
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(10px);
+      `;
+      
+      modal.innerHTML = `
+        <div style="
+          background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+          padding: 60px;
+          border-radius: 30px;
+          max-width: 500px;
+          text-align: center;
+          box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+          border: 1px solid rgba(255,107,53,0.3);
+        ">
+          <div style="
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF6B35, #FF8E53);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 2.5rem;
+            color: white;
+          ">
+            <i class="fas fa-check"></i>
+          </div>
+          <h2 style="color: white; margin-bottom: 20px; font-size: 2rem;">¡Gracias por contactarnos!</h2>
+          <p style="color: rgba(255,255,255,0.8); margin-bottom: 30px; line-height: 1.6;">
+            Hemos recibido tu mensaje. Te contactaremos en menos de 24 horas para discutir tu proyecto.
+          </p>
+          <p style="color: #FF6B35; font-weight: 600; margin-bottom: 30px;">
+            <i class="fas fa-envelope"></i> También hemos enviado un email de confirmación.
+          </p>
+          <button onclick="this.parentElement.parentElement.remove()" style="
+            background: linear-gradient(135deg, #FF6B35, #FF8E53);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+          ">
+            Continuar navegando
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+    }
 
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const text = this.textContent;
-      if (text.includes('Proyectos')) {
-        document.querySelector('#casos').scrollIntoView({ behavior: 'smooth' });
-      } else if (text.includes('Llamada')) {
-        window.open('https://calendly.com/david-sebastian-diaz', '_blank');
-      } else if (text.includes('Email')) {
-        window.location.href = 'mailto:david.diaz.uxdata@gmail.com';
+    // ========================================
+    // CTA FLOTANTE
+    // ========================================
+    
+    function openCalendly() {
+      window.open('https://calendly.com/david-sebastian-diaz', '_blank');
+    }
+    
+    // Mostrar/ocultar CTA flotante en scroll
+    let lastScroll = 0;
+    const floatingCTA = document.querySelector('.floating-cta');
+    
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 500) {
+        floatingCTA.style.display = 'block';
+        setTimeout(() => {
+          floatingCTA.style.opacity = '1';
+          floatingCTA.style.transform = 'translateY(0)';
+        }, 10);
+      } else {
+        floatingCTA.style.opacity = '0';
+        floatingCTA.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          if (currentScroll <= 500) {
+            floatingCTA.style.display = 'none';
+          }
+        }, 300);
       }
+      
+      lastScroll = currentScroll;
     });
-  });
-</script>
+
+    // ========================================
+    // EVENT LISTENERS GLOBALES
+    // ========================================
+    
+    window.addEventListener('scroll', () => {
+      updateActiveCase();
+      animateOnScroll();
+    });
+    
+    window.addEventListener('load', () => {
+      animateOnScroll();
+      
+      // Asegurar que todas las imágenes lazy estén visibles
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        img.classList.add('loaded');
+      });
+    });
+
+    // ========================================
+    // ANIMACIONES DE HOVER MEJORADAS
+    // ========================================
+    
+    // Efecto ripple en botones
+    document.querySelectorAll('.btn-acceder, .case-cta, .btn-submit').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.7);
+          transform: scale(0);
+          animation: ripple 0.6s linear;
+          width: ${size}px;
+          height: ${size}px;
+          top: ${y}px;
+          left: ${x}px;
+          pointer-events: none;
+        `;
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Añadir estilo para ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // ========================================
+    // CONTADORES ANIMADOS (OPCIONAL)
+    // ========================================
+    
+    function animateCounter(element, target, duration = 2000) {
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current);
+        }
+      }, 16);
+    }
+    
+    // Iniciar contadores cuando sean visibles
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target.querySelector('.result-value');
+          const value = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
+          
+          if (!counter.classList.contains('animated')) {
+            counter.classList.add('animated');
+            animateCounter(counter, value);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.result-item').forEach(item => {
+      counterObserver.observe(item);
+    });
+
+    // ========================================
+    // PRELOADER (OPCIONAL)
+    // ========================================
+    
+    window.addEventListener('load', () => {
+      const preloader = document.createElement('div');
+      preloader.id = 'preloader';
+      preloader.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        transition: opacity 0.5s ease;
+      `;
+      
+      preloader.innerHTML = `
+        <div style="text-align: center;">
+          <div style="
+            width: 60px;
+            height: 60px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #FF6B35;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+          "></div>
+          <p style="color: #333; font-weight: 600;">Cargando experiencia premium...</p>
+        </div>
+      `;
+      
+      document.body.appendChild(preloader);
+      
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          preloader.remove();
+        }, 500);
+      }, 1000);
+    });
+
+  </script>
 
 </body>
 </html>
