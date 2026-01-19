@@ -292,7 +292,7 @@
       opacity: 0.8; 
     }
 
-    /* ====== HERO ESTILO LANDO NORRIS ====== */
+    /* ====== HERO ESTILO LANDO NORRIS CON EFECTO HOVER ====== */
     .hero-lando {
       position: relative;
       min-height: 100vh;
@@ -302,6 +302,7 @@
       overflow: hidden;
       padding: 100px 40px 60px;
       background: #000;
+      cursor: pointer;
     }
 
     .hero-video-bg {
@@ -312,8 +313,14 @@
       height: 100%;
       object-fit: cover;
       z-index: 0;
-      filter: brightness(0.4);
-      transition: transform 0.1s ease-out;
+      filter: brightness(0.7);
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1) !important;
+      will-change: transform;
+    }
+
+    /* ¡ESTA ES LA CLAVE! Efecto hover CORREGIDO */
+    .hero-lando:hover .hero-video-bg {
+      transform: scale(1.05) !important;
     }
 
     .hero-overlay-lando {
@@ -322,8 +329,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+      background: rgba(0, 0, 0, 0.4);
       z-index: 1;
+      transition: background-color 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* Oscurece más al hover para mejor contraste */
+    .hero-lando:hover .hero-overlay-lando {
+      background: rgba(0, 0, 0, 0.5);
     }
 
     .hero-content-lando {
@@ -332,6 +345,12 @@
       max-width: 1400px;
       margin: 0 auto;
       text-align: center;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* Efecto sutil en el contenido al hover */
+    .hero-lando:hover .hero-content-lando {
+      transform: translateY(-10px);
     }
 
     .hero-label {
@@ -342,6 +361,11 @@
       color: rgba(255, 255, 255, 0.6);
       margin-bottom: 30px;
       display: block;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hero-lando:hover .hero-label {
+      transform: translateY(-3px);
     }
 
     .hero-title-lando {
@@ -352,6 +376,12 @@
       margin-bottom: 40px;
       text-transform: uppercase;
       letter-spacing: -0.03em;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-lando:hover .hero-title-lando {
+      transform: translateY(-5px);
     }
 
     .hero-title-accent {
@@ -369,6 +399,11 @@
       margin: 0 auto 60px;
       line-height: 1.4;
       font-weight: 500;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hero-lando:hover .hero-subtitle-lando {
+      transform: translateY(-3px);
     }
 
     .hero-cta-group {
@@ -376,7 +411,13 @@
       gap: 25px;
       justify-content: center;
       align-items: center;
+      margin-top: 50px;
       flex-wrap: wrap;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hero-lando:hover .hero-cta-group {
+      transform: translateY(-5px);
     }
 
     .btn-primary-lando {
@@ -397,6 +438,9 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
+      box-shadow: 
+        0 15px 35px rgba(255, 107, 53, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .btn-primary-lando::before {
@@ -406,13 +450,15 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transition: left 0.5s ease;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s ease;
     }
 
     .btn-primary-lando:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 20px 40px rgba(255, 107, 53, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
     .btn-primary-lando:hover::before { 
@@ -435,12 +481,29 @@
       gap: 12px;
       border: 2px solid rgba(255, 255, 255, 0.3);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-secondary-lando::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s ease;
     }
 
     .btn-secondary-lando:hover {
       border-color: #FF6B35;
       background: rgba(255, 107, 53, 0.1);
-      transform: translateY(-3px);
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .btn-secondary-lando:hover::before {
+      left: 100%;
     }
 
     .hero-stats {
@@ -450,6 +513,11 @@
       align-items: center;
       margin-top: 80px;
       flex-wrap: wrap;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hero-lando:hover .hero-stats {
+      transform: translateY(-5px);
     }
 
     .stat-item-lando {
@@ -464,6 +532,11 @@
       line-height: 1;
       display: block;
       margin-bottom: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-item-lando:hover .stat-number {
+      transform: scale(1.1);
     }
 
     .stat-label {
@@ -488,6 +561,11 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 2px;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hero-lando:hover .scroll-indicator {
+      transform: translateX(-50%) translateY(-5px);
     }
 
     .scroll-arrow {
@@ -520,6 +598,45 @@
         top: 20px; 
         opacity: 0.5; 
       }
+    }
+
+    /* Trust Badges en Hero */
+    .trust-badges {
+      display: flex;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hero-lando:hover .trust-badges {
+      transform: translateY(-5px);
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all var(--transition-fast);
+    }
+
+    .trust-badge:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .trust-badge i {
+      font-size: 1.2rem;
+      color: var(--primary-color);
     }
 
     /* ==============================
@@ -1663,6 +1780,25 @@
         padding: 80px 20px 40px; 
       }
       
+      /* Desactivar efectos hover en móviles */
+      .hero-lando:hover .hero-video-bg {
+        transform: none !important;
+      }
+      
+      .hero-lando:hover .hero-overlay-lando {
+        background: rgba(0, 0, 0, 0.4);
+      }
+      
+      .hero-lando:hover .hero-content-lando,
+      .hero-lando:hover .hero-label,
+      .hero-lando:hover .hero-title-lando,
+      .hero-lando:hover .hero-subtitle-lando,
+      .hero-lando:hover .hero-cta-group,
+      .hero-lando:hover .hero-stats,
+      .hero-lando:hover .scroll-indicator {
+        transform: none;
+      }
+      
       .hero-stats { 
         gap: 40px; 
         margin-top: 60px; 
@@ -1795,6 +1931,22 @@
       background: linear-gradient(135deg, var(--primary-dark), #5a6fd8);
     }
 
+    /* Animaciones para caso de estudio */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
   </style>
 </head>
 <body>
@@ -1860,7 +2012,7 @@
     </div>
   </nav>
 
-  <!-- Hero Estilo Lando Norris -->
+  <!-- Hero Estilo Lando Norris CON EFECTO HOVER -->
   <section class="hero-lando" id="inicio">
     <video class="hero-video-bg" autoplay muted loop playsinline id="heroVideo">
       <source src="cintas.mp4" type="video/mp4">
@@ -1893,13 +2045,28 @@
         </a>
       </div>
 
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <i class="fas fa-shield-alt"></i>
+          <span>100% Garantía de Satisfacción</span>
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-clock"></i>
+          <span>Entrega en 2-4 semanas</span>
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-chart-line"></i>
+          <span>+35% Conversión Promedio</span>
+        </div>
+      </div>
+
       <div class="hero-stats">
         <div class="stat-item-lando">
           <span class="stat-number">30+</span>
           <span class="stat-label">Proyectos</span>
         </div>
         <div class="stat-item-lando">
-          <span class="stat-number">+35%</div>
+          <span class="stat-number">+35%</span>
           <span class="stat-label">Conversión</span>
         </div>
         <div class="stat-item-lando">
@@ -1964,6 +2131,7 @@
     </div>
   </section>
 
+  <!-- Resto del código se mantiene igual... -->
   <!-- Certificaciones -->
   <section id="certificaciones" class="certifications-min">
     <div class="container">
@@ -2034,7 +2202,7 @@
       </div>
 
       <!-- Caso 1 -->
-      <div id="caso-paseo" class="case-study">
+      <div id="caso-paseo" class="case-study animate-fade-in">
         <div class="case-content">
           <span class="case-category">FinTech · Mobile App</span>
           <h2 class="case-title">PASEO – UX Case Study</h2>
@@ -2087,7 +2255,7 @@
       </div>
 
       <!-- Caso 2 -->
-      <div id="caso-nexus" class="case-study">
+      <div id="caso-nexus" class="case-study animate-fade-in">
         <div class="case-content">
           <span class="case-category">Logística · SaaS B2B</span>
           <h2 class="case-title">Nexus Logistics</h2>
@@ -2140,7 +2308,7 @@
       </div>
 
       <!-- Caso 3 -->
-      <div id="caso-caroyense" class="case-study">
+      <div id="caso-caroyense" class="case-study animate-fade-in">
         <div class="case-content">
           <span class="case-category">E-Commerce · Mobile First</span>
           <h2 class="case-title">La Caroyense</h2>
@@ -2193,7 +2361,7 @@
       </div>
 
       <!-- Caso 4 -->
-      <div id="caso-yale" class="case-study">
+      <div id="caso-yale" class="case-study animate-fade-in">
         <div class="case-content">
           <span class="case-category">Education · UX Redesign</span>
           <h2 class="case-title">Yale School of Art</h2>
@@ -2609,6 +2777,12 @@
       
       initFormLabels();
       animateOnScroll();
+      
+      // Preload video
+      const video = document.getElementById('heroVideo');
+      if (video) {
+        video.load();
+      }
     });
 
     // ========================================
@@ -2908,6 +3082,22 @@
         img.classList.add('loaded');
       });
     });
+
+    // ========================================
+    // EFECTO HOVER EN VIDEO - Mejorado
+    // ========================================
+    const heroSection = document.querySelector('.hero-lando');
+    const heroVideo = document.querySelector('.hero-video-bg');
+    
+    if (heroSection && heroVideo) {
+      heroSection.addEventListener('mouseenter', () => {
+        heroVideo.style.transform = 'scale(1.05)';
+      });
+      
+      heroSection.addEventListener('mouseleave', () => {
+        heroVideo.style.transform = 'scale(1)';
+      });
+    }
 
   </script>
 
