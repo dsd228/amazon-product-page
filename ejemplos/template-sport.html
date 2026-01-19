@@ -111,15 +111,16 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #f5f5f5 0%, #fff 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             padding: 100px 24px;
-            min-height: 80vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            color: white;
         }
 
         .hero-content {
@@ -131,7 +132,7 @@
         .hero-label {
             font-size: 12px;
             font-weight: 700;
-            color: #666;
+            color: #aaa;
             margin-bottom: 12px;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -148,9 +149,12 @@
         .hero-subtitle {
             font-size: 18px;
             font-weight: 400;
-            color: #666;
+            color: #aaa;
             margin-bottom: 40px;
             line-height: 1.5;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-buttons {
@@ -158,7 +162,7 @@
             gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .btn {
@@ -175,34 +179,43 @@
         }
 
         .btn-primary {
-            background: #111;
-            color: white;
+            background: #fff;
+            color: #111;
         }
 
         .btn-primary:hover {
-            background: #333;
+            background: #f5f5f5;
         }
 
         .btn-secondary {
             background: transparent;
-            color: #111;
-            border: 2px solid #111;
+            color: #fff;
+            border: 2px solid #fff;
         }
 
         .btn-secondary:hover {
-            background: #f5f5f5;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .hero-image {
             width: 100%;
             max-width: 1200px;
             aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-top: 40px;
         }
 
         .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
         }
 
         /* Story Section */
@@ -232,19 +245,20 @@
 
         .story-card {
             background: #f5f5f5;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
         }
 
         .story-card:hover {
             transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .story-image {
             width: 100%;
-            aspect-ratio: 1;
+            aspect-ratio: 4/3;
             overflow: hidden;
         }
 
@@ -314,13 +328,19 @@
         .products-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
 
         .product-card {
             background: white;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .product-image {
@@ -334,10 +354,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
         }
 
         .product-info {
-            padding: 16px;
+            padding: 20px;
         }
 
         .product-name {
@@ -345,12 +370,21 @@
             font-weight: 600;
             margin-bottom: 8px;
             line-height: 1.4;
+            color: #333;
         }
 
         .product-price {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 700;
             color: #111;
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }
 
         /* Features Section */
@@ -380,11 +414,20 @@
 
         .feature-item {
             text-align: center;
+            padding: 40px 24px;
+            border-radius: 8px;
+            background: #fafafa;
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
         }
 
         .feature-icon {
             font-size: 48px;
             margin-bottom: 20px;
+            color: #111;
         }
 
         .feature-title {
@@ -428,7 +471,14 @@
         .testimonial-card {
             padding: 40px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .testimonial-quote {
@@ -436,6 +486,7 @@
             margin-bottom: 24px;
             line-height: 1.7;
             font-weight: 400;
+            font-style: italic;
         }
 
         .testimonial-author {
@@ -450,6 +501,13 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .testimonial-info h4 {
@@ -465,9 +523,10 @@
 
         /* CTA Section */
         .cta-section {
-            background: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 100px 24px;
             text-align: center;
+            color: white;
         }
 
         .cta-container {
@@ -484,8 +543,11 @@
 
         .cta-section p {
             font-size: 18px;
-            color: #666;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-buttons {
@@ -600,7 +662,7 @@
 
             .hero {
                 padding: 60px 16px;
-                min-height: 60vh;
+                min-height: 70vh;
             }
 
             .hero-title {
@@ -660,7 +722,7 @@
                 <li><a href="#tips">Tips</a></li>
             </ul>
             <div class="nav-right">
-                <a href="../index.html#templates-section" class="nav-back">? Back to Demos</a>
+                <a href="../index.html#templates-section" class="nav-back">← Back to Demos</a>
                 <button class="nav-cta">Shop Now</button>
             </div>
         </nav>
@@ -671,13 +733,13 @@
         <div class="hero-content">
             <div class="hero-label">Neo RUNNING</div>
             <h1 class="hero-title">Run Your Way</h1>
-            <p class="hero-subtitle">Engineered for runners. Designed for performance. Built for passion.</p>
+            <p class="hero-subtitle">Engineered for runners. Designed for performance. Built for passion. Discover the latest technology in running shoes and apparel.</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary">Shop Running</button>
+                <button class="btn btn-primary">Shop Running Shoes</button>
                 <button class="btn btn-secondary">Explore Technology</button>
             </div>
             <div class="hero-image">
-                <img src="../screenshots/template-sport.svg" alt="Template Preview">
+                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Professional runner in action with Neo Running shoes">
             </div>
         </div>
     </section>
@@ -689,7 +751,7 @@
             <div class="stories-grid">
                 <div class="story-card">
                     <div class="story-image">
-                        <img src="../screenshots/template-sport.svg" alt="Maya's Journey">
+                        <img src="https://images.unsplash.com/photo-1552674605-db6ffd8facb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Marathon runner finishing race">
                     </div>
                     <div class="story-content">
                         <div class="story-label">FEATURED</div>
@@ -701,7 +763,7 @@
 
                 <div class="story-card">
                     <div class="story-image">
-                        <img src="../screenshots/template-sport.svg" alt="Alex's Trail">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Trail runner in mountains">
                     </div>
                     <div class="story-content">
                         <div class="story-label">SPOTLIGHT</div>
@@ -713,7 +775,7 @@
 
                 <div class="story-card">
                     <div class="story-image">
-                        <img src="../screenshots/template-sport.svg" alt="Jordan's Speed">
+                        <img src="https://images.unsplash.com/photo-1552674605-db6ffd8facb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Track athlete sprinting">
                     </div>
                     <div class="story-content">
                         <div class="story-label">ATHLETE</div>
@@ -733,9 +795,10 @@
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="../screenshots/template-sport.svg" alt="Neo Air Zoom">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Neo Air Zoom running shoes">
                     </div>
                     <div class="product-info">
+                        <p class="product-category">Running Shoes</p>
                         <p class="product-name">Neo Air Zoom Pegasus 40</p>
                         <p class="product-price">$129.99</p>
                     </div>
@@ -743,9 +806,10 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="../screenshots/template-sport.svg" alt="Neo React">
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Neo React running shoes">
                     </div>
                     <div class="product-info">
+                        <p class="product-category">Running Shoes</p>
                         <p class="product-name">Neo React Infinity Run Flyknit</p>
                         <p class="product-price">$159.99</p>
                     </div>
@@ -753,9 +817,10 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="../screenshots/template-sport.svg" alt="Neo Structure">
+                        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Neo Vaporfly running shoes">
                     </div>
                     <div class="product-info">
+                        <p class="product-category">Competition Shoes</p>
                         <p class="product-name">Neo Vaporfly 2</p>
                         <p class="product-price">$275.00</p>
                     </div>
@@ -763,11 +828,12 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="../screenshots/template-sport.svg" alt="Neo Apparel">
+                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Running apparel">
                     </div>
                     <div class="product-info">
-                        <p class="product-name">Dri-FIT Running Shirt</p>
-                        <p class="product-price">$59.99</p>
+                        <p class="product-category">Apparel</p>
+                        <p class="product-name">Dri-FIT Running Shirt & Shorts Set</p>
+                        <p class="product-price">$89.99</p>
                     </div>
                 </div>
             </div>
@@ -780,19 +846,19 @@
             <h2 class="features-title">Why Neo Running?</h2>
             <div class="features-grid">
                 <div class="feature-item">
-                    <div class="feature-icon">?</div>
+                    <div class="feature-icon">⚡</div>
                     <h3 class="feature-title">Advanced Cushioning</h3>
-                    <p class="feature-description">React and Zoom foam technologies provide responsive cushioning for every stride.</p>
+                    <p class="feature-description">React and Zoom foam technologies provide responsive cushioning for every stride, reducing impact and increasing comfort.</p>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">??</div>
+                    <div class="feature-icon">🏃</div>
                     <h3 class="feature-title">Lightweight Design</h3>
-                    <p class="feature-description">Engineered for minimal weight without sacrificing support and durability.</p>
+                    <p class="feature-description">Engineered for minimal weight without sacrificing support and durability. Run faster with less effort.</p>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">??</div>
+                    <div class="feature-icon">💨</div>
                     <h3 class="feature-title">Breathable Fit</h3>
-                    <p class="feature-description">Mesh uppers keep your feet cool and comfortable during intense workouts.</p>
+                    <p class="feature-description">Mesh uppers and moisture-wicking fabrics keep your feet cool and comfortable during intense workouts.</p>
                 </div>
             </div>
         </div>
@@ -806,7 +872,9 @@
                 <div class="testimonial-card">
                     <p class="testimonial-quote">"These shoes transformed my running. The comfort and performance are unmatched. I've hit new PRs in every distance."</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616c113a1c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Sarah Martinez">
+                        </div>
                         <div class="testimonial-info">
                             <h4>Sarah Martinez</h4>
                             <p>Half Marathon Finisher</p>
@@ -817,7 +885,9 @@
                 <div class="testimonial-card">
                     <p class="testimonial-quote">"As a trail runner, I need gear that can handle anything. Neo delivers durability, grip, and comfort on every terrain."</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="James Wilson">
+                        </div>
                         <div class="testimonial-info">
                             <h4>James Wilson</h4>
                             <p>Ultra Trail Runner</p>
@@ -828,7 +898,9 @@
                 <div class="testimonial-card">
                     <p class="testimonial-quote">"The Dri-FIT technology keeps me dry throughout my runs. It's the little details that make a huge difference in performance."</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Emma Thompson">
+                        </div>
                         <div class="testimonial-info">
                             <h4>Emma Thompson</h4>
                             <p>Marathon Runner</p>
@@ -839,7 +911,9 @@
                 <div class="testimonial-card">
                     <p class="testimonial-quote">"Neo's customer support is exceptional. They understand runners and provide products designed specifically for our needs."</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005-128b-4703-b8df-20d5550e7b7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Michael Chen">
+                        </div>
                         <div class="testimonial-info">
                             <h4>Michael Chen</h4>
                             <p>Track & Field Athlete</p>
@@ -854,10 +928,10 @@
     <section class="cta-section">
         <div class="cta-container">
             <h2>Ready to Run?</h2>
-            <p>Discover the perfect gear for your running journey. Join thousands of runners pushing their limits.</p>
+            <p>Discover the perfect gear for your running journey. Join thousands of runners pushing their limits with Neo Running technology.</p>
             <div class="cta-buttons">
                 <button class="btn btn-primary">Shop Now</button>
-                <button class="btn btn-secondary">Learn More</button>
+                <button class="btn btn-secondary">Find Your Fit</button>
             </div>
         </div>
     </section>
@@ -913,10 +987,9 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Neo, Inc. All rights reserved.</p>
+                <p>&copy; 2026 Neo Running, Inc. All rights reserved.</p>
             </div>
         </div>
     </footer>
 </body>
 </html>
-
