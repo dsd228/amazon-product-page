@@ -11,7 +11,7 @@
   <meta name="author" content="NeoProdUx">
   <meta property="og:title" content="NeoProdUx - Diseño UX/UI que convierte">
   <meta property="og:description" content="Transformamos visitas en clientes con diseño basado en datos">
-  <meta property="og:image" content="background-glass.jpg">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
   <meta property="og:url" content="https://neoprodux.com">
   
   <!-- Preconnect para mejorar velocidad -->
@@ -95,7 +95,7 @@
       /* Imagen optimizada con placeholder mientras carga */
       background: 
         linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
-        url('background-glass.jpg') center/cover no-repeat;
+        url('https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       position: relative;
       overflow: hidden;
     }
@@ -155,7 +155,7 @@
       left: 100%;
     }
 
-    /* NAVEGACIÓN INTERNA - Simplificada */
+    /* NAVEGACIÓN INTERNA - Logo en colores específicos y menú desplegable */
     .inner-nav {
       display: flex;
       justify-content: space-between;
@@ -165,6 +165,7 @@
       gap: 20px;
     }
 
+    /* LOGO NEO-PROD-UX con colores específicos */
     .inner-logo {
       font-size: 2.2rem;
       font-weight: 800;
@@ -173,11 +174,19 @@
       display: flex;
       align-items: center;
       gap: 0;
-      background: linear-gradient(135deg, #FF6B35, #667eea);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
       transition: transform var(--transition-fast);
+    }
+
+    .logo-neo {
+      color: #FF6B35; /* Naranja */
+    }
+
+    .logo-prod {
+      color: #000000; /* Negro */
+    }
+
+    .logo-ux {
+      color: #FF6B35; /* Naranja */
     }
 
     .inner-logo:hover {
@@ -211,6 +220,132 @@
     .nav-links a.active {
       background: rgba(255, 107, 53, 0.2);
       border: 1px solid rgba(255, 107, 53, 0.4);
+    }
+
+    .nav-separator { 
+      color: rgba(255, 255, 255, 0.6); 
+      font-size: 1.5rem; 
+      opacity: 0.8; 
+    }
+
+    /* DROPDOWN MENU - Restaurado como en la versión original */
+    .nav-dropdown { 
+      position: relative; 
+      display: inline-block; 
+    }
+    
+    .dropdown-trigger { 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+      color: var(--light-color); 
+      font-size: 1.1rem; 
+      font-weight: 600;
+      font-family: "Sora", sans-serif;
+      text-decoration: none; 
+      transition: all var(--transition-fast); 
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: transparent;
+      border: none;
+    }
+    
+    .dropdown-trigger:hover { 
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .dropdown-trigger::after { 
+      content: '▾'; 
+      font-size: 0.9rem; 
+      transition: transform 0.3s; 
+      margin-left: 5px;
+    }
+    
+    .nav-dropdown:hover .dropdown-trigger::after { 
+      transform: rotate(180deg); 
+    }
+    
+    .dropdown-menu { 
+      position: absolute; 
+      top: 100%; 
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95); 
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.4); 
+      border-radius: 16px; 
+      min-width: 260px; 
+      opacity: 0; 
+      visibility: hidden; 
+      transform: translateX(-50%) translateY(-10px); 
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+      z-index: 999; 
+      margin-top: 10px; 
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+      padding: 12px 0;
+      overflow: hidden;
+    }
+    
+    .nav-dropdown:hover .dropdown-menu { 
+      opacity: 1; 
+      visibility: visible; 
+      transform: translateX(-50%) translateY(0); 
+    }
+    
+    .dropdown-menu a { 
+      display: block; 
+      padding: 14px 28px; 
+      color: #555; 
+      text-decoration: none; 
+      transition: all 0.3s; 
+      font-size: 1rem;
+      font-weight: 500;
+      border-left: 4px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .dropdown-menu a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .dropdown-menu a:hover::before {
+      left: 100%;
+    }
+    
+    .dropdown-menu a:hover { 
+      background: rgba(255, 107, 53, 0.08); 
+      color: var(--primary-color); 
+      border-left: 4px solid var(--primary-color);
+      padding-left: 32px;
+    }
+    
+    .dropdown-menu a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+      color: var(--primary-color);
+      opacity: 0.8;
+    }
+    
+    .dropdown-menu a:first-child { 
+      border-radius: 16px 16px 0 0; 
+    }
+    
+    .dropdown-menu a:last-child { 
+      border-radius: 0 0 16px 16px; 
     }
 
     /* CONTENIDO DEL HERO - Mejorado */
@@ -1352,11 +1487,21 @@
       }
       
       .nav-links {
-        gap: 15px;
+        gap: 20px;
       }
       
       .nav-links a {
         font-size: 1rem;
+      }
+      
+      .dropdown-menu {
+        min-width: 240px;
+        left: 0;
+        transform: translateX(0) translateY(-10px);
+      }
+      
+      .nav-dropdown:hover .dropdown-menu {
+        transform: translateX(0) translateY(0);
       }
       
       .case-study {
@@ -1394,6 +1539,21 @@
     }
 
     @media (max-width: 768px) {
+      .inner-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .nav-separator {
+        display: none;
+      }
+      
       .cases-header h2 {
         font-size: 2.6rem;
       }
@@ -1431,6 +1591,19 @@
         flex-direction: column;
         align-items: center;
       }
+      
+      .dropdown-menu {
+        position: fixed;
+        top: auto;
+        left: 20px;
+        right: 20px;
+        transform: translateY(-10px);
+        max-width: calc(100vw - 40px);
+      }
+      
+      .nav-dropdown:hover .dropdown-menu {
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 480px) {
@@ -1456,10 +1629,20 @@
         gap: 30px;
       }
       
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      
       .cases-section,
       .testimonials,
       .capture-form {
         padding: 80px 20px;
+      }
+      
+      .inner-logo {
+        font-size: 1.8rem;
       }
     }
 
@@ -1505,15 +1688,56 @@
   <!-- Sección Hero con fondo de imagen y tarjeta de cristal -->
   <section class="hero-container" id="inicio">
     <div class="glass-card">
-      <!-- Navegación dentro del cristal -->
+      <!-- Navegación dentro del cristal con logo en colores y menú desplegable -->
       <nav class="inner-nav">
         <a href="index.html" class="inner-logo">
-          <span>🎯 NeoProdUx</span>
+          <span class="logo-neo">Neo</span>
+          <span class="logo-prod">Prod</span>
+          <span class="logo-ux">Ux</span>
         </a>
         <div class="nav-links">
-          <a href="#servicios" class="active">Servicios</a>
+          <!-- Menú desplegable de Servicios -->
+          <div class="nav-dropdown">
+            <button class="dropdown-trigger">
+              Servicios
+            </button>
+            <div class="dropdown-menu">
+              <a href="ui-ux-design.html">
+                <i class="fas fa-pencil-ruler"></i>
+                Diseño UI-UX
+              </a>
+              <a href="mobile-app-design.html">
+                <i class="fas fa-mobile-alt"></i>
+                Diseño de aplicaciones móviles
+              </a>
+              <a href="website-design.html">
+                <i class="fas fa-laptop-code"></i>
+                Diseño de sitios web
+              </a>
+              <a href="figma-to-wordpress.html">
+                <i class="fab fa-wordpress"></i>
+                Figma a WordPress
+              </a>
+              <a href="figma-to-html.html">
+                <i class="fas fa-code"></i>
+                Figma a HTML
+              </a>
+              <a href="figma-to-webflow.html">
+                <i class="fas fa-wave-square"></i>
+                Figma a Webflow
+              </a>
+              <a href="ejemplos-amazon.html">
+                <i class="fab fa-amazon"></i>
+                Ejemplos Amazon
+              </a>
+            </div>
+          </div>
+          
+          <span class="nav-separator">|</span>
           <a href="#casos">Casos</a>
-          <a href="#testimonios">Testimonios</a>
+          <span class="nav-separator">|</span>
+          <a href="blog.html">Blog</a>
+          <span class="nav-separator">|</span>
           <a href="#contacto">Contacto</a>
         </div>
       </nav>
@@ -2012,7 +2236,7 @@
       <div class="footer-section">
         <h3>Servicios</h3>
         <ul>
-          <li><a href="ui-ux-design.html">Diseño UX/UI</a></li>
+          <li><a href="#servicios">Diseño UX/UI</a></li>
           <li><a href="#servicios">Estrategia de Producto</a></li>
           <li><a href="#servicios">Design Systems</a></li>
           <li><a href="#servicios">Apps Móviles</a></li>
@@ -2499,6 +2723,35 @@
           preloader.remove();
         }, 500);
       }, 1000);
+    });
+
+    // ========================================
+    // DROPDOWN MEJORADO - Cerrar al hacer click fuera
+    // ========================================
+    
+    document.addEventListener('click', function(event) {
+      const dropdowns = document.querySelectorAll('.nav-dropdown');
+      
+      dropdowns.forEach(dropdown => {
+        const isClickInside = dropdown.contains(event.target);
+        
+        if (!isClickInside) {
+          const menu = dropdown.querySelector('.dropdown-menu');
+          menu.style.opacity = '0';
+          menu.style.visibility = 'hidden';
+          menu.style.transform = 'translateX(-50%) translateY(-10px)';
+        }
+      });
+    });
+
+    // Asegurar que el dropdown se cierre en mobile al seleccionar una opción
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+      link.addEventListener('click', function() {
+        const menu = this.closest('.dropdown-menu');
+        menu.style.opacity = '0';
+        menu.style.visibility = 'hidden';
+        menu.style.transform = 'translateX(-50%) translateY(-10px)';
+      });
     });
 
   </script>
