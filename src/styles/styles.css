@@ -1,67 +1,66 @@
 /* ==============================
-   VARIABLES EXACTAS DE PORTFOLIOBOX
+   PORTFOLIOBOX EXACT STYLES - COMPLETO Y CONECTADO
    ============================== */
 
-/* Colores exactos (analizados de Portfoliobox.com) */
+/* ==============================
+   1. VARIABLES (Color Palette de Portfoliobox)
+   ============================== */
 :root {
-    /* Primarios */
+    /* Paleta Principal (Portfoliobox) */
     --pb-white: #ffffff;
-    --pb-black: #000000;
-    --pb-gray-50: #f9fafb;
-    --pb-gray-100: #f3f4f6;
-    --pb-gray-200: #e5e7eb;
-    --pb-gray-300: #d1d5db;
-    --pb-gray-400: #9ca3af;
-    --pb-gray-500: #6b7280;
-    --pb-gray-600: #4b5563;
-    --pb-gray-700: #374151;
-    --pb-gray-800: #1f2937;
-    --pb-gray-900: #111827;
-    
-    /* Azules (ajustados a tu branding) */
-    --pb-blue-50: #eff6ff;
-    --pb-blue-100: #dbeafe;
-    --pb-blue-500: #3b82f6;
-    --pb-blue-600: #2563eb;
-    --pb-blue-700: #1d4ed8;
-    
-    /* Tu branding */
-    --pb-primary: #2563eb;
-    --pb-primary-light: #3b82f6;
-    --pb-primary-dark: #1d4ed8;
+    --pb-black: #121212;
+    --pb-gray-50: #f8fafc;
+    --pb-gray-100: #f1f5f9;
+    --pb-gray-200: #e2e8f0;
+    --pb-gray-300: #cbd5e1;
+    --pb-gray-400: #94a3b8;
+    --pb-gray-500: #64748b;
+    --pb-gray-600: #475569;
+    --pb-gray-700: #334155;
+    --pb-gray-800: #1e293b;
+    --pb-gray-900: #0f172a;
+
+    /* Colores de acento - estilo Portfoliobox */
+    --pb-primary: #3b82f6;
+    --pb-primary-light: #60a5fa;
+    --pb-primary-dark: #2563eb;
     --pb-accent: #8b5cf6;
-    
+    --pb-success: #10b981;
+    --pb-warning: #f59e0b;
+    --pb-error: #ef4444;
+
     /* Fondo y texto */
     --pb-bg-primary: #ffffff;
     --pb-bg-secondary: #f8fafc;
-    --pb-bg-dark: #111827;
-    
-    --pb-text-primary: #111827;
-    --pb-text-secondary: #6b7280;
-    --pb-text-tertiary: #9ca3af;
+    --pb-bg-dark: #0f172a;
+    --pb-bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    --pb-text-primary: #1e293b;
+    --pb-text-secondary: #475569;
+    --pb-text-tertiary: #94a3b8;
     --pb-text-light: #ffffff;
-    
-    /* Bordes */
-    --pb-border: #e5e7eb;
-    --pb-border-light: #f3f4f6;
-    --pb-border-dark: #374151;
-    
-    /* Sombras (iguales a Portfoliobox) */
+
+    /* Bordes (estilo suave Portfoliobox) */
+    --pb-border: #e2e8f0;
+    --pb-border-light: #f1f5f9;
+    --pb-border-dark: #334155;
+
+    /* Sombras (mismo sistema que Portfoliobox) */
     --pb-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --pb-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     --pb-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --pb-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --pb-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    
+
     /* Bordes redondeados */
-    --pb-radius-sm: 0.375rem;
-    --pb-radius: 0.5rem;
-    --pb-radius-md: 0.75rem;
-    --pb-radius-lg: 1rem;
-    --pb-radius-xl: 1.5rem;
+    --pb-radius-sm: 6px;
+    --pb-radius: 8px;
+    --pb-radius-md: 12px;
+    --pb-radius-lg: 16px;
+    --pb-radius-xl: 24px;
     --pb-radius-full: 9999px;
-    
-    /* Espaciado (sistema 8px como Portfoliobox) */
+
+    /* Espaciado (sistema 8px) */
     --pb-space-1: 0.25rem;
     --pb-space-2: 0.5rem;
     --pb-space-3: 0.75rem;
@@ -75,10 +74,9 @@
     --pb-space-20: 5rem;
     --pb-space-24: 6rem;
     --pb-space-32: 8rem;
-    --pb-space-40: 10rem;
-    
-    /* Tipografía (exacta a Portfoliobox) */
-    --pb-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Tipografía (Inter como Portfoliobox) */
+    --pb-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     
     /* Tamaños de fuente */
     --pb-text-xs: 0.75rem;
@@ -91,10 +89,15 @@
     --pb-text-4xl: 2.25rem;
     --pb-text-5xl: 3rem;
     --pb-text-6xl: 3.75rem;
+
+    /* Transiciones */
+    --pb-transition-fast: 150ms ease;
+    --pb-transition: 250ms ease;
+    --pb-transition-slow: 350ms ease;
 }
 
 /* ==============================
-   RESET & BASE STYLES
+   2. RESET & BASE STYLES
    ============================== */
 * {
     margin: 0;
@@ -105,6 +108,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -113,14 +117,15 @@ body {
     line-height: 1.6;
     color: var(--pb-text-primary);
     background-color: var(--pb-bg-primary);
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
+/* Container estilo Portfoliobox */
 .pb-container {
     width: 100%;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--pb-space-6);
 }
@@ -131,8 +136,14 @@ body {
     }
 }
 
+@media (min-width: 1024px) {
+    .pb-container {
+        padding: 0 var(--pb-space-4);
+    }
+}
+
 /* ==============================
-   TYPOGRAPHY (EXACTA A PORTFOLIOBOX)
+   3. TYPOGRAPHY (Estilo Portfoliobox)
    ============================== */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
@@ -145,6 +156,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: var(--pb-space-6);
+    letter-spacing: -0.025em;
 }
 
 @media (min-width: 768px) {
@@ -166,6 +178,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: var(--pb-space-4);
+    letter-spacing: -0.025em;
 }
 
 .pb-section-subtitle {
@@ -189,14 +202,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--pb-space-3);
 }
 
-.pb-step-title {
-    font-size: var(--pb-text-lg);
-    font-weight: 700;
-    margin-bottom: var(--pb-space-3);
-}
-
 /* ==============================
-   HEADER (IDÉNTICO A PORTFOLIOBOX)
+   4. HEADER & NAVIGATION (Estilo Portfoliobox)
    ============================== */
 .pb-header {
     position: fixed;
@@ -204,19 +211,56 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: var(--pb-white);
-    border-bottom: 1px solid var(--pb-border);
+    background-color: transparent;
     padding: var(--pb-space-4) 0;
+    transition: all var(--pb-transition);
     backdrop-filter: blur(8px);
+}
+
+.pb-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--pb-shadow);
+    padding: var(--pb-space-3) 0;
+}
+
+.pb-header.hero-mode {
+    background-color: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+}
+
+.pb-header.hero-mode .pb-logo {
+    color: var(--pb-text-light);
+}
+
+.pb-header.hero-mode .pb-nav-link {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.pb-header.hero-mode .pb-nav-link:hover {
+    color: var(--pb-text-light);
+}
+
+.pb-header.hero-mode .pb-btn-primary {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--pb-text-light);
+}
+
+.pb-header.hero-mode .pb-btn-primary:hover {
+    background: var(--pb-text-light);
+    color: var(--pb-text-primary);
 }
 
 .pb-main-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--pb-space-6);
 }
 
-/* Logo */
+/* Logo estilo Portfoliobox */
 .pb-logo {
     font-family: var(--pb-font-sans);
     font-weight: 800;
@@ -226,17 +270,16 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     gap: 2px;
+    transition: color var(--pb-transition);
 }
 
-.pb-logo-footer {
-    color: var(--pb-text-light);
-    margin-bottom: var(--pb-space-4);
-    display: inline-block;
-}
-
-.logo-neo { color: var(--pb-blue-600); }
+.logo-neo { color: var(--pb-primary); }
 .logo-prod { color: var(--pb-text-primary); }
 .logo-ux { color: var(--pb-accent); }
+
+.pb-logo:hover {
+    transform: scale(1.02);
+}
 
 /* Navegación central */
 .pb-nav-center {
@@ -258,11 +301,15 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--pb-text-sm);
     padding: var(--pb-space-2) 0;
     position: relative;
-    transition: color 0.2s ease;
+    transition: color var(--pb-transition-fast);
 }
 
 .pb-nav-link:hover {
     color: var(--pb-text-primary);
+}
+
+.pb-nav-link.active {
+    color: var(--pb-primary);
 }
 
 .pb-nav-link::after {
@@ -273,10 +320,11 @@ h1, h2, h3, h4, h5, h6 {
     width: 0;
     height: 2px;
     background-color: var(--pb-primary);
-    transition: width 0.3s ease;
+    transition: width var(--pb-transition);
 }
 
-.pb-nav-link:hover::after {
+.pb-nav-link:hover::after,
+.pb-nav-link.active::after {
     width: 100%;
 }
 
@@ -287,7 +335,9 @@ h1, h2, h3, h4, h5, h6 {
     gap: var(--pb-space-4);
 }
 
-/* Botones (estilo Portfoliobox) */
+/* ==============================
+   5. BUTTONS (Estilo Portfoliobox)
+   ============================== */
 .pb-btn {
     display: inline-flex;
     align-items: center;
@@ -302,8 +352,9 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--pb-radius);
     border: 1px solid transparent;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--pb-transition);
     white-space: nowrap;
+    outline: none;
 }
 
 .pb-btn-primary {
@@ -314,7 +365,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .pb-btn-primary:hover {
     background-color: var(--pb-primary-dark);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     box-shadow: var(--pb-shadow-md);
 }
 
@@ -349,66 +400,38 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
-/* Menú móvil toggle */
-.pb-menu-toggle {
-    display: block;
-    background: none;
-    border: 1px solid var(--pb-border);
-    color: var(--pb-text-primary);
-    width: 44px;
-    height: 44px;
-    border-radius: var(--pb-radius);
+/* ==============================
+   6. HERO SECTION (Estilo Portfoliobox)
+   ============================== */
+.pb-hero-parallax {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 120px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-@media (min-width: 768px) {
-    .pb-menu-toggle {
-        display: none;
-    }
-}
-
-/* Menú móvil */
-.pb-mobile-menu {
-    display: none;
-    position: fixed;
-    top: 73px;
-    left: 0;
-    width: 100%;
-    background-color: var(--pb-white);
-    border-bottom: 1px solid var(--pb-border);
-    padding: var(--pb-space-6);
-    z-index: 999;
-    box-shadow: var(--pb-shadow-lg);
-}
-
-.pb-mobile-menu.active {
-    display: block;
-}
-
-.pb-mobile-menu .pb-nav-link {
-    display: block;
-    padding: var(--pb-space-3) 0;
-    border-bottom: 1px solid var(--pb-border-light);
-}
-
-/* ==============================
-   HERO SECTION (EXACTO A PORTFOLIOBOX)
-   ============================== */
-.pb-hero {
-    padding-top: var(--pb-space-32);
-    padding-bottom: var(--pb-space-24);
-    background-color: var(--pb-bg-secondary);
-    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     overflow: hidden;
 }
 
-.pb-hero-content {
+.pb-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.pb-hero-portfolio {
+    position: relative;
+    z-index: 2;
+    width: 100%;
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    color: var(--pb-text-light);
 }
 
 .pb-hero-actions {
@@ -424,6 +447,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: var(--pb-space-12);
     flex-wrap: wrap;
+    margin-top: var(--pb-space-12);
 }
 
 .pb-stat {
@@ -434,7 +458,7 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
     font-size: var(--pb-text-3xl);
     font-weight: 800;
-    color: var(--pb-primary);
+    color: var(--pb-text-light);
     line-height: 1;
     margin-bottom: var(--pb-space-2);
 }
@@ -442,13 +466,25 @@ h1, h2, h3, h4, h5, h6 {
 .pb-stat-label {
     display: block;
     font-size: var(--pb-text-sm);
-    color: var(--pb-text-tertiary);
+    color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
+.pb-scroll-hint {
+    position: absolute;
+    bottom: var(--pb-space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    animation: bounce 2s infinite;
+    cursor: pointer;
+    z-index: 2;
+    font-size: var(--pb-text-xl);
+}
+
 /* ==============================
-   SECTIONS GENERALES
+   7. SECTIONS GENERALES
    ============================== */
 .pb-section {
     padding: var(--pb-space-24) 0;
@@ -465,13 +501,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .pb-section-dark .pb-section-title,
 .pb-section-dark .pb-section-subtitle,
-.pb-section-dark .pb-about-description,
-.pb-section-dark .pb-stat-label {
+.pb-section-dark .pb-about-description {
     color: var(--pb-text-light);
-}
-
-.pb-section-dark .pb-stat-label {
-    opacity: 0.8;
 }
 
 .pb-section-header {
@@ -485,23 +516,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==============================
-   PROJECTS GRID
+   8. PROJECTS GRID (Estilo Portfoliobox)
    ============================== */
-.pb-projects-grid {
+.pb-projects-showcase {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--pb-space-8);
-    margin-bottom: var(--pb-space-8);
+    margin: var(--pb-space-12) 0;
 }
 
 @media (min-width: 768px) {
-    .pb-projects-grid {
+    .pb-projects-showcase {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
-    .pb-projects-grid {
+    .pb-projects-showcase {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -511,14 +542,21 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--pb-radius-lg);
     overflow: hidden;
     border: 1px solid var(--pb-border);
-    transition: all 0.3s ease;
+    transition: all var(--pb-transition);
     box-shadow: var(--pb-shadow);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.pb-project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .pb-project-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
     box-shadow: var(--pb-shadow-lg);
-    border-color: var(--pb-blue-500);
+    border-color: var(--pb-primary-light);
 }
 
 .pb-project-image {
@@ -531,15 +569,65 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform var(--pb-transition-slow);
 }
 
 .pb-project-card:hover .pb-project-image img {
     transform: scale(1.05);
 }
 
+.pb-project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    padding: var(--pb-space-6);
+    transform: translateY(100%);
+    transition: transform var(--pb-transition);
+}
+
+.pb-project-card:hover .pb-project-overlay {
+    transform: translateY(0);
+}
+
+.overlay-content h4 {
+    color: white;
+    margin-bottom: var(--pb-space-2);
+    font-size: var(--pb-text-lg);
+}
+
+.overlay-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--pb-text-sm);
+    margin-bottom: var(--pb-space-4);
+}
+
+.overlay-stats {
+    display: flex;
+    gap: var(--pb-space-4);
+    font-size: var(--pb-text-xs);
+}
+
+.overlay-stats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: var(--pb-radius-sm);
+}
+
 .pb-project-content {
     padding: var(--pb-space-6);
+}
+
+.pb-project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--pb-space-3);
 }
 
 .pb-project-category {
@@ -549,7 +637,12 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--pb-primary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: var(--pb-space-3);
+}
+
+.pb-project-year {
+    font-size: var(--pb-text-xs);
+    color: var(--pb-text-tertiary);
+    font-weight: 500;
 }
 
 .pb-project-description {
@@ -559,33 +652,13 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--pb-space-4);
 }
 
-.pb-project-metrics {
+.pb-project-actions {
     display: flex;
-    gap: var(--pb-space-4);
-    margin: var(--pb-space-4) 0;
-    padding: var(--pb-space-4) 0;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--pb-space-4);
+    padding-top: var(--pb-space-4);
     border-top: 1px solid var(--pb-border-light);
-    border-bottom: 1px solid var(--pb-border-light);
-}
-
-.pb-metric {
-    text-align: center;
-    flex: 1;
-}
-
-.pb-metric-value {
-    display: block;
-    font-size: var(--pb-text-xl);
-    font-weight: 800;
-    color: var(--pb-primary);
-    line-height: 1;
-    margin-bottom: var(--pb-space-1);
-}
-
-.pb-metric-label {
-    display: block;
-    font-size: var(--pb-text-xs);
-    color: var(--pb-text-tertiary);
 }
 
 .pb-project-link {
@@ -594,15 +667,20 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     color: var(--pb-primary);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color var(--pb-transition-fast);
 }
 
 .pb-project-link:hover {
     color: var(--pb-primary-dark);
 }
 
+.pb-btn-sm {
+    padding: var(--pb-space-2) var(--pb-space-4);
+    font-size: var(--pb-text-xs);
+}
+
 /* ==============================
-   SERVICES GRID
+   9. SERVICES GRID
    ============================== */
 .pb-services-grid {
     display: grid;
@@ -627,19 +705,26 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--pb-radius-lg);
     padding: var(--pb-space-6);
     border: 1px solid var(--pb-border);
-    transition: all 0.3s ease;
+    transition: all var(--pb-transition);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.pb-service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .pb-service-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--pb-shadow-lg);
-    border-color: var(--pb-blue-500);
+    border-color: var(--pb-primary-light);
 }
 
 .pb-service-icon {
     width: 48px;
     height: 48px;
-    background: linear-gradient(135deg, var(--pb-blue-500), var(--pb-blue-600));
+    background: linear-gradient(135deg, var(--pb-primary), var(--pb-primary-dark));
     color: var(--pb-white);
     border-radius: var(--pb-radius);
     display: flex;
@@ -676,7 +761,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==============================
-   PROCESS STEPS
+   10. PROCESS STEPS
    ============================== */
 .pb-process-steps {
     display: grid;
@@ -698,12 +783,30 @@ h1, h2, h3, h4, h5, h6 {
 
 .pb-process-step {
     text-align: center;
+    padding: var(--pb-space-6);
+    background: var(--pb-white);
+    border-radius: var(--pb-radius-lg);
+    border: 1px solid var(--pb-border);
+    transition: all var(--pb-transition);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.pb-process-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pb-process-step:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--pb-shadow-md);
+    border-color: var(--pb-primary);
 }
 
 .pb-step-number {
     font-size: var(--pb-text-3xl);
     font-weight: 800;
-    color: var(--pb-blue-100);
+    color: var(--pb-primary-light);
     line-height: 1;
     margin-bottom: var(--pb-space-4);
 }
@@ -715,7 +818,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==============================
-   ABOUT SECTION
+   11. ABOUT SECTION
    ============================== */
 .pb-about-grid {
     display: grid;
@@ -741,16 +844,25 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     gap: var(--pb-space-8);
     margin: var(--pb-space-8) 0;
+    flex-wrap: wrap;
 }
 
 .pb-about-stat {
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.pb-about-stat.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .pb-about-actions {
     display: flex;
     gap: var(--pb-space-4);
     margin-top: var(--pb-space-8);
+    flex-wrap: wrap;
 }
 
 .pb-about-image {
@@ -766,16 +878,16 @@ h1, h2, h3, h4, h5, h6 {
 .pb-placeholder-image {
     width: 100%;
     height: 400px;
-    background: linear-gradient(135deg, var(--pb-blue-100), var(--pb-blue-50));
+    background: linear-gradient(135deg, var(--pb-gray-100), var(--pb-gray-50));
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 8rem;
-    color: var(--pb-blue-300);
+    color: var(--pb-gray-300);
 }
 
 /* ==============================
-   TESTIMONIALS
+   12. TESTIMONIALS
    ============================== */
 .pb-testimonials-grid {
     display: grid;
@@ -794,7 +906,14 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--pb-radius-lg);
     padding: var(--pb-space-6);
     border: 1px solid var(--pb-border);
-    transition: all 0.3s ease;
+    transition: all var(--pb-transition);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.pb-testimonial-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .pb-testimonial-card:hover {
@@ -814,7 +933,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     top: -10px;
     font-size: var(--pb-text-4xl);
-    color: var(--pb-blue-500);
+    color: var(--pb-primary);
     opacity: 0.3;
     font-family: Georgia, serif;
 }
@@ -842,7 +961,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==============================
-   CONTACT SECTION
+   13. CONTACT SECTION
    ============================== */
 .pb-contact-grid {
     display: grid;
@@ -922,7 +1041,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     color: var(--pb-text-secondary);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all var(--pb-transition);
 }
 
 .pb-social-link:hover {
@@ -962,14 +1081,14 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--pb-font-sans);
     font-size: var(--pb-text-sm);
     color: var(--pb-text-primary);
-    transition: all 0.2s ease;
+    transition: all var(--pb-transition-fast);
 }
 
 .pb-form-group input:focus,
 .pb-form-group textarea:focus {
     outline: none;
     border-color: var(--pb-primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .pb-form-group textarea {
@@ -989,7 +1108,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==============================
-   FOOTER (IDÉNTICO A PORTFOLIOBOX)
+   14. FOOTER (Estilo Portfoliobox)
    ============================== */
 .pb-footer {
     padding: var(--pb-space-12) 0 var(--pb-space-8);
@@ -1016,11 +1135,18 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+.pb-logo-footer {
+    color: var(--pb-text-light);
+    margin-bottom: var(--pb-space-4);
+    display: inline-block;
+}
+
 .pb-footer-description {
     color: var(--pb-gray-400);
     font-size: var(--pb-text-sm);
     max-width: 300px;
     margin-top: var(--pb-space-4);
+    line-height: 1.6;
 }
 
 .pb-footer-links {
@@ -1054,7 +1180,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--pb-text-sm);
     color: var(--pb-gray-400);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color var(--pb-transition-fast);
 }
 
 .pb-footer-link:hover {
@@ -1080,7 +1206,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==============================
-   ANIMATIONS
+   15. UTILITY CLASSES
+   ============================== */
+.text-center {
+    text-align: center;
+}
+
+.mt-4 { margin-top: var(--pb-space-4); }
+.mb-4 { margin-bottom: var(--pb-space-4); }
+.mt-8 { margin-top: var(--pb-space-8); }
+.mb-8 { margin-bottom: var(--pb-space-8); }
+.mt-12 { margin-top: var(--pb-space-12); }
+.mb-12 { margin-bottom: var(--pb-space-12); }
+
+/* ==============================
+   16. ANIMATIONS & KEYFRAMES
    ============================== */
 @keyframes fadeIn {
     from {
@@ -1093,12 +1233,31 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.fade-in {
-    animation: fadeIn 0.6s ease-out;
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ==============================
-   RESPONSIVE ADJUSTMENTS
+   17. RESPONSIVE ADJUSTMENTS
    ============================== */
 @media (max-width: 767px) {
     .pb-hero-title {
@@ -1135,29 +1294,80 @@ h1, h2, h3, h4, h5, h6 {
     .pb-about-actions .pb-btn {
         width: 100%;
     }
+    
+    .pb-contact-social {
+        justify-content: center;
+    }
 }
 
 /* ==============================
-   UTILITY CLASSES
+   18. MOBILE MENU (debe crearse dinámicamente)
    ============================== */
-.text-center {
-    text-align: center;
+.pb-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 73px;
+    left: 0;
+    width: 100%;
+    background-color: var(--pb-white);
+    border-bottom: 1px solid var(--pb-border);
+    padding: var(--pb-space-6);
+    z-index: 999;
+    box-shadow: var(--pb-shadow-lg);
 }
 
-.mt-4 { margin-top: var(--pb-space-4); }
-.mb-4 { margin-bottom: var(--pb-space-4); }
-.mt-8 { margin-top: var(--pb-space-8); }
-.mb-8 { margin-bottom: var(--pb-space-8); }
-.mt-12 { margin-top: var(--pb-space-12); }
-.mb-12 { margin-bottom: var(--pb-space-12); }
+.pb-mobile-menu.active {
+    display: block;
+}
+
+.pb-mobile-menu .pb-nav-link {
+    display: block;
+    padding: var(--pb-space-3) 0;
+    border-bottom: 1px solid var(--pb-border-light);
+    color: var(--pb-text-primary);
+}
+
+.pb-mobile-menu .pb-nav-link:last-child {
+    border-bottom: none;
+}
 
 /* ==============================
-   PRINT STYLES
+   19. MENU TOGGLE BUTTON
+   ============================== */
+.pb-menu-toggle {
+    display: block;
+    background: none;
+    border: 1px solid var(--pb-border);
+    color: var(--pb-text-primary);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--pb-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--pb-transition);
+}
+
+.pb-menu-toggle:hover {
+    border-color: var(--pb-primary);
+    color: var(--pb-primary);
+}
+
+@media (min-width: 768px) {
+    .pb-menu-toggle {
+        display: none;
+    }
+}
+
+/* ==============================
+   20. PRINT STYLES
    ============================== */
 @media print {
     .pb-header,
     .pb-footer,
-    .pb-btn {
+    .pb-btn,
+    .pb-scroll-hint {
         display: none;
     }
     
@@ -1165,393 +1375,10 @@ h1, h2, h3, h4, h5, h6 {
         padding: 1rem 0;
         page-break-inside: avoid;
     }
-}
-/* ==============================
-   PORTFOLIOBOX PARALLAX EFFECTS
-   ============================== */
-
-/* ==============================
-   PORTFOLIOBOX EFFECTS - ADAPTADO A TU PORTAFOLIO
-   ============================== */
-
-/* Efecto de revelación parallax para tu hero */
-.pb-hero-parallax {
-    position: relative;
-    min-height: 100vh;
-    padding-top: 120px;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    overflow: hidden;
-}
-
-.pb-hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-    transform: translateZ(0);
-    will-change: transform;
-}
-
-/* Header con efecto de transformación */
-.pb-header.hero-mode {
-    background: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.pb-header.hero-mode .pb-logo {
-    color: white;
-}
-
-.pb-header.hero-mode .pb-nav-link {
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.pb-header.hero-mode .pb-nav-link:hover {
-    color: white;
-}
-
-.pb-header.hero-mode .pb-btn-primary {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.pb-header.hero-mode .pb-btn-primary:hover {
-    background: white;
-    color: #1e293b;
-}
-
-/* Hero content específico para tu portafolio */
-.pb-hero-portfolio {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    color: white;
-}
-
-.pb-hero-portfolio h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: var(--pb-space-6);
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideUpFade 0.8s ease forwards 0.3s;
-}
-
-.pb-hero-portfolio p {
-    font-size: clamp(1.125rem, 2vw, 1.5rem);
-    color: #cbd5e1;
-    margin-bottom: var(--pb-space-8);
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideUpFade 0.8s ease forwards 0.5s;
-}
-
-/* Indicador de scroll */
-.pb-scroll-hint {
-    position: absolute;
-    bottom: var(--pb-space-8);
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.7);
-    animation: bounce 2s infinite;
-    cursor: pointer;
-    z-index: 2;
-}
-
-/* Efecto de tarjetas estilo Portfoliobox */
-.pb-portfoliobox-card {
-    background: white;
-    border-radius: var(--pb-radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--pb-border);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-.pb-portfoliobox-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.pb-portfoliobox-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--pb-shadow-xl);
-    border-color: var(--pb-blue-500);
-}
-
-/* Grid de proyectos estilo galería Portfoliobox */
-.pb-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--pb-space-8);
-    margin: var(--pb-space-12) 0;
-}
-
-/* Badge "Hecho por" estilo Portfoliobox */
-.pb-portfolio-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--pb-space-2);
-    padding: var(--pb-space-2) var(--pb-space-4);
-    background: var(--pb-gray-900);
-    color: white;
-    border-radius: var(--pb-radius-full);
-    font-size: var(--pb-text-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: var(--pb-space-4);
-}
-
-.pb-portfolio-badge i {
-    color: var(--pb-accent);
-}
-
-/* Sección "Made with" */
-.pb-made-section {
-    background: linear-gradient(135deg, var(--pb-gray-50) 0%, var(--pb-gray-100) 100%);
-    padding: var(--pb-space-20) 0;
-    text-align: center;
-}
-
-.pb-made-title {
-    font-size: var(--pb-text-4xl);
-    font-weight: 800;
-    color: var(--pb-text-primary);
-    margin-bottom: var(--pb-space-6);
-}
-
-.pb-made-subtitle {
-    font-size: var(--pb-text-lg);
-    color: var(--pb-text-secondary);
-    max-width: 600px;
-    margin: 0 auto var(--pb-space-12);
-}
-
-/* Animaciones */
-@keyframes slideUpFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0) translateX(-50%);
-    }
-    40% {
-        transform: translateY(-10px) translateX(-50%);
-    }
-    60% {
-        transform: translateY(-5px) translateX(-50%);
-    }
-}
-
-/* Efecto de revelación al scroll */
-.pb-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.pb-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Overlay para imágenes de proyecto */
-.pb-project-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    color: white;
-    padding: var(--pb-space-6);
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.pb-project-card:hover .pb-project-overlay {
-    transform: translateY(0);
-}
-
-/* Stats con animación */
-.pb-animated-stat {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.6s ease;
-}
-
-.pb-animated-stat.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Smooth header transition */
-.pb-header.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: var(--pb-shadow-md);
-    border-bottom: 1px solid var(--pb-border);
-}
-
-.pb-header.scrolled .pb-logo {
-    color: var(--pb-text-primary);
-}
-
-.pb-header.scrolled .pb-nav-link {
-    color: var(--pb-text-secondary);
-}
-
-.pb-header.scrolled .pb-btn-primary {
-    background: var(--pb-primary);
-    border-color: var(--pb-primary);
-    color: white;
-}
-/* ==============================
-   MEJORAS PARA EFECTOS PORTFOLIOBOX
-   ============================== */
-
-/* Transiciones suaves para carga */
-body.loaded .pb-reveal {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Mejoras para overlay de proyectos */
-.pb-project-overlay .overlay-stats {
-    display: flex;
-    gap: var(--pb-space-4);
-    margin-top: var(--pb-space-2);
-    font-size: var(--pb-text-xs);
-}
-
-.pb-project-overlay .overlay-stats span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 4px 8px;
-    border-radius: var(--pb-radius-sm);
-}
-
-/* Efecto de borde en cards */
-.pb-portfoliobox-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--pb-primary), var(--pb-accent));
-    border-radius: var(--pb-radius-lg) var(--pb-radius-lg) 0 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.pb-portfoliobox-card:hover::before {
-    opacity: 1;
-}
-
-/* Animaciones escalonadas */
-[data-delay] {
-    transition-delay: calc(var(--delay, 0) * 1ms);
-}
-
-/* Mejoras para estadísticas */
-.pb-stat-number.animated {
-    animation: countUp 1s ease-out forwards;
-}
-
-@keyframes countUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* Responsive adjustments para efectos */
-@media (max-width: 767px) {
-    .pb-hero-parallax {
-        min-height: 90vh;
-        padding-top: 100px;
-    }
     
-    .pb-hero-portfolio h1 {
-        font-size: var(--pb-text-4xl);
-    }
-    
-    .pb-hero-portfolio p {
-        font-size: var(--pb-text-lg);
-    }
-    
-    .pb-gallery-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .pb-scroll-hint {
-        bottom: var(--pb-space-4);
-    }
-}
-
-/* Optimización de performance */
-@media (prefers-reduced-motion: reduce) {
-    .pb-reveal,
-    .pb-portfoliobox-card,
-    .pb-animated-stat {
-        transition: none;
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
-    
-    .pb-scroll-hint {
-        animation: none;
-    }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .pb-hero-parallax {
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-    }
-    
-    .pb-made-section {
-        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-    }
-}
-
-/* Print styles mejorados */
-@media print {
     .pb-hero-parallax {
         background: none !important;
         min-height: auto;
         padding: 2rem 0;
-    }
-    
-    .pb-hero-bg,
-    .pb-scroll-hint {
-        display: none;
-    }
-    
-    .pb-portfoliobox-card {
-        break-inside: avoid;
-        box-shadow: none !important;
-        border: 1px solid #ddd !important;
     }
 }
