@@ -1,3 +1,5 @@
+// Guarda el código JavaScript de la sección 2 en un archivo llamado `portfolio-effects.js`
+
 // ==============================
 // PORTFOLIOBOX EFFECTS PARA TU PORTAFOLIO
 // ==============================
@@ -33,6 +35,9 @@ class PortfolioEffects {
         
         // Configurar parallax
         this.initParallax();
+        
+        // Efectos adicionales
+        this.initAdditionalEffects();
     }
     
     setInitialHeader() {
@@ -125,16 +130,18 @@ class PortfolioEffects {
     }
     
     animateCounter(element) {
-        const target = parseInt(element.textContent.replace(/[^0-9]/g, ''));
-        const suffix = element.textContent.replace(/[0-9]/g, '');
+        const text = element.textContent;
+        const match = text.match(/(\d+)(.*)/);
         
-        if (isNaN(target) || element.dataset.animated) return;
+        if (!match || element.dataset.animated) return;
         
         element.dataset.animated = 'true';
+        const target = parseInt(match[1]);
+        const suffix = match[2] || '';
+        
         let current = 0;
-        const increment = target / 50;
-        const duration = 1500;
-        const stepTime = Math.abs(Math.floor(duration / (target / increment)));
+        const increment = target / 30;
+        const stepTime = 50;
         
         const timer = setInterval(() => {
             current += increment;
@@ -156,6 +163,43 @@ class PortfolioEffects {
                 top: projectsPosition,
                 behavior: 'smooth'
             });
+            
+            // Feedback visual
+            this.scrollHint.style.opacity = '0.5';
+            setTimeout(() => {
+                this.scrollHint.style.opacity = '1';
+            }, 1000);
+        }
+    }
+    
+    initAdditionalEffects() {
+        // Hover effects en proyectos
+        const projectCards = document.querySelectorAll('.pb-project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.zIndex = '1';
+            });
+        });
+        
+        // Carga perezosa de imágenes
+        if ('IntersectionObserver' in window) {
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.add('loaded');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => imageObserver.observe(img));
         }
     }
     
@@ -174,4 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+    
+    // Efecto de carga inicial
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 100);
 });
