@@ -1500,7 +1500,7 @@ button, input, textarea, select {
 .lazy-load.loaded {
   opacity: 1;
 }
-/* ===== CARRUSEL APILADO ===== */
+/* ===== CARRUSEL APILADO - VERSIÓN CORREGIDA ===== */
 .stacked-carousel {
     position: absolute;
     top: 0;
@@ -1548,11 +1548,11 @@ button, input, textarea, select {
     border-radius: var(--radius-2xl);
     overflow: hidden;
     box-shadow: var(--shadow-2xl);
-    transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-origin: center center;
     pointer-events: auto;
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.6;
     z-index: 1;
 }
 
@@ -1570,40 +1570,47 @@ button, input, textarea, select {
     }
 }
 
-/* Posiciones apiladas */
+/* Posiciones apiladas CORREGIDAS */
 .carousel-slide[data-index="0"] {
-    transform: translateX(-150%) translateY(-50%) rotateY(-10deg) scale(0.9);
+    transform: translateX(-180%) translateY(-50%) rotateY(-15deg) scale(0.85);
     z-index: 1;
+    filter: brightness(0.7);
 }
 
 .carousel-slide[data-index="1"] {
-    transform: translateX(-75%) translateY(-50%) rotateY(-5deg) scale(0.95);
+    transform: translateX(-90%) translateY(-50%) rotateY(-8deg) scale(0.9);
     z-index: 2;
+    filter: brightness(0.8);
 }
 
 .carousel-slide.active {
     transform: translateX(-50%) translateY(-50%) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 5;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+    filter: brightness(1);
 }
 
 .carousel-slide[data-index="3"] {
-    transform: translateX(-25%) translateY(-50%) rotateY(5deg) scale(0.95);
+    transform: translateX(-10%) translateY(-50%) rotateY(8deg) scale(0.9);
     z-index: 2;
+    filter: brightness(0.8);
 }
 
 .carousel-slide[data-index="4"] {
-    transform: translateX(50%) translateY(-50%) rotateY(10deg) scale(0.9);
+    transform: translateX(80%) translateY(-50%) rotateY(15deg) scale(0.85);
     z-index: 1;
+    filter: brightness(0.7);
 }
 
-/* Hover effects */
+/* Efecto hover mejorado */
 .carousel-slide:hover {
     transform: translateX(-50%) translateY(-50%) scale(1.05) !important;
     opacity: 1 !important;
     z-index: 10 !important;
-    box-shadow: 0 40px 80px rgba(0, 210, 106, 0.2) !important;
+    box-shadow: 0 50px 100px rgba(0, 210, 106, 0.3) !important;
+    filter: brightness(1.1) !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .slide-image {
@@ -1612,17 +1619,18 @@ button, input, textarea, select {
     left: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .slide-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-slow);
+    transition: transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 .carousel-slide:hover .slide-image img {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .slide-overlay {
@@ -1634,10 +1642,10 @@ button, input, textarea, select {
     background: linear-gradient(
         to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.1) 30%,
-        rgba(0, 0, 0, 0.3) 60%,
-        rgba(0, 0, 0, 0.7) 100%
+        rgba(0, 0, 0, 0.2) 40%,
+        rgba(0, 0, 0, 0.6) 100%
     );
+    z-index: 1;
 }
 
 .slide-info {
@@ -1647,10 +1655,11 @@ button, input, textarea, select {
     right: 0;
     padding: var(--space-xl);
     color: var(--color-white);
-    transform: translateY(20px);
+    transform: translateY(30px);
     opacity: 0;
-    transition: all var(--transition-normal);
+    transition: all 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
     z-index: 2;
+    pointer-events: none;
 }
 
 .carousel-slide.active .slide-info,
@@ -1677,15 +1686,17 @@ button, input, textarea, select {
     font-weight: var(--font-weight-bold);
     margin-bottom: var(--space-xs);
     line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .slide-description {
     font-size: 0.875rem;
     opacity: 0.9;
     margin-bottom: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Controles del Carrusel */
+/* Controles del Carrusel - Mejorados */
 .carousel-controls {
     position: absolute;
     bottom: var(--space-2xl);
@@ -1696,14 +1707,19 @@ button, input, textarea, select {
     gap: var(--space-xl);
     z-index: 10;
     pointer-events: auto;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .carousel-prev,
 .carousel-next {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     color: var(--color-white);
@@ -1711,15 +1727,16 @@ button, input, textarea, select {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all var(--transition-fast);
-    font-size: 1.25rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 1.125rem;
 }
 
 .carousel-prev:hover,
 .carousel-next:hover {
     background: var(--color-green);
     border-color: var(--color-green);
-    transform: scale(1.1);
+    transform: scale(1.15);
+    box-shadow: 0 5px 15px rgba(0, 210, 106, 0.4);
 }
 
 .carousel-dots {
@@ -1734,30 +1751,55 @@ button, input, textarea, select {
     background: rgba(255, 255, 255, 0.3);
     border: none;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     padding: 0;
+    position: relative;
 }
 
 .dot:hover {
-    background: rgba(255, 255, 255, 0.6);
-    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.3);
 }
 
 .dot.active {
     background: var(--color-green);
-    transform: scale(1.2);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(0, 210, 106, 0.5);
 }
 
-/* Indicador de Scroll/Hover */
+.dot.active::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid var(--color-green);
+    border-radius: 50%;
+    animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+
+/* Indicador de Scroll/Hover - Mejorado */
 .carousel-hint {
     position: absolute;
     top: 50%;
     right: var(--space-xl);
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
     border-radius: var(--radius-xl);
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
     color: var(--color-white);
     display: none;
     flex-direction: column;
@@ -1765,7 +1807,8 @@ button, input, textarea, select {
     gap: var(--space-sm);
     z-index: 10;
     pointer-events: none;
-    animation: float 3s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: floatHint 3s ease-in-out infinite;
 }
 
 @media (min-width: 1024px) {
@@ -1786,79 +1829,112 @@ button, input, textarea, select {
 .hint-content i {
     font-size: 1.5rem;
     color: var(--color-green);
+    animation: bounceMouse 2s infinite;
 }
 
 .hint-arrow {
-    animation: slide 1.5s ease-in-out infinite;
+    display: flex;
+    gap: var(--space-xs);
 }
 
 .hint-arrow i {
     font-size: 1.25rem;
     color: var(--color-green);
+    animation: slideArrows 1.5s ease-in-out infinite;
 }
 
-@keyframes float {
+.hint-arrow i:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+@keyframes floatHint {
     0%, 100% {
         transform: translateY(-50%) translateX(0);
     }
     50% {
-        transform: translateY(-50%) translateX(10px);
+        transform: translateY(-50%) translateX(8px);
     }
 }
 
-@keyframes slide {
+@keyframes bounceMouse {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes slideArrows {
     0%, 100% {
+        opacity: 0.3;
         transform: translateX(0);
     }
     50% {
-        transform: translateX(5px);
+        opacity: 1;
+        transform: translateX(3px);
     }
 }
 
-/* Responsive para móvil */
+/* Responsive para móvil - Mejorado */
 @media (max-width: 1023px) {
-    .carousel-slide {
+    .carousel-slide[data-index="0"],
+    .carousel-slide[data-index="1"],
+    .carousel-slide[data-index="3"],
+    .carousel-slide[data-index="4"] {
         opacity: 0;
+        pointer-events: none;
     }
     
     .carousel-slide.active {
         opacity: 1;
-        transform: translateX(-50%) translateY(-50%) scale(1);
+        transform: translateX(-50%) translateY(-50%) scale(1) rotateY(0deg);
+        pointer-events: auto;
     }
     
     .carousel-controls {
         bottom: var(--space-xl);
+        padding: var(--space-xs) var(--space-md);
     }
     
     .carousel-track {
-        height: 60%;
+        height: 70%;
     }
 }
 
 @media (max-width: 767px) {
     .stacked-carousel {
-        display: none;
+        opacity: 0.7;
+    }
+    
+    .carousel-slide {
+        width: 280px;
+        height: 350px;
     }
     
     .hero-section {
-        min-height: 80vh;
+        min-height: 85vh;
     }
 }
 
-/* Ajuste para el contenido Hero con carrusel */
+/* Ajustes para el contenido Hero */
 .hero-section {
     position: relative;
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 /* Deshabilitar animaciones si reduce-motion */
 @media (prefers-reduced-motion: reduce) {
     .carousel-slide {
-        transition: none;
+        transition: opacity 0.3s ease !important;
+        animation: none !important;
     }
     
     .carousel-slide:hover .slide-image img {
@@ -1866,14 +1942,24 @@ button, input, textarea, select {
     }
     
     .slide-info {
-        transition: none;
+        transition: opacity 0.3s ease !important;
     }
     
-    .carousel-hint {
-        animation: none;
+    .carousel-hint,
+    .hint-content i,
+    .hint-arrow i,
+    .dot.active::after {
+        animation: none !important;
     }
     
-    .hint-arrow {
-        animation: none;
+    .carousel-prev:hover,
+    .carousel-next:hover,
+    .dot:hover {
+        transform: none !important;
     }
+}
+
+/* Clase para cuando se está arrastrando */
+.carousel-dragging .carousel-slide {
+    transition: transform 0.1s linear !important;
 }
