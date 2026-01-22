@@ -199,7 +199,198 @@ function updateCaseAnchors() {
     }
   });
 }
+// ==============================
+// SISTEMA DE TEMA CLARO/OSCURO
+// ==============================
+function initThemeSwitcher() {
+  const themeSwitch = document.getElementById('themeSwitch');
+  const themeToggleTap = document.querySelector('.theme-toggle-tap');
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  
+  // Establecer tema inicial
+  setTheme(savedTheme);
+  
+  // Interruptor en navegación principal
+  if (themeSwitch) {
+    themeSwitch.addEventListener('click', toggleTheme);
+  }
+  
+  // Interruptor en menú Tap Here
+  if (themeToggleTap) {
+    themeToggleTap.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleTheme();
+      
+      // Cerrar menú Tap en móvil
+      if (window.innerWidth <= 768) {
+        const tapMenuToggle = document.getElementById('tapMenuToggle');
+        const tapMenuItems = document.getElementById('tapMenuItems');
+        if (tapMenuToggle && tapMenuItems) {
+          tapMenuToggle.classList.remove('active');
+          tapMenuItems.classList.remove('active');
+        }
+      }
+    });
+  }
+  
+  // Atajo de teclado (Ctrl+Shift+L)
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'L') {
+      e.preventDefault();
+      toggleTheme();
+    }
+  });
+}
 
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  
+  // Actualizar ícono del botón en Tap Menu
+  const themeIcon = document.querySelector('.theme-toggle-tap i');
+  if (themeIcon) {
+    themeIcon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+  }
+  
+  // Actualizar título del tooltip
+  const themeTooltip = document.querySelector('.theme-toggle-tap .tap-menu-tooltip');
+  if (themeTooltip) {
+    themeTooltip.textContent = theme === 'light' ? 'Tema Oscuro' : 'Tema Claro';
+  }
+  
+  // Disparar evento para componentes que necesiten actualizarse
+  window.dispatchEvent(new CustomEvent('themechange', { detail: theme }));
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  setTheme(newTheme);
+  
+  // Efecto visual de transición
+  playThemeTransitionEffect();
+}
+
+function playThemeTransitionEffect() {
+  // Crear efecto de transición
+  const transitionOverlay = document.createElement('div');
+  transitionOverlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    z-index: 10001;
+    opacity: 0;
+    pointer-events: none;
+    animation: themeTransition 0.6s ease;
+  `;
+  
+  // Añadir CSS para animación
+  if (!document.querySelector('#theme-transition-animation')) {
+    const style = document.createElement('style');
+    style.id = 'theme-transition-animation';
+    style.textContent = `
+      @keyframes themeTransition {
+        0% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        50% {
+          opacity: 0.1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  document.body.appendChild(transitionOverlay);
+  
+  // Remover después de la animación
+  setTimeout(() => {
+    if (transitionOverlay.parentNode) {
+      transitionOverlay.remove();
+    }
+  }, 600);
+}
+
+// Detectar preferencia del sistema
+function detectSystemTheme() {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    const savedTheme = localStorage.getItem('theme');
+    if (!savedTheme) {
+      setTheme('light');
+    }
+  }
+}
+
+// Actualizar imágenes según el tema
+function updateImagesForTheme(theme) {
+  // Aquí puedes agregar lógica para cambiar imágenes según el tema
+  // Por ejemplo, cambiar logos, fondos, etc.
+  console.log('Tema cambiado a:', theme);
+}
+
+// Escuchar cambios en el tema del sistema
+if (window.matchMedia) {
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+  mediaQuery.addEventListener('change', (e) => {
+    // Solo cambiar si el usuario no ha establecido una preferencia manual
+    if (!localStorage.getItem('theme')) {
+      setTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+}
+
+// Escuchar evento de cambio de tema
+window.addEventListener('themechange', (e) => {
+  updateImagesForTheme(e.detail);
+});
+
+// ==============================
+// INITIALIZATION - ACTUALIZAR
+// ==============================
+document.addEventListener('DOMContentLoaded', function() {
+  // Inicializar estado inicial
+  updateHeroOnScroll();
+  
+  // Inicializar componentes
+  initThemeSwitcher();
+  detectSystemTheme();
+  initTapMenu();
+  initMobileMenu();
+  initFloatingCTA();
+  initAnimations();
+  initContactForm();
+  initAdditionalEffects();
+  
+  // Asegurar que Unicorn Studio se cargue correctamente
+  setTimeout(() => {
+    if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
+      UnicornStudio.init();
+      window.UnicornStudio.isInitialized = true;
+    }
+  }, 1000);
+  
+  // Keyboard shortcuts para el menú tap
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const tapMenu = document.getElementById('tapMenuItems');
+      const tapToggle = document.getElementById('tapMenuToggle');
+      if (tapMenu && tapMenu.classList.contains('active')) {
+        tapMenu.classList.remove('active');
+        tapToggle.classList.remove('active');
+      }
+    }
+  });
+});
 // ==============================
 // TOGGLE MOBILE MENU
 // ==============================
