@@ -1555,3 +1555,35 @@ h1, h2, h3, h4, h5, h6 {
         padding: 2rem 0;
     }
 }
+/* ==============================
+   FIX PARA PROYECTOS NO VISIBLES
+   ============================== */
+.pb-projects-showcase {
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.pb-project-card {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Placeholder para imágenes rotas */
+.pb-project-image img {
+    display: block;
+    min-height: 250px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: var(--pb-font-sans);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pb-project-image img:after {
+    content: "Proyecto " attr(alt);
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+}
