@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- ==================== HEADER ==================== -->
@@ -27,6 +27,7 @@
                 </a>
                 
                 <div class="pb-nav-center">
+                    <a href="#galeria" class="pb-nav-link">Galería</a>
                     <a href="#proyectos" class="pb-nav-link">Proyectos</a>
                     <a href="#servicios" class="pb-nav-link">Servicios</a>
                     <a href="#testimonios" class="pb-nav-link">Testimonios</a>
@@ -43,27 +44,98 @@
         </div>
     </header>
 
-    <!-- ==================== HERO CON ZOOM OUT ==================== -->
-    <section class="pb-hero-zoom" id="hero">
-        <!-- Contenedor que hará zoom out -->
-        <div class="pb-zoom-container" id="zoomContainer">
-            <!-- Galería de fondo que se aleja -->
-            <div class="pb-hero-gallery" id="heroGallery">
-                <div class="pb-gallery-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"></div>
-                <div class="pb-gallery-item" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"></div>
-                <div class="pb-gallery-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"></div>
-                <div class="pb-gallery-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"></div>
-                <div class="pb-gallery-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%)"></div>
-                <div class="pb-gallery-item" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%)"></div>
-                <div class="pb-gallery-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"></div>
-                <div class="pb-gallery-item" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)"></div>
+    <!-- ==================== HERO CON GALERÍA QUE HACE ZOOM ==================== -->
+    <section class="pb-hero-section" id="hero">
+        <!-- GALERÍA QUE SERÁ EL FONDO Y LUEGO EL CONTENIDO -->
+        <div class="pb-hero-gallery-container" id="heroGalleryContainer">
+            <div class="pb-gallery-grid" id="mainGallery">
+                <!-- Los mismos elementos de galería que luego serán el contenido -->
+                <div class="pb-gallery-item" data-project="paseo">
+                    <div class="pb-item-inner">
+                        <div class="pb-item-content">
+                            <h3>PASEO App</h3>
+                            <p>FinTech Mobile Design</p>
+                            <span class="pb-item-category">Mobile App</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pb-gallery-item" data-project="nexus">
+                    <div class="pb-item-inner">
+                        <div class="pb-item-content">
+                            <h3>Nexus Dashboard</h3>
+                            <p>SaaS B2B Interface</p>
+                            <span class="pb-item-category">Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pb-gallery-item" data-project="caroyense">
+                    <div class="pb-item-inner">
+                        <div class="pb-item-content">
+                            <h3>La Caroyense</h3>
+                            <p>E-commerce Redesign</p>
+                            <span class="pb-item-category">E-commerce</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pb-gallery-item" data-project="health">
+                    <div class="pb-item-inner">
+                        <div class="pb-item-content">
+                            <h3>HealthTrack Pro</h3>
+                            <p>Health App UI/UX</p>
+                            <span class="pb-item-category">Health Tech</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pb-gallery-item" data-project="edulearn">
+                    <div class="pb-item-inner">
+                        <div class="pb-item-content">
+                            <h3>EduLearn Platform</h3>
+                            <p>Educational SaaS</p>
+                            <span class="pb-item-category">Education</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pb-gallery-item" data-project="travel">
+                    <div class="pb-item-inner">
+                        <div class="pb-item-content">
+                            <h3>TravelMate</h3>
+                            <p>Travel App Design</p>
+                            <span class="pb-item-category">Travel</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pb-gallery-item" data-project="finance">
+                    <div class="pb-item-inner">
+                        <div class="pb-item-content">
+                            <h3>Finance Dashboard</h3>
+                            <p>Analytics & Reports</p>
+                            <span class="pb-item-category">Finance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pb-gallery-item" data-project="fitness">
+                    <div class="pb-item-inner">
+                        <div class="pb-item-content">
+                            <h3>FitTrack Pro</h3>
+                            <p>Fitness App UI/UX</p>
+                            <span class="pb-item-category">Fitness</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <!-- Overlay oscuro -->
-        <div class="pb-hero-overlay"></div>
+        <!-- Overlay oscuro para el hero -->
+        <div class="pb-hero-overlay" id="heroOverlay"></div>
         
-        <!-- Contenido del hero -->
+        <!-- Contenido del hero (flotante sobre la galería) -->
         <div class="pb-hero-content">
             <div class="pb-hero-tag">
                 <i class="fas fa-sparkles"></i>
@@ -80,8 +152,8 @@
             </p>
             
             <div class="pb-hero-actions">
-                <a href="#proyectos" class="pb-btn pb-btn-primary pb-btn-large">
-                    <i class="fas fa-eye"></i> Ver Proyectos
+                <a href="#galeria" class="pb-btn pb-btn-primary pb-btn-large">
+                    <i class="fas fa-eye"></i> Ver Galería
                 </a>
                 <a href="#contacto" class="pb-btn pb-btn-outline pb-btn-large">
                     <i class="fas fa-calendar-alt"></i> Agendar Llamada
@@ -104,82 +176,39 @@
             </div>
         </div>
         
-        <!-- Botón para bajar a la galería -->
-        <button class="pb-scroll-down" id="scrollDown" aria-label="Desplázate hacia abajo">
+        <!-- Botón para iniciar el zoom -->
+        <button class="pb-scroll-down" id="scrollDown" aria-label="Explorar galería">
             <span class="pb-scroll-icon">↓</span>
-            Desplázate hacia abajo
+            Explorar Galería
         </button>
     </section>
 
-    <!-- ==================== GALERÍA DE FOTOS (sección siguiente) ==================== -->
-    <section class="pb-section pb-gallery-section" id="galeria">
+    <!-- ==================== GALERÍA PRINCIPAL (misma galería que el fondo) ==================== -->
+    <section class="pb-gallery-main-section" id="galeria">
         <div class="pb-container">
             <div class="pb-section-header">
                 <h2 class="pb-section-title">Galería de Proyectos</h2>
                 <p class="pb-section-subtitle">
-                    Una colección visual de mis trabajos más destacados.
+                    Una colección visual de mis trabajos más destacados. Haz scroll para explorar.
                 </p>
             </div>
-            
-            <div class="pb-gallery-grid">
-                <div class="pb-gallery-photo">
-                    <div class="pb-photo-frame" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
-                        <div class="pb-photo-overlay">
-                            <h3>PASEO App</h3>
-                            <p>FinTech Mobile Design</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="pb-gallery-photo">
-                    <div class="pb-photo-frame" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">
-                        <div class="pb-photo-overlay">
-                            <h3>Nexus Dashboard</h3>
-                            <p>SaaS B2B Interface</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="pb-gallery-photo">
-                    <div class="pb-photo-frame" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
-                        <div class="pb-photo-overlay">
-                            <h3>La Caroyense</h3>
-                            <p>E-commerce Redesign</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="pb-gallery-photo">
-                    <div class="pb-photo-frame" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">
-                        <div class="pb-photo-overlay">
-                            <h3>HealthTrack Pro</h3>
-                            <p>Health App UI/UX</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="pb-gallery-photo">
-                    <div class="pb-photo-frame" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%)">
-                        <div class="pb-photo-overlay">
-                            <h3>EduLearn Platform</h3>
-                            <p>Educational SaaS</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="pb-gallery-photo">
-                    <div class="pb-photo-frame" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%)">
-                        <div class="pb-photo-overlay">
-                            <h3>TravelMate</h3>
-                            <p>Travel App Design</p>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        
+        <!-- LA MISMA GALERÍA DEL HERO, PERO AHORA ES CONTENIDO -->
+        <div class="pb-gallery-content-container">
+            <div class="pb-gallery-grid pb-gallery-expanded" id="expandedGallery">
+                <!-- Los mismos elementos se cargarán aquí dinámicamente -->
             </div>
+        </div>
+        
+        <div class="pb-container pb-gallery-info">
+            <p class="pb-gallery-note">
+                <i class="fas fa-mouse-pointer"></i> Haz clic en cualquier proyecto para ver detalles
+            </p>
         </div>
     </section>
 
-    <!-- ==================== PROYECTOS ==================== -->
+    <!-- ==================== PROYECTOS DETALLADOS ==================== -->
     <section class="pb-section pb-section-light" id="proyectos">
         <div class="pb-container">
             <div class="pb-section-header">
