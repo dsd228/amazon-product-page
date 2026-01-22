@@ -19,381 +19,305 @@
     
     <style>
         /* ==============================
-           ESTILOS PARA NAVEGACIÓN DESPLEGABLE
+           HERO EXACTO COMO PORTFOLIOBOX.COM
            ============================== */
-        .pb-nav-item {
-            position: relative;
-        }
-        
-        .pb-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 220px;
-            background: var(--pb-white);
-            border-radius: var(--pb-radius);
-            box-shadow: var(--pb-shadow-lg);
-            border: 1px solid var(--pb-border);
-            padding: var(--pb-space-3) 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .pb-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .pb-dropdown-link {
-            display: flex;
-            align-items: center;
-            gap: var(--pb-space-3);
-            padding: var(--pb-space-3) var(--pb-space-4);
-            color: var(--pb-text-secondary);
-            text-decoration: none;
-            font-size: var(--pb-text-sm);
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-        
-        .pb-dropdown-link:hover {
-            background-color: var(--pb-gray-50);
-            color: var(--pb-primary);
-            padding-left: var(--pb-space-5);
-        }
-        
-        .pb-dropdown-link i {
-            width: 20px;
-            text-align: center;
-            color: var(--pb-primary);
-        }
-        
-        .pb-dropdown-divider {
-            height: 1px;
-            background-color: var(--pb-border);
-            margin: var(--pb-space-2) 0;
-        }
-        
-        .pb-nav-link.has-dropdown::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            margin-left: var(--pb-space-1);
-            font-size: 0.75rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .pb-nav-link.has-dropdown.active::after {
-            transform: rotate(180deg);
-        }
-        
-        /* ==============================
-           HERO GALLERY PARALLAX CON TUS IMÁGENES
-           ============================== */
-        .pb-hero-gallery {
+        .pb-hero-portfoliobox {
             position: relative;
             min-height: 100vh;
-            padding-top: 120px;
+            padding-top: 80px;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             overflow: hidden;
         }
         
-        .pb-hero-overlay {
+        .pb-hero-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9));
-            z-index: 2;
-        }
-        
-        .pb-hero-gallery-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
-            opacity: 0.4;
             z-index: 1;
         }
         
-        .pb-gallery-item {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            animation-duration: 20s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-        }
-        
-        .pb-gallery-item img {
+        .pb-hero-background img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
+            opacity: 0.1;
         }
         
-        /* Posiciones de los items de la galería */
-        .pb-gallery-item:nth-child(1) {
-            grid-column: 1 / span 2;
-            grid-row: 1;
-            height: 180px;
-            animation-name: float1;
+        .pb-hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            z-index: 2;
         }
         
-        .pb-gallery-item:nth-child(2) {
-            grid-column: 3 / span 1;
-            grid-row: 1 / span 2;
-            height: 250px;
-            animation-name: float2;
-            animation-delay: 2s;
-        }
-        
-        .pb-gallery-item:nth-child(3) {
-            grid-column: 4 / span 1;
-            grid-row: 1;
-            height: 150px;
-            animation-name: float3;
-            animation-delay: 1s;
-        }
-        
-        .pb-gallery-item:nth-child(4) {
-            grid-column: 1 / span 1;
-            grid-row: 2;
-            height: 200px;
-            animation-name: float4;
-            animation-delay: 3s;
-        }
-        
-        .pb-gallery-item:nth-child(5) {
-            grid-column: 2 / span 2;
-            grid-row: 2 / span 2;
-            height: 300px;
-            animation-name: float5;
-            animation-delay: 0.5s;
-        }
-        
-        .pb-gallery-item:nth-child(6) {
-            grid-column: 4 / span 1;
-            grid-row: 2 / span 2;
-            height: 250px;
-            animation-name: float6;
-            animation-delay: 2.5s;
-        }
-        
-        .pb-gallery-item:nth-child(7) {
-            grid-column: 1 / span 1;
-            grid-row: 3;
-            height: 180px;
-            animation-name: float7;
-            animation-delay: 1.5s;
-        }
-        
-        .pb-gallery-item:nth-child(8) {
-            grid-column: 3 / span 1;
-            grid-row: 3;
-            height: 160px;
-            animation-name: float8;
-            animation-delay: 4s;
-        }
-        
-        .pb-hero-gallery-content {
+        .pb-hero-content {
             position: relative;
             z-index: 3;
             width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
-            color: white;
+            padding: 0 20px;
         }
         
-        .pb-hero-gallery-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .pb-hero-main-title {
+            font-size: clamp(3rem, 5vw, 4.5rem);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff, #93c5fd);
+            color: #1e293b;
+            letter-spacing: -0.025em;
+        }
+        
+        .pb-hero-main-title .highlight {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .pb-hero-gallery-subtitle {
-            font-size: clamp(1.125rem, 2vw, 1.5rem);
-            color: #cbd5e1;
+        .pb-hero-main-subtitle {
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            color: #475569;
             margin-bottom: 2.5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        
+        .pb-hero-main-subtitle strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        .pb-hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        /* ==============================
+           SECCIÓN TESTIMONIOS NUEVA
+           ============================== */
+        .pb-testimonios-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+        }
+        
+        .pb-testimonios-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+        }
+        
+        .pb-testimonios-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .pb-testimonios-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .pb-testimonios-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+        
+        .pb-testimonios-subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.6;
         }
         
-        /* ==============================
-           ESTILOS PARA IMÁGENES DE PROYECTOS
-           ============================== */
-        .pb-project-image {
+        .pb-testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pb-testimonio-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pb-testimonio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pb-testimonio-content {
             position: relative;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-            border-radius: 12px 12px 0 0;
+            margin-bottom: 1.5rem;
         }
         
-        .pb-project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s ease;
+        .pb-testimonio-quote {
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.7;
+            font-style: italic;
+            position: relative;
+            padding-left: 1.5rem;
         }
         
-        .pb-project-card:hover .pb-project-image img {
-            transform: scale(1.05);
-        }
-        
-        .pb-project-overlay {
+        .pb-testimonio-quote::before {
+            content: '"';
             position: absolute;
-            bottom: 0;
             left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            color: white;
-            padding: var(--pb-space-6);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
+            top: -0.5rem;
+            font-size: 3rem;
+            color: #3b82f6;
+            font-family: Georgia, serif;
+            opacity: 0.2;
         }
         
-        .pb-project-card:hover .pb-project-overlay {
-            transform: translateY(0);
-        }
-        
-        .overlay-content h4 {
-            color: white;
-            margin-bottom: var(--pb-space-2);
-            font-size: var(--pb-text-lg);
-        }
-        
-        .overlay-content p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: var(--pb-text-sm);
-            margin-bottom: var(--pb-space-4);
-        }
-        
-        .overlay-stats {
-            display: flex;
-            gap: var(--pb-space-4);
-            font-size: var(--pb-text-xs);
-        }
-        
-        .overlay-stats span {
+        .pb-testimonio-author {
             display: flex;
             align-items: center;
-            gap: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 4px 8px;
-            border-radius: var(--pb-radius-sm);
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
         }
         
-        /* ==============================
-           ANIMACIONES FLOTANTES
-           ============================== */
-        @keyframes float1 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-15px) translateX(10px); }
-            50% { transform: translateY(0) translateX(20px); }
-            75% { transform: translateY(15px) translateX(10px); }
-        }
-        
-        @keyframes float2 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-20px) translateX(-10px); }
-            50% { transform: translateY(0) translateX(-20px); }
-            75% { transform: translateY(20px) translateX(-10px); }
-        }
-        
-        @keyframes float3 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-10px) translateX(15px); }
-            50% { transform: translateY(0) translateX(30px); }
-            75% { transform: translateY(10px) translateX(15px); }
-        }
-        
-        @keyframes float4 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-25px) translateX(-5px); }
-            50% { transform: translateY(0) translateX(-10px); }
-            75% { transform: translateY(25px) translateX(-5px); }
-        }
-        
-        @keyframes float5 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-30px) translateX(5px); }
-            50% { transform: translateY(0) translateX(10px); }
-            75% { transform: translateY(30px) translateX(5px); }
-        }
-        
-        @keyframes float6 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-15px) translateX(-15px); }
-            50% { transform: translateY(0) translateX(-30px); }
-            75% { transform: translateY(15px) translateX(-15px); }
-        }
-        
-        @keyframes float7 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-20px) translateX(5px); }
-            50% { transform: translateY(0) translateX(10px); }
-            75% { transform: translateY(20px) translateX(5px); }
-        }
-        
-        @keyframes float8 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-10px) translateX(-5px); }
-            50% { transform: translateY(0) translateX(-10px); }
-            75% { transform: translateY(10px) translateX(-5px); }
-        }
-        
-        /* ==============================
-           FALLBACK PARA IMÁGENES FALTANTES
-           ============================== */
-        .image-fallback {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .pb-author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .image-fallback i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        
-        .image-fallback span {
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+        }
+        
+        .pb-author-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+        
+        .pb-author-info p {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+        
+        /* ==============================
+           MEJORAS DE CONTRASTE Y COLOR
+           ============================== */
+        .pb-section-light {
+            background: #f8fafc !important;
+        }
+        
+        .pb-section-dark {
+            background: #0f172a !important;
+            color: #f1f5f9 !important;
+        }
+        
+        .pb-section-dark .pb-section-title,
+        .pb-section-dark .pb-section-subtitle {
+            color: #f1f5f9 !important;
+        }
+        
+        .pb-project-card {
+            background: white !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+        }
+        
+        .pb-project-card:hover {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .pb-service-card {
+            background: white !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+        
+        .pb-service-card:hover {
+            border-color: #3b82f6 !important;
+            transform: translateY(-5px) !important;
+        }
+        
+        /* ==============================
+           NAVEGACIÓN MEJORADA
+           ============================== */
+        .pb-header.scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px) !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+        }
+        
+        .pb-nav-link {
+            color: #475569 !important;
+        }
+        
+        .pb-nav-link:hover,
+        .pb-nav-link.active {
+            color: #1e293b !important;
+        }
+        
+        /* ==============================
+           RESPONSIVE
+           ============================== */
+        @media (max-width: 768px) {
+            .pb-hero-main-title {
+                font-size: 2.5rem;
+            }
+            
+            .pb-hero-main-subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .pb-hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pb-hero-cta .pb-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .pb-testimonios-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- ==================== HEADER CON NAVEGACIÓN DESPLEGABLE ==================== -->
-    <header class="pb-header hero-mode" id="main-header">
+    <!-- ==================== HEADER ==================== -->
+    <header class="pb-header" id="main-header">
         <div class="pb-container">
             <nav class="pb-main-nav">
                 <!-- Logo -->
@@ -401,99 +325,19 @@
                     <span class="logo-neo">Neo</span><span class="logo-prod">Prod</span><span class="logo-ux">Ux</span>
                 </a>
                 
-                <!-- Navegación central con dropdown -->
+                <!-- Navegación -->
                 <div class="pb-nav-center">
-                    <div class="pb-nav-item">
-                        <a href="#proyectos" class="pb-nav-link">
-                            Proyectos
-                        </a>
-                    </div>
-                    
-                    <div class="pb-nav-item">
-                        <a href="#servicios" class="pb-nav-link has-dropdown" id="servicesDropdown">
-                            Servicios
-                        </a>
-                        <!-- Dropdown para escritorio -->
-                        <div class="pb-dropdown" id="servicesMenu">
-                            <a href="ui-ux-design.html" class="pb-dropdown-link">
-                                <i class="fas fa-pencil-ruler"></i>
-                                <span>Diseño UX/UI</span>
-                            </a>
-                            <a href="template-producto.html" class="pb-dropdown-link">
-                                <i class="fas fa-chart-line"></i>
-                                <span>Estrategia de Producto</span>
-                            </a>
-                            <a href="servicio-apps-moviles.html" class="pb-dropdown-link">
-                                <i class="fas fa-mobile-alt"></i>
-                                <span>Diseño Mobile</span>
-                            </a>
-                            <a href="#servicios-frontend" class="pb-dropdown-link">
-                                <i class="fas fa-code"></i>
-                                <span>Desarrollo Frontend</span>
-                            </a>
-                            <div class="pb-dropdown-divider"></div>
-                            <a href="#servicios-auditoria" class="pb-dropdown-link">
-                                <i class="fas fa-search"></i>
-                                <span>Auditoría UX</span>
-                            </a>
-                            <a href="#servicios-consultoria" class="pb-dropdown-link">
-                                <i class="fas fa-handshake"></i>
-                                <span>Consultoría</span>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="pb-nav-item">
-                        <a href="#proceso" class="pb-nav-link">
-                            Proceso
-                        </a>
-                    </div>
-                    
-                    <div class="pb-nav-item">
-                        <a href="#sobre-mi" class="pb-nav-link">
-                            Sobre mí
-                        </a>
-                    </div>
-                    
-                    <div class="pb-nav-item">
-                        <a href="#testimonios" class="pb-nav-link">
-                            Testimonios
-                        </a>
-                    </div>
-                    
-                    <div class="pb-nav-item">
-                        <a href="#precios" class="pb-nav-link has-dropdown" id="pricingDropdown">
-                            Precios
-                        </a>
-                        <!-- Dropdown para precios -->
-                        <div class="pb-dropdown" id="pricingMenu">
-                            <a href="#precios-basico" class="pb-dropdown-link">
-                                <i class="fas fa-star"></i>
-                                <span>Plan Básico</span>
-                                <span style="margin-left: auto; color: var(--pb-primary); font-weight: 600;">$499</span>
-                            </a>
-                            <a href="#precios-profesional" class="pb-dropdown-link">
-                                <i class="fas fa-crown"></i>
-                                <span>Plan Profesional</span>
-                                <span style="margin-left: auto; color: var(--pb-primary); font-weight: 600;">$999</span>
-                            </a>
-                            <a href="#precios-empresa" class="pb-dropdown-link">
-                                <i class="fas fa-building"></i>
-                                <span>Plan Empresa</span>
-                                <span style="margin-left: auto; color: var(--pb-primary); font-weight: 600;">$1,999</span>
-                            </a>
-                            <div class="pb-dropdown-divider"></div>
-                            <a href="#contacto" class="pb-dropdown-link">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>Agendar Llamada</span>
-                            </a>
-                        </div>
-                    </div>
+                    <a href="#proyectos" class="pb-nav-link">Proyectos</a>
+                    <a href="#servicios" class="pb-nav-link">Servicios</a>
+                    <a href="#proceso" class="pb-nav-link">Proceso</a>
+                    <a href="#sobre-mi" class="pb-nav-link">Sobre mí</a>
+                    <a href="#testimonios" class="pb-nav-link">Testimonios</a>
+                    <a href="#contacto" class="pb-nav-link">Contacto</a>
                 </div>
                 
-                <!-- Navegación derecha -->
+                <!-- CTA -->
                 <div class="pb-nav-right">
-                    <a href="#contacto" class="pb-btn pb-btn-primary">Contactar</a>
+                    <a href="#contacto" class="pb-btn pb-btn-primary">Empezar Proyecto</a>
                     <button class="pb-menu-toggle" id="menuToggle" aria-label="Menú">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -502,81 +346,37 @@
         </div>
     </header>
 
-    <!-- ==================== HERO CON GALERÍA PARALLAX ==================== -->
-    <section class="pb-hero-gallery" id="hero">
-        <!-- GALERÍA PARALLAX - REEMPLAZA CON TUS IMÁGENES -->
-        <div class="pb-hero-gallery-bg" id="galleryParallax">
-            <!-- IMAGEN 1 -->
-            <div class="pb-gallery-item">
-                <img src="images/hero/gallery-1.jpg" alt="Diseño UX/UI" loading="lazy" 
-                     onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'><i class=\'fas fa-pencil-ruler\'></i><span>Diseño UX/UI</span></div>'">
-            </div>
-            
-            <!-- IMAGEN 2 -->
-            <div class="pb-gallery-item">
-                <img src="images/hero/gallery-2.jpg" alt="Research de usuarios" loading="lazy"
-                     onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'><i class=\'fas fa-search\'></i><span>User Research</span></div>'">
-            </div>
-            
-            <!-- IMAGEN 3 -->
-            <div class="pb-gallery-item">
-                <img src="images/hero/gallery-3.jpg" alt="Prototipos" loading="lazy"
-                     onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'><i class=\'fas fa-mobile-alt\'></i><span>Prototipos</span></div>'">
-            </div>
-            
-            <!-- IMAGEN 4 -->
-            <div class="pb-gallery-item">
-                <img src="images/hero/gallery-4.jpg" alt="Wireframes" loading="lazy"
-                     onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'><i class=\'fas fa-layer-group\'></i><span>Wireframes</span></div>'">
-            </div>
-            
-            <!-- IMAGEN 5 -->
-            <div class="pb-gallery-item">
-                <img src="images/hero/gallery-5.jpg" alt="Testing" loading="lazy"
-                     onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'><i class=\'fas fa-flask\'></i><span>User Testing</span></div>'">
-            </div>
-            
-            <!-- IMAGEN 6 -->
-            <div class="pb-gallery-item">
-                <img src="images/hero/gallery-6.jpg" alt="Product Strategy" loading="lazy"
-                     onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'><i class=\'fas fa-chart-line\'></i><span>Product Strategy</span></div>'">
-            </div>
-            
-            <!-- IMAGEN 7 -->
-            <div class="pb-gallery-item">
-                <img src="images/hero/gallery-7.jpg" alt="Mobile Design" loading="lazy"
-                     onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'><i class=\'fas fa-tablet-alt\'></i><span>Mobile Design</span></div>'">
-            </div>
-            
-            <!-- IMAGEN 8 -->
-            <div class="pb-gallery-item">
-                <img src="images/hero/gallery-8.jpg" alt="Development" loading="lazy"
-                     onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'><i class=\'fas fa-code\'></i><span>Development</span></div>'">
-            </div>
+    <!-- ==================== HERO COMO PORTFOLIOBOX ==================== -->
+    <section class="pb-hero-portfoliobox" id="hero">
+        <!-- Fondo sutil -->
+        <div class="pb-hero-background">
+            <img src="images/hero/background.jpg" 
+                 alt="Fondo hero" 
+                 loading="eager"
+                 onerror="this.style.display='none'">
         </div>
         
-        <!-- Overlay para mejor legibilidad -->
-        <div class="pb-hero-overlay"></div>
+        <!-- Patrón overlay -->
+        <div class="pb-hero-pattern"></div>
         
         <!-- Contenido principal -->
         <div class="pb-container">
-            <div class="pb-hero-gallery-content">
-                <h1 class="pb-hero-gallery-title">
-                    Diseño UX/UI que <span style="color: #60a5fa">Convierte</span><br>
-                    & <span style="color: #8b5cf6">Retiene</span>
+            <div class="pb-hero-content">
+                <h1 class="pb-hero-main-title">
+                    Diseño UX/UI & <span class="highlight">Product Strategy</span>
                 </h1>
                 
-                <p class="pb-hero-gallery-subtitle">
-                    Portafolio profesional de diseño UX/UI y estrategia de producto.<br>
-                    Transformo ideas en experiencias digitales que generan resultados medibles.
+                <p class="pb-hero-main-subtitle">
+                    Convierto visitas en clientes con diseño basado en datos, investigación de usuarios 
+                    y estrategias de producto que generan <strong>resultados medibles</strong>.
                 </p>
                 
-                <div class="pb-hero-actions">
+                <div class="pb-hero-cta">
                     <a href="#proyectos" class="pb-btn pb-btn-primary pb-btn-large">
                         <i class="fas fa-eye"></i> Ver Proyectos
                     </a>
                     <a href="#contacto" class="pb-btn pb-btn-outline pb-btn-large">
-                        <i class="fas fa-rocket"></i> Comenzar Proyecto
+                        <i class="fas fa-calendar-alt"></i> Agendar Llamada
                     </a>
                 </div>
                 
@@ -584,7 +384,7 @@
                 <div class="pb-hero-stats">
                     <div class="pb-stat">
                         <span class="pb-stat-number" data-count="50">0+</span>
-                        <span class="pb-stat-label">Proyectos Entregados</span>
+                        <span class="pb-stat-label">Proyectos Completados</span>
                     </div>
                     <div class="pb-stat">
                         <span class="pb-stat-number" data-count="340">0%</span>
@@ -592,48 +392,35 @@
                     </div>
                     <div class="pb-stat">
                         <span class="pb-stat-number">100%</span>
-                        <span class="pb-stat-label">Clientes Satisfechos</span>
+                        <span class="pb-stat-label">Satisfacción Clientes</span>
                     </div>
-                </div>
-                
-                <!-- Scroll hint -->
-                <div class="pb-scroll-hint" id="scrollHint">
-                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== PROYECTOS DESTACADOS ==================== -->
+    <!-- ==================== PROYECTOS ==================== -->
     <section class="pb-section pb-section-light" id="proyectos">
         <div class="pb-container">
             <div class="pb-section-header">
                 <h2 class="pb-section-title">Proyectos Destacados</h2>
                 <p class="pb-section-subtitle">
-                    Casos de estudio donde el diseño UX/UI transformó resultados de negocio de forma medible.
+                    Casos de estudio donde el diseño UX/UI transformó resultados de negocio.
                 </p>
             </div>
             
-            <!-- Galería de proyectos -->
             <div class="pb-projects-showcase">
-                <!-- PROYECTO 1: PASEO -->
+                <!-- Proyecto 1 -->
                 <article class="pb-project-card">
                     <div class="pb-project-image">
-                        <!-- TU IMAGEN PARA PASEO -->
                         <img src="images/proyectos/paseo.jpg" 
-                             alt="PASEO FinTech App - Case Study" 
+                             alt="PASEO FinTech App" 
                              loading="lazy"
-                             class="pb-project-img"
-                             onerror="this.src='Desktop - 1paseo.png'">
-                        
+                             class="pb-project-img">
                         <div class="pb-project-overlay">
                             <div class="overlay-content">
                                 <h4>PASEO – UX Case Study</h4>
                                 <p>FinTech · Mobile App</p>
-                                <div class="overlay-stats">
-                                    <span><i class="fas fa-chart-line"></i> +75% velocidad</span>
-                                    <span><i class="fas fa-bug"></i> -45% errores</span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -651,33 +438,23 @@
                             <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" 
                                target="_blank" 
                                class="pb-project-link">
-                                <i class="fab fa-github"></i> Ver en GitHub
+                                <i class="fab fa-github"></i> Ver Caso
                             </a>
-                            <button class="pb-btn-sm pb-btn-outline view-details" data-project="paseo">
-                                <i class="fas fa-external-link-alt"></i> Detalles
-                            </button>
                         </div>
                     </div>
                 </article>
 
-                <!-- PROYECTO 2: NEXUS LOGISTICS -->
+                <!-- Proyecto 2 -->
                 <article class="pb-project-card">
                     <div class="pb-project-image">
-                        <!-- TU IMAGEN PARA NEXUS -->
                         <img src="images/proyectos/nexus.jpg" 
                              alt="Nexus Logistics Dashboard" 
                              loading="lazy"
-                             class="pb-project-img"
-                             onerror="this.src='dispatch - copia.png'">
-                        
+                             class="pb-project-img">
                         <div class="pb-project-overlay">
                             <div class="overlay-content">
                                 <h4>Nexus Logistics</h4>
                                 <p>Logística · SaaS B2B</p>
-                                <div class="overlay-stats">
-                                    <span><i class="fas fa-user-check"></i> +40% usabilidad</span>
-                                    <span><i class="fas fa-clock"></i> -30% tiempo</span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -695,33 +472,23 @@
                             <a href="https://github.com/dsd228/nexus-logistics-ui" 
                                target="_blank" 
                                class="pb-project-link">
-                                <i class="fab fa-github"></i> Ver en GitHub
+                                <i class="fab fa-github"></i> Ver Caso
                             </a>
-                            <button class="pb-btn-sm pb-btn-outline view-details" data-project="nexus">
-                                <i class="fas fa-external-link-alt"></i> Detalles
-                            </button>
                         </div>
                     </div>
                 </article>
 
-                <!-- PROYECTO 3: LA CAROYENSE -->
+                <!-- Proyecto 3 -->
                 <article class="pb-project-card">
                     <div class="pb-project-image">
-                        <!-- TU IMAGEN PARA LA CAROYENSE -->
                         <img src="images/proyectos/caroyense.jpg" 
                              alt="La Caroyense E-commerce" 
                              loading="lazy"
-                             class="pb-project-img"
-                             onerror="this.src='Bodega La Caroyense — UX_UI Redesign/Desktop - 3.png'">
-                        
+                             class="pb-project-img">
                         <div class="pb-project-overlay">
                             <div class="overlay-content">
                                 <h4>La Caroyense</h4>
                                 <p>E-commerce · Mobile First</p>
-                                <div class="overlay-stats">
-                                    <span><i class="fas fa-shopping-cart"></i> +340% conversión</span>
-                                    <span><i class="fas fa-times-circle"></i> -45% abandono</span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -733,89 +500,28 @@
                         <h3 class="pb-project-title">La Caroyense E-commerce</h3>
                         <p class="pb-project-description">
                             Rediseño mobile-first de e-commerce optimizando funnel de compra 
-                            para maximizar conversión y reducir abandono.
+                            para maximizar conversión.
                         </p>
                         <div class="pb-project-actions">
                             <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" 
                                target="_blank" 
                                class="pb-project-link">
-                                <i class="fab fa-github"></i> Ver en GitHub
+                                <i class="fab fa-github"></i> Ver Caso
                             </a>
-                            <button class="pb-btn-sm pb-btn-outline view-details" data-project="caroyense">
-                                <i class="fas fa-external-link-alt"></i> Detalles
-                            </button>
                         </div>
                     </div>
                 </article>
-            </div>
-            
-            <div class="pb-section-footer">
-                <a href="https://github.com/dsd228?tab=repositories" 
-                   target="_blank" 
-                   class="pb-btn pb-btn-outline pb-btn-large">
-                    <i class="fab fa-github"></i> Explorar todos los proyectos
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== PROCESO ==================== -->
-    <section class="pb-section" id="proceso">
-        <div class="pb-container">
-            <div class="pb-section-header">
-                <h2 class="pb-section-title">Mi Proceso de Trabajo</h2>
-                <p class="pb-section-subtitle">
-                    Metodología estructurada que garantiza resultados consistentes
-                </p>
-            </div>
-            
-            <div class="pb-process-steps">
-                <div class="pb-process-step">
-                    <div class="pb-step-number">01</div>
-                    <h3 class="pb-step-title">Investigación</h3>
-                    <p class="pb-step-description">
-                        Análisis de métricas existentes, entrevistas con usuarios 
-                        y benchmark competitivo.
-                    </p>
-                </div>
-                
-                <div class="pb-process-step">
-                    <div class="pb-step-number">02</div>
-                    <h3 class="pb-step-title">Diseño</h3>
-                    <p class="pb-step-description">
-                        Creación de wireframes, prototipos interactivos 
-                        y sistemas de diseño.
-                    </p>
-                </div>
-                
-                <div class="pb-process-step">
-                    <div class="pb-step-number">03</div>
-                    <h3 class="pb-step-title">Validación</h3>
-                    <p class="pb-step-description">
-                        Testing con usuarios reales, análisis de feedback 
-                        y refinamiento iterativo.
-                    </p>
-                </div>
-                
-                <div class="pb-process-step">
-                    <div class="pb-step-number">04</div>
-                    <h3 class="pb-step-title">Implementación</h3>
-                    <p class="pb-step-description">
-                        Handoff a desarrollo, supervisión y medición 
-                        de resultados post-lanzamiento.
-                    </p>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- ==================== SERVICIOS ==================== -->
-    <section class="pb-section pb-section-light" id="servicios">
+    <section class="pb-section" id="servicios">
         <div class="pb-container">
             <div class="pb-section-header">
                 <h2 class="pb-section-title">Servicios Especializados</h2>
                 <p class="pb-section-subtitle">
-                    Soluciones de diseño UX/UI y estrategia de producto para necesidades específicas.
+                    Soluciones de diseño UX/UI y estrategia de producto.
                 </p>
             </div>
             
@@ -826,117 +532,102 @@
                     </div>
                     <h3 class="pb-service-title">Diseño UX/UI</h3>
                     <p class="pb-service-description">
-                        Interfaces intuitivas y atractivas basadas en investigación de usuarios 
-                        y mejores prácticas de usabilidad.
+                        Interfaces intuitivas y atractivas basadas en investigación de usuarios.
                     </p>
-                    <ul class="pb-service-features">
-                        <li>Research & User Testing</li>
-                        <li>Wireframes & Prototipos</li>
-                        <li>Design Systems</li>
-                    </ul>
                 </div>
                 
                 <div class="pb-service-card">
                     <div class="pb-service-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="pb-service-title">Product Strategy</h3>
+                    <h3 class="pb-service-title">Estrategia de Producto</h3>
                     <p class="pb-service-description">
-                        Definición de roadmap, métricas clave y optimización de flujos 
-                        para maximizar conversión.
+                        Definición de roadmap y optimización de flujos para maximizar conversión.
                     </p>
-                    <ul class="pb-service-features">
-                        <li>Product Discovery</li>
-                        <li>Analytics & KPIs</li>
-                        <li>Conversion Optimization</li>
-                    </ul>
                 </div>
                 
                 <div class="pb-service-card">
                     <div class="pb-service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3 class="pb-service-title">Mobile Design</h3>
+                    <h3 class="pb-service-title">Diseño Mobile</h3>
                     <p class="pb-service-description">
-                        Apps nativas y responsive design optimizadas para experiencia móvil 
-                        y touch interactions.
+                        Apps nativas y responsive design optimizadas para experiencia móvil.
                     </p>
-                    <ul class="pb-service-features">
-                        <li>Mobile App Design</li>
-                        <li>Responsive Web</li>
-                        <li>Touch UX Patterns</li>
-                    </ul>
                 </div>
                 
                 <div class="pb-service-card">
                     <div class="pb-service-icon">
                         <i class="fas fa-code"></i>
                     </div>
-                    <h3 class="pb-service-title">Frontend Dev</h3>
+                    <h3 class="pb-service-title">Desarrollo Frontend</h3>
                     <p class="pb-service-description">
-                        Implementación de diseños en código limpio y accesible 
-                        con foco en performance.
+                        Implementación de diseños en código limpio y accesible.
                     </p>
-                    <ul class="pb-service-features">
-                        <li>Figma to Code</li>
-                        <li>Webflow Development</li>
-                        <li>WordPress Custom</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== SOBRE MÍ ==================== -->
-    <section class="pb-section pb-section-dark" id="sobre-mi">
-        <div class="pb-container">
-            <div class="pb-about-grid">
-                <div class="pb-about-content">
-                    <h2 class="pb-section-title">Sobre Mí</h2>
-                    <p class="pb-about-description">
-                        Soy <strong>David Díaz</strong>, diseñador UX/UI y estratega de producto con 5+ años 
-                        transformando productos digitales. Mi enfoque combina diseño basado en datos, 
-                        investigación de usuarios y optimización de conversión para generar impacto real.
-                    </p>
-                    <p class="pb-about-description">
-                        Especializado en startups y scale-ups, trabajo de forma remota con clientes 
-                        globales, desde ideas iniciales hasta lanzamientos exitosos.
-                    </p>
-                    
-                    <div class="pb-about-stats">
-                        <div class="pb-about-stat">
-                            <span class="pb-stat-number" data-count="50">0+</span>
-                            <span class="pb-stat-label">Proyectos completados</span>
-                        </div>
-                        <div class="pb-about-stat">
-                            <span class="pb-stat-number">100%</span>
-                            <span class="pb-stat-label">Clientes satisfechos</span>
-                        </div>
-                        <div class="pb-about-stat">
-                            <span class="pb-stat-number" data-count="35">0%</span>
-                            <span class="pb-stat-label">Conversión avg.</span>
-                        </div>
+    <!-- ==================== TESTIMONIOS NUEVA SECCIÓN ==================== -->
+    <section class="pb-testimonios-section" id="testimonios">
+        <div class="pb-testimonios-container">
+            <div class="pb-testimonios-header">
+                <h2 class="pb-testimonios-title">Lo que dicen mis clientes</h2>
+                <p class="pb-testimonios-subtitle">
+                    Feedback real de proyectos completados con resultados verificables.
+                </p>
+            </div>
+            
+            <div class="pb-testimonios-grid">
+                <!-- Testimonio 1 -->
+                <div class="pb-testimonio-card">
+                    <div class="pb-testimonio-content">
+                        <p class="pb-testimonio-quote">
+                            David transformó completamente nuestro producto. Implementamos sus recomendaciones 
+                            y en 3 meses vimos un aumento del 78% en retención de usuarios.
+                        </p>
                     </div>
-                    
-                    <div class="pb-about-actions">
-                        <a href="#contacto" class="pb-btn pb-btn-primary">
-                            <i class="fas fa-paper-plane"></i> Contactar para proyecto
-                        </a>
-                        <a href="https://linkedin.com/in/david-sebastian-diaz" 
-                           target="_blank" 
-                           class="pb-btn pb-btn-outline">
-                            <i class="fab fa-linkedin"></i> Ver LinkedIn
-                        </a>
+                    <div class="pb-testimonio-author">
+                        <div class="pb-author-avatar">AC</div>
+                        <div class="pb-author-info">
+                            <h4>Alex Chen</h4>
+                            <p>CEO & Founder, Startup FinTech</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="pb-about-image">
-                    <div class="pb-image-frame">
-                        <!-- TU FOTO DE PERFIL -->
-                        <img src="images/perfil.jpg" 
-                             alt="David Díaz - Diseñador UX/UI"
-                             loading="lazy"
-                             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&auto=format'; this.alt='Foto de perfil'">
+                <!-- Testimonio 2 -->
+                <div class="pb-testimonio-card">
+                    <div class="pb-testimonio-content">
+                        <p class="pb-testimonio-quote">
+                            Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad 
+                            mejoraron +40% post-rediseño. Profesional y orientado a resultados.
+                        </p>
+                    </div>
+                    <div class="pb-testimonio-author">
+                        <div class="pb-author-avatar">MR</div>
+                        <div class="pb-author-info">
+                            <h4>María Rodríguez</h4>
+                            <p>Product Lead, E-commerce Platform</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonio 3 -->
+                <div class="pb-testimonio-card">
+                    <div class="pb-testimonio-content">
+                        <p class="pb-testimonio-quote">
+                            +$2.1M en ingresos adicionales tras el rediseño. El mejor ROI que hemos visto en diseño. 
+                            Trabajo remoto impecable y comunicación constante.
+                        </p>
+                    </div>
+                    <div class="pb-testimonio-author">
+                        <div class="pb-author-avatar">JW</div>
+                        <div class="pb-author-info">
+                            <h4>James Wilson</h4>
+                            <p>CEO, SaaS Platform</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -944,12 +635,12 @@
     </section>
 
     <!-- ==================== CONTACTO ==================== -->
-    <section class="pb-section" id="contacto">
+    <section class="pb-section pb-section-light" id="contacto">
         <div class="pb-container">
             <div class="pb-section-header">
                 <h2 class="pb-section-title">Hablemos de tu proyecto</h2>
                 <p class="pb-section-subtitle">
-                    Cuéntame sobre tu producto y te enviaré una propuesta personalizada en 24 horas.
+                    Cuéntame sobre tu producto y te enviaré una propuesta personalizada.
                 </p>
             </div>
             
@@ -982,18 +673,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="pb-contact-social">
-                        <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="pb-social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/dsd228" target="_blank" class="pb-social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://dribbble.com" target="_blank" class="pb-social-link">
-                            <i class="fab fa-dribbble"></i>
-                        </a>
-                    </div>
                 </div>
                 
                 <div class="pb-contact-form">
@@ -1009,25 +688,13 @@
                         </div>
                         
                         <div class="pb-form-group">
-                            <label for="company">Empresa / Proyecto</label>
-                            <input type="text" id="company" name="company" placeholder="Nombre de tu empresa o proyecto">
-                        </div>
-                        
-                        <div class="pb-form-group">
                             <label for="message">¿En qué puedo ayudarte? *</label>
-                            <textarea id="message" name="message" rows="4" required placeholder="Describe tu proyecto o necesidades..."></textarea>
+                            <textarea id="message" name="message" rows="4" required placeholder="Describe tu proyecto..."></textarea>
                         </div>
                         
                         <button type="submit" class="pb-btn pb-btn-primary pb-btn-block">
-                            <span class="btn-text">Enviar mensaje</span>
-                            <span class="btn-loading" style="display: none;">
-                                <i class="fas fa-spinner fa-spin"></i> Enviando...
-                            </span>
+                            Enviar mensaje
                         </button>
-                        
-                        <p class="pb-form-note">
-                            <i class="fas fa-lock"></i> Tu información está segura. Sin spam, garantizado.
-                        </p>
                     </form>
                 </div>
             </div>
@@ -1053,8 +720,8 @@
                         <h4 class="pb-footer-title">Enlaces</h4>
                         <a href="#proyectos" class="pb-footer-link">Proyectos</a>
                         <a href="#servicios" class="pb-footer-link">Servicios</a>
-                        <a href="#proceso" class="pb-footer-link">Proceso</a>
-                        <a href="#sobre-mi" class="pb-footer-link">Sobre mí</a>
+                        <a href="#testimonios" class="pb-footer-link">Testimonios</a>
+                        <a href="#contacto" class="pb-footer-link">Contacto</a>
                     </div>
                     
                     <div class="pb-footer-column">
@@ -1063,21 +730,12 @@
                         <a href="https://calendly.com/dsd228-dd" target="_blank" class="pb-footer-link">Calendly</a>
                         <a href="#blog" class="pb-footer-link">Blog</a>
                     </div>
-                    
-                    <div class="pb-footer-column">
-                        <h4 class="pb-footer-title">Legal</h4>
-                        <a href="#privacidad" class="pb-footer-link">Privacidad</a>
-                        <a href="#terminos" class="pb-footer-link">Términos</a>
-                    </div>
                 </div>
             </div>
             
             <div class="pb-footer-bottom">
                 <p class="pb-copyright">
                     &copy; <span id="currentYear">2024</span> NeoProdUx. Todos los derechos reservados.
-                </p>
-                <p class="pb-attribution">
-                    Inspirado en el estilo visual de <strong>Portfoliobox</strong>
                 </p>
             </div>
         </div>
@@ -1086,137 +744,25 @@
     <!-- ==================== JAVASCRIPT ==================== -->
     <script src="script.js"></script>
     
-    <!-- Script para manejar imágenes y efectos -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Portfoliobox con tus imágenes - Inicializando');
-            
-            // Actualizar año en footer
+            // Actualizar año
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // ==================== CONFIGURACIÓN DE TUS IMÁGENES ====================
-            const imagePaths = {
-                // Galería parallax - AJUSTA ESTAS RUTAS
-                gallery: [
-                    'images/hero/gallery-1.jpg',
-                    'images/hero/gallery-2.jpg',
-                    'images/hero/gallery-3.jpg',
-                    'images/hero/gallery-4.jpg',
-                    'images/hero/gallery-5.jpg',
-                    'images/hero/gallery-6.jpg',
-                    'images/hero/gallery-7.jpg',
-                    'images/hero/gallery-8.jpg'
-                ],
-                
-                // Proyectos - AJUSTA ESTAS RUTAS
-                proyectos: {
-                    paseo: 'images/proyectos/paseo.jpg',
-                    nexus: 'images/proyectos/nexus.jpg',
-                    caroyense: 'images/proyectos/caroyense.jpg'
-                },
-                
-                // Perfil - AJUSTA ESTA RUTA
-                perfil: 'images/perfil.jpg'
-            };
-            
-            // ==================== INICIALIZAR IMÁGENES ====================
-            function initImages() {
-                console.log('🖼️ Cargando tus imágenes...');
-                
-                // Precargar imágenes importantes
-                const imagesToPreload = [
-                    ...imagePaths.gallery,
-                    ...Object.values(imagePaths.proyectos),
-                    imagePaths.perfil
-                ];
-                
-                imagesToPreload.forEach(src => {
-                    const img = new Image();
-                    img.src = src;
-                    img.onload = () => console.log(`✅ Precargada: ${src}`);
-                    img.onerror = () => console.warn(`⚠️ No encontrada: ${src}`);
-                });
-                
-                // Verificar imágenes existentes
-                checkImageStatus();
-            }
-            
-            function checkImageStatus() {
-                const allImages = document.querySelectorAll('img');
-                let loaded = 0, errors = 0;
-                
-                allImages.forEach(img => {
-                    if (img.complete) {
-                        if (img.naturalHeight === 0) {
-                            errors++;
-                            console.warn(`❌ Error: ${img.src}`);
-                        } else {
-                            loaded++;
-                            img.classList.add('loaded');
+            // Contadores animados
+            const counters = document.querySelectorAll('.pb-stat-number[data-count]');
+            counters.forEach(counter => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !entry.target.dataset.animated) {
+                            animateCounter(entry.target);
+                            entry.target.dataset.animated = 'true';
                         }
-                    }
-                });
-                
-                console.log(`📊 Imágenes: ${loaded} cargadas, ${errors} errores`);
-                
-                if (errors > 0) {
-                    console.log('💡 Consejo: Verifica que tus imágenes estén en:');
-                    console.log('- images/hero/gallery-1.jpg (para la galería parallax)');
-                    console.log('- images/proyectos/paseo.jpg (para proyectos)');
-                    console.log('- images/perfil.jpg (para tu foto)');
-                }
-            }
-            
-            // ==================== GALERÍA PARALLAX ====================
-            function initGalleryParallax() {
-                const gallery = document.getElementById('galleryParallax');
-                if (!gallery) return;
-                
-                const items = gallery.querySelectorAll('.pb-gallery-item');
-                
-                window.addEventListener('scroll', function() {
-                    const scrolled = window.pageYOffset;
-                    
-                    items.forEach((item, index) => {
-                        const speed = 0.3 + (index * 0.05);
-                        const yPos = -(scrolled * speed);
-                        item.style.transform = `translateY(${yPos}px)`;
                     });
-                });
+                }, { threshold: 0.5 });
                 
-                // Efecto hover en imágenes
-                items.forEach(item => {
-                    const img = item.querySelector('img');
-                    if (img) {
-                        item.addEventListener('mouseenter', function() {
-                            img.style.transform = 'scale(1.1)';
-                            img.style.transition = 'transform 0.5s ease';
-                        });
-                        
-                        item.addEventListener('mouseleave', function() {
-                            img.style.transform = 'scale(1)';
-                        });
-                    }
-                });
-            }
-            
-            // ==================== CONTADORES ANIMADOS ====================
-            function initCounters() {
-                const counters = document.querySelectorAll('.pb-stat-number[data-count]');
-                
-                counters.forEach(counter => {
-                    const observer = new IntersectionObserver(function(entries) {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting && !entry.target.dataset.animated) {
-                                animateCounter(entry.target);
-                                entry.target.dataset.animated = 'true';
-                            }
-                        });
-                    }, { threshold: 0.5 });
-                    
-                    observer.observe(counter);
-                });
-            }
+                observer.observe(counter);
+            });
             
             function animateCounter(element) {
                 const target = parseInt(element.dataset.count);
@@ -1239,267 +785,57 @@
                 }, stepTime);
             }
             
-            // ==================== SCROLL EFFECTS ====================
-            function initScrollEffects() {
-                const header = document.getElementById('main-header');
-                const scrollHint = document.getElementById('scrollHint');
-                
-                // Efecto header al scroll
-                window.addEventListener('scroll', function() {
-                    const scrollY = window.scrollY;
-                    
-                    if (header) {
-                        if (scrollY > 100) {
-                            header.classList.remove('hero-mode');
-                            header.classList.add('scrolled');
-                        } else {
-                            header.classList.add('hero-mode');
-                            header.classList.remove('scrolled');
-                        }
-                    }
-                    
-                    // Scroll hint visibility
-                    if (scrollHint) {
-                        if (scrollY > 300) {
-                            scrollHint.style.opacity = '0';
-                            scrollHint.style.pointerEvents = 'none';
-                        } else {
-                            scrollHint.style.opacity = '1';
-                            scrollHint.style.pointerEvents = 'auto';
-                        }
-                    }
-                });
-                
-                // Click en scroll hint
-                if (scrollHint) {
-                    scrollHint.addEventListener('click', function() {
-                        const proyectos = document.getElementById('proyectos');
-                        if (proyectos) {
-                            const header = document.querySelector('.pb-header');
-                            const headerHeight = header ? header.offsetHeight : 0;
-                            const targetPosition = proyectos.offsetTop - headerHeight;
-                            
-                            window.scrollTo({
-                                top: targetPosition,
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
-            }
+            });
             
-            // ==================== MENÚS DESPLEGABLES ====================
-            function initDropdowns() {
-                const dropdowns = document.querySelectorAll('.pb-nav-item');
-                
-                dropdowns.forEach(item => {
-                    const link = item.querySelector('.pb-nav-link.has-dropdown');
-                    const dropdown = item.querySelector('.pb-dropdown');
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
                     
-                    if (link && dropdown) {
-                        // Mostrar al hover (desktop)
-                        item.addEventListener('mouseenter', function() {
-                            if (window.innerWidth > 768) {
-                                dropdown.classList.add('active');
-                                link.classList.add('active');
-                            }
-                        });
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight;
                         
-                        // Ocultar al salir (desktop)
-                        item.addEventListener('mouseleave', function() {
-                            if (window.innerWidth > 768) {
-                                dropdown.classList.remove('active');
-                                link.classList.remove('active');
-                            }
-                        });
-                        
-                        // Para móvil: click en el enlace
-                        link.addEventListener('click', function(e) {
-                            if (window.innerWidth < 768) {
-                                e.preventDefault();
-                                dropdown.classList.toggle('active');
-                                link.classList.toggle('active');
-                            }
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
                         });
                     }
                 });
-                
-                // Cerrar dropdowns al hacer clic fuera
-                document.addEventListener('click', function(e) {
-                    if (!e.target.closest('.pb-nav-item')) {
-                        document.querySelectorAll('.pb-dropdown').forEach(dropdown => {
-                            dropdown.classList.remove('active');
-                        });
-                        document.querySelectorAll('.pb-nav-link.has-dropdown').forEach(link => {
-                            link.classList.remove('active');
-                        });
-                    }
-                });
-            }
+            });
             
-            // ==================== MENÚ MÓVIL ====================
-            function initMobileMenu() {
-                const menuToggle = document.getElementById('menuToggle');
-                if (!menuToggle) return;
-                
-                // Crear menú móvil dinámicamente
-                function createMobileMenu() {
-                    const navCenter = document.querySelector('.pb-nav-center');
-                    if (!navCenter) return;
-                    
-                    // Ya existe en el HTML por el dropdown
-                    const mobileMenu = document.createElement('div');
-                    mobileMenu.className = 'pb-mobile-menu';
-                    mobileMenu.id = 'mobileMenu';
-                    
-                    // Clonar navegación
-                    const navClone = navCenter.cloneNode(true);
-                    
-                    // Ajustar para móvil
-                    const dropdownLinks = navClone.querySelectorAll('.pb-nav-link.has-dropdown');
-                    dropdownLinks.forEach(link => {
-                        const dropdown = link.nextElementSibling;
-                        if (dropdown && dropdown.classList.contains('pb-dropdown')) {
-                            const mobileDropdown = document.createElement('div');
-                            mobileDropdown.className = 'pb-mobile-dropdown';
-                            
-                            const dropdownLinks = dropdown.querySelectorAll('.pb-dropdown-link');
-                            dropdownLinks.forEach(dropdownLink => {
-                                const mobileLink = document.createElement('a');
-                                mobileLink.href = dropdownLink.getAttribute('href');
-                                mobileLink.className = 'pb-mobile-dropdown-link';
-                                mobileLink.innerHTML = dropdownLink.innerHTML;
-                                mobileDropdown.appendChild(mobileLink);
-                            });
-                            
-                            link.parentNode.insertBefore(mobileDropdown, dropdown);
-                            dropdown.remove();
-                            
-                            link.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                mobileDropdown.classList.toggle('active');
-                            });
-                        }
-                    });
-                    
-                    mobileMenu.appendChild(navClone);
-                    document.querySelector('.pb-header').appendChild(mobileMenu);
-                    
-                    return mobileMenu;
-                }
-                
-                // Toggle menú móvil
-                menuToggle.addEventListener('click', function() {
-                    let mobileMenu = document.getElementById('mobileMenu');
-                    if (!mobileMenu) {
-                        mobileMenu = createMobileMenu();
-                    }
-                    
-                    if (mobileMenu.classList.contains('active')) {
-                        mobileMenu.classList.remove('active');
-                        this.innerHTML = '<i class="fas fa-bars"></i>';
-                        document.body.style.overflow = '';
-                    } else {
-                        mobileMenu.classList.add('active');
-                        this.innerHTML = '<i class="fas fa-times"></i>';
-                        document.body.style.overflow = 'hidden';
-                    }
-                });
-            }
-            
-            // ==================== FORMULARIO DE CONTACTO ====================
-            function initContactForm() {
-                const contactForm = document.getElementById('contactForm');
-                if (!contactForm) return;
-                
+            // Formulario
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const btnText = submitBtn.querySelector('.btn-text');
-                    const btnLoading = submitBtn.querySelector('.btn-loading');
+                    const button = this.querySelector('button[type="submit"]');
+                    const originalText = button.textContent;
                     
-                    // Validación
-                    const name = this.querySelector('#name').value.trim();
-                    const email = this.querySelector('#email').value.trim();
-                    const message = this.querySelector('#message').value.trim();
+                    button.textContent = 'Enviando...';
+                    button.disabled = true;
                     
-                    if (!name || !email || !message) {
-                        alert('Por favor completa todos los campos requeridos');
-                        return;
-                    }
-                    
-                    // Validar email
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(email)) {
-                        alert('Por favor ingresa un email válido');
-                        return;
-                    }
-                    
-                    // Mostrar loading
-                    btnText.style.display = 'none';
-                    btnLoading.style.display = 'inline-block';
-                    submitBtn.disabled = true;
-                    
-                    // Simular envío (reemplazar con tu backend)
+                    // Simular envío
                     setTimeout(() => {
-                        alert('¡Mensaje enviado! Te contactaré en menos de 24 horas.');
+                        alert('¡Mensaje enviado! Te contactaré en 24 horas.');
                         this.reset();
-                        
-                        // Restaurar botón
-                        btnText.style.display = 'inline-block';
-                        btnLoading.style.display = 'none';
-                        submitBtn.disabled = false;
+                        button.textContent = originalText;
+                        button.disabled = false;
                     }, 1500);
                 });
             }
-            
-            // ==================== SMOOTH SCROLL ====================
-            function initSmoothScroll() {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function(e) {
-                        const href = this.getAttribute('href');
-                        if (href === '#' || href === '#!') return;
-                        
-                        e.preventDefault();
-                        const targetElement = document.querySelector(href);
-                        
-                        if (targetElement) {
-                            const header = document.querySelector('.pb-header');
-                            const headerHeight = header ? header.offsetHeight : 0;
-                            const targetPosition = targetElement.offsetTop - headerHeight;
-                            
-                            window.scrollTo({
-                                top: targetPosition,
-                                behavior: 'smooth'
-                            });
-                            
-                            // Cerrar menú móvil si está abierto
-                            const mobileMenu = document.getElementById('mobileMenu');
-                            if (mobileMenu && mobileMenu.classList.contains('active')) {
-                                mobileMenu.classList.remove('active');
-                                const menuToggle = document.getElementById('menuToggle');
-                                if (menuToggle) {
-                                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                                }
-                                document.body.style.overflow = '';
-                            }
-                        }
-                    });
-                });
-            }
-            
-            // ==================== INICIALIZAR TODO ====================
-            initImages();
-            initGalleryParallax();
-            initCounters();
-            initScrollEffects();
-            initDropdowns();
-            initMobileMenu();
-            initContactForm();
-            initSmoothScroll();
-            
-            console.log('✅ Todo inicializado correctamente');
         });
     </script>
 </body>
