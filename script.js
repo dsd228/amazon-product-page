@@ -1,13 +1,15 @@
 // ==============================
 // PORTFOLIOBOX EXACT REPLICA - MAIN SCRIPT
+// CONECTADO AL HTML Y FUNCIONAL
 // ==============================
 
-// Estado de la aplicación
-let currentTheme = 'light';
+// Estado global
 let isMobileMenuOpen = false;
+let lastScrollY = 0;
+let ticking = false;
 
 // ==============================
-// INITIALIZATION
+// 1. INITIALIZATION
 // ==============================
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Portfoliobox Exact Replica - Inicializando');
@@ -16,26 +18,30 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileNavigation();
     initSmoothScroll();
     initContactForm();
-    initAnimations();
     initScrollEffects();
+    initAnimations();
+    initCounters();
     
     // Configurar año actual en el footer
-    const yearElement = document.querySelector('.pb-copyright');
-    if (yearElement) {
-        const currentYear = new Date().getFullYear();
-        yearElement.innerHTML = yearElement.innerHTML.replace('2024', currentYear);
-    }
+    updateCurrentYear();
+    
+    // Añadir clase loaded para transiciones
+    setTimeout(() => {
+        document.body.classList.add('pb-loaded');
+    }, 100);
 });
 
 // ==============================
-// MOBILE NAVIGATION
+// 2. MOBILE NAVIGATION
 // ==============================
 function initMobileNavigation() {
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.querySelectorAll('.pb-nav-link');
     
     // Crear menú móvil si no existe
-    createMobileMenu();
+    if (!document.querySelector('.pb-mobile-menu')) {
+        createMobileMenu();
+    }
     
     const mobileMenu = document.querySelector('.pb-mobile-menu');
     
@@ -47,7 +53,7 @@ function initMobileNavigation() {
         });
     }
     
-    // Cerrar menú al hacer clic en enlaces
+    // Cerrar menú al hacer clic en enlaces móviles
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth < 768 && isMobileMenuOpen) {
@@ -59,23 +65,25 @@ function initMobileNavigation() {
     // Cerrar menú al hacer clic fuera
     document.addEventListener('click', function(e) {
         if (isMobileMenuOpen && 
+            menuToggle && 
             !menuToggle.contains(e.target) && 
+            mobileMenu && 
             !mobileMenu.contains(e.target)) {
             closeMobileMenu();
         }
     });
     
     // Cerrar menú al redimensionar a escritorio
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', debounce(function() {
         if (window.innerWidth >= 768 && isMobileMenuOpen) {
             closeMobileMenu();
         }
-    });
+    }, 250));
 }
 
 function createMobileMenu() {
     const navCenter = document.querySelector('.pb-nav-center');
-    if (!navCenter || document.querySelector('.pb-mobile-menu')) return;
+    if (!navCenter) return;
     
     const mobileMenu = document.createElement('div');
     mobileMenu.className = 'pb-mobile-menu';
@@ -128,7 +136,7 @@ function closeMobileMenu() {
 }
 
 // ==============================
-// SMOOTH SCROLL
+// 3. SMOOTH SCROLL
 // ==============================
 function initSmoothScroll() {
     // Smooth scroll para enlaces internos
@@ -159,32 +167,192 @@ function initSmoothScroll() {
     });
     
     // Actualizar enlace activo en navegación
-    window.addEventListener('scroll', updateActiveNavLink);
+    window.addEventListener('scroll', throttle(updateActiveNavLink, 100));
     updateActiveNavLink(); // Llamada inicial
 }
 
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.pb-nav-link');
-    const scrollY = window.pageYOffset + 100;
+    const scrollY = window.pageYOffset + 150;
+    
+    let currentActive = null;
     
     sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 100;
         const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.pb-nav-link[href="#${sectionId}"]`);
         
-        if (navLink) {
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                navLink.classList.add('active');
-            }
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            currentActive = sectionId;
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentActive}`) {
+            link.classList.add('active');
         }
     });
 }
 
 // ==============================
-// CONTACT FORM
+// 4. SCROLL EFFECTS
+// ==============================
+function initScrollEffects() {
+    const header = document.querySelector('.pb-header');
+    const parallaxBg = document.getElementById('parallax-bg');
+    const scrollHint = document.getElementById('scrollHint');
+    
+    function updateScrollEffects() {
+        const scrollY = window.scrollY;
+        
+        // Header transform
+        if (header) {
+            if (scrollY > 100) {
+                header.classList.remove('hero-mode');
+                header.classList.add('scrolled');
+                
+                // Efecto fade mientras sales del hero
+                if (scrollY < 500) {
+                    const opacity = 1 - (scrollY / 500);
+                    header.style.opacity = Math.max(opacity, 0.3).toString();
+                } else {
+                    header.style.opacity = '1';
+                }
+            } else {
+                header.classList.add('hero-mode');
+                header.classList.remove('scrolled');
+                header.style.opacity = '1';
+            }
+        }
+        
+        // Parallax effect
+        if (parallaxBg) {
+            const rate = scrollY * -0.3;
+            parallaxBg.style.transform = `translate3d(0, ${rate}px, 0)`;
+        }
+        
+        // Scroll hint visibility
+        if (scrollHint) {
+            if (scrollY > 300) {
+                scrollHint.style.opacity = '0';
+                scrollHint.style.pointerEvents = 'none';
+            } else {
+                scrollHint.style.opacity = '1';
+                scrollHint.style.pointerEvents = 'auto';
+            }
+        }
+    }
+    
+    // Scroll event con throttling
+    window.addEventListener('scroll', function() {
+        lastScrollY = window.scrollY;
+        
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateScrollEffects();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Click en scroll hint
+    if (scrollHint) {
+        scrollHint.addEventListener('click', function() {
+            const proyectosSection = document.getElementById('proyectos');
+            if (proyectosSection) {
+                const headerHeight = header ? header.offsetHeight : 0;
+                const targetPosition = proyectosSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Feedback visual
+                this.style.opacity = '0.5';
+                setTimeout(() => {
+                    this.style.opacity = '1';
+                }, 1000);
+            }
+        });
+    }
+}
+
+// ==============================
+// 5. ANIMATIONS ON SCROLL
+// ==============================
+function initAnimations() {
+    const animatedElements = document.querySelectorAll('.pb-project-card, .pb-service-card, .pb-testimonial-card, .pb-process-step, .pb-reveal');
+    
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.dataset.delay || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, parseInt(delay));
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        animatedElements.forEach(el => observer.observe(el));
+    }
+}
+
+// ==============================
+// 6. ANIMATED COUNTERS
+// ==============================
+function initCounters() {
+    const counters = document.querySelectorAll('.pb-stat-number[data-count]');
+    
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    animateCounter(entry.target);
+                    entry.target.dataset.animated = 'true';
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        
+        counters.forEach(counter => observer.observe(counter));
+    }
+}
+
+function animateCounter(element) {
+    const target = parseInt(element.dataset.count);
+    const suffix = element.textContent.replace(/[0-9]/g, '');
+    let current = 0;
+    
+    // Solo animar si hay un número para animar
+    if (isNaN(target)) return;
+    
+    const increment = target / 50;
+    const duration = 1500;
+    const stepTime = Math.max(Math.floor(duration / (target / increment)), 30);
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target + suffix;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current) + suffix;
+        }
+    }, stepTime);
+}
+
+// ==============================
+// 7. CONTACT FORM
 // ==============================
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
@@ -278,10 +446,14 @@ function clearFieldError(e) {
 function simulateFormSubmission() {
     const form = document.getElementById('contactForm');
     const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
     
-    // Deshabilitar botón y mostrar loading
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    // Mostrar loading
+    if (btnText && btnLoading) {
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline-block';
+    }
     submitBtn.disabled = true;
     
     // Simular envío (en producción sería una petición fetch/AJAX)
@@ -293,7 +465,10 @@ function simulateFormSubmission() {
         form.reset();
         
         // Restaurar botón
-        submitBtn.innerHTML = originalText;
+        if (btnText && btnLoading) {
+            btnText.style.display = 'inline-block';
+            btnLoading.style.display = 'none';
+        }
         submitBtn.disabled = false;
         
         // Desaparecer mensaje después de 5 segundos
@@ -339,58 +514,16 @@ function showFormMessage(text, type) {
 }
 
 // ==============================
-// ANIMATIONS ON SCROLL
+// 8. UTILITY FUNCTIONS
 // ==============================
-function initAnimations() {
-    // Animaciones de entrada para elementos
-    const animatedElements = document.querySelectorAll('.pb-project-card, .pb-service-card, .pb-testimonial-card');
-    
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        animatedElements.forEach(el => observer.observe(el));
+function updateCurrentYear() {
+    const yearElement = document.querySelector('.pb-copyright');
+    if (yearElement) {
+        const currentYear = new Date().getFullYear();
+        yearElement.innerHTML = yearElement.innerHTML.replace('2024', currentYear);
     }
 }
 
-// ==============================
-// SCROLL EFFECTS
-// ==============================
-function initScrollEffects() {
-    let lastScrollY = window.scrollY;
-    const header = document.querySelector('.pb-header');
-    
-    function updateHeaderOnScroll() {
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > 100) {
-            header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
-        
-        lastScrollY = currentScrollY;
-    }
-    
-    // Usar requestAnimationFrame para mejor performance
-    function onScroll() {
-        requestAnimationFrame(updateHeaderOnScroll);
-    }
-    
-    window.addEventListener('scroll', onScroll, { passive: true });
-}
-
-// ==============================
-// UTILITY FUNCTIONS
-// ==============================
 // Debounce para eventos de resize/scroll
 function debounce(func, wait) {
     let timeout;
@@ -419,7 +552,7 @@ function throttle(func, limit) {
 }
 
 // ==============================
-// EVENT LISTENERS GLOBALES
+// 9. EVENT LISTENERS GLOBALES
 // ==============================
 // Teclas de acceso rápido
 document.addEventListener('keydown', function(e) {
@@ -431,8 +564,8 @@ document.addEventListener('keydown', function(e) {
     // Ctrl/Cmd + K para focus en formulario
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
-        const searchInput = document.querySelector('#contactForm input[type="text"], #contactForm input[type="email"]');
-        if (searchInput) searchInput.focus();
+        const emailInput = document.querySelector('#contactForm input[type="email"]');
+        if (emailInput) emailInput.focus();
     }
 });
 
@@ -444,25 +577,10 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ==============================
-// INLINE STYLES PARA ANIMACIONES
+// 10. INLINE STYLES PARA ANIMACIONES
 // ==============================
 const animationStyles = document.createElement('style');
 animationStyles.textContent = `
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .fade-in {
-        animation: fadeIn 0.6s ease-out;
-    }
-    
     .field-error {
         color: #dc2626;
         font-size: 0.75rem;
@@ -470,6 +588,31 @@ animationStyles.textContent = `
         display: flex;
         align-items: center;
         gap: 0.25rem;
+    }
+    
+    .btn-loading {
+        display: none;
+    }
+    
+    .form-message {
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        text-align: center;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .form-success {
+        background-color: rgba(34, 197, 94, 0.1);
+        border: 1px solid #22c55e;
+        color: #22c55e;
+    }
+    
+    .form-error {
+        background-color: rgba(239, 68, 68, 0.1);
+        border: 1px solid #ef4444;
+        color: #ef4444;
     }
     
     @keyframes spin {
@@ -489,140 +632,3 @@ animationStyles.textContent = `
 document.head.appendChild(animationStyles);
 
 console.log('✅ Portfoliobox Exact Replica - Inicializado correctamente');
-// ==============================
-// PORTFOLIOBOX EFFECTS ADICIONALES
-// ==============================
-
-// Efecto de scroll suave mejorado
-function initEnhancedSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#') return;
-            
-            e.preventDefault();
-            const targetElement = document.querySelector(href);
-            
-            if (targetElement) {
-                const header = document.querySelector('.pb-header');
-                const headerHeight = header ? header.offsetHeight : 0;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Cerrar menú móvil si está abierto
-                if (window.innerWidth < 768 && window.isMobileMenuOpen) {
-                    closeMobileMenu();
-                }
-            }
-        });
-    });
-}
-
-// Actualizar enlace activo en navegación
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.pb-nav-link');
-    const scrollY = window.pageYOffset + 150;
-    
-    let currentActive = null;
-    
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            currentActive = sectionId;
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentActive}`) {
-            link.classList.add('active');
-        }
-    });
-}
-
-// Carga perezosa de imágenes
-function initLazyLoading() {
-    if ('IntersectionObserver' in window) {
-        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    const src = img.getAttribute('data-src') || img.src;
-                    
-                    if (src && src !== img.src) {
-                        img.src = src;
-                    }
-                    
-                    img.classList.add('loaded');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        lazyImages.forEach(img => imageObserver.observe(img));
-    }
-}
-
-// Efectos hover en tarjetas
-function initCardEffects() {
-    const cards = document.querySelectorAll('.pb-project-card, .pb-service-card, .pb-testimonial-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transition = 'all 0.3s ease';
-        });
-    });
-}
-
-// Inicializar efectos adicionales cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-    // Tu código existente primero...
-    
-    // Luego añade estos efectos Portfoliobox:
-    setTimeout(() => {
-        initEnhancedSmoothScroll();
-        initLazyLoading();
-        initCardEffects();
-        
-        // Actualizar año en footer
-        const yearElement = document.querySelector('.pb-copyright');
-        if (yearElement) {
-            const currentYear = new Date().getFullYear();
-            yearElement.innerHTML = yearElement.innerHTML.replace('2024', currentYear);
-        }
-        
-        // Añadir clase loaded al body para transiciones suaves
-        document.body.classList.add('loaded');
-        
-        console.log('🎨 Efectos Portfoliobox activados');
-    }, 100);
-});
-
-// Event listener para scroll
-window.addEventListener('scroll', function() {
-    updateActiveNavLink();
-    
-    // Efecto de opacidad en header según scroll
-    const header = document.querySelector('.pb-header');
-    const scrollY = window.scrollY;
-    
-    if (scrollY > 50 && !header.classList.contains('scrolled')) {
-        header.classList.add('scrolled');
-    } else if (scrollY <= 50 && header.classList.contains('scrolled')) {
-        header.classList.remove('scrolled');
-    }
-});
