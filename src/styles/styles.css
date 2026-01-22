@@ -1166,3 +1166,312 @@ h1, h2, h3, h4, h5, h6 {
         page-break-inside: avoid;
     }
 }
+/* ==============================
+   PORTFOLIOBOX PARALLAX EFFECTS
+   ============================== */
+
+/* Efecto de revelación parallax */
+.pb-parallax-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--pb-bg-dark) 0%, var(--pb-gray-900) 100%);
+}
+
+.pb-parallax-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url('src/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.pb-hero-content-wrapper {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pb-white);
+}
+
+.pb-hero-main {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 var(--pb-space-6);
+}
+
+.pb-hero-headline {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--pb-space-6);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards 0.3s;
+}
+
+.pb-hero-subheadline {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-weight: 400;
+    color: var(--pb-gray-300);
+    margin-bottom: var(--pb-space-8);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards 0.5s;
+}
+
+.pb-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--pb-space-3);
+    padding: var(--pb-space-4) var(--pb-space-8);
+    background-color: var(--pb-primary);
+    color: var(--pb-white);
+    text-decoration: none;
+    border-radius: var(--pb-radius);
+    font-weight: 600;
+    font-size: var(--pb-text-base);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards 0.7s;
+    box-shadow: var(--pb-shadow-lg);
+}
+
+.pb-hero-cta:hover {
+    background-color: var(--pb-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--pb-shadow-xl);
+}
+
+.pb-scroll-indicator {
+    position: absolute;
+    bottom: var(--pb-space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--pb-white);
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+    z-index: 2;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+/* Header transform effect */
+.pb-header.parallax-mode {
+    position: fixed;
+    background-color: transparent;
+    border-bottom: none;
+    backdrop-filter: none;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.pb-header.parallax-mode .pb-logo {
+    color: var(--pb-white);
+}
+
+.pb-header.parallax-mode .pb-nav-link {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.pb-header.parallax-mode .pb-nav-link:hover {
+    color: var(--pb-white);
+}
+
+.pb-header.parallax-mode .pb-btn-primary {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.pb-header.parallax-mode .pb-btn-primary:hover {
+    background-color: var(--pb-white);
+    color: var(--pb-text-primary);
+}
+
+.pb-header.scrolled {
+    background-color: var(--pb-white);
+    border-bottom: 1px solid var(--pb-border);
+    backdrop-filter: blur(8px);
+}
+
+.pb-header.scrolled .pb-logo {
+    color: var(--pb-text-primary);
+}
+
+.pb-header.scrolled .pb-nav-link {
+    color: var(--pb-text-secondary);
+}
+
+.pb-header.scrolled .pb-btn-primary {
+    background-color: var(--pb-primary);
+    border-color: var(--pb-primary);
+}
+
+/* Parallax sections */
+.pb-parallax-section {
+    position: relative;
+    padding: var(--pb-space-40) 0;
+    overflow: hidden;
+}
+
+.pb-parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.pb-parallax-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--pb-radius-lg);
+    padding: var(--pb-space-12);
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: var(--pb-shadow-xl);
+}
+
+/* Gallery grid */
+.pb-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--pb-space-8);
+    margin-top: var(--pb-space-12);
+}
+
+.pb-portfolio-item {
+    position: relative;
+    border-radius: var(--pb-radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--pb-gray-100);
+    transition: all 0.3s ease;
+}
+
+.pb-portfolio-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--pb-shadow-xl);
+}
+
+.pb-portfolio-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.pb-portfolio-item:hover .pb-portfolio-image {
+    transform: scale(1.05);
+}
+
+.pb-portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: var(--pb-white);
+    padding: var(--pb-space-6);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.pb-portfolio-item:hover .pb-portfolio-overlay {
+    transform: translateY(0);
+}
+
+.pb-portfolio-title {
+    font-size: var(--pb-text-lg);
+    font-weight: 700;
+    margin-bottom: var(--pb-space-2);
+}
+
+.pb-portfolio-category {
+    font-size: var(--pb-text-sm);
+    opacity: 0.8;
+}
+
+/* Featured portfolios section */
+.pb-featured-section {
+    background-color: var(--pb-gray-50);
+}
+
+.pb-featured-title {
+    font-size: var(--pb-text-3xl);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: var(--pb-space-12);
+    color: var(--pb-text-primary);
+}
+
+/* Made in Portfoliobox badge */
+.pb-made-badge {
+    display: inline-block;
+    padding: var(--pb-space-2) var(--pb-space-4);
+    background: var(--pb-gray-900);
+    color: var(--pb-white);
+    border-radius: var(--pb-radius);
+    font-size: var(--pb-text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: var(--pb-space-4);
+}
+
+/* Enhanced animations */
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pb-animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.pb-animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
