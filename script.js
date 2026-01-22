@@ -69,16 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function initMobileMenu() {
         if (!menuToggle) return;
         
-        const navCenter = document.querySelector('.pb-nav-center');
-        const navRight = document.querySelector('.pb-nav-right');
-        const mobileMenu = document.createElement('div');
-        mobileMenu.className = 'pb-mobile-menu';
-        
         menuToggle.addEventListener('click', function() {
             const isOpen = document.body.classList.contains('mobile-menu-open');
             
             if (!isOpen) {
                 // Crear menú móvil
+                const mobileMenu = document.createElement('div');
+                mobileMenu.className = 'pb-mobile-menu';
                 mobileMenu.innerHTML = `
                     <div class="pb-mobile-menu-content">
                         <button class="pb-mobile-close" aria-label="Cerrar menú">
@@ -138,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        transition: background-color 0.2s ease;
                     }
                     .pb-mobile-close:hover {
                         background: var(--pb-gray-100);
@@ -156,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         text-decoration: none;
                         text-align: center;
                         border-bottom: 1px solid var(--pb-border);
+                        transition: color 0.2s ease;
                     }
                     .pb-mobile-nav .pb-nav-link:hover {
                         color: var(--pb-primary);
@@ -167,6 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     @keyframes fadeIn {
                         from { opacity: 0; }
                         to { opacity: 1; }
+                    }
+                    @keyframes fadeOut {
+                        from { opacity: 1; }
+                        to { opacity: 0; }
                     }
                     body.mobile-menu-open {
                         overflow: hidden;
@@ -181,6 +184,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Cerrar al hacer clic en enlaces
                 mobileMenu.querySelectorAll('.pb-nav-link').forEach(link => {
                     link.addEventListener('click', closeMobileMenu);
+                });
+                
+                // Cerrar con ESC
+                document.addEventListener('keydown', function closeMenuOnEsc(e) {
+                    if (e.key === 'Escape') {
+                        closeMobileMenu();
+                        document.removeEventListener('keydown', closeMenuOnEsc);
+                    }
                 });
             } else {
                 closeMobileMenu();
@@ -412,6 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                transition: background-color 0.2s ease;
             }
             .pb-modal-close:hover {
                 background: var(--pb-gray-100);
@@ -520,34 +532,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p>Te responderé en menos de 24 horas.</p>
                     </div>
                 `;
-                
-                // Estilos para el mensaje de éxito
-                const style = document.createElement('style');
-                style.textContent = `
-                    .pb-form-success {
-                        background: linear-gradient(135deg, #10b981, #059669);
-                        color: white;
-                        padding: 1.5rem;
-                        border-radius: 12px;
-                        display: flex;
-                        align-items: center;
-                        gap: 1rem;
-                        margin-top: 1.5rem;
-                        animation: slideUp 0.4s ease;
-                    }
-                    .pb-form-success i {
-                        font-size: 2rem;
-                    }
-                    .pb-form-success h4 {
-                        font-size: 1.125rem;
-                        margin-bottom: 0.25rem;
-                    }
-                    .pb-form-success p {
-                        opacity: 0.9;
-                        font-size: 0.95rem;
-                    }
-                `;
-                document.head.appendChild(style);
                 
                 // Insertar mensaje después del formulario
                 contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
