@@ -487,254 +487,360 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== 10. CARRUSEL APILADO =====
-    function initCarousel() {
-        const carouselTrack = document.getElementById('carouselTrack');
-        if (!carouselTrack) return null;
+    // ===== 10. CARRUSEL APILADO - VERSIÓN MEJORADA =====
+function initCarousel() {
+    const carouselTrack = document.getElementById('carouselTrack');
+    if (!carouselTrack) return null;
+    
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    const carouselContainer = document.querySelector('.carousel-container');
+    
+    let currentIndex = 2; // Empezar con el slide del medio
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    let autoRotateInterval = null;
+    let isAnimating = false;
+    
+    // Configuración
+    const configCarousel = {
+        slideCount: slides.length,
+        autoRotateDelay: 5000, // 5 segundos
+        mouseSensitivity: 2,
+        animationDuration: 600
+    };
+    
+    // Inicializar
+    updateCarousel(true); // true para animación inicial
+    startAutoRotate();
+    initMouseWheel();
+    initTouchEvents();
+    initHoverEffects();
+    initKeyboardNavigation();
+    
+    // Event Listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            goToPrevSlide();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            goToNextSlide();
+        });
+    }
+    
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            goToSlide(index);
+        });
+    });
+    
+    // Navegación mejorada
+    function goToSlide(index, instant = false) {
+        if (isAnimating || index === currentIndex) return;
         
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        const prevBtn = document.querySelector('.carousel-prev');
-        const nextBtn = document.querySelector('.carousel-next');
+        isAnimating = true;
+        currentIndex = index;
         
-        let currentIndex = 0;
-        let isDragging = false;
-        let startX = 0;
-        let currentX = 0;
-        let autoRotateInterval = null;
+        if (instant) {
+            updateCarousel(false);
+            isAnimating = false;
+        } else {
+            updateCarousel(true);
+            
+            // Reset animation flag después de la transición
+            setTimeout(() => {
+                isAnimating = false;
+            }, configCarousel.animationDuration);
+        }
         
-        // Configuración
-        const configCarousel = {
-            slideCount: slides.length,
-            autoRotateDelay: 8000,
-            mouseSensitivity: 0.5
-        };
+        resetAutoRotate();
+    }
+    
+    function goToPrevSlide() {
+        const newIndex = (currentIndex - 1 + configCarousel.slideCount) % configCarousel.slideCount;
+        goToSlide(newIndex);
+    }
+    
+    function goToNextSlide() {
+        const newIndex = (currentIndex + 1) % configCarousel.slideCount;
+        goToSlide(newIndex);
+    }
+    
+    function updateCarousel(animate = true) {
+        if (!animate) {
+            carouselTrack.style.transition = 'none';
+        } else {
+            carouselTrack.style.transition = `transform ${configCarousel.animationDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+        }
         
-        // Inicializar
-        updateCarousel();
-        startAutoRotate();
-        initMouseWheel();
-        initTouchEvents();
-        initHoverEffects();
-        
-        // Event Listeners
-        if (prevBtn) prevBtn.addEventListener('click', goToPrevSlide);
-        if (nextBtn) nextBtn.addEventListener('click', goToNextSlide);
-        
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => goToSlide(index));
+        // Actualizar slides
+        slides.forEach((slide, index) => {
+            const diff = (index - currentIndex + configCarousel.slideCount) % configCarousel.slideCount;
+            
+            slide.classList.remove('active');
+            
+            // Asignar índices para efecto apilado
+            let newIndex;
+            if (diff === 0) {
+                newIndex = 2; // Centro
+            } else if (diff === 1 || diff === configCarousel.slideCount - 1) {
+                newIndex = 3; // Izquierda/derecha cercano
+            } else if (diff === 2 || diff === configCarousel.slideCount - 2) {
+                newIndex = 4; // Izquierda/derecha lejano
+            } else {
+                newIndex = 0; // Oculto
+            }
+            
+            slide.setAttribute('data-index', newIndex);
+            
+            if (index === currentIndex) {
+                slide.classList.add('active');
+            }
+            
+            // Añadir clase de animación
+            if (animate) {
+                slide.classList.add('animating');
+                setTimeout(() => {
+                    slide.classList.remove('animating');
+                }, configCarousel.animationDuration);
+            }
         });
         
-        // Navegación
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-            resetAutoRotate();
-        }
-        
-        function goToPrevSlide() {
-            currentIndex = (currentIndex - 1 + configCarousel.slideCount) % configCarousel.slideCount;
-            updateCarousel();
-            resetAutoRotate();
-        }
-        
-        function goToNextSlide() {
-            currentIndex = (currentIndex + 1) % configCarousel.slideCount;
-            updateCarousel();
-            resetAutoRotate();
-        }
-        
-        function updateCarousel() {
-            // Actualizar slides
-            slides.forEach((slide, index) => {
-                const diff = (index - currentIndex + configCarousel.slideCount) % configCarousel.slideCount;
-                
-                slide.classList.remove('active');
-                
-                // Asignar nuevos índices para efecto apilado
-                let newIndex = diff;
-                if (newIndex > 2) newIndex = 4 - newIndex;
-                
-                slide.setAttribute('data-index', newIndex);
-                
-                if (index === currentIndex) {
-                    slide.classList.add('active');
-                }
-            });
-            
-            // Actualizar dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
-        
-        // Auto-rotación
-        function startAutoRotate() {
-            if (configCarousel.autoRotateDelay > 0 && !config.reduceMotion) {
-                autoRotateInterval = setInterval(() => {
+        // Actualizar dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Auto-rotación
+    function startAutoRotate() {
+        if (configCarousel.autoRotateDelay > 0 && !config.reduceMotion) {
+            autoRotateInterval = setInterval(() => {
+                if (!isDragging && !isAnimating) {
                     goToNextSlide();
-                }, configCarousel.autoRotateDelay);
-            }
-        }
-        
-        function resetAutoRotate() {
-            if (autoRotateInterval) {
-                clearInterval(autoRotateInterval);
-                startAutoRotate();
-            }
-        }
-        
-        // Mouse Wheel
-        function initMouseWheel() {
-            carouselTrack.addEventListener('wheel', handleWheel, { passive: false });
-        }
-        
-        function handleWheel(e) {
-            e.preventDefault();
-            
-            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                if (e.deltaY > 0) {
-                    goToNextSlide();
-                } else {
-                    goToPrevSlide();
                 }
+            }, configCarousel.autoRotateDelay);
+        }
+    }
+    
+    function resetAutoRotate() {
+        if (autoRotateInterval) {
+            clearInterval(autoRotateInterval);
+            startAutoRotate();
+        }
+    }
+    
+    // Mouse Wheel
+    function initMouseWheel() {
+        if (carouselContainer) {
+            carouselContainer.addEventListener('wheel', handleWheel, { passive: false });
+        }
+    }
+    
+    function handleWheel(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (isAnimating) return;
+        
+        const delta = Math.sign(e.deltaY);
+        
+        if (delta > 0) {
+            goToNextSlide();
+        } else {
+            goToPrevSlide();
+        }
+        
+        resetAutoRotate();
+    }
+    
+    // Touch/Mouse Drag
+    function initTouchEvents() {
+        if (!carouselContainer) return;
+        
+        carouselContainer.addEventListener('mousedown', startDrag);
+        carouselContainer.addEventListener('touchstart', startDrag, { passive: true });
+        
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag, { passive: false });
+        
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+        document.addEventListener('touchcancel', endDrag);
+    }
+    
+    function startDrag(e) {
+        if (isAnimating) return;
+        
+        isDragging = true;
+        startX = getClientX(e);
+        currentX = startX;
+        
+        if (carouselContainer) {
+            carouselContainer.classList.add('carousel-dragging');
+        }
+        
+        resetAutoRotate();
+    }
+    
+    function drag(e) {
+        if (!isDragging || isAnimating) return;
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const newX = getClientX(e);
+        const deltaX = newX - currentX;
+        
+        currentX = newX;
+        
+        // Efecto visual durante el drag
+        updateDragEffect(deltaX);
+    }
+    
+    function endDrag() {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        
+        const deltaX = currentX - startX;
+        const threshold = 50; // px mínimo para cambiar slide
+        
+        if (Math.abs(deltaX) > threshold) {
+            if (deltaX > 0) {
+                goToPrevSlide();
             } else {
-                if (e.deltaX > 0) {
-                    goToNextSlide();
-                } else {
-                    goToPrevSlide();
-                }
+                goToNextSlide();
             }
-            
-            resetAutoRotate();
+        } else {
+            // Vuelve a la posición original
+            updateCarousel(true);
         }
         
-        // Touch/Mouse Drag
-        function initTouchEvents() {
-            carouselTrack.addEventListener('mousedown', startDrag);
-            carouselTrack.addEventListener('touchstart', startDrag);
-            
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('touchmove', drag);
-            
-            document.addEventListener('mouseup', endDrag);
-            document.addEventListener('touchend', endDrag);
-            document.addEventListener('touchcancel', endDrag);
+        if (carouselContainer) {
+            carouselContainer.classList.remove('carousel-dragging');
         }
-        
-        function startDrag(e) {
-            isDragging = true;
-            startX = getClientX(e);
-            currentX = startX;
-            
-            resetAutoRotate();
-        }
-        
-        function drag(e) {
-            if (!isDragging) return;
-            
-            e.preventDefault();
-            
-            const newX = getClientX(e);
-            const deltaX = newX - currentX;
-            
-            currentX = newX;
-            
-            // Si el drag es significativo, cambiar slide
-            if (Math.abs(deltaX) > 50) {
-                if (deltaX > 0) {
-                    goToPrevSlide();
-                } else {
-                    goToNextSlide();
-                }
-                endDrag();
+    }
+    
+    function getClientX(e) {
+        return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    }
+    
+    function updateDragEffect(deltaX) {
+        // Efecto sutil durante el drag
+        slides.forEach((slide) => {
+            const currentTransform = slide.getAttribute('data-index');
+            if (currentTransform !== '2') { // Solo los slides visibles
+                const rotation = deltaX > 0 ? 2 : -2;
+                slide.style.transform = slide.style.transform.replace(/rotateY\([^)]*\)/, `rotateY(${rotation}deg)`);
             }
-        }
-        
-        function endDrag() {
-            isDragging = false;
-        }
-        
-        function getClientX(e) {
-            return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-        }
-        
-        // Hover effects
-        function initHoverEffects() {
-            slides.forEach((slide, index) => {
-                slide.addEventListener('click', (e) => {
-                    if (!isDragging) {
-                        e.preventDefault();
-                        goToSlide(index);
+        });
+    }
+    
+    // Hover effects
+    function initHoverEffects() {
+        slides.forEach((slide, index) => {
+            // Click para centrar
+            slide.addEventListener('click', (e) => {
+                if (!isDragging && !isAnimating) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    goToSlide(index);
+                }
+            });
+            
+            // Para desktop: hover effect mejorado
+            if (!config.isTouch) {
+                slide.addEventListener('mouseenter', () => {
+                    if (!isDragging && !isAnimating && !slide.classList.contains('active')) {
+                        slide.style.zIndex = '15';
+                        slide.style.transform += ' scale(1.02)';
                     }
                 });
                 
-                // Para desktop: hover effect
-                if (!config.isTouch) {
-                    slide.addEventListener('mouseenter', () => {
-                        if (!isDragging) {
-                            slide.style.zIndex = '15';
-                        }
-                    });
-                    
-                    slide.addEventListener('mouseleave', () => {
-                        if (!isDragging && !slide.classList.contains('active')) {
-                            slide.style.zIndex = '';
-                        }
-                    });
-                }
-            });
-        }
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-            
-            if (e.key === 'ArrowLeft') {
-                goToPrevSlide();
-            } else if (e.key === 'ArrowRight') {
-                goToNextSlide();
+                slide.addEventListener('mouseleave', () => {
+                    if (!isDragging && !isAnimating && !slide.classList.contains('active')) {
+                        slide.style.zIndex = '';
+                        slide.style.transform = slide.style.transform.replace(' scale(1.02)', '');
+                    }
+                });
             }
         });
-        
-        // Cleanup
-        function cleanup() {
-            if (autoRotateInterval) {
-                clearInterval(autoRotateInterval);
-            }
-            
-            // Remover event listeners
-            if (prevBtn) prevBtn.removeEventListener('click', goToPrevSlide);
-            if (nextBtn) nextBtn.removeEventListener('click', goToNextSlide);
-            
-            dots.forEach((dot, index) => {
-                dot.removeEventListener('click', () => goToSlide(index));
-            });
-            
-            carouselTrack.removeEventListener('wheel', handleWheel);
-            carouselTrack.removeEventListener('mousedown', startDrag);
-            carouselTrack.removeEventListener('touchstart', startDrag);
-            
-            document.removeEventListener('keydown', handleKeydown);
-        }
-        
-        function handleKeydown(e) {
-            if (e.key === 'ArrowLeft') goToPrevSlide();
-            if (e.key === 'ArrowRight') goToNextSlide();
-        }
-        
-        document.addEventListener('keydown', handleKeydown);
-        
-        // Public methods
-        return {
-            next: goToNextSlide,
-            prev: goToPrevSlide,
-            goTo: goToSlide,
-            cleanup: cleanup,
-            getCurrentIndex: () => currentIndex
-        };
     }
     
+    // Keyboard navigation
+    function initKeyboardNavigation() {
+        document.addEventListener('keydown', handleKeydown);
+    }
+    
+    function handleKeydown(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || isAnimating) return;
+        
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            goToPrevSlide();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            goToNextSlide();
+        }
+    }
+    
+    // Cleanup
+    function cleanup() {
+        if (autoRotateInterval) {
+            clearInterval(autoRotateInterval);
+        }
+        
+        // Remover event listeners
+        if (prevBtn) prevBtn.removeEventListener('click', goToPrevSlide);
+        if (nextBtn) nextBtn.removeEventListener('click', goToNextSlide);
+        
+        dots.forEach((dot) => {
+            dot.removeEventListener('click', goToSlide);
+        });
+        
+        if (carouselContainer) {
+            carouselContainer.removeEventListener('wheel', handleWheel);
+            carouselContainer.removeEventListener('mousedown', startDrag);
+            carouselContainer.removeEventListener('touchstart', startDrag);
+        }
+        
+        document.removeEventListener('keydown', handleKeydown);
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('touchmove', drag);
+        document.removeEventListener('mouseup', endDrag);
+        document.removeEventListener('touchend', endDrag);
+        document.removeEventListener('touchcancel', endDrag);
+    }
+    
+    // Public methods
+    return {
+        next: goToNextSlide,
+        prev: goToPrevSlide,
+        goTo: (index) => goToSlide(index),
+        cleanup: cleanup,
+        getCurrentIndex: () => currentIndex,
+        stopAutoRotate: () => {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+                autoRotateInterval = null;
+            }
+        },
+        startAutoRotate: startAutoRotate
+    };
+}
     // ===== INICIALIZAR =====
     init();
     
