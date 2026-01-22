@@ -1587,3 +1587,220 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     font-weight: 600;
 }
+/* ============================== ANIMACIONES PORTFOLIOBOX ============================== */
+:root {
+    --animate-duration: 1s;
+    --animate-delay: 0.3s;
+}
+
+/* Animaciones de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Clases de animación */
+.animate-fade-in {
+    animation: fadeIn var(--animate-duration) ease-out;
+}
+
+.animate-slide-left {
+    animation: slideInLeft var(--animate-duration) ease-out;
+}
+
+.animate-slide-right {
+    animation: slideInRight var(--animate-duration) ease-out;
+}
+
+.animate-scale-in {
+    animation: scaleIn var(--animate-duration) ease-out;
+}
+
+/* Delays para animaciones escalonadas */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* ============================== EFECTOS HOVER MEJORADOS ============================== */
+.pb-project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.pb-project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.7s ease;
+    z-index: 1;
+}
+
+.pb-project-card:hover::before {
+    left: 100%;
+}
+
+/* Efecto de brillo en iconos de servicio */
+.pb-service-icon {
+    position: relative;
+    overflow: hidden;
+}
+
+.pb-service-icon::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.3) 0%,
+        transparent 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
+}
+
+.pb-service-card:hover .pb-service-icon::after {
+    transform: scale(1);
+}
+
+/* ============================== RESPONSIVE MEJORADO ============================== */
+@media (max-width: 768px) {
+    .pb-hero-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .pb-section-title {
+        font-size: 2rem !important;
+    }
+    
+    .pb-hero-stats {
+        flex-direction: column;
+        gap: 2rem !important;
+    }
+    
+    .pb-stat::after {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .pb-hero-title {
+        font-size: 2rem !important;
+    }
+    
+    .pb-hero-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    .pb-btn-large {
+        padding: 0.875rem 1.5rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ============================== AJUSTES DE ACCESIBILIDAD ============================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mejorar contraste para accesibilidad */
+.pb-btn-primary:focus,
+.pb-form-group input:focus,
+.pb-form-group textarea:focus {
+    outline: 3px solid var(--pb-primary);
+    outline-offset: 2px;
+}
+
+/* Soporte para modo oscuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --pb-white: #121212;
+        --pb-black: #ffffff;
+        --pb-gray-50: #1a1a1a;
+        --pb-gray-100: #2d2d2d;
+        --pb-text-primary: #ffffff;
+        --pb-text-secondary: #b0b0b0;
+        --pb-border: #404040;
+    }
+    
+    .pb-section-light {
+        background-color: var(--pb-gray-50);
+    }
+    
+    .pb-project-card,
+    .pb-service-card,
+    .pb-testimonial-card {
+        background-color: var(--pb-gray-100);
+        border-color: var(--pb-border);
+    }
+}
+
+/* ============================== EFECTO LOADING SUAVE ============================== */
+.pb-loading {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.pb-loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
