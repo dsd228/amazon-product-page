@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Díaz | UX/UI & Product Designer</title>
-    <meta name="description" content="Portafolio profesional de diseño UX/UI especializado en estrategia de producto, investigación de usuarios y optimización de conversión.">
+    <title>David Díaz | Senior UX/UI & Product Designer</title>
+    <meta name="description" content="Portafolio de David Díaz - Especialista en UX/UI, Estrategia de Producto y Diseño Basado en Datos. +50 proyectos, +340% conversión promedio.">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="David Díaz | Senior UX/UI & Product Designer">
+    <meta property="og:description" content="Diseño UX/UI que transforma visitas en clientes leales. Resultados medibles: +340% conversión, +$2.1M ingresos.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://dsd228.github.io/neobook-product-page/">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,14 +33,13 @@
             <nav class="dd-main-nav">
                 <a href="#hero" class="dd-logo">
                     <span class="dd-logo-text">David Díaz</span>
-                    <span class="dd-logo-subtitle">UX/UI & Product Designer</span>
+                    <span class="dd-logo-subtitle">Senior Product Designer</span>
                 </a>
                 
                 <div class="dd-nav-center">
                     <a href="#proyectos" class="dd-nav-link">Proyectos</a>
                     <a href="#servicios" class="dd-nav-link">Servicios</a>
                     <a href="#herramientas" class="dd-nav-link">Herramientas</a>
-                    <a href="#certificaciones" class="dd-nav-link">Certificaciones</a>
                     <a href="#proceso" class="dd-nav-link">Proceso</a>
                     <a href="#testimonios" class="dd-nav-link">Testimonios</a>
                     <a href="#contacto" class="dd-nav-link">Contacto</a>
@@ -42,7 +47,7 @@
                 
                 <div class="dd-nav-right">
                     <a href="#contacto" class="dd-btn dd-btn-primary">Empezar Proyecto</a>
-                    <button class="dd-menu-toggle" id="menuToggle" aria-label="Menú">
+                    <button class="dd-menu-toggle" id="menuToggle" aria-label="Menú" aria-expanded="false">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -50,284 +55,205 @@
         </div>
     </header>
 
-    <!-- Hero Section con efecto Portfoliobox -->
+    <!-- Hero Section -->
     <section class="dd-hero-section" id="hero">
-        <!-- Zoomable Container -->
         <div class="dd-hero-zoomable" data-zoom="28">
             <div class="dd-hero-zoomable-inner" id="zoomableInner">
-                <!-- Grid Background con tus proyectos -->
                 <div class="dd-hero-grid">
                     <div class="dd-grid-item">
                         <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="PASEO App UX Case Study" 
+                             alt="App FinTech para paseo de perros - Diseño UX/UI" 
                              loading="lazy">
                     </div>
                     <div class="dd-grid-item">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Nexus Dashboard Design" 
+                             alt="Dashboard SaaS B2B para logística - Rediseño UX" 
                              loading="lazy">
                     </div>
                     <div class="dd-grid-item">
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="La Caroyense E-commerce" 
-                             loading="lazy">
-                    </div>
-                    <div class="dd-grid-item">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="UX Research" 
-                             loading="lazy">
-                    </div>
-                    <div class="dd-grid-item">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Product Strategy" 
-                             loading="lazy">
-                    </div>
-                    <div class="dd-grid-item">
-                        <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="UI Design" 
-                             loading="lazy">
-                    </div>
-                    <div class="dd-grid-item">
-                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Mobile Design" 
+                             alt="E-commerce mobile-first - Optimización conversión" 
                              loading="lazy">
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Overlay -->
         <div class="dd-hero-overlay" id="heroOverlay"></div>
         
-        <!-- Hero Content -->
         <div class="dd-hero-content">
-            <div class="dd-hero-tag">
-                <i class="fas fa-sparkles"></i>
-                PORTFOLIO UX/UI PROFESIONAL
+            <div class="dd-hero-tag" role="status" aria-label="Estado profesional">
+                <i class="fas fa-sparkles" aria-hidden="true"></i>
+                SENIOR PRODUCT DESIGNER
             </div>
             
             <h1 class="dd-hero-title">
-                DISEÑO UX/UI & <span class="dd-highlight">PRODUCT STRATEGY</span><br>
-                QUE TRANSFORMA VISITAS<br>
-                EN CLIENTES LEALES.
+                Diseño UX/UI que <span class="dd-highlight">multiplica resultados</span>
             </h1>
             
             <p class="dd-hero-subtitle">
-                Especializado en <strong>estrategia de producto</strong>, <strong>investigación de usuarios</strong> y 
-                <strong>diseño basado en datos</strong>. Conviendo visitas en clientes con resultados medibles.
+                Especializado en <strong>estrategia de producto basada en datos</strong>, diseño de experiencias 
+                que <strong>aumentan conversión +340% promedio</strong> y retención de usuarios.
             </p>
             
             <div class="dd-hero-actions">
                 <a href="#proyectos" class="dd-btn dd-btn-primary dd-btn-large">
-                    <i class="fas fa-eye"></i> VER PROYECTOS
+                    <i class="fas fa-eye" aria-hidden="true"></i> Ver Proyectos Destacados
                 </a>
                 <a href="#contacto" class="dd-btn dd-btn-outline dd-btn-large">
-                    <i class="fas fa-calendar-alt"></i> AGENDAR LLAMADA
+                    <i class="fas fa-calendar-alt" aria-hidden="true"></i> Agenda Consulta Gratuita
                 </a>
             </div>
             
             <div class="dd-hero-stats">
                 <div class="dd-stat">
-                    <span class="dd-stat-number">50+</span>
-                    <span class="dd-stat-label">PROYECTOS UX/UI</span>
+                    <span class="dd-stat-number" id="statProjects">50+</span>
+                    <span class="dd-stat-label">Proyectos UX/UI</span>
                 </div>
                 <div class="dd-stat">
-                    <span class="dd-stat-number">340%</span>
-                    <span class="dd-stat-label">AUMENTO CONVERSIÓN</span>
+                    <span class="dd-stat-number" id="statConversion">340%</span>
+                    <span class="dd-stat-label">Aumento Conversión Promedio</span>
                 </div>
                 <div class="dd-stat">
-                    <span class="dd-stat-number">100%</span>
-                    <span class="dd-stat-label">SATISFACCIÓN CLIENTES</span>
+                    <span class="dd-stat-number" id="statRevenue">$2.1M+</span>
+                    <span class="dd-stat-label">Ingresos Generados</span>
                 </div>
             </div>
         </div>
         
-        <!-- Scroll Down Button -->
-        <button class="dd-scroll-down" id="scrollDown" aria-label="Desplázate hacia abajo">
-            <span class="dd-scroll-icon">↓</span>
-            EXPLORAR PROYECTOS
+        <button class="dd-scroll-down" id="scrollDown" aria-label="Desplázate hacia los proyectos">
+            <span class="dd-scroll-icon" aria-hidden="true">↓</span>
+            Descubre mis casos de estudio
         </button>
     </section>
 
     <!-- Proyectos Destacados -->
-    <section class="dd-projects-featured" id="proyectos">
+    <section class="dd-projects-featured" id="proyectos" aria-labelledby="proyectos-title">
         <div class="dd-container">
             <div class="dd-section-header">
-                <h2 class="dd-section-title">PROYECTOS DESTACADOS</h2>
+                <h2 class="dd-section-title" id="proyectos-title">Casos de Estudio Destacados</h2>
                 <p class="dd-section-subtitle">
-                    Casos de estudio donde el diseño UX/UI transformó resultados de negocio.
+                    Proyectos donde el diseño UX/UI transformó métricas de negocio. Cada caso incluye problema, solución y resultados medibles.
                 </p>
             </div>
             
             <!-- Proyecto PASEO -->
-            <div class="dd-project-showcase">
+            <article class="dd-project-showcase">
                 <div class="dd-project-visual">
                     <div class="dd-project-image-container">
                         <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                             alt="PASEO App UX Case Study" 
+                             alt="App PASEO - Interfaz principal con sistema de reservas" 
                              class="dd-project-main-image">
-                        <div class="dd-project-badge">MEJOR CASO DE ESTUDIO</div>
-                    </div>
-                    
-                    <div class="dd-project-gallery">
-                        <button class="dd-gallery-thumb active">
-                            <img src="app para paseadores de perros (20)/Reserva · Paseo confirmado-1.png" alt="Reserva confirmada">
-                        </button>
-                        <button class="dd-gallery-thumb">
-                            <img src="app para paseadores de perros (20)/Desktop - 1paseo.png" alt="Dashboard">
-                        </button>
-                        <button class="dd-gallery-thumb">
-                            <img src="app para paseadores de perros (20)/iPhone 14 Pro - 1.png" alt="Mobile View">
-                        </button>
+                        <div class="dd-project-badge" role="status">Proyecto Destacado</div>
                     </div>
                 </div>
                 
                 <div class="dd-project-details">
                     <div class="dd-project-meta">
                         <span class="dd-project-category">FinTech · Mobile App</span>
-                        <span class="dd-project-year">2024</span>
+                        <span class="dd-project-year">2024 · 8 semanas</span>
                     </div>
                     
-                    <h2 class="dd-project-title">PASEO – UX CASE STUDY</h2>
+                    <h2 class="dd-project-title">PASEO – App FinTech para Paseadores</h2>
                     
-                    <div class="dd-rating">
-                        <div class="dd-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span class="dd-rating-text">Proyecto destacado por innovación UX</span>
+                    <div class="dd-project-challenge">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Desafío</h3>
+                        <p>App existente con 40% de abandonos en onboarding y baja retención de paseadores.</p>
                     </div>
                     
-                    <div class="dd-project-description">
-                        <p>Diseño integral de app FinTech para paseo de perros con sistema de pagos integrado, 
-                        seguimiento en tiempo real y experiencia de usuario optimizada para conversión.</p>
+                    <div class="dd-project-solution">
+                        <h3><i class="fas fa-lightbulb"></i> Solución UX</h3>
+                        <p>Rediseño completo del flujo de onboarding, sistema de pagos integrado y seguimiento en tiempo real.</p>
                     </div>
                     
-                    <div class="dd-features-grid">
-                        <div class="dd-feature">
-                            <i class="fas fa-chart-line"></i>
-                            <div>
-                                <h4>78%</h4>
-                                <p>Aumento retención usuarios</p>
+                    <div class="dd-results-grid">
+                        <div class="dd-result-card">
+                            <div class="dd-result-icon" style="background: #10b98120;">
+                                <i class="fas fa-chart-line" style="color: #10b981;"></i>
+                            </div>
+                            <div class="dd-result-content">
+                                <h4>+78%</h4>
+                                <p>Retención de usuarios</p>
+                                <small>De 2.1 a 3.7 semanas</small>
                             </div>
                         </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-bolt"></i>
-                            <div>
-                                <h4>3.2x</h4>
-                                <p>Mejor tiempo de onboarding</p>
+                        
+                        <div class="dd-result-card">
+                            <div class="dd-result-icon" style="background: #3b82f620;">
+                                <i class="fas fa-bolt" style="color: #3b82f6;"></i>
+                            </div>
+                            <div class="dd-result-content">
+                                <h4>3.2x más rápido</h4>
+                                <p>Onboarding completado</p>
+                                <small>De 8.5 a 2.7 minutos</small>
                             </div>
                         </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-heart"></i>
-                            <div>
-                                <h4>4.8/5</h4>
-                                <p>Satisfacción usuario</p>
-                            </div>
-                        </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-code"></i>
-                            <div>
-                                <h4>100%</h4>
-                                <p>Accesibilidad WCAG</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="dd-project-tags">
-                        <span class="dd-tag">User Research</span>
-                        <span class="dd-tag">Wireframing</span>
-                        <span class="dd-tag">Prototipado</span>
-                        <span class="dd-tag">UI Design</span>
-                        <span class="dd-tag">User Testing</span>
                     </div>
                     
                     <div class="dd-project-actions">
                         <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" 
                            target="_blank" 
-                           class="dd-btn dd-btn-primary dd-btn-xl dd-btn-full">
-                            <i class="fab fa-github"></i> VER CASO COMPLETO EN GITHUB
+                           class="dd-btn dd-btn-primary"
+                           aria-label="Ver caso completo de PASEO en GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i> Ver Caso Completo
                         </a>
-                        <a href="#contacto" class="dd-btn dd-btn-outline dd-btn-full">
-                            <i class="fas fa-comment"></i> HABLAR SOBRE ESTE PROYECTO
+                        <a href="#contacto" class="dd-btn dd-btn-outline">
+                            <i class="fas fa-comment" aria-hidden="true"></i> Proyecto Similar
                         </a>
                     </div>
                 </div>
-            </div>
+            </article>
             
             <!-- Proyecto Nexus -->
-            <div class="dd-project-showcase dd-project-reverse">
+            <article class="dd-project-showcase dd-project-reverse">
                 <div class="dd-project-details">
                     <div class="dd-project-meta">
-                        <span class="dd-project-category">Logística · SaaS B2B</span>
-                        <span class="dd-project-year">2023</span>
+                        <span class="dd-project-category">SaaS B2B · Dashboard</span>
+                        <span class="dd-project-year">2023 · 12 semanas</span>
                     </div>
                     
-                    <h2 class="dd-project-title">NEXUS LOGISTICS DASHBOARD</h2>
+                    <h2 class="dd-project-title">Nexus Logistics Dashboard</h2>
                     
-                    <div class="dd-rating">
-                        <div class="dd-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="dd-rating-text">Implementación exitosa en producción</span>
+                    <div class="dd-project-challenge">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Desafío</h3>
+                        <p>Dashboard complejo con curva de aprendizaje de 3 semanas y alta tasa de errores.</p>
                     </div>
                     
-                    <div class="dd-project-description">
-                        <p>Rediseño UX/UI de dashboard operativo B2B para simplificar flujos complejos, 
-                        reducir curva de aprendizaje y aumentar eficiencia operativa en 45%.</p>
+                    <div class="dd-project-solution">
+                        <h3><i class="fas fa-lightbulb"></i> Solución UX</h3>
+                        <p>Rediseño de arquitectura de información y simplificación de flujos operativos.</p>
                     </div>
                     
-                    <div class="dd-features-grid">
-                        <div class="dd-feature">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <h4>45%</h4>
-                                <p>Más eficiencia operativa</p>
+                    <div class="dd-results-grid">
+                        <div class="dd-result-card">
+                            <div class="dd-result-icon" style="background: #f59e0b20;">
+                                <i class="fas fa-clock" style="color: #f59e0b;"></i>
+                            </div>
+                            <div class="dd-result-content">
+                                <h4>+45%</h4>
+                                <p>Eficiencia operativa</p>
+                                <small>Reducción tiempo tareas</small>
                             </div>
                         </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-user-check"></i>
-                            <div>
-                                <h4>60%</h4>
-                                <p>Menos errores usuarios</p>
+                        
+                        <div class="dd-result-card">
+                            <div class="dd-result-icon" style="background: #10b98120;">
+                                <i class="fas fa-money-bill-wave" style="color: #10b981;"></i>
                             </div>
-                        </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <div>
+                            <div class="dd-result-content">
                                 <h4>$2.1M</h4>
                                 <p>Ingresos adicionales</p>
+                                <small>Primer año post-implementación</small>
                             </div>
                         </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-layer-group"></i>
-                            <div>
-                                <h4>8 → 3</h4>
-                                <p>Pasos para completar tareas</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="dd-project-tags">
-                        <span class="dd-tag">Dashboard Design</span>
-                        <span class="dd-tag">Data Visualization</span>
-                        <span class="dd-tag">B2B UX</span>
-                        <span class="dd-tag">Complex Systems</span>
-                        <span class="dd-tag">Analytics</span>
                     </div>
                     
                     <div class="dd-project-actions">
                         <a href="https://github.com/dsd228/nexus-logistics-ui" 
                            target="_blank" 
-                           class="dd-btn dd-btn-primary dd-btn-xl dd-btn-full">
-                            <i class="fab fa-github"></i> VER PROYECTO EN GITHUB
+                           class="dd-btn dd-btn-primary"
+                           aria-label="Ver proyecto Nexus en GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i> Ver Componentes UI
                         </a>
                     </div>
                 </div>
@@ -335,273 +261,183 @@
                 <div class="dd-project-visual">
                     <div class="dd-project-image-container">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                             alt="Nexus Logistics Dashboard" 
+                             alt="Dashboard Nexus - Vista principal con métricas" 
                              class="dd-project-main-image">
-                        <div class="dd-project-badge">SaaS B2B</div>
-                    </div>
-                    
-                    <div class="dd-project-gallery">
-                        <button class="dd-gallery-thumb active">
-                            <img src="dispatch - copia.png" alt="Dispatch View">
-                        </button>
-                        <button class="dd-gallery-thumb">
-                            <img src="images/Home.png" alt="Home Dashboard">
-                        </button>
+                        <div class="dd-project-badge" role="status">SaaS B2B</div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Proyecto La Caroyense -->
-            <div class="dd-project-showcase">
-                <div class="dd-project-visual">
-                    <div class="dd-project-image-container">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                             alt="La Caroyense E-commerce" 
-                             class="dd-project-main-image">
-                        <div class="dd-project-badge">E-COMMERCE REDESIGN</div>
-                    </div>
-                    
-                    <div class="dd-project-gallery">
-                        <button class="dd-gallery-thumb active">
-                            <img src="Bodega La Caroyense — UX_UI Redesign/Desktop - 6.png" alt="Desktop View">
-                        </button>
-                        <button class="dd-gallery-thumb">
-                            <img src="images/iPhone 16 Pro - 2.png" alt="Mobile View">
-                        </button>
-                        <button class="dd-gallery-thumb">
-                            <img src="images/gallery/UX.jpg" alt="UX Process">
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="dd-project-details">
-                    <div class="dd-project-meta">
-                        <span class="dd-project-category">E-commerce · Mobile First</span>
-                        <span class="dd-project-year">2023</span>
-                    </div>
-                    
-                    <h2 class="dd-project-title">LA CAROYENSE E-COMMERCE</h2>
-                    
-                    <div class="dd-rating">
-                        <div class="dd-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span class="dd-rating-text">Mobile-first optimization</span>
-                    </div>
-                    
-                    <div class="dd-project-description">
-                        <p>Rediseño mobile-first de e-commerce optimizando funnel de compra, 
-                        implementando estrategias de conversión y mejorando experiencia usuario en dispositivos móviles.</p>
-                    </div>
-                    
-                    <div class="dd-features-grid">
-                        <div class="dd-feature">
-                            <i class="fas fa-shopping-cart"></i>
-                            <div>
-                                <h4>340%</h4>
-                                <p>Aumento conversión móvil</p>
-                            </div>
-                        </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-mobile-alt"></i>
-                            <div>
-                                <h4>92%</h4>
-                                <p>Tráfico desde móvil</p>
-                            </div>
-                        </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-stopwatch"></i>
-                            <div>
-                                <h4>40%</h4>
-                                <p>Menos tiempo checkout</p>
-                            </div>
-                        </div>
-                        <div class="dd-feature">
-                            <i class="fas fa-undo"></i>
-                            <div>
-                                <h4>65%</h4>
-                                <p>Menos carritos abandonados</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="dd-project-tags">
-                        <span class="dd-tag">E-commerce</span>
-                        <span class="dd-tag">Mobile First</span>
-                        <span class="dd-tag">Conversion Rate</span>
-                        <span class="dd-tag">UI Design</span>
-                        <span class="dd-tag">A/B Testing</span>
-                    </div>
-                    
-                    <div class="dd-project-actions">
-                        <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" 
-                           target="_blank" 
-                           class="dd-btn dd-btn-primary dd-btn-xl dd-btn-full">
-                            <i class="fab fa-github"></i> VER REDISEÑO COMPLETO
-                        </a>
-                    </div>
-                </div>
-            </div>
+            </article>
         </div>
     </section>
 
     <!-- Servicios -->
-    <section class="dd-section dd-section-light" id="servicios">
+    <section class="dd-section dd-section-light" id="servicios" aria-labelledby="servicios-title">
         <div class="dd-container">
             <div class="dd-section-header">
-                <h2 class="dd-section-title">SERVICIOS ESPECIALIZADOS</h2>
+                <h2 class="dd-section-title" id="servicios-title">Servicios Especializados</h2>
                 <p class="dd-section-subtitle">
-                    Soluciones integrales de diseño UX/UI y estrategia de producto.
+                    Soluciones de diseño estratégico basadas en datos y mejores prácticas de UX.
                 </p>
             </div>
             
             <div class="dd-services-grid">
-                <div class="dd-service-card">
-                    <div class="dd-service-icon">
+                <article class="dd-service-card">
+                    <div class="dd-service-icon" aria-hidden="true">
                         <i class="fas fa-pencil-ruler"></i>
                     </div>
-                    <h3 class="dd-service-title">Diseño UX/UI</h3>
+                    <h3 class="dd-service-title">Diseño UX/UI Estratégico</h3>
                     <p class="dd-service-description">
-                        Interfaces intuitivas y atractivas basadas en investigación de usuarios, 
-                        prototipado y testing iterativo.
+                        Interfaces que resuelven problemas reales de usuarios. Investigación, wireframes, 
+                        prototipos interactivos y sistemas de diseño.
                     </p>
+                    <ul class="dd-service-features">
+                        <li>User Research & Personas</li>
+                        <li>Wireframing & Prototipado</li>
+                        <li>Design Systems</li>
+                        <li>UI Design</li>
+                    </ul>
                     <a href="#contacto" class="dd-service-link">
-                        Solicitar servicio <i class="fas fa-arrow-right"></i>
+                        Solicitar servicio <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
-                </div>
+                </article>
                 
-                <div class="dd-service-card">
-                    <div class="dd-service-icon">
+                <article class="dd-service-card">
+                    <div class="dd-service-icon" aria-hidden="true">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3 class="dd-service-title">Estrategia de Producto</h3>
                     <p class="dd-service-description">
-                        Definición de roadmap, optimización de flujos y métricas para maximizar 
-                        conversión y retención.
+                        Roadmap basado en datos, optimización de métricas y mejora de conversión. 
+                        De la idea al producto escalable.
                     </p>
+                    <ul class="dd-service-features">
+                        <li>Product Discovery</li>
+                        <li>Roadmap & OKRs</li>
+                        <li>Optimización Conversión</li>
+                        <li>Growth Strategy</li>
+                    </ul>
                     <a href="#contacto" class="dd-service-link">
-                        Solicitar servicio <i class="fas fa-arrow-right"></i>
+                        Solicitar servicio <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
-                </div>
+                </article>
                 
-                <div class="dd-service-card">
-                    <div class="dd-service-icon">
+                <article class="dd-service-card">
+                    <div class="dd-service-icon" aria-hidden="true">
                         <i class="fas fa-search"></i>
                     </div>
                     <h3 class="dd-service-title">Research & Testing</h3>
                     <p class="dd-service-description">
-                        Investigación de usuarios, pruebas de usabilidad y análisis de datos para 
-                        decisiones informadas.
+                        Investigación con usuarios reales y pruebas de usabilidad. Datos para decisiones 
+                        informadas, no suposiciones.
                     </p>
+                    <ul class="dd-service-features">
+                        <li>User Testing</li>
+                        <li>A/B Testing</li>
+                        <li>Analytics & Heatmaps</li>
+                        <li>Usability Audits</li>
+                    </ul>
                     <a href="#contacto" class="dd-service-link">
-                        Solicitar servicio <i class="fas fa-arrow-right"></i>
+                        Solicitar servicio <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
-                </div>
+                </article>
                 
-                <div class="dd-service-card">
-                    <div class="dd-service-icon">
+                <article class="dd-service-card">
+                    <div class="dd-service-icon" aria-hidden="true">
                         <i class="fas fa-code"></i>
                     </div>
                     <h3 class="dd-service-title">Frontend Development</h3>
                     <p class="dd-service-description">
-                        Implementación de diseños en código limpio, accesible y optimizado 
-                        para performance.
+                        Implementación de diseños en código accesible y optimizado. HTML5, CSS3, JavaScript 
+                        y frameworks modernos.
                     </p>
+                    <ul class="dd-service-features">
+                        <li>HTML5 / CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>React / Vue.js</li>
+                        <li>Accesibilidad WCAG</li>
+                    </ul>
                     <a href="#contacto" class="dd-service-link">
-                        Solicitar servicio <i class="fas fa-arrow-right"></i>
+                        Solicitar servicio <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
-                </div>
+                </article>
             </div>
         </div>
     </section>
-        <!-- Herramientas & IA -->
-    <section class="dd-section dd-section-tools" id="herramientas">
+
+    <!-- Herramientas & IA -->
+    <section class="dd-section dd-section-tools" id="herramientas" aria-labelledby="herramientas-title">
         <div class="dd-container">
             <div class="dd-section-header">
-                <h2 class="dd-section-title">HERRAMIENTAS & IA</h2>
+                <h2 class="dd-section-title" id="herramientas-title">Stack Tecnológico</h2>
                 <p class="dd-section-subtitle">
-                    Stack tecnológico y asistentes de IA que potencian cada fase de mis proyectos.
+                    Herramientas profesionales y asistentes de IA que optimizan cada fase del proyecto.
                 </p>
             </div>
             
             <div class="dd-tools-grid">
-                <!-- Herramientas de Diseño -->
+                <!-- Diseño -->
                 <div class="dd-tools-category">
                     <div class="dd-category-header">
                         <div class="dd-category-icon">
-                            <i class="fas fa-pencil-alt"></i>
+                            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         </div>
                         <h3 class="dd-category-title">Diseño & Prototipado</h3>
                         <p class="dd-category-description">
-                            Herramientas profesionales para creación de interfaces y experiencias.
+                            Herramientas para diseño de interfaces y experiencia de usuario.
                         </p>
                     </div>
                     
                     <div class="dd-tools-list">
                         <div class="dd-tool-item">
-                            <div class="dd-tool-icon">
-                                <i class="fab fa-figma"></i>
+                            <div class="dd-tool-icon" style="background: #1a1a1a;">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" 
+                                     alt="Logo Figma" 
+                                     style="width: 24px; height: 24px;">
                             </div>
                             <div class="dd-tool-info">
                                 <h4 class="dd-tool-name">Figma</h4>
-                                <p class="dd-tool-use">Diseño UI, prototipos, design systems</p>
+                                <p class="dd-tool-use">Diseño UI, prototipos interactivos</p>
                             </div>
                             <div class="dd-tool-level">
                                 <div class="dd-level-bar" style="width: 95%"></div>
-                                <span class="dd-level-text">Avanzado</span>
-                            </div>
-                        </div>
-                        
-                        <div class="dd-tool-item">
-                            <div class="dd-tool-icon">
-                                <i class="fas fa-bezier-curve"></i>
-                            </div>
-                            <div class="dd-tool-info">
-                                <h4 class="dd-tool-name">Adobe Creative Suite</h4>
-                                <p class="dd-tool-use">Photoshop, Illustrator, XD</p>
-                            </div>
-                            <div class="dd-tool-level">
-                                <div class="dd-level-bar" style="width: 85%"></div>
                                 <span class="dd-level-text">Experto</span>
                             </div>
                         </div>
                         
                         <div class="dd-tool-item">
-                            <div class="dd-tool-icon">
-                                <i class="fas fa-cube"></i>
+                            <div class="dd-tool-icon" style="background: #FF9A00;">
+                                <i class="fab fa-sketch" aria-hidden="true" style="color: white;"></i>
                             </div>
                             <div class="dd-tool-info">
                                 <h4 class="dd-tool-name">Sketch</h4>
-                                <p class="dd-tool-use">Diseño vectorial, símbolos</p>
+                                <p class="dd-tool-use">Diseño vectorial, sistemas de diseño</p>
                             </div>
                             <div class="dd-tool-level">
-                                <div class="dd-level-bar" style="width: 80%"></div>
-                                <span class="dd-level-text">Intermedio</span>
+                                <div class="dd-level-bar" style="width: 85%"></div>
+                                <span class="dd-level-text">Avanzado</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Herramientas de Desarrollo -->
+                <!-- Desarrollo -->
                 <div class="dd-tools-category">
                     <div class="dd-category-header">
                         <div class="dd-category-icon">
-                            <i class="fas fa-code"></i>
+                            <i class="fas fa-code" aria-hidden="true"></i>
                         </div>
-                        <h3 class="dd-category-title">Desarrollo & Testing</h3>
+                        <h3 class="dd-category-title">Desarrollo</h3>
                         <p class="dd-category-description">
-                            Tecnologías para implementación y validación de productos.
+                            Tecnologías para implementación frontend y control de versiones.
                         </p>
                     </div>
                     
                     <div class="dd-tools-list">
                         <div class="dd-tool-item">
-                            <div class="dd-tool-icon">
-                                <i class="fab fa-html5"></i>
+                            <div class="dd-tool-icon" style="background: #E34F26;">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" 
+                                     alt="Logo HTML5" 
+                                     style="width: 24px; height: 24px;">
                             </div>
                             <div class="dd-tool-info">
                                 <h4 class="dd-tool-name">HTML5 / CSS3</h4>
@@ -614,8 +450,10 @@
                         </div>
                         
                         <div class="dd-tool-item">
-                            <div class="dd-tool-icon">
-                                <i class="fab fa-js"></i>
+                            <div class="dd-tool-icon" style="background: #F7DF1E;">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+                                     alt="Logo JavaScript" 
+                                     style="width: 24px; height: 24px;">
                             </div>
                             <div class="dd-tool-info">
                                 <h4 class="dd-tool-name">JavaScript</h4>
@@ -626,288 +464,130 @@
                                 <span class="dd-level-text">Avanzado</span>
                             </div>
                         </div>
-                        
-                        <div class="dd-tool-item">
-                            <div class="dd-tool-icon">
-                                <i class="fab fa-git-alt"></i>
-                            </div>
-                            <div class="dd-tool-info">
-                                <h4 class="dd-tool-name">Git & GitHub</h4>
-                                <p class="dd-tool-use">Version control, collaboration</p>
-                            </div>
-                            <div class="dd-tool-level">
-                                <div class="dd-level-bar" style="width: 92%"></div>
-                                <span class="dd-level-text">Experto</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
-                <!-- Asistentes de IA -->
+                <!-- IA -->
                 <div class="dd-tools-category dd-tools-ai">
                     <div class="dd-category-header">
                         <div class="dd-category-icon">
-                            <i class="fas fa-brain"></i>
+                            <i class="fas fa-brain" aria-hidden="true"></i>
                         </div>
                         <h3 class="dd-category-title">Asistentes de IA</h3>
                         <p class="dd-category-description">
-                            Mi copiloto en cada proyecto. IA que optimiza y potencia el flujo de trabajo.
+                            IA como copiloto para optimizar flujos creativos y técnicos.
                         </p>
                     </div>
                     
-                    <div class="dd-ai-grid">
-                        <div class="dd-ai-card">
-                            <div class="dd-ai-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h4 class="dd-ai-title">ChatGPT 4</h4>
-                            <p class="dd-ai-description">
-                                Ideación, copywriting, debugging, generación de código.
-                            </p>
-                            <div class="dd-ai-tags">
-                                <span class="dd-ai-tag">Ideación</span>
-                                <span class="dd-ai-tag">Código</span>
-                                <span class="dd-ai-tag">Copy</span>
-                            </div>
-                        </div>
-                        
-                        <div class="dd-ai-card">
-                            <div class="dd-ai-icon">
-                                <i class="fas fa-magic"></i>
-                            </div>
-                            <h4 class="dd-ai-title">Midjourney / DALL-E</h4>
-                            <p class="dd-ai-description">
-                                Generación de assets visuales, moodboards, inspiración.
-                            </p>
-                            <div class="dd-ai-tags">
-                                <span class="dd-ai-tag">Imágenes</span>
-                                <span class="dd-ai-tag">Conceptos</span>
-                                <span class="dd-ai-tag">Inspiración</span>
-                            </div>
-                        </div>
-                        
-                        <div class="dd-ai-card">
-                            <div class="dd-ai-icon">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                            <h4 class="dd-ai-title">Analytics AI</h4>
-                            <p class="dd-ai-description">
-                                Análisis de datos, insights de usuarios, métricas predictivas.
-                            </p>
-                            <div class="dd-ai-tags">
-                                <span class="dd-ai-tag">Datos</span>
-                                <span class="dd-ai-tag">Análisis</span>
-                                <span class="dd-ai-tag">Insights</span>
-                            </div>
-                        </div>
-                        
-                        <div class="dd-ai-card">
-                            <div class="dd-ai-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <h4 class="dd-ai-title">GitHub Copilot</h4>
-                            <p class="dd-ai-description">
-                                Autocompletado inteligente, sugerencias de código, refactoring.
-                            </p>
-                            <div class="dd-ai-tags">
-                                <span class="dd-ai-tag">Código</span>
-                                <span class="dd-ai-tag">Eficiencia</span>
-                                <span class="dd-ai-tag">QA</span>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="dd-ai-workflow">
-                        <h4 class="dd-workflow-title">Flujo de trabajo con IA:</h4>
+                        <h4 class="dd-workflow-title">Flujo Potenciado por IA:</h4>
                         <div class="dd-workflow-steps">
                             <div class="dd-workflow-step">
                                 <span class="dd-step-number">1</span>
-                                <span class="dd-step-text">Ideación con ChatGPT para conceptos</span>
+                                <div class="dd-step-content">
+                                    <strong>Ideación</strong>
+                                    <span>Conceptos con ChatGPT</span>
+                                </div>
                             </div>
                             <div class="dd-workflow-step">
                                 <span class="dd-step-number">2</span>
-                                <span class="dd-step-text">Generación visual con Midjourney</span>
+                                <div class="dd-step-content">
+                                    <strong>Diseño</strong>
+                                    <span>Assets con Midjourney</span>
+                                </div>
                             </div>
                             <div class="dd-workflow-step">
                                 <span class="dd-step-number">3</span>
-                                <span class="dd-step-text">Desarrollo asistido por Copilot</span>
-                            </div>
-                            <div class="dd-workflow-step">
-                                <span class="dd-step-number">4</span>
-                                <span class="dd-step-text">Análisis con herramientas de datos IA</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="dd-tools-cta">
-                <p class="dd-tools-note">
-                    <i class="fas fa-lightbulb"></i>
-                    La IA no reemplaza la creatividad humana, pero <strong>multiplica su potencial</strong>. 
-                    En cada proyecto, combino intuición humana con inteligencia artificial para resultados excepcionales.
-                </p>
-                <a href="#contacto" class="dd-btn dd-btn-primary">
-                    <i class="fas fa-rocket"></i> HABLAR SOBRE TU PROYECTO CON IA
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certificaciones Carrusel -->
-    <section class="dd-section dd-section-certifications" id="certificaciones">
-        <div class="dd-container">
-            <div class="dd-section-header">
-                <h2 class="dd-section-title">CERTIFICACIONES</h2>
-                <p class="dd-section-subtitle">
-                    Credenciales profesionales que avalan mi experiencia en UX/UI y desarrollo.
-                </p>
-            </div>
-            
-            <div class="dd-certifications-carousel">
-                <div class="dd-certifications-track" id="certificationsTrack">
-                    <!-- Certificación 1 -->
-                    <div class="dd-certification-card">
-                        <div class="dd-certification-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="dd-certification-content">
-                            <h3 class="dd-certification-title">Certificado Académico</h3>
-                            <p class="dd-certification-description">
-                                Validación de conocimientos en diseño UX/UI y desarrollo frontend.
-                            </p>
-                            <div class="dd-certification-meta">
-                                <span class="dd-certification-date">2024</span>
-                                <span class="dd-certification-org">Institución Certificadora</span>
+                                <div class="dd-step-content">
+                                    <strong>Desarrollo</strong>
+                                    <span>Código con GitHub Copilot</span>
+                                </div>
                             </div>
                         </div>
-                        <button class="dd-certification-view" onclick="openCertificateModal('cert-academico')">
-                            <i class="fas fa-external-link-alt"></i>
-                        </button>
                     </div>
                     
-                    <!-- Certificación 2 -->
-                    <div class="dd-certification-card">
-                        <div class="dd-certification-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="dd-certification-content">
-                            <h3 class="dd-certification-title">Certificado de Validación</h3>
-                            <p class="dd-certification-description">
-                                Validación profesional de competencias en diseño de interfaces.
-                            </p>
-                            <div class="dd-certification-meta">
-                                <span class="dd-certification-date">2023</span>
-                                <span class="dd-certification-org">Organismo Validación</span>
-                            </div>
-                        </div>
-                        <button class="dd-certification-view" onclick="openCertificateModal('cert-validacion')">
-                            <i class="fas fa-external-link-alt"></i>
-                        </button>
+                    <div class="dd-ai-note">
+                        <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                        <p>La IA <strong>multiplica la creatividad humana</strong>, no la reemplaza. Combino intuición con inteligencia artificial para resultados excepcionales.</p>
                     </div>
-                    
-                    <!-- Certificación 3 -->
-                    <div class="dd-certification-card">
-                        <div class="dd-certification-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div class="dd-certification-content">
-                            <h3 class="dd-certification-title">Datathon</h3>
-                            <p class="dd-certification-description">
-                                Participación y reconocimiento en competencia de análisis de datos y UX.
-                            </p>
-                            <div class="dd-certification-meta">
-                                <span class="dd-certification-date">2023</span>
-                                <span class="dd-certification-org">Competencia Internacional</span>
-                            </div>
-                        </div>
-                        <button class="dd-certification-view" onclick="openCertificateModal('cert-datathon')">
-                            <i class="fas fa-external-link-alt"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Certificación 4 (Placeholder) -->
-                    <div class="dd-certification-card">
-                        <div class="dd-certification-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="dd-certification-content">
-                            <h3 class="dd-certification-title">UX Design Specialization</h3>
-                            <p class="dd-certification-description">
-                                Especialización en diseño de experiencia de usuario y investigación.
-                            </p>
-                            <div class="dd-certification-meta">
-                                <span class="dd-certification-date">En Progreso</span>
-                                <span class="dd-certification-org">Coursera</span>
-                            </div>
-                        </div>
-                        <button class="dd-certification-view" onclick="openCertificateModal('cert-ux')">
-                            <i class="fas fa-external-link-alt"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="dd-carousel-controls">
-                    <button class="dd-carousel-prev" id="carouselPrev" aria-label="Certificaciones anteriores">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="dd-carousel-dots" id="carouselDots"></div>
-                    <button class="dd-carousel-next" id="carouselNext" aria-label="Siguientes certificaciones">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Proceso de Trabajo -->
-    <section class="dd-section" id="proceso">
+    <section class="dd-section" id="proceso" aria-labelledby="proceso-title">
         <div class="dd-container">
             <div class="dd-section-header">
-                <h2 class="dd-section-title">MI PROCESO UX</h2>
+                <h2 class="dd-section-title" id="proceso-title">Proceso UX Probado</h2>
                 <p class="dd-section-subtitle">
-                    Metodología probada que garantiza resultados excepcionales en cada proyecto.
+                    Metodología iterativa que garantiza resultados medibles en cada proyecto.
                 </p>
             </div>
             
             <div class="dd-process-timeline">
                 <div class="dd-process-step">
-                    <div class="dd-step-number">01</div>
+                    <div class="dd-step-number" aria-hidden="true">01</div>
                     <div class="dd-step-content">
                         <h3>Descubrimiento & Research</h3>
-                        <p>Análisis de mercado, investigación de usuarios, benchmarking y definición de objetivos.</p>
+                        <p>Análisis de mercado, entrevistas con usuarios, benchmark competitivo y definición de KPIs.</p>
+                        <ul class="dd-step-features">
+                            <li>User Interviews</li>
+                            <li>Competitive Analysis</li>
+                            <li>KPI Definition</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="dd-process-step">
-                    <div class="dd-step-number">02</div>
+                    <div class="dd-step-number" aria-hidden="true">02</div>
                     <div class="dd-step-content">
                         <h3>Estrategia & Arquitectura</h3>
                         <p>User flows, wireframing, arquitectura de información y diseño de interacción.</p>
+                        <ul class="dd-step-features">
+                            <li>User Flows</li>
+                            <li>Information Architecture</li>
+                            <li>Wireframing</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="dd-process-step">
-                    <div class="dd-step-number">03</div>
+                    <div class="dd-step-number" aria-hidden="true">03</div>
                     <div class="dd-step-content">
                         <h3>Diseño UI & Prototipado</h3>
                         <p>Diseño visual, sistemas de diseño, prototipos interactivos y design system.</p>
+                        <ul class="dd-step-features">
+                            <li>UI Design</li>
+                            <li>Interactive Prototypes</li>
+                            <li>Design System</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="dd-process-step">
-                    <div class="dd-step-number">04</div>
+                    <div class="dd-step-number" aria-hidden="true">04</div>
                     <div class="dd-step-content">
                         <h3>Testing & Iteración</h3>
                         <p>Pruebas de usabilidad, feedback de usuarios, análisis de datos y optimización.</p>
+                        <ul class="dd-step-features">
+                            <li>Usability Testing</li>
+                            <li>A/B Testing</li>
+                            <li>Data Analysis</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="dd-process-step">
-                    <div class="dd-step-number">05</div>
+                    <div class="dd-step-number" aria-hidden="true">05</div>
                     <div class="dd-step-content">
                         <h3>Implementación & Handoff</h3>
-                        <p>Desarrollo frontend, QA, documentación y transferencia al equipo de desarrollo.</p>
+                        <p>Desarrollo frontend, QA, documentación y transferencia al equipo.</p>
+                        <ul class="dd-step-features">
+                            <li>Frontend Development</li>
+                            <li>QA & Testing</li>
+                            <li>Documentation</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -915,139 +595,162 @@
     </section>
 
     <!-- Testimonios -->
-    <section class="dd-section dd-section-testimonials" id="testimonios">
+    <section class="dd-section dd-section-testimonials" id="testimonios" aria-labelledby="testimonios-title">
         <div class="dd-container">
             <div class="dd-section-header">
-                <h2 class="dd-section-title">TESTIMONIOS DE CLIENTES</h2>
+                <h2 class="dd-section-title" id="testimonios-title">Lo que Dicen Mis Clientes</h2>
                 <p class="dd-section-subtitle">
-                    Feedback real de proyectos completados con resultados verificables.
+                    Feedback verificable de empresas y startups que han trabajado conmigo.
                 </p>
             </div>
             
             <div class="dd-testimonials-grid">
-                <div class="dd-testimonial-card">
+                <article class="dd-testimonial-card">
                     <div class="dd-testimonial-content">
                         <p class="dd-testimonial-quote">
-                            "David transformó completamente nuestro producto. Implementamos sus recomendaciones 
-                            y en 3 meses vimos un aumento del 78% en retención de usuarios. Su enfoque basado en datos es excepcional."
+                            "David transformó completamente nuestro producto. En 3 meses logramos +78% retención 
+                            de usuarios y redujimos el tiempo de onboarding en 67%. Su enfoque basado en datos 
+                            es excepcional."
                         </p>
                     </div>
                     <div class="dd-testimonial-author">
-                        <div class="dd-author-avatar">AC</div>
+                        <div class="dd-author-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="Foto de Alex Chen">
+                        </div>
                         <div class="dd-author-info">
                             <h4>Alex Chen</h4>
                             <p>CEO & Founder, Startup FinTech</p>
-                            <div class="dd-author-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <div class="dd-author-rating" aria-label="Calificación: 5 estrellas">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="dd-visually-hidden">5 de 5 estrellas</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </article>
                 
-                <div class="dd-testimonial-card">
+                <article class="dd-testimonial-card">
                     <div class="dd-testimonial-content">
                         <p class="dd-testimonial-quote">
-                            "Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad 
-                            mejoraron +40% post-rediseño. Profesional y orientado a resultados."
+                            "+$2.1M en ingresos adicionales tras el rediseño. El mejor ROI que hemos tenido 
+                            en diseño. Trabajo remoto impecable y comunicación constante con el equipo técnico."
                         </p>
                     </div>
                     <div class="dd-testimonial-author">
-                        <div class="dd-author-avatar">MR</div>
-                        <div class="dd-author-info">
-                            <h4>María Rodríguez</h4>
-                            <p>Product Lead, E-commerce Platform</p>
-                            <div class="dd-author-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
+                        <div class="dd-author-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="Foto de James Wilson">
                         </div>
-                    </div>
-                </div>
-                
-                <div class="dd-testimonial-card">
-                    <div class="dd-testimonial-content">
-                        <p class="dd-testimonial-quote">
-                            "+$2.1M en ingresos adicionales tras el rediseño. El mejor ROI que hemos visto en diseño. 
-                            Trabajo remoto impecable y comunicación constante."
-                        </p>
-                    </div>
-                    <div class="dd-testimonial-author">
-                        <div class="dd-author-avatar">JW</div>
                         <div class="dd-author-info">
                             <h4>James Wilson</h4>
                             <p>CEO, SaaS Platform</p>
-                            <div class="dd-author-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <div class="dd-author-rating" aria-label="Calificación: 5 estrellas">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="dd-visually-hidden">5 de 5 estrellas</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </article>
+                
+                <article class="dd-testimonial-card">
+                    <div class="dd-testimonial-content">
+                        <p class="dd-testimonial-quote">
+                            "Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad 
+                            mejoraron +40% post-rediseño. Profesional, orientado a resultados y gran comunicador."
+                        </p>
+                    </div>
+                    <div class="dd-testimonial-author">
+                        <div class="dd-author-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616c113a1c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="Foto de María Rodríguez">
+                        </div>
+                        <div class="dd-author-info">
+                            <h4>María Rodríguez</h4>
+                            <p>Product Lead, E-commerce Platform</p>
+                            <div class="dd-author-rating" aria-label="Calificación: 4.5 estrellas">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                                <span class="dd-visually-hidden">4.5 de 5 estrellas</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Contacto -->
-    <section class="dd-section" id="contacto">
+    <section class="dd-section" id="contacto" aria-labelledby="contacto-title">
         <div class="dd-container">
             <div class="dd-section-header">
-                <h2 class="dd-section-title">HABLEMOS DE TU PROYECTO</h2>
+                <h2 class="dd-section-title" id="contacto-title">Hablemos de Tu Proyecto</h2>
                 <p class="dd-section-subtitle">
-                    Cuéntame sobre tu producto y te enviaré una propuesta personalizada.
+                    Cuéntame sobre tu producto y te enviaré una propuesta personalizada en 24 horas.
                 </p>
             </div>
             
             <div class="dd-contact-grid">
                 <div class="dd-contact-info">
-                    <h3 class="dd-contact-title">Información de contacto</h3>
+                    <h3 class="dd-contact-title">Información de Contacto</h3>
                     
                     <div class="dd-contact-details">
                         <div class="dd-contact-detail">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                             <div>
                                 <h4>Email</h4>
                                 <a href="mailto:david.diaz.uxdata@gmail.com">david.diaz.uxdata@gmail.com</a>
+                                <small>Respuesta en menos de 12 horas</small>
                             </div>
                         </div>
                         
                         <div class="dd-contact-detail">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                             <div>
-                                <h4>Agendar llamada</h4>
-                                <a href="https://calendly.com/dsd228-dd" target="_blank">Calendly.com/dsd228-dd</a>
+                                <h4>Agendar Llamada</h4>
+                                <a href="https://calendly.com/dsd228-dd/30min" target="_blank">Calendly.com/dsd228-dd</a>
+                                <small>Consulta gratuita de 30 minutos</small>
                             </div>
                         </div>
                         
                         <div class="dd-contact-detail">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-github" aria-hidden="true"></i>
                             <div>
                                 <h4>GitHub</h4>
                                 <a href="https://github.com/dsd228" target="_blank">github.com/dsd228</a>
+                                <small>Código y casos de estudio</small>
                             </div>
                         </div>
                         
                         <div class="dd-contact-detail">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <div>
                                 <h4>Ubicación</h4>
-                                <p>100% Remoto · Clientes globales</p>
+                                <p>100% Remoto</p>
+                                <small>Clientes en España, LATAM y USA</small>
                             </div>
                         </div>
                     </div>
                     
                     <div class="dd-availability">
-                        <h4>Disponibilidad</h4>
-                        <p>Actualmente disponible para proyectos a tiempo completo o por contrato.</p>
+                        <h4>Disponibilidad Actual</h4>
+                        <p>Disponible para proyectos a tiempo completo o por contrato. Especializado en:</p>
+                        <ul class="dd-expertise-list">
+                            <li><i class="fas fa-check-circle"></i> SaaS B2B / B2C</li>
+                            <li><i class="fas fa-check-circle"></i> E-commerce</li>
+                            <li><i class="fas fa-check-circle"></i> Mobile Apps</li>
+                            <li><i class="fas fa-check-circle"></i> Design Systems</li>
+                        </ul>
                         <div class="dd-status-indicator">
                             <span class="dd-status-dot"></span>
                             <span>Disponible para nuevos proyectos</span>
@@ -1056,30 +759,75 @@
                 </div>
                 
                 <div class="dd-contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" novalidate>
                         <div class="dd-form-group">
-                            <label for="name">Nombre completo *</label>
-                            <input type="text" id="name" name="name" required placeholder="Tu nombre">
+                            <label for="name">
+                                Nombre completo *
+                                <span class="dd-required" aria-hidden="true">*</span>
+                                <span class="dd-visually-hidden">campo requerido</span>
+                            </label>
+                            <input type="text" id="name" name="name" required 
+                                   placeholder="Tu nombre" 
+                                   aria-required="true">
                         </div>
                         
                         <div class="dd-form-group">
-                            <label for="email">Email profesional *</label>
-                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                            <label for="email">
+                                Email profesional *
+                                <span class="dd-required" aria-hidden="true">*</span>
+                                <span class="dd-visually-hidden">campo requerido</span>
+                            </label>
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="tu@empresa.com" 
+                                   aria-required="true">
                         </div>
                         
                         <div class="dd-form-group">
                             <label for="company">Empresa / Proyecto</label>
-                            <input type="text" id="company" name="company" placeholder="Nombre de tu empresa o proyecto">
+                            <input type="text" id="company" name="company" 
+                                   placeholder="¿En qué empresa o proyecto trabajas?">
                         </div>
                         
                         <div class="dd-form-group">
-                            <label for="message">¿En qué puedo ayudarte? *</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Describe tu proyecto, objetivos y timeline estimado..."></textarea>
+                            <label for="project-type">Tipo de proyecto</label>
+                            <select id="project-type" name="project-type">
+                                <option value="">Selecciona una opción</option>
+                                <option value="ux-ui">Diseño UX/UI</option>
+                                <option value="product-strategy">Estrategia de Producto</option>
+                                <option value="redesign">Rediseño</option>
+                                <option value="consulting">Consultoría</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="dd-form-group">
+                            <label for="message">
+                                ¿En qué puedo ayudarte? *
+                                <span class="dd-required" aria-hidden="true">*</span>
+                                <span class="dd-visually-hidden">campo requerido</span>
+                            </label>
+                            <textarea id="message" name="message" rows="5" required 
+                                      placeholder="Describe tu proyecto, objetivos principales y timeline estimado..."
+                                      aria-required="true"></textarea>
+                        </div>
+                        
+                        <div class="dd-form-consent">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <label for="consent">
+                                Acepto recibir información sobre mis proyectos y contenido sobre UX/UI. 
+                                Puedo darme de baja en cualquier momento.
+                                <span class="dd-required" aria-hidden="true">*</span>
+                            </label>
                         </div>
                         
                         <button type="submit" class="dd-btn dd-btn-primary dd-btn-full">
-                            <i class="fas fa-paper-plane"></i> ENVIAR MENSAJE
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar Mensaje
                         </button>
+                        
+                        <p class="dd-form-note">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                            Tu información está segura. Nunca compartiré tus datos con terceros.
+                        </p>
                     </form>
                 </div>
             </div>
@@ -1093,49 +841,52 @@
                 <div class="dd-footer-brand">
                     <a href="#hero" class="dd-logo dd-logo-footer">
                         <span class="dd-logo-text">David Díaz</span>
-                        <span class="dd-logo-subtitle">UX/UI & Product Designer</span>
+                        <span class="dd-logo-subtitle">Senior Product Designer</span>
                     </a>
                     <p class="dd-footer-description">
-                        Especializado en diseño UX/UI estratégico basado en datos para productos digitales 
-                        que convierten y retienen.
+                        Especializado en diseño UX/UI estratégico basado en datos. 
+                        Transformo problemas complejos en experiencias intuitivas que generan resultados.
                     </p>
                     <div class="dd-social-links">
-                        <a href="https://github.com/dsd228" target="_blank" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
+                        <a href="https://github.com/dsd228" target="_blank" aria-label="GitHub (se abre en nueva ventana)">
+                            <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
-                        <a href="https://calendly.com/dsd228-dd" target="_blank" aria-label="Calendly">
-                            <i class="fas fa-calendar-alt"></i>
+                        <a href="https://calendly.com/dsd228-dd/30min" target="_blank" aria-label="Agendar llamada en Calendly (se abre en nueva ventana)">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                         </a>
-                        <a href="mailto:david.diaz.uxdata@gmail.com" aria-label="Email">
-                            <i class="fas fa-envelope"></i>
+                        <a href="mailto:david.diaz.uxdata@gmail.com" aria-label="Enviar email">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/david-diaz-ux/" target="_blank" aria-label="LinkedIn (se abre en nueva ventana)">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
                 
                 <div class="dd-footer-links">
                     <div class="dd-footer-column">
-                        <h4 class="dd-footer-title">NAVEGACIÓN</h4>
+                        <h4 class="dd-footer-title">Navegación</h4>
                         <a href="#proyectos" class="dd-footer-link">Proyectos</a>
                         <a href="#servicios" class="dd-footer-link">Servicios</a>
-                        <a href="#herramientas" class="dd-nav-link">Herramientas</a>
-                        <a href="#certificaciones" class="dd-footer-link">Certificaciones</a>
                         <a href="#proceso" class="dd-footer-link">Proceso</a>
                         <a href="#testimonios" class="dd-footer-link">Testimonios</a>
                         <a href="#contacto" class="dd-footer-link">Contacto</a>
                     </div>
                     
                     <div class="dd-footer-column">
-                        <h4 class="dd-footer-title">PROYECTOS</h4>
-                        <a href="#paseo" class="dd-footer-link">PASEO App</a>
-                        <a href="#nexus" class="dd-footer-link">Nexus Dashboard</a>
-                        <a href="#caroyense" class="dd-footer-link">La Caroyense</a>
+                        <h4 class="dd-footer-title">Servicios</h4>
+                        <a href="#servicios" class="dd-footer-link">Diseño UX/UI</a>
+                        <a href="#servicios" class="dd-footer-link">Estrategia de Producto</a>
+                        <a href="#servicios" class="dd-footer-link">Research & Testing</a>
+                        <a href="#servicios" class="dd-footer-link">Frontend Development</a>
                     </div>
                     
                     <div class="dd-footer-column">
-                        <h4 class="dd-footer-title">RECURSOS</h4>
+                        <h4 class="dd-footer-title">Recursos</h4>
                         <a href="https://github.com/dsd228" target="_blank" class="dd-footer-link">GitHub</a>
-                        <a href="https://calendly.com/dsd228-dd" target="_blank" class="dd-footer-link">Calendly</a>
+                        <a href="https://calendly.com/dsd228-dd/30min" target="_blank" class="dd-footer-link">Agendar Llamada</a>
                         <a href="mailto:david.diaz.uxdata@gmail.com" class="dd-footer-link">Email</a>
+                        <a href="#contacto" class="dd-footer-link">Propuesta Personalizada</a>
                     </div>
                 </div>
             </div>
@@ -1145,17 +896,19 @@
                     &copy; <span id="currentYear">2024</span> David Díaz. Todos los derechos reservados.
                 </p>
                 <p class="dd-credits">
-                    Diseñado y desarrollado con ❤️ por David Díaz
+                    Diseñado y desarrollado con ❤️ por David Díaz | 
+                    <a href="#privacy" class="dd-footer-link">Privacidad</a> · 
+                    <a href="#cookies" class="dd-footer-link">Cookies</a>
                 </p>
             </div>
         </div>
     </footer>
 
     <!-- Modal para Certificados -->
-    <div class="dd-certificate-modal" id="certificateModal">
+    <div class="dd-certificate-modal" id="certificateModal" role="dialog" aria-labelledby="modalTitle" aria-modal="true" hidden>
         <div class="dd-modal-content">
-            <button class="dd-modal-close" id="modalClose">
-                <i class="fas fa-times"></i>
+            <button class="dd-modal-close" id="modalClose" aria-label="Cerrar modal">
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
             <div class="dd-modal-body" id="modalBody">
                 <!-- Contenido dinámico -->
