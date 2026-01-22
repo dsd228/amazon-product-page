@@ -6,53 +6,93 @@
     <title>NeoProdUx | Diseño UX/UI & Product Strategy</title>
     <meta name="description" content="Portafolio profesional de diseño UX/UI especializado en estrategia de producto, investigación de usuarios y optimización de conversión.">
     
-    <!-- Fonts (exactas a Portfoliobox) -->
+    <!-- Fonts exactas de Portfoliobox -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Icons -->
+    <!-- Icons de Portfoliobox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
     
+    <!-- Favicon similar a Portfoliobox -->
+    <link rel="icon" type="image/x-icon" href="https://assets.portfoliobox.net/assets/webclip-79ffc975b241f9fad38592dab49cd224.png">
+    
     <style>
-        /* Estilos específicos para el efecto Portfoliobox */
-        .hero-stats-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: var(--pb-space-12);
-            margin-top: var(--pb-space-12);
-            flex-wrap: wrap;
+        /* Estilos inline para efectos específicos de Portfoliobox */
+        .hero-mode .pb-logo {
+            color: white !important;
         }
         
-        .portfolio-showcase-item {
-            position: relative;
-            border-radius: var(--pb-radius-lg);
-            overflow: hidden;
-            margin: var(--pb-space-8) 0;
+        .hero-mode .pb-nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
         }
         
-        .portfolio-showcase-item img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .hero-mode .pb-nav-link:hover {
+            color: white !important;
+        }
+        
+        .hero-mode .pb-btn-primary {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+            color: white !important;
+        }
+        
+        .hero-mode .pb-btn-primary:hover {
+            background: white !important;
+            color: var(--pb-text-primary) !important;
+        }
+        
+        /* Grid de proyectos estilo Portfoliobox */
+        .pb-projects-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        /* Badge de Portfoliobox */
+        .pb-feature-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--pb-gray-900);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin: 1rem 0;
+        }
+        
+        /* Efectos de hover suaves */
+        .pb-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .pb-card-hover:hover {
+            transform: translateY(-5px);
         }
         
         /* Loading states */
-        .loading {
+        .pb-loading {
             opacity: 0;
             transform: translateY(20px);
         }
         
-        .loaded {
+        .pb-loaded {
             opacity: 1;
             transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: all 0.6s ease;
         }
     </style>
 </head>
-<body>
-    <!-- Header con efecto Portfoliobox (transparente inicialmente) -->
+<body class="pb-loading">
+    <!-- Header con transformación al scroll -->
     <header class="pb-header hero-mode" id="main-header">
         <div class="pb-container">
             <nav class="pb-main-nav">
@@ -70,49 +110,53 @@
                 
                 <div class="pb-nav-right">
                     <a href="#contacto" class="pb-btn pb-btn-primary">Contactar</a>
-                    <button class="pb-menu-toggle" id="menuToggle">
+                    <button class="pb-menu-toggle" id="menuToggle" aria-label="Menú">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
             </nav>
         </div>
+        
+        <!-- Menú móvil -->
+        <div class="pb-mobile-menu" id="mobileMenu"></div>
     </header>
 
-    <!-- Hero Section con efecto parallax EXACTO A PORTFOLIOBOX -->
+    <!-- Hero Section con efecto Portfoliobox -->
     <section class="pb-hero-parallax" id="hero">
         <div class="pb-hero-bg" id="parallax-bg"></div>
         
         <div class="pb-container">
             <div class="pb-hero-portfolio">
-                <h1 class="pb-hero-title pb-reveal">
-                    Diseño UX/UI & <span style="color: var(--pb-primary-light)">Product Strategy</span>
+                <h1 class="pb-hero-title pb-reveal" data-delay="100">
+                    Diseño que <span style="color: var(--pb-primary-light)">convierte</span> y 
+                    <span style="color: var(--pb-accent)">retiene</span>
                 </h1>
-                <p class="pb-hero-subtitle pb-reveal">
-                    Convierto visitas en clientes con diseño basado en datos, investigación de usuarios 
+                <p class="pb-hero-subtitle pb-reveal" data-delay="300">
+                    Especialista en diseño UX/UI basado en datos, investigación de usuarios 
                     y estrategias de producto que generan <strong>resultados medibles</strong> para startups y empresas digitales.
                 </p>
                 
-                <div class="pb-hero-actions pb-reveal">
+                <div class="pb-hero-actions pb-reveal" data-delay="500">
                     <a href="#proyectos" class="pb-btn pb-btn-primary pb-btn-large">
-                        <i class="fas fa-eye"></i> Ver mis proyectos
+                        <i class="fas fa-eye"></i> Ver proyectos destacados
                     </a>
                     <a href="#contacto" class="pb-btn pb-btn-outline pb-btn-large">
-                        <i class="fas fa-chart-line"></i> Solicitar auditoría UX
+                        <i class="fas fa-chart-line"></i> Solicitar auditoría gratuita
                     </a>
                 </div>
                 
-                <div class="pb-hero-stats pb-reveal">
+                <div class="pb-hero-stats pb-reveal" data-delay="700">
                     <div class="pb-stat">
-                        <div class="pb-stat-number">30+</div>
-                        <div class="pb-stat-label">proyectos UX</div>
+                        <span class="pb-stat-number" data-count="50">0+</span>
+                        <span class="pb-stat-label">proyectos entregados</span>
                     </div>
                     <div class="pb-stat">
-                        <div class="pb-stat-number">+35%</div>
-                        <div class="pb-stat-label">conversión avg.</div>
+                        <span class="pb-stat-number" data-count="35">0%</span>
+                        <span class="pb-stat-label">aumento conversión avg.</span>
                     </div>
                     <div class="pb-stat">
-                        <div class="pb-stat-number">100%</div>
-                        <div class="pb-stat-label">satisfacción</div>
+                        <span class="pb-stat-number">100%</span>
+                        <span class="pb-stat-label">satisfacción clientes</span>
                     </div>
                 </div>
                 
@@ -123,205 +167,231 @@
         </div>
     </section>
 
-    <!-- Sección: Proyectos Destacados (Galería estilo Portfoliobox) -->
+    <!-- Proyectos Destacados - Estilo galería Portfoliobox -->
     <section class="pb-section pb-section-light" id="proyectos">
         <div class="pb-container">
             <div class="pb-section-header pb-reveal">
-                <h2 class="pb-section-title">Proyectos Destacados</h2>
+                <h2 class="pb-section-title">Portfolio de Proyectos</h2>
                 <p class="pb-section-subtitle">
-                    Casos de estudio donde el diseño UX/UI transformó resultados de negocio de forma medible.
+                    Casos de estudio reales donde el diseño UX/UI transformó métricas de negocio
                 </p>
-                <span class="pb-portfolio-badge pb-reveal">
-                    <i class="fas fa-medal"></i> Casos reales con resultados verificados
+                <span class="pb-feature-badge">
+                    <i class="fas fa-medal"></i> Resultados verificados
                 </span>
             </div>
             
-            <!-- Galería de proyectos estilo Portfoliobox -->
-            <div class="pb-gallery-grid">
+            <!-- Grid estilo Portfoliobox -->
+            <div class="pb-projects-showcase">
                 <!-- Proyecto 1 -->
-                <article class="pb-project-card pb-portfoliobox-card" data-delay="0">
+                <article class="pb-project-card pb-portfoliobox-card pb-card-hover" data-delay="100">
                     <div class="pb-project-image">
-                        <img src="Desktop - 1paseo.png" alt="Paseo FinTech App" loading="lazy" class="project-img">
+                        <div class="pb-image-overlay">
+                            <img src="Desktop - 1paseo.png" 
+                                 alt="Paseo FinTech App - Case Study" 
+                                 loading="lazy"
+                                 class="pb-image-loaded">
+                        </div>
                         <div class="pb-project-overlay">
-                            <h4>PASEO – UX Case Study</h4>
-                            <p>FinTech · Mobile App</p>
-                            <div class="overlay-stats">
-                                <span><i class="fas fa-chart-line"></i> +75% velocidad</span>
-                                <span><i class="fas fa-bug"></i> -45% errores</span>
+                            <div class="overlay-content">
+                                <h4>PASEO – FinTech App</h4>
+                                <p>Diseño completo de app de paseo de perros con sistema de pagos integrado</p>
+                                <div class="overlay-stats">
+                                    <span><i class="fas fa-chart-line"></i> +75% velocidad</span>
+                                    <span><i class="fas fa-bug"></i> -45% errores</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="pb-project-content">
-                        <span class="pb-project-category">FinTech · Mobile App</span>
+                        <div class="pb-project-meta">
+                            <span class="pb-project-category">FinTech · Mobile App</span>
+                            <span class="pb-project-year">2024</span>
+                        </div>
                         <h3 class="pb-project-title">PASEO – UX Case Study</h3>
                         <p class="pb-project-description">
                             Diseño integral de app FinTech para paseo de perros con sistema de pagos 
                             y seguimiento en tiempo real.
                         </p>
-                        <div class="pb-project-metrics">
-                            <div class="pb-metric">
-                                <span class="pb-metric-value">+75%</span>
-                                <span class="pb-metric-label">velocidad transacciones</span>
-                            </div>
-                            <div class="pb-metric">
-                                <span class="pb-metric-value">-45%</span>
-                                <span class="pb-metric-label">errores usuario</span>
-                            </div>
+                        <div class="pb-project-actions">
+                            <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" 
+                               target="_blank" 
+                               class="pb-project-link">
+                                <i class="fab fa-github"></i> Ver en GitHub
+                            </a>
+                            <button class="pb-btn-sm pb-btn-outline view-details" data-project="paseo">
+                                <i class="fas fa-external-link-alt"></i> Detalles
+                            </button>
                         </div>
-                        <a href="https://github.com/dsd228/dsd228-paseo-ux-case-study" target="_blank" class="pb-project-link">
-                            <i class="fab fa-github"></i> Ver caso completo
-                        </a>
                     </div>
                 </article>
-                
+
                 <!-- Proyecto 2 -->
-                <article class="pb-project-card pb-portfoliobox-card" data-delay="100">
+                <article class="pb-project-card pb-portfoliobox-card pb-card-hover" data-delay="200">
                     <div class="pb-project-image">
-                        <img src="dispatch - copia.png" alt="Nexus Logistics Dashboard" loading="lazy" class="project-img">
+                        <div class="pb-image-overlay">
+                            <img src="dispatch - copia.png" 
+                                 alt="Nexus Logistics Dashboard" 
+                                 loading="lazy"
+                                 class="pb-image-loaded">
+                        </div>
                         <div class="pb-project-overlay">
-                            <h4>Nexus Logistics</h4>
-                            <p>Logística · SaaS B2B</p>
-                            <div class="overlay-stats">
-                                <span><i class="fas fa-user-check"></i> +40% usabilidad</span>
-                                <span><i class="fas fa-clock"></i> -30% tiempo</span>
+                            <div class="overlay-content">
+                                <h4>Nexus Logistics</h4>
+                                <p>Dashboard SaaS B2B para gestión logística</p>
+                                <div class="overlay-stats">
+                                    <span><i class="fas fa-user-check"></i> +40% usabilidad</span>
+                                    <span><i class="fas fa-clock"></i> -30% tiempo</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="pb-project-content">
-                        <span class="pb-project-category">Logística · SaaS B2B</span>
-                        <h3 class="pb-project-title">Nexus Logistics</h3>
+                        <div class="pb-project-meta">
+                            <span class="pb-project-category">Logística · SaaS B2B</span>
+                            <span class="pb-project-year">2023</span>
+                        </div>
+                        <h3 class="pb-project-title">Nexus Logistics Dashboard</h3>
                         <p class="pb-project-description">
                             Rediseño UX/UI de dashboard operativo B2B para simplificar flujos 
                             y reducir curva de aprendizaje.
                         </p>
-                        <div class="pb-project-metrics">
-                            <div class="pb-metric">
-                                <span class="pb-metric-value">+40%</span>
-                                <span class="pb-metric-label">usabilidad</span>
-                            </div>
-                            <div class="pb-metric">
-                                <span class="pb-metric-value">-30%</span>
-                                <span class="pb-metric-label">tiempo capacitación</span>
-                            </div>
+                        <div class="pb-project-actions">
+                            <a href="https://github.com/dsd228/nexus-logistics-ui" 
+                               target="_blank" 
+                               class="pb-project-link">
+                                <i class="fab fa-github"></i> Ver en GitHub
+                            </a>
+                            <button class="pb-btn-sm pb-btn-outline view-details" data-project="nexus">
+                                <i class="fas fa-external-link-alt"></i> Detalles
+                            </button>
                         </div>
-                        <a href="https://github.com/dsd228/nexus-logistics-ui" target="_blank" class="pb-project-link">
-                            <i class="fab fa-github"></i> Ver caso completo
-                        </a>
                     </div>
                 </article>
-                
+
                 <!-- Proyecto 3 -->
-                <article class="pb-project-card pb-portfoliobox-card" data-delay="200">
+                <article class="pb-project-card pb-portfoliobox-card pb-card-hover" data-delay="300">
                     <div class="pb-project-image">
-                        <img src="Bodega La Caroyense — UX_UI Redesign/Desktop - 3.png" alt="La Caroyense E-commerce" loading="lazy" class="project-img">
+                        <div class="pb-image-overlay">
+                            <img src="Bodega La Caroyense — UX_UI Redesign/Desktop - 3.png" 
+                                 alt="La Caroyense E-commerce Redesign" 
+                                 loading="lazy"
+                                 class="pb-image-loaded">
+                        </div>
                         <div class="pb-project-overlay">
-                            <h4>La Caroyense</h4>
-                            <p>E-commerce · Mobile First</p>
-                            <div class="overlay-stats">
-                                <span><i class="fas fa-shopping-cart"></i> +340% conversión</span>
-                                <span><i class="fas fa-times-circle"></i> -45% abandono</span>
+                            <div class="overlay-content">
+                                <h4>La Caroyense</h4>
+                                <p>Rediseño mobile-first de e-commerce</p>
+                                <div class="overlay-stats">
+                                    <span><i class="fas fa-shopping-cart"></i> +340% conversión</span>
+                                    <span><i class="fas fa-times-circle"></i> -45% abandono</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="pb-project-content">
-                        <span class="pb-project-category">E-commerce · Mobile First</span>
-                        <h3 class="pb-project-title">La Caroyense</h3>
+                        <div class="pb-project-meta">
+                            <span class="pb-project-category">E-commerce · Mobile First</span>
+                            <span class="pb-project-year">2023</span>
+                        </div>
+                        <h3 class="pb-project-title">La Caroyense E-commerce</h3>
                         <p class="pb-project-description">
                             Rediseño mobile-first de e-commerce optimizando funnel de compra 
-                            para maximizar conversión.
+                            para maximizar conversión y reducir abandono.
                         </p>
-                        <div class="pb-project-metrics">
-                            <div class="pb-metric">
-                                <span class="pb-metric-value">+340%</span>
-                                <span class="pb-metric-label">conversión</span>
-                            </div>
-                            <div class="pb-metric">
-                                <span class="pb-metric-value">-45%</span>
-                                <span class="pb-metric-label">abandono carrito</span>
-                            </div>
+                        <div class="pb-project-actions">
+                            <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" 
+                               target="_blank" 
+                               class="pb-project-link">
+                                <i class="fab fa-github"></i> Ver en GitHub
+                            </a>
+                            <button class="pb-btn-sm pb-btn-outline view-details" data-project="caroyense">
+                                <i class="fas fa-external-link-alt"></i> Detalles
+                            </button>
                         </div>
-                        <a href="https://github.com/dsd228/la-caroyense-ux-ui-redesign" target="_blank" class="pb-project-link">
-                            <i class="fab fa-github"></i> Ver caso completo
-                        </a>
                     </div>
                 </article>
             </div>
             
-            <div class="pb-section-footer pb-reveal">
-                <a href="https://github.com/dsd228?tab=repositories" target="_blank" class="pb-btn pb-btn-outline pb-btn-large">
-                    <i class="fab fa-github"></i> Ver todos los proyectos en GitHub
+            <div class="pb-section-footer pb-reveal" data-delay="400">
+                <a href="https://github.com/dsd228?tab=repositories" 
+                   target="_blank" 
+                   class="pb-btn pb-btn-outline pb-btn-large">
+                    <i class="fab fa-github"></i> Explorar todos los proyectos
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Sección "Made with" estilo Portfoliobox -->
-    <section class="pb-made-section pb-reveal">
+    <!-- Proceso de Trabajo -->
+    <section class="pb-section" id="proceso">
         <div class="pb-container">
-            <h2 class="pb-made-title">Metodología Probada</h2>
-            <p class="pb-made-subtitle">
-                Cada proyecto combina diseño estratégico, investigación de usuarios 
-                y medición de métricas para garantizar impacto real en el negocio.
-            </p>
+            <div class="pb-section-header pb-reveal">
+                <h2 class="pb-section-title">Mi Proceso de Trabajo</h2>
+                <p class="pb-section-subtitle">
+                    Metodología estructurada que garantiza resultados consistentes
+                </p>
+            </div>
             
             <div class="pb-process-steps">
-                <div class="pb-process-step pb-reveal">
-                    <div class="pb-step-number">01</div>
-                    <h3 class="pb-step-title">Investigación</h3>
-                    <p class="pb-step-description">
-                        Análisis de métricas existentes, entrevistas con usuarios 
-                        y benchmark competitivo.
-                    </p>
-                </div>
-                
                 <div class="pb-process-step pb-reveal" data-delay="100">
-                    <div class="pb-step-number">02</div>
-                    <h3 class="pb-step-title">Diseño</h3>
+                    <div class="pb-step-icon">
+                        <div class="pb-step-number">01</div>
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="pb-step-title">Descubrimiento</h3>
                     <p class="pb-step-description">
-                        Creación de arquitectura de información, wireframes 
-                        y prototipos interactivos.
+                        Análisis profundo del problema, entrevistas con usuarios y benchmark competitivo.
                     </p>
                 </div>
                 
                 <div class="pb-process-step pb-reveal" data-delay="200">
-                    <div class="pb-step-number">03</div>
-                    <h3 class="pb-step-title">Validación</h3>
+                    <div class="pb-step-icon">
+                        <div class="pb-step-number">02</div>
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3 class="pb-step-title">Diseño</h3>
                     <p class="pb-step-description">
-                        Testing con usuarios reales, análisis de feedback 
-                        y refinamiento iterativo.
+                        Creación de wireframes, prototipos interactivos y sistemas de diseño.
                     </p>
                 </div>
                 
                 <div class="pb-process-step pb-reveal" data-delay="300">
-                    <div class="pb-step-number">04</div>
-                    <h3 class="pb-step-title">Resultados</h3>
+                    <div class="pb-step-icon">
+                        <div class="pb-step-number">03</div>
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="pb-step-title">Validación</h3>
                     <p class="pb-step-description">
-                        Seguimiento de métricas post-lanzamiento para validar 
-                        impacto y optimizar.
+                        Testing con usuarios reales, análisis de métricas y refinamiento iterativo.
                     </p>
                 </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <span class="pb-portfolio-badge" style="background: var(--pb-primary);">
-                    <i class="fas fa-rocket"></i> Enfoque basado en datos
-                </span>
+                
+                <div class="pb-process-step pb-reveal" data-delay="400">
+                    <div class="pb-step-icon">
+                        <div class="pb-step-number">04</div>
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="pb-step-title">Implementación</h3>
+                    <p class="pb-step-description">
+                        Handoff a desarrollo, supervisión y medición de resultados post-lanzamiento.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección: Servicios (mantén tu contenido actual) -->
-    <section class="pb-section" id="servicios">
+    <!-- Servicios -->
+    <section class="pb-section pb-section-light" id="servicios">
         <div class="pb-container">
             <div class="pb-section-header pb-reveal">
                 <h2 class="pb-section-title">Servicios Especializados</h2>
                 <p class="pb-section-subtitle">
-                    Soluciones de diseño UX/UI y estrategia de producto para necesidades específicas.
+                    Soluciones de diseño UX/UI y estrategia de producto adaptadas a tus necesidades
                 </p>
             </div>
             
             <div class="pb-services-grid">
-                <div class="pb-service-card pb-reveal">
+                <div class="pb-service-card pb-reveal" data-delay="100">
                     <div class="pb-service-icon">
                         <i class="fas fa-pencil-ruler"></i>
                     </div>
@@ -334,30 +404,32 @@
                         <li>Research & User Testing</li>
                         <li>Wireframes & Prototipos</li>
                         <li>Design Systems</li>
-                    </ul>
-                </div>
-                
-                <div class="pb-service-card pb-reveal" data-delay="100">
-                    <div class="pb-service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="pb-service-title">Estrategia de Producto</h3>
-                    <p class="pb-service-description">
-                        Definición de roadmap, métricas clave y optimización de flujos 
-                        para maximizar conversión y retención.
-                    </p>
-                    <ul class="pb-service-features">
-                        <li>Product Discovery</li>
-                        <li>Analytics & KPIs</li>
-                        <li>Conversion Optimization</li>
+                        <li>UI Design</li>
                     </ul>
                 </div>
                 
                 <div class="pb-service-card pb-reveal" data-delay="200">
                     <div class="pb-service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="pb-service-title">Product Strategy</h3>
+                    <p class="pb-service-description">
+                        Definición de roadmap, métricas clave y optimización de flujos 
+                        para maximizar conversión.
+                    </p>
+                    <ul class="pb-service-features">
+                        <li>Product Discovery</li>
+                        <li>Analytics & KPIs</li>
+                        <li>Conversion Optimization</li>
+                        <li>Roadmap Planning</li>
+                    </ul>
+                </div>
+                
+                <div class="pb-service-card pb-reveal" data-delay="300">
+                    <div class="pb-service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3 class="pb-service-title">Diseño Mobile</h3>
+                    <h3 class="pb-service-title">Mobile Design</h3>
                     <p class="pb-service-description">
                         Apps nativas y responsive design optimizadas para experiencia móvil 
                         y touch interactions.
@@ -366,48 +438,49 @@
                         <li>Mobile App Design</li>
                         <li>Responsive Web</li>
                         <li>Touch UX Patterns</li>
+                        <li>iOS/Android Guidelines</li>
                     </ul>
                 </div>
                 
-                <div class="pb-service-card pb-reveal" data-delay="300">
+                <div class="pb-service-card pb-reveal" data-delay="400">
                     <div class="pb-service-icon">
                         <i class="fas fa-code"></i>
                     </div>
-                    <h3 class="pb-service-title">Desarrollo Frontend</h3>
+                    <h3 class="pb-service-title">Frontend Dev</h3>
                     <p class="pb-service-description">
                         Implementación de diseños en código limpio y accesible 
-                        (HTML/CSS/JS) con foco en performance.
+                        con foco en performance.
                     </p>
                     <ul class="pb-service-features">
                         <li>Figma to Code</li>
                         <li>Webflow Development</li>
                         <li>WordPress Custom</li>
+                        <li>Performance Optimization</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección: Sobre Mí (mantén tu contenido) -->
-    <section class="pb-section pb-section-dark" id="sobre-mi">
+    <!-- Sobre Mí -->
+    <section class="pb-section" id="sobre-mi">
         <div class="pb-container">
             <div class="pb-about-grid">
                 <div class="pb-about-content">
                     <h2 class="pb-section-title pb-reveal">Sobre Mí</h2>
-                    <p class="pb-about-description pb-reveal">
-                        Soy <strong>David Díaz</strong>, diseñador UX/UI y product strategist con 5+ años 
-                        de experiencia transformando productos digitales. Especializado en diseño 
-                        basado en datos, investigación de usuarios y optimización de conversión.
+                    <p class="pb-about-description pb-reveal" data-delay="100">
+                        Soy <strong>David Díaz</strong>, diseñador UX/UI y estratega de producto con 5+ años 
+                        transformando productos digitales. Mi enfoque combina diseño basado en datos, 
+                        investigación de usuarios y optimización de conversión para generar impacto real.
                     </p>
-                    <p class="pb-about-description pb-reveal">
-                        Mi enfoque combina pensamiento estratégico con ejecución detallada, 
-                        desde el descubrimiento del problema hasta la implementación y medición 
-                        de resultados.
+                    <p class="pb-about-description pb-reveal" data-delay="200">
+                        Especializado en startups y scale-ups, trabajo de forma remota con clientes 
+                        globales, desde ideas iniciales hasta lanzamientos exitosos.
                     </p>
                     
                     <div class="pb-about-stats">
                         <div class="pb-about-stat pb-animated-stat">
-                            <span class="pb-stat-number">50+</span>
+                            <span class="pb-stat-number" data-count="50">0+</span>
                             <span class="pb-stat-label">Proyectos completados</span>
                         </div>
                         <div class="pb-about-stat pb-animated-stat" data-delay="100">
@@ -415,25 +488,32 @@
                             <span class="pb-stat-label">Clientes satisfechos</span>
                         </div>
                         <div class="pb-about-stat pb-animated-stat" data-delay="200">
-                            <span class="pb-stat-number">+35%</span>
+                            <span class="pb-stat-number" data-count="35">0%</span>
                             <span class="pb-stat-label">Conversión avg.</span>
                         </div>
                     </div>
                     
-                    <div class="pb-about-actions pb-reveal">
+                    <div class="pb-about-actions pb-reveal" data-delay="300">
                         <a href="#contacto" class="pb-btn pb-btn-primary">
                             <i class="fas fa-paper-plane"></i> Contactar para proyecto
                         </a>
-                        <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="pb-btn pb-btn-outline">
+                        <a href="https://linkedin.com/in/david-sebastian-diaz" 
+                           target="_blank" 
+                           class="pb-btn pb-btn-outline">
                             <i class="fab fa-linkedin"></i> Ver LinkedIn
                         </a>
                     </div>
                 </div>
                 
-                <div class="pb-about-image pb-reveal">
+                <div class="pb-about-image pb-reveal" data-delay="400">
                     <div class="pb-image-frame">
                         <div class="pb-placeholder-image">
                             <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="pb-image-badge">
+                            <span class="pb-feature-badge">
+                                <i class="fas fa-map-marker-alt"></i> 100% Remoto · Clientes Globales
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -441,22 +521,28 @@
         </div>
     </section>
 
-    <!-- Sección: Testimonios (mantén tu contenido) -->
+    <!-- Testimonios -->
     <section class="pb-section pb-section-light" id="testimonios">
         <div class="pb-container">
             <div class="pb-section-header pb-reveal">
-                <h2 class="pb-section-title">Lo que dicen mis clientes</h2>
+                <h2 class="pb-section-title">Testimonios de Clientes</h2>
                 <p class="pb-section-subtitle">
-                    Feedback real de proyectos completados con resultados verificables.
+                    Feedback real de proyectos completados con resultados verificables
                 </p>
             </div>
             
             <div class="pb-testimonials-grid">
-                <div class="pb-testimonial-card pb-reveal">
+                <div class="pb-testimonial-card pb-reveal" data-delay="100">
                     <div class="pb-testimonial-content">
+                        <div class="pb-testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
                         <p>"David transformó completamente nuestro producto. Implementamos sus recomendaciones y en 3 meses vimos un aumento del 78% en retención de usuarios."</p>
                     </div>
                     <div class="pb-testimonial-author">
+                        <div class="pb-author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
                         <div class="pb-author-info">
                             <h4>Alex Chen</h4>
                             <p>CEO & Founder, Startup FinTech</p>
@@ -464,23 +550,35 @@
                     </div>
                 </div>
                 
-                <div class="pb-testimonial-card pb-reveal" data-delay="100">
+                <div class="pb-testimonial-card pb-reveal" data-delay="200">
                     <div class="pb-testimonial-content">
+                        <div class="pb-testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
                         <p>"Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad mejoraron +40% post-rediseño."</p>
                     </div>
                     <div class="pb-testimonial-author">
+                        <div class="pb-author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
                         <div class="pb-author-info">
                             <h4>María Rodríguez</h4>
-                            <p>Product Lead, E-commerce</p>
+                            <p>Product Lead, E-commerce Platform</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="pb-testimonial-card pb-reveal" data-delay="200">
+                <div class="pb-testimonial-card pb-reveal" data-delay="300">
                     <div class="pb-testimonial-content">
+                        <div class="pb-testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
                         <p>"+$2.1M en ingresos adicionales tras el rediseño. El mejor ROI que hemos visto en diseño. Profesional y orientado a resultados."</p>
                     </div>
                     <div class="pb-testimonial-author">
+                        <div class="pb-author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
                         <div class="pb-author-info">
                             <h4>James Wilson</h4>
                             <p>CEO, SaaS Platform</p>
@@ -491,7 +589,7 @@
         </div>
     </section>
 
-    <!-- Sección: Contacto (mantén tu contenido) -->
+    <!-- Contacto -->
     <section class="pb-section" id="contacto">
         <div class="pb-container">
             <div class="pb-section-header pb-reveal">
@@ -502,29 +600,35 @@
             </div>
             
             <div class="pb-contact-grid">
-                <div class="pb-contact-info pb-reveal">
+                <div class="pb-contact-info pb-reveal" data-delay="100">
                     <h3 class="pb-contact-title">Información de contacto</h3>
                     
                     <div class="pb-contact-details">
                         <div class="pb-contact-detail">
-                            <i class="fas fa-envelope"></i>
-                            <div>
+                            <div class="pb-contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="pb-contact-text">
                                 <h4>Email</h4>
-                                <p>david.diaz.uxdata@gmail.com</p>
+                                <a href="mailto:david.diaz.uxdata@gmail.com">david.diaz.uxdata@gmail.com</a>
                             </div>
                         </div>
                         
                         <div class="pb-contact-detail">
-                            <i class="fas fa-calendar-alt"></i>
-                            <div>
+                            <div class="pb-contact-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="pb-contact-text">
                                 <h4>Agendar llamada</h4>
                                 <a href="https://calendly.com/dsd228-dd" target="_blank">Calendly.com/dsd228-dd</a>
                             </div>
                         </div>
                         
                         <div class="pb-contact-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
+                            <div class="pb-contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="pb-contact-text">
                                 <h4>Ubicación</h4>
                                 <p>100% Remoto · Clientes globales</p>
                             </div>
@@ -532,42 +636,51 @@
                     </div>
                     
                     <div class="pb-contact-social">
-                        <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="pb-social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/dsd228" target="_blank" class="pb-social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://dribbble.com" target="_blank" class="pb-social-link">
-                            <i class="fab fa-dribbble"></i>
-                        </a>
+                        <p class="pb-social-title">Conecta conmigo</p>
+                        <div class="pb-social-links">
+                            <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="pb-social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/dsd228" target="_blank" class="pb-social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://dribbble.com" target="_blank" class="pb-social-link">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                            <a href="https://behance.net" target="_blank" class="pb-social-link">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="pb-contact-form pb-reveal">
-                    <form id="contactForm">
+                <div class="pb-contact-form pb-reveal" data-delay="200">
+                    <form id="contactForm" novalidate>
                         <div class="pb-form-group">
                             <label for="name">Nombre completo *</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre">
                         </div>
                         
                         <div class="pb-form-group">
                             <label for="email">Email profesional *</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
                         </div>
                         
                         <div class="pb-form-group">
                             <label for="company">Empresa / Proyecto</label>
-                            <input type="text" id="company" name="company">
+                            <input type="text" id="company" name="company" placeholder="Nombre de tu empresa o proyecto">
                         </div>
                         
                         <div class="pb-form-group">
                             <label for="message">¿En qué puedo ayudarte? *</label>
-                            <textarea id="message" name="message" rows="4" required></textarea>
+                            <textarea id="message" name="message" rows="4" required placeholder="Describe tu proyecto o necesidades..."></textarea>
                         </div>
                         
                         <button type="submit" class="pb-btn pb-btn-primary pb-btn-block">
-                            Enviar mensaje
+                            <span class="btn-text">Enviar mensaje</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Enviando...
+                            </span>
                         </button>
                         
                         <p class="pb-form-note">
@@ -591,7 +704,7 @@
                         Diseño UX/UI estratégico basado en datos para productos digitales 
                         que convierten y retienen.
                     </p>
-                    <span class="pb-portfolio-badge" style="margin-top: 1rem;">
+                    <span class="pb-feature-badge">
                         <i class="fas fa-code"></i> Portafolio personalizado
                     </span>
                 </div>
@@ -627,7 +740,7 @@
                     &copy; <span id="currentYear">2024</span> NeoProdUx. Todos los derechos reservados.
                 </p>
                 <p class="pb-attribution">
-                    Inspirado en <strong>Portfoliobox</strong> · Diseñado con ❤️ por David Díaz
+                    Inspirado en el estilo visual de <strong>Portfoliobox</strong> · Diseñado con ❤️ por David Díaz
                 </p>
             </div>
         </div>
@@ -635,180 +748,232 @@
 
     <!-- JavaScripts -->
     <script src="script.js"></script>
+    
+    <!-- Scripts específicos de Portfoliobox -->
     <script>
-        // ==============================
-        // PORTFOLIOBOX EFFECTS - SCRIPT INTEGRADO
-        // ==============================
+        // Inicialización cuando el DOM está listo
         document.addEventListener('DOMContentLoaded', function() {
-            const header = document.getElementById('main-header');
-            const parallaxBg = document.getElementById('parallax-bg');
-            const scrollHint = document.getElementById('scrollHint');
-            const revealElements = document.querySelectorAll('.pb-reveal, .pb-portfoliobox-card, .pb-animated-stat');
+            console.log('🎨 Portfoliobox effects cargados');
             
-            let lastScrollY = 0;
-            let ticking = false;
+            // Remover clase de loading
+            document.body.classList.remove('pb-loading');
+            document.body.classList.add('pb-loaded');
             
             // Inicializar año actual
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // Configurar estado inicial del header
-            if (window.scrollY === 0) {
-                header.classList.add('hero-mode');
-            }
+            // Crear menú móvil dinámicamente
+            createMobileMenu();
             
-            // Efecto parallax
-            function updateParallax() {
-                if (parallaxBg) {
-                    const scrolled = window.pageYOffset;
-                    const rate = scrolled * -0.3;
-                    parallaxBg.style.transform = `translate3d(0, ${rate}px, 0)`;
-                }
-            }
+            // Inicializar efectos de scroll
+            initScrollEffects();
             
-            // Efecto header transform
-            function updateHeader() {
+            // Inicializar animaciones
+            initAnimations();
+            
+            // Inicializar formulario de contacto
+            initContactForm();
+            
+            // Inicializar contadores animados
+            initCounters();
+            
+            console.log('✅ Todos los efectos de Portfoliobox activados');
+        });
+        
+        // Crear menú móvil dinámico
+        function createMobileMenu() {
+            const navCenter = document.querySelector('.pb-nav-center');
+            const mobileMenu = document.querySelector('.pb-mobile-menu');
+            
+            if (navCenter && mobileMenu) {
+                mobileMenu.innerHTML = navCenter.innerHTML;
+            }
+        }
+        
+        // Efectos de scroll
+        function initScrollEffects() {
+            const header = document.getElementById('main-header');
+            const parallaxBg = document.getElementById('parallax-bg');
+            const scrollHint = document.getElementById('scrollHint');
+            
+            // Scroll event
+            window.addEventListener('scroll', function() {
                 const scrollY = window.scrollY;
                 
+                // Efecto parallax
+                if (parallaxBg) {
+                    const rate = scrollY * -0.3;
+                    parallaxBg.style.transform = `translate3d(0, ${rate}px, 0)`;
+                }
+                
+                // Transformación del header
                 if (scrollY > 100) {
                     header.classList.remove('hero-mode');
                     header.classList.add('scrolled');
-                    
-                    // Efecto fade mientras sales del hero
-                    if (scrollY < 500) {
-                        const opacity = 1 - (scrollY / 500);
-                        header.style.opacity = Math.max(opacity, 0.3);
-                    } else {
-                        header.style.opacity = '1';
-                    }
                 } else {
                     header.classList.add('hero-mode');
                     header.classList.remove('scrolled');
-                    header.style.opacity = '1';
                 }
                 
-                // Ocultar scroll hint después de cierto scroll
+                // Ocultar scroll hint
                 if (scrollHint && scrollY > 300) {
                     scrollHint.style.opacity = '0';
                     scrollHint.style.pointerEvents = 'none';
-                } else if (scrollHint) {
-                    scrollHint.style.opacity = '1';
-                    scrollHint.style.pointerEvents = 'auto';
                 }
-            }
+            });
             
-            // Scroll a proyectos
+            // Click en scroll hint
             if (scrollHint) {
                 scrollHint.addEventListener('click', function() {
-                    const projectsSection = document.querySelector('#proyectos');
-                    if (projectsSection) {
+                    const proyectosSection = document.getElementById('proyectos');
+                    if (proyectosSection) {
                         const headerHeight = header.offsetHeight;
-                        const targetPosition = projectsSection.offsetTop - headerHeight;
+                        const targetPosition = proyectosSection.offsetTop - headerHeight;
                         
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'
                         });
-                        
-                        // Feedback visual
-                        this.style.opacity = '0.5';
-                        setTimeout(() => {
-                            this.style.opacity = '1';
-                        }, 1000);
                     }
                 });
             }
+        }
+        
+        // Animaciones con Intersection Observer
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
             
-            // Observador para animaciones
-            function initIntersectionObserver() {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const delay = entry.target.dataset.delay || 0;
-                            setTimeout(() => {
-                                entry.target.classList.add('visible');
-                            }, parseInt(delay));
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.dataset.delay || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
                             
-                            // Contadores animados
-                            if (entry.target.classList.contains('pb-stat-number')) {
+                            // Activar contadores si es un elemento con data-count
+                            if (entry.target.classList.contains('pb-stat-number') && entry.target.dataset.count) {
                                 animateCounter(entry.target);
                             }
+                        }, parseInt(delay));
+                    }
+                });
+            }, observerOptions);
+            
+            // Observar todos los elementos con clase pb-reveal
+            document.querySelectorAll('.pb-reveal, .pb-animated-stat').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Contadores animados
+        function initCounters() {
+            const counters = document.querySelectorAll('.pb-stat-number[data-count]');
+            
+            counters.forEach(counter => {
+                // Solo animar si están en viewport
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !entry.target.dataset.animated) {
+                            animateCounter(entry.target);
+                            entry.target.dataset.animated = 'true';
                         }
                     });
-                }, {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                });
+                }, { threshold: 0.5 });
                 
-                revealElements.forEach(el => observer.observe(el));
-            }
+                observer.observe(counter);
+            });
+        }
+        
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.count);
+            const suffix = element.textContent.replace(/[0-9]/g, '');
+            let current = 0;
             
-            // Animación de contadores
-            function animateCounter(element) {
-                const text = element.textContent;
-                const match = text.match(/(\d+)(.*)/);
-                
-                if (!match || element.dataset.animated) return;
-                
-                element.dataset.animated = 'true';
-                const target = parseInt(match[1]);
-                const suffix = match[2] || '';
-                
-                let current = 0;
-                const increment = target / 50;
-                const stepTime = 30;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
+            const increment = target / 50;
+            const duration = 1500;
+            const stepTime = Math.floor(duration / (target / increment));
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
                     element.textContent = Math.floor(current) + suffix;
-                }, stepTime);
-            }
-            
-            // Scroll event con throttling
-            function onScroll() {
-                lastScrollY = window.scrollY;
-                
-                if (!ticking) {
-                    window.requestAnimationFrame(() => {
-                        updateHeader();
-                        updateParallax();
-                        ticking = false;
-                    });
-                    ticking = true;
                 }
+            }, stepTime);
+        }
+        
+        // Formulario de contacto
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const btnText = submitBtn.querySelector('.btn-text');
+                const btnLoading = submitBtn.querySelector('.btn-loading');
+                
+                // Mostrar loading
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline-block';
+                submitBtn.disabled = true;
+                
+                // Simular envío (en producción sería fetch/AJAX)
+                setTimeout(() => {
+                    // Éxito
+                    showFormMessage('¡Mensaje enviado con éxito! Te contactaré en menos de 24 horas.', 'success');
+                    form.reset();
+                    
+                    // Restaurar botón
+                    btnText.style.display = 'inline-block';
+                    btnLoading.style.display = 'none';
+                    submitBtn.disabled = false;
+                    
+                    // Desaparecer mensaje después de 5 segundos
+                    setTimeout(() => {
+                        const successMessage = document.querySelector('.form-success');
+                        if (successMessage) {
+                            successMessage.remove();
+                        }
+                    }, 5000);
+                }, 2000);
+            });
+        }
+        
+        // Mostrar mensaje del formulario
+        function showFormMessage(text, type) {
+            const existingMessages = document.querySelectorAll('.form-message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `form-message form-${type}`;
+            messageDiv.textContent = text;
+            messageDiv.style.cssText = `
+                padding: 1rem;
+                margin: 1rem 0;
+                border-radius: 0.5rem;
+                font-weight: 500;
+                text-align: center;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            if (type === 'success') {
+                messageDiv.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
+                messageDiv.style.border = '1px solid #22c55e';
+                messageDiv.style.color = '#22c55e';
             }
             
-            // Inicializar todo
-            initIntersectionObserver();
-            window.addEventListener('scroll', onScroll);
-            
-            // Inicializar imágenes
-            const images = document.querySelectorAll('.project-img');
-            images.forEach(img => {
-                img.addEventListener('load', function() {
-                    this.classList.add('loaded');
-                });
-            });
-            
-            // Efecto hover en tarjetas
-            const cards = document.querySelectorAll('.pb-portfoliobox-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.zIndex = '10';
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        card.style.zIndex = '1';
-                    }, 300);
-                });
-            });
-            
-            console.log('✅ Portfoliobox effects cargados correctamente');
-        });
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.insertBefore(messageDiv, form.firstChild);
+            }
+        }
     </script>
 </body>
 </html>
