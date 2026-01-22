@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="dd-mobile-nav">
                             <a href="#proyectos" class="dd-nav-link">Proyectos</a>
                             <a href="#servicios" class="dd-nav-link">Servicios</a>
+                            <a href="#certificaciones" class="dd-nav-link">Certificaciones</a>
                             <a href="#proceso" class="dd-nav-link">Proceso</a>
                             <a href="#testimonios" class="dd-nav-link">Testimonios</a>
                             <a href="#contacto" class="dd-nav-link">Contacto</a>
@@ -221,6 +222,301 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // ============================== CERTIFICACIONES CARRUSEL ==============================
+    function initCertificationsCarousel() {
+        const track = document.getElementById('certificationsTrack');
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        const dotsContainer = document.getElementById('carouselDots');
+        
+        if (!track || !prevBtn || !nextBtn) return;
+        
+        const cards = track.querySelectorAll('.dd-certification-card');
+        const cardWidth = cards[0].offsetWidth + 32; // Ancho + gap
+        let currentPosition = 0;
+        let currentIndex = 0;
+        
+        // Calcular cuántas cards caben por vista
+        function getVisibleCards() {
+            const containerWidth = track.parentElement.offsetWidth;
+            return Math.floor(containerWidth / cardWidth);
+        }
+        
+        // Crear dots
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            const visibleCards = getVisibleCards();
+            const totalDots = Math.max(1, cards.length - visibleCards + 1);
+            
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dd-carousel-dot';
+                if (i === 0) dot.classList.add('active');
+                
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+                
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        // Ir a slide específico
+        function goToSlide(index) {
+            const visibleCards = getVisibleCards();
+            const maxIndex = Math.max(0, cards.length - visibleCards);
+            
+            currentIndex = Math.max(0, Math.min(index, maxIndex));
+            currentPosition = -currentIndex * cardWidth;
+            
+            track.style.transform = `translateX(${currentPosition}px)`;
+            
+            // Actualizar dots
+            updateDots();
+        }
+        
+        // Actualizar dots
+        function updateDots() {
+            const dots = dotsContainer.querySelectorAll('.dd-carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+        
+        // Siguiente
+        nextBtn.addEventListener('click', () => {
+            const visibleCards = getVisibleCards();
+            const maxIndex = Math.max(0, cards.length - visibleCards);
+            
+            if (currentIndex < maxIndex) {
+                goToSlide(currentIndex + 1);
+            } else {
+                goToSlide(0); // Volver al inicio
+            }
+        });
+        
+        // Anterior
+        prevBtn.addEventListener('click', () => {
+            const visibleCards = getVisibleCards();
+            const maxIndex = Math.max(0, cards.length - visibleCards);
+            
+            if (currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            } else {
+                goToSlide(maxIndex); // Ir al final
+            }
+        });
+        
+        // Swipe para móviles
+        let startX = 0;
+        let isDragging = false;
+        
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+        
+        track.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+        });
+        
+        track.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            
+            if (Math.abs(diffX) > 50) { // Umbral mínimo para swipe
+                if (diffX > 0) {
+                    // Swipe izquierda = siguiente
+                    nextBtn.click();
+                } else {
+                    // Swipe derecha = anterior
+                    prevBtn.click();
+                }
+            }
+            
+            isDragging = false;
+        });
+        
+        // Inicializar
+        createDots();
+        
+        // Recalcular en resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                createDots();
+                goToSlide(0);
+            }, 250);
+        });
+    }
+    
+    initCertificationsCarousel();
+    
+    // ============================== CERTIFICATE MODAL ==============================
+    window.openCertificateModal = function(certId) {
+        const modal = document.getElementById('certificateModal');
+        const modalBody = document.getElementById('modalBody');
+        const modalClose = document.getElementById('modalClose');
+        
+        // Contenido basado en el certificado
+        let content = '';
+        
+        switch(certId) {
+            case 'cert-academico':
+                content = `
+                    <div class="dd-modal-certificate">
+                        <h3>Certificado Académico</h3>
+                        <p>Validación oficial de conocimientos en diseño UX/UI y desarrollo frontend avanzado.</p>
+                        
+                        <div class="dd-certificate-details">
+                            <div class="dd-certificate-detail">
+                                <h4>Institución</h4>
+                                <p>Institución Certificadora</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Año</h4>
+                                <p>2024</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Duración</h4>
+                                <p>6 meses</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Estado</h4>
+                                <p>Completado</p>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Habilidades validadas:</strong> User Research, Wireframing, Prototipado, UI Design, Frontend Development</p>
+                    </div>
+                `;
+                break;
+                
+            case 'cert-validacion':
+                content = `
+                    <div class="dd-modal-certificate">
+                        <h3>Certificado de Validación</h3>
+                        <p>Validación profesional de competencias en diseño de interfaces y experiencia de usuario.</p>
+                        
+                        <div class="dd-certificate-details">
+                            <div class="dd-certificate-detail">
+                                <h4>Organismo</h4>
+                                <p>Organismo Validación</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Año</h4>
+                                <p>2023</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Modalidad</h4>
+                                <p>Online</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Puntuación</h4>
+                                <p>98/100</p>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Competencias validadas:</strong> Diseño de Interacción, Arquitectura de Información, Testing de Usabilidad</p>
+                    </div>
+                `;
+                break;
+                
+            case 'cert-datathon':
+                content = `
+                    <div class="dd-modal-certificate">
+                        <h3>Datathon</h3>
+                        <p>Participación y reconocimiento en competencia internacional de análisis de datos y UX.</p>
+                        
+                        <div class="dd-certificate-details">
+                            <div class="dd-certificate-detail">
+                                <h4>Competencia</h4>
+                                <p>Datathon Internacional</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Año</h4>
+                                <p>2023</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Posición</h4>
+                                <p>Top 20%</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Participantes</h4>
+                                <p>500+</p>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Logros:</strong> Análisis de datos de usuarios, Optimización de conversión, Propuestas de mejora UX</p>
+                    </div>
+                `;
+                break;
+                
+            default:
+                content = `
+                    <div class="dd-modal-certificate">
+                        <h3>Certificado UX Design</h3>
+                        <p>Especialización en diseño de experiencia de usuario e investigación.</p>
+                        
+                        <div class="dd-certificate-details">
+                            <div class="dd-certificate-detail">
+                                <h4>Plataforma</h4>
+                                <p>Coursera</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Estado</h4>
+                                <p>En Progreso</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Progreso</h4>
+                                <p>75%</p>
+                            </div>
+                            <div class="dd-certificate-detail">
+                                <h4>Especialización</h4>
+                                <p>UX Design</p>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Temas cubiertos:</strong> Design Thinking, User Research, Prototyping, Usability Testing</p>
+                    </div>
+                `;
+        }
+        
+        modalBody.innerHTML = content;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Cerrar modal
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        // Cerrar con ESC
+        document.addEventListener('keydown', function closeOnEsc(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                document.removeEventListener('keydown', closeOnEsc);
+            }
+        });
+        
+        function closeModal() {
+            modal.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modal.style.animation = '';
+                document.body.style.overflow = '';
+            }, 300);
+        }
+    };
+    
     // ============================== PROJECT FEATURES HOVER ==============================
     const features = document.querySelectorAll('.dd-feature');
     
@@ -250,34 +546,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================== TESTIMONIAL CAROUSEL ==============================
     function initTestimonials() {
         const testimonials = document.querySelectorAll('.dd-testimonial-card');
-        let currentIndex = 0;
-        
-        function rotateTestimonials() {
-            testimonials.forEach((testimonial, index) => {
-                if (index === currentIndex) {
-                    testimonial.style.opacity = '1';
-                    testimonial.style.transform = 'translateY(0) scale(1.05)';
-                } else {
-                    testimonial.style.opacity = '0.8';
-                    testimonial.style.transform = 'translateY(0) scale(1)';
-                }
-            });
-            
-            currentIndex = (currentIndex + 1) % testimonials.length;
-        }
         
         // Inicializar con animación
         testimonials.forEach((testimonial, index) => {
             testimonial.style.transition = 'all 0.5s ease';
-            if (index === 0) {
-                testimonial.style.opacity = '1';
-            } else {
-                testimonial.style.opacity = '0.8';
-            }
         });
-        
-        // Rotar testimonials cada 5 segundos
-        // setInterval(rotateTestimonials, 5000);
     }
     
     initTestimonials();
@@ -383,7 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observar elementos para animar
-    document.querySelectorAll('.dd-project-showcase, .dd-service-card, .dd-testimonial-card, .dd-process-step').forEach(el => {
+    document.querySelectorAll('.dd-project-showcase, .dd-service-card, .dd-testimonial-card, .dd-process-step, .dd-certification-card').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -441,11 +714,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================== INITIALIZE ==============================
     console.log('🚀 Portfolio David Díaz implementado correctamente');
     
-    // Inicializar tooltips para proyectos
-    const projectTags = document.querySelectorAll('.dd-tag');
-    projectTags.forEach(tag => {
-        tag.addEventListener('mouseenter', function() {
-            this.style.cursor = 'pointer';
-        });
-    });
+    // Touch optimization
+    document.addEventListener('touchstart', function() {}, {passive: true});
 });
