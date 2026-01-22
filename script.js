@@ -641,6 +641,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ============================== ANIMATE ON SCROLL ==============================
+    // Observar elementos para animar (agregar .dd-tools-category y .dd-ai-card)
+document.querySelectorAll('.dd-project-showcase, .dd-service-card, .dd-testimonial-card, .dd-process-step, .dd-certification-card, .dd-tools-category, .dd-ai-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+});
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
