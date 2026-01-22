@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="styles.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
@@ -33,6 +33,7 @@
                 <div class="dd-nav-center">
                     <a href="#proyectos" class="dd-nav-link">Proyectos</a>
                     <a href="#servicios" class="dd-nav-link">Servicios</a>
+                    <a href="#certificaciones" class="dd-nav-link">Certificaciones</a>
                     <a href="#proceso" class="dd-nav-link">Proceso</a>
                     <a href="#testimonios" class="dd-nav-link">Testimonios</a>
                     <a href="#contacto" class="dd-nav-link">Contacto</a>
@@ -517,6 +518,112 @@
         </div>
     </section>
 
+    <!-- Certificaciones Carrusel -->
+    <section class="dd-section dd-section-certifications" id="certificaciones">
+        <div class="dd-container">
+            <div class="dd-section-header">
+                <h2 class="dd-section-title">CERTIFICACIONES</h2>
+                <p class="dd-section-subtitle">
+                    Credenciales profesionales que avalan mi experiencia en UX/UI y desarrollo.
+                </p>
+            </div>
+            
+            <div class="dd-certifications-carousel">
+                <div class="dd-certifications-track" id="certificationsTrack">
+                    <!-- Certificación 1 -->
+                    <div class="dd-certification-card">
+                        <div class="dd-certification-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="dd-certification-content">
+                            <h3 class="dd-certification-title">Certificado Académico</h3>
+                            <p class="dd-certification-description">
+                                Validación de conocimientos en diseño UX/UI y desarrollo frontend.
+                            </p>
+                            <div class="dd-certification-meta">
+                                <span class="dd-certification-date">2024</span>
+                                <span class="dd-certification-org">Institución Certificadora</span>
+                            </div>
+                        </div>
+                        <button class="dd-certification-view" onclick="openCertificateModal('cert-academico')">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Certificación 2 -->
+                    <div class="dd-certification-card">
+                        <div class="dd-certification-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="dd-certification-content">
+                            <h3 class="dd-certification-title">Certificado de Validación</h3>
+                            <p class="dd-certification-description">
+                                Validación profesional de competencias en diseño de interfaces.
+                            </p>
+                            <div class="dd-certification-meta">
+                                <span class="dd-certification-date">2023</span>
+                                <span class="dd-certification-org">Organismo Validación</span>
+                            </div>
+                        </div>
+                        <button class="dd-certification-view" onclick="openCertificateModal('cert-validacion')">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Certificación 3 -->
+                    <div class="dd-certification-card">
+                        <div class="dd-certification-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="dd-certification-content">
+                            <h3 class="dd-certification-title">Datathon</h3>
+                            <p class="dd-certification-description">
+                                Participación y reconocimiento en competencia de análisis de datos y UX.
+                            </p>
+                            <div class="dd-certification-meta">
+                                <span class="dd-certification-date">2023</span>
+                                <span class="dd-certification-org">Competencia Internacional</span>
+                            </div>
+                        </div>
+                        <button class="dd-certification-view" onclick="openCertificateModal('cert-datathon')">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Certificación 4 (Placeholder) -->
+                    <div class="dd-certification-card">
+                        <div class="dd-certification-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="dd-certification-content">
+                            <h3 class="dd-certification-title">UX Design Specialization</h3>
+                            <p class="dd-certification-description">
+                                Especialización en diseño de experiencia de usuario y investigación.
+                            </p>
+                            <div class="dd-certification-meta">
+                                <span class="dd-certification-date">En Progreso</span>
+                                <span class="dd-certification-org">Coursera</span>
+                            </div>
+                        </div>
+                        <button class="dd-certification-view" onclick="openCertificateModal('cert-ux')">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="dd-carousel-controls">
+                    <button class="dd-carousel-prev" id="carouselPrev" aria-label="Certificaciones anteriores">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="dd-carousel-dots" id="carouselDots"></div>
+                    <button class="dd-carousel-next" id="carouselNext" aria-label="Siguientes certificaciones">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Proceso de Trabajo -->
     <section class="dd-section" id="proceso">
         <div class="dd-container">
@@ -774,6 +881,7 @@
                         <h4 class="dd-footer-title">NAVEGACIÓN</h4>
                         <a href="#proyectos" class="dd-footer-link">Proyectos</a>
                         <a href="#servicios" class="dd-footer-link">Servicios</a>
+                        <a href="#certificaciones" class="dd-footer-link">Certificaciones</a>
                         <a href="#proceso" class="dd-footer-link">Proceso</a>
                         <a href="#testimonios" class="dd-footer-link">Testimonios</a>
                         <a href="#contacto" class="dd-footer-link">Contacto</a>
@@ -805,6 +913,18 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal para Certificados -->
+    <div class="dd-certificate-modal" id="certificateModal">
+        <div class="dd-modal-content">
+            <button class="dd-modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="dd-modal-body" id="modalBody">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
