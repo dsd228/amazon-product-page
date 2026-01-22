@@ -1,4 +1,4 @@
-// ============================== PORTFOLIOBOX EXACT IMPLEMENTATION ==============================
+// ============================== TECH SELECT IMPLEMENTATION ==============================
 document.addEventListener('DOMContentLoaded', function() {
     // Actualizar año
     document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -7,26 +7,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('main-header');
     const zoomableInner = document.getElementById('zoomableInner');
     const heroOverlay = document.getElementById('heroOverlay');
-    const heroContent = document.querySelector('.pb-hero-content');
+    const heroContent = document.querySelector('.ts-hero-content');
     const scrollDownBtn = document.getElementById('scrollDown');
-    const gallerySection = document.getElementById('galeria');
-    const parallaxItems = document.querySelectorAll('.pb-parallax-item');
     const menuToggle = document.getElementById('menuToggle');
     
-    // ============================== ZOOM EFFECT EXACTO (PORTFOLIOBOX) ==============================
-    function initPortfolioboxZoom() {
+    // ============================== ZOOM EFFECT (PORTFOLIOBOX STYLE) ==============================
+    function initTechZoom() {
         if (!zoomableInner) return;
         
-        // 1. OBTENER VALOR DE ZOOM DEL DATA ATTRIBUTE
+        // 1. Obtener valor de zoom
         const zoomContainer = zoomableInner.parentElement;
-        const zoomValue = parseInt(zoomContainer.getAttribute('data-zoom')) || 28;
+        const zoomValue = parseInt(zoomContainer.getAttribute('data-zoom')) || 25;
         
-        // 2. ESTADO INICIAL (ESTO ES CLAVE) - INLINE
-        // Portfoliobox inyecta esto inline, no en CSS
-        zoomableInner.style.transform = `scale(${zoomValue}) translateX(22px) translateY(-42px)`;
+        // 2. Estado inicial (inline como Portfoliobox)
+        zoomableInner.style.transform = `scale(${zoomValue}) translateX(25px) translateY(-45px)`;
         zoomableInner.style.opacity = '0';
         
-        // 3. OVERLAY Y CONTENIDO INICIAL
+        // 3. Overlay inicial
         if (heroOverlay) {
             heroOverlay.style.opacity = '1';
         }
@@ -35,13 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
             heroContent.style.opacity = '1';
         }
         
-        // 4. CORRECCIÓN EN PRIMER FRAME (ESTO ES CLAVE)
-        // Fuerza layout reflow (getBoundingClientRect)
+        // 4. Forzar reflow
         zoomableInner.getBoundingClientRect();
         
-        // 5. ANIMACIÓN CON REQUESTANIMATIONFRAME
+        // 5. Animación con requestAnimationFrame
         requestAnimationFrame(() => {
-            // Aplica la transformación final
+            // Transformación final
             zoomableInner.style.transition = 'transform 1.1s cubic-bezier(0.33, 1, 0.68, 1), opacity 1.1s cubic-bezier(0.33, 1, 0.68, 1)';
             zoomableInner.style.transform = 'scale(1) translateX(0) translateY(0)';
             zoomableInner.style.opacity = '1';
@@ -49,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Overlay fade out
             if (heroOverlay) {
                 heroOverlay.style.transition = 'opacity 1.1s cubic-bezier(0.33, 1, 0.68, 1)';
-                heroOverlay.style.opacity = '0.3';
+                heroOverlay.style.opacity = '0.4';
             }
             
             // Content fade in
@@ -58,12 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 heroContent.style.opacity = '1';
             }
             
-            console.log('🎯 Zoom Portfoliobox ejecutado (scale:', zoomValue, ')');
+            console.log('🚀 Efecto TechSelect Zoom ejecutado (scale:', zoomValue, ')');
         });
     }
     
     // Inicializar zoom al cargar
-    setTimeout(initPortfolioboxZoom, 100);
+    setTimeout(initTechZoom, 100);
     
     // ============================== MENÚ MÓVIL ==============================
     function initMobileMenu() {
@@ -75,21 +71,21 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isOpen) {
                 // Crear menú móvil
                 const mobileMenu = document.createElement('div');
-                mobileMenu.className = 'pb-mobile-menu';
+                mobileMenu.className = 'ts-mobile-menu';
                 mobileMenu.innerHTML = `
-                    <div class="pb-mobile-menu-content">
-                        <button class="pb-mobile-close" aria-label="Cerrar menú">
+                    <div class="ts-mobile-menu-content">
+                        <button class="ts-mobile-close" aria-label="Cerrar menú">
                             <i class="fas fa-times"></i>
                         </button>
-                        <div class="pb-mobile-nav">
-                            <a href="#galeria" class="pb-nav-link">Galería</a>
-                            <a href="#proyectos" class="pb-nav-link">Proyectos</a>
-                            <a href="#servicios" class="pb-nav-link">Servicios</a>
-                            <a href="#testimonios" class="pb-nav-link">Testimonios</a>
-                            <a href="#contacto" class="pb-nav-link">Contacto</a>
+                        <div class="ts-mobile-nav">
+                            <a href="#productos" class="ts-nav-link">Productos</a>
+                            <a href="#categorias" class="ts-nav-link">Categorías</a>
+                            <a href="#testimonios" class="ts-nav-link">Testimonios</a>
+                            <a href="#garantia" class="ts-nav-link">Garantía</a>
+                            <a href="#contacto" class="ts-nav-link">Contacto</a>
                         </div>
-                        <div class="pb-mobile-actions">
-                            <a href="#contacto" class="pb-btn pb-btn-primary">Empezar Proyecto</a>
+                        <div class="ts-mobile-actions">
+                            <a href="#productos" class="ts-btn ts-btn-primary">Comprar Ahora</a>
                         </div>
                     </div>
                 `;
@@ -97,92 +93,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.appendChild(mobileMenu);
                 document.body.classList.add('mobile-menu-open');
                 
-                // Estilos para el menú móvil
-                const style = document.createElement('style');
-                style.textContent = `
-                    .pb-mobile-menu {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(255, 255, 255, 0.98);
-                        backdrop-filter: blur(20px);
-                        z-index: 2000;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        animation: fadeIn 0.3s ease;
-                    }
-                    .pb-mobile-menu-content {
-                        padding: 2rem;
-                        width: 100%;
-                        max-width: 400px;
-                        position: relative;
-                    }
-                    .pb-mobile-close {
-                        position: absolute;
-                        top: 1rem;
-                        right: 1rem;
-                        background: none;
-                        border: none;
-                        font-size: 1.5rem;
-                        color: var(--pb-gray-500);
-                        cursor: pointer;
-                        width: 48px;
-                        height: 48px;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        transition: background-color 0.2s ease;
-                    }
-                    .pb-mobile-close:hover {
-                        background: var(--pb-gray-100);
-                    }
-                    .pb-mobile-nav {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 1rem;
-                        margin-bottom: 3rem;
-                    }
-                    .pb-mobile-nav .pb-nav-link {
-                        color: var(--pb-text-primary);
-                        font-size: 1.25rem;
-                        font-weight: 500;
-                        padding: 0.75rem 0;
-                        text-decoration: none;
-                        text-align: center;
-                        border-bottom: 1px solid var(--pb-border);
-                        transition: color 0.2s ease;
-                    }
-                    .pb-mobile-nav .pb-nav-link:hover {
-                        color: var(--pb-primary);
-                    }
-                    .pb-mobile-actions {
-                        display: flex;
-                        justify-content: center;
-                    }
-                    @keyframes fadeIn {
-                        from { opacity: 0; }
-                        to { opacity: 1; }
-                    }
-                    @keyframes fadeOut {
-                        from { opacity: 1; }
-                        to { opacity: 0; }
-                    }
-                    body.mobile-menu-open {
-                        overflow: hidden;
-                    }
-                `;
-                document.head.appendChild(style);
-                
                 // Cerrar menú
-                const closeBtn = mobileMenu.querySelector('.pb-mobile-close');
+                const closeBtn = mobileMenu.querySelector('.ts-mobile-close');
                 closeBtn.addEventListener('click', closeMobileMenu);
                 
                 // Cerrar al hacer clic en enlaces
-                mobileMenu.querySelectorAll('.pb-nav-link').forEach(link => {
+                mobileMenu.querySelectorAll('.ts-nav-link').forEach(link => {
                     link.addEventListener('click', closeMobileMenu);
                 });
                 
@@ -200,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function closeMobileMenu() {
-        const mobileMenu = document.querySelector('.pb-mobile-menu');
+        const mobileMenu = document.querySelector('.ts-mobile-menu');
         if (mobileMenu) {
             mobileMenu.style.animation = 'fadeOut 0.3s ease';
             setTimeout(() => {
@@ -211,68 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     initMobileMenu();
-    
-    // ============================== SCROLL PARA INTEGRACIÓN CON GALERÍA ==============================
-    let ticking = false;
-    let lastScrollY = 0;
-    
-    function updateScrollIntegration() {
-        const scrollY = window.scrollY;
-        const heroHeight = document.querySelector('.pb-hero-section').offsetHeight;
-        const galleryTop = gallerySection.offsetTop;
-        
-        // Progreso del scroll (0 a 1)
-        let progress = 0;
-        
-        if (scrollY <= heroHeight) {
-            // Dentro del hero
-            progress = scrollY / heroHeight;
-        } else if (scrollY >= galleryTop && scrollY <= galleryTop + gallerySection.offsetHeight) {
-            // Dentro de la galería
-            progress = 1;
-        } else if (scrollY > heroHeight && scrollY < galleryTop) {
-            // Transición entre hero y galería
-            progress = 1;
-        }
-        
-        // Ajustar overlay del hero
-        if (heroOverlay) {
-            const overlayOpacity = 0.3 + (progress * 0.5);
-            heroOverlay.style.opacity = Math.min(0.8, overlayOpacity);
-        }
-        
-        // Parallax en items de galería
-        if (scrollY > galleryTop - window.innerHeight / 2) {
-            const parallaxOffset = (scrollY - (galleryTop - window.innerHeight / 2)) * 0.5;
-            
-            parallaxItems.forEach(item => {
-                const speed = parseFloat(item.getAttribute('data-speed')) || 0.15;
-                const yPos = parallaxOffset * speed;
-                item.style.transform = `translateY(${yPos}px)`;
-            });
-        }
-        
-        // Botón scroll fade
-        if (scrollDownBtn) {
-            if (progress > 0.3) {
-                scrollDownBtn.style.opacity = '0';
-                scrollDownBtn.style.pointerEvents = 'none';
-            } else {
-                scrollDownBtn.style.opacity = '1';
-                scrollDownBtn.style.pointerEvents = 'auto';
-            }
-        }
-        
-        lastScrollY = scrollY;
-        ticking = false;
-    }
-    
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            requestAnimationFrame(updateScrollIntegration);
-            ticking = true;
-        }
-    });
     
     // ============================== HEADER SCROLL ==============================
     function updateHeader() {
@@ -285,15 +139,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', updateHeader);
     
-    // ============================== BOTÓN SCROLL DOWN ==============================
+    // ============================== SCROLL DOWN BUTTON ==============================
     if (scrollDownBtn) {
         scrollDownBtn.addEventListener('click', function(e) {
             e.preventDefault();
             
-            const targetPosition = gallerySection.offsetTop;
+            const targetPosition = document.querySelector('#productos').offsetTop;
             
             window.scrollTo({
-                top: targetPosition,
+                top: targetPosition - 80,
                 behavior: 'smooth'
             });
             
@@ -320,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            if (href === '#') return;
+            if (href === '#' || href === '#hero') return;
             
             e.preventDefault();
             const target = document.querySelector(href);
@@ -339,213 +193,205 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ============================== INTERACCIÓN CON ITEMS DE GALERÍA ==============================
-    parallaxItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            const currentTransform = this.style.transform || '';
-            this.style.transform = currentTransform + ' scale(1.05)';
-            this.style.zIndex = '100';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            const currentTransform = this.style.transform || '';
-            this.style.transform = currentTransform.replace(' scale(1.05)', '');
-            this.style.zIndex = '';
-        });
-        
-        item.addEventListener('click', function() {
-            const title = this.querySelector('h3').textContent;
-            showProjectModal(title);
+    // ============================== PRODUCT GALLERY INTERACTION ==============================
+    const galleryThumbs = document.querySelectorAll('.ts-gallery-thumb');
+    const mainImage = document.querySelector('.ts-product-main-image');
+    
+    galleryThumbs.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            // Remover clase active de todos
+            galleryThumbs.forEach(t => t.classList.remove('active'));
+            
+            // Agregar active al thumb clickeado
+            this.classList.add('active');
+            
+            // Cambiar imagen principal
+            if (mainImage) {
+                const thumbImg = this.querySelector('img');
+                mainImage.src = thumbImg.src.replace('q=80', 'q=90');
+                
+                // Efecto de transición
+                mainImage.style.opacity = '0';
+                setTimeout(() => {
+                    mainImage.style.transition = 'opacity 0.3s ease';
+                    mainImage.style.opacity = '1';
+                }, 50);
+            }
         });
     });
     
-    function showProjectModal(title) {
-        const modalHTML = `
-            <div class="pb-project-modal">
-                <div class="pb-modal-content">
-                    <button class="pb-modal-close">&times;</button>
-                    <h3>${title}</h3>
-                    <p>Proyecto en desarrollo. Próximamente más detalles.</p>
-                    <a href="#contacto" class="pb-btn pb-btn-primary">
-                        <i class="fas fa-envelope"></i> Contactar sobre este proyecto
-                    </a>
-                </div>
-            </div>
-        `;
-        
-        // Remover modal existente
-        const existingModal = document.querySelector('.pb-project-modal');
-        if (existingModal) {
-            existingModal.remove();
-        }
-        
-        // Agregar nuevo modal
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-        
-        // Estilos del modal
-        const style = document.createElement('style');
-        style.textContent = `
-            .pb-project-modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                backdrop-filter: blur(10px);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 2000;
-                animation: fadeIn 0.3s ease;
-            }
-            .pb-modal-content {
-                background: white;
-                padding: 3rem;
-                border-radius: 24px;
-                max-width: 500px;
-                width: 90%;
-                position: relative;
-                animation: slideUp 0.4s ease;
-            }
-            .pb-modal-close {
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                background: none;
-                border: none;
-                font-size: 2rem;
-                cursor: pointer;
-                color: var(--pb-gray-500);
-                width: 48px;
-                height: 48px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: background-color 0.2s ease;
-            }
-            .pb-modal-close:hover {
-                background: var(--pb-gray-100);
-            }
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-            @keyframes fadeOut {
-                from { opacity: 1; }
-                to { opacity: 0; }
-            }
-            @keyframes slideUp {
-                from { 
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to { 
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Cerrar modal
-        const modal = document.querySelector('.pb-project-modal');
-        const closeBtn = modal.querySelector('.pb-modal-close');
-        
-        closeBtn.addEventListener('click', () => {
-            modal.style.animation = 'fadeOut 0.3s ease';
-            setTimeout(() => modal.remove(), 300);
-        });
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.animation = 'fadeOut 0.3s ease';
-                setTimeout(() => modal.remove(), 300);
+    // ============================== COLOR SELECTOR ==============================
+    const colorOptions = document.querySelectorAll('.ts-color-option');
+    
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Remover clase active de todos
+            colorOptions.forEach(c => c.classList.remove('active'));
+            
+            // Agregar active al color seleccionado
+            this.classList.add('active');
+            
+            // Actualizar precio según color (simulado)
+            const priceElement = document.querySelector('.ts-price');
+            const color = this.dataset.color;
+            
+            // Pequeña animación en el precio
+            if (priceElement) {
+                priceElement.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    priceElement.style.transition = 'transform 0.3s ease';
+                    priceElement.style.transform = 'scale(1)';
+                }, 300);
             }
         });
-        
-        // Cerrar con ESC
-        document.addEventListener('keydown', function closeModalOnEsc(e) {
-            if (e.key === 'Escape') {
-                modal.style.animation = 'fadeOut 0.3s ease';
-                setTimeout(() => modal.remove(), 300);
-                document.removeEventListener('keydown', closeModalOnEsc);
-            }
-        });
-    }
+    });
     
-    // ============================== CONTADORES ==============================
-    function initCounters() {
-        const counters = document.querySelectorAll('.pb-stat-number[data-count]');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.animated) {
-                    const target = parseInt(entry.target.dataset.count);
-                    const suffix = entry.target.textContent.replace(/[0-9]/g, '');
-                    let current = 0;
-                    
-                    const increment = target / 50;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            entry.target.textContent = target + suffix;
-                            clearInterval(timer);
-                        } else {
-                            entry.target.textContent = Math.floor(current) + suffix;
-                        }
-                    }, 30);
-                    
-                    entry.target.dataset.animated = 'true';
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        counters.forEach(counter => observer.observe(counter));
-    }
+    // ============================== ADD TO CART SIMULATION ==============================
+    const addToCartBtn = document.querySelector('.ts-btn-xl');
+    const cartCount = document.querySelector('.ts-cart-count');
     
-    initCounters();
-    
-    // ============================== FORMULARIO ==============================
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function(e) {
             e.preventDefault();
             
+            const originalText = this.innerHTML;
+            const originalWidth = this.offsetWidth;
+            
+            // Efecto de agregar al carrito
+            this.style.width = originalWidth + 'px';
+            this.innerHTML = '<i class="fas fa-check"></i> AGREGADO';
+            this.disabled = true;
+            
+            // Actualizar contador del carrito
+            if (cartCount) {
+                let currentCount = parseInt(cartCount.textContent);
+                cartCount.textContent = currentCount + 1;
+                
+                // Animación del contador
+                cartCount.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    cartCount.style.transition = 'transform 0.3s ease';
+                    cartCount.style.transform = 'scale(1)';
+                }, 300);
+            }
+            
+            // Restaurar botón después de 2 segundos
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+            }, 2000);
+        });
+    }
+    
+    // ============================== PRODUCT FEATURES HOVER ==============================
+    const features = document.querySelectorAll('.ts-feature');
+    
+    features.forEach(feature => {
+        feature.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px) scale(1.02)';
+        });
+        
+        feature.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // ============================== TESTIMONIAL CAROUSEL ==============================
+    function initTestimonials() {
+        const testimonials = document.querySelectorAll('.ts-testimonial-card');
+        let currentIndex = 0;
+        
+        function rotateTestimonials() {
+            testimonials.forEach((testimonial, index) => {
+                if (index === currentIndex) {
+                    testimonial.style.opacity = '1';
+                    testimonial.style.transform = 'translateY(0)';
+                } else {
+                    testimonial.style.opacity = '0.6';
+                    testimonial.style.transform = 'translateY(10px)';
+                }
+            });
+            
+            currentIndex = (currentIndex + 1) % testimonials.length;
+        }
+        
+        // Rotar testimonials cada 5 segundos
+        setInterval(rotateTestimonials, 5000);
+        
+        // Inicializar
+        testimonials.forEach((testimonial, index) => {
+            testimonial.style.transition = 'all 0.5s ease';
+            if (index === 0) {
+                testimonial.style.opacity = '1';
+            } else {
+                testimonial.style.opacity = '0.6';
+            }
+        });
+    }
+    
+    initTestimonials();
+    
+    // ============================== NEWSLETTER FORM ==============================
+    const newsletterForm = document.querySelector('.ts-newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const input = this.querySelector('input[type="email"]');
             const button = this.querySelector('button[type="submit"]');
-            const originalText = button.textContent;
-            const originalHTML = button.innerHTML;
+            const originalText = button.innerHTML;
             
-            // Deshabilitar botón y mostrar estado de carga
+            // Validar email
+            const email = input.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(email)) {
+                input.style.borderColor = '#ef4444';
+                input.focus();
+                return;
+            }
+            
+            // Deshabilitar y mostrar estado de carga
+            input.disabled = true;
             button.disabled = true;
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
             
-            // Simular envío (en producción esto sería una llamada AJAX real)
+            // Simular envío
             setTimeout(() => {
                 // Mostrar mensaje de éxito
                 const successMessage = document.createElement('div');
-                successMessage.className = 'pb-form-success';
+                successMessage.className = 'ts-form-success';
                 successMessage.innerHTML = `
                     <i class="fas fa-check-circle"></i>
                     <div>
-                        <h4>¡Mensaje enviado!</h4>
-                        <p>Te responderé en menos de 24 horas.</p>
+                        <h4>¡Suscripción exitosa!</h4>
+                        <p>Te hemos enviado un email de confirmación.</p>
                     </div>
                 `;
                 
-                // Insertar mensaje después del formulario
-                contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
+                // Estilos para el mensaje
+                successMessage.style.cssText = `
+                    background: linear-gradient(135deg, #10b981, #059669);
+                    color: white;
+                    padding: 1.5rem;
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    margin-top: 1.5rem;
+                    animation: fadeIn 0.4s ease;
+                `;
                 
-                // Restaurar botón
+                this.parentNode.appendChild(successMessage);
+                
+                // Restaurar formulario
                 setTimeout(() => {
+                    input.value = '';
+                    input.disabled = false;
                     button.disabled = false;
-                    button.innerHTML = originalHTML;
-                    button.textContent = originalText;
+                    button.innerHTML = originalText;
                     
-                    // Limpiar formulario
-                    contactForm.reset();
-                    
-                    // Desaparecer mensaje después de 5 segundos
+                    // Eliminar mensaje después de 5 segundos
                     setTimeout(() => {
                         successMessage.style.opacity = '0';
                         successMessage.style.transform = 'translateY(-10px)';
@@ -558,7 +404,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ============================== LAZY LOADING PARA IMÁGENES ==============================
+    // ============================== PARALLAX EFFECT ON SCROLL ==============================
+    let ticking = false;
+    let lastScrollY = 0;
+    
+    function updateParallax() {
+        const scrollY = window.scrollY;
+        const parallaxElements = document.querySelectorAll('.ts-grid-item');
+        
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.05 + (index * 0.01);
+            const yPos = scrollY * speed;
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+        
+        lastScrollY = scrollY;
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    });
+    
+    // ============================== LAZY LOADING ==============================
     function initLazyLoading() {
         const images = document.querySelectorAll('img[data-src]');
         
@@ -572,11 +443,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         observer.unobserve(img);
                     }
                 });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.1
             });
             
             images.forEach(img => imageObserver.observe(img));
         } else {
-            // Fallback para navegadores antiguos
+            // Fallback
             images.forEach(img => {
                 img.src = img.dataset.src;
             });
@@ -585,6 +459,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     initLazyLoading();
     
-    // ============================== INICIALIZAR TODO ==============================
-    console.log('🚀 Portfoliobox implementado correctamente');
+    // ============================== INITIALIZE ==============================
+    console.log('🚀 TechSelect implementado correctamente');
+    
+    // AOS (Animate on Scroll) simulation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observar elementos para animar
+    document.querySelectorAll('.ts-category-card, .ts-testimonial-card, .ts-feature').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 });
