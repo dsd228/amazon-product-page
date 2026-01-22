@@ -6,6 +6,8 @@
   <title>NeoProdUx - UX/UI Design & Product Strategy Agency</title>
   
   <!-- Meta tags para SEO y rendimiento -->
+  <!-- Agregar esto en el <head> -->
+  <meta name="color-scheme" content="dark light">
   <meta name="description" content="Agencia especializada en diseño UX/UI que convierte visitas en clientes. Mejoramos conversión con diseño basado en datos y mejores prácticas.">
   <meta name="keywords" content="UX, UI, diseño, conversión, product strategy, diseño web, mobile app">
   <meta name="author" content="NeoProdUx">
@@ -20,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
   
   <!-- CDN Links -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -56,7 +58,17 @@
           <span class="logo-prod">Prod</span>
           <span class="logo-ux">Ux</span>
         </a>
-        
+        <!-- En el nav, dentro de .nav-container, después del logo -->
+<div class="theme-switch-wrapper">
+  <button class="theme-switch" id="themeSwitch" aria-label="Cambiar modo claro/oscuro">
+    <div class="theme-switch-track">
+      <div class="theme-switch-thumb">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+      </div>
+    </div>
+  </button>
+</div>
         <div class="nav-menu">
           <div class="nav-dropdown">
             <button class="dropdown-trigger">
@@ -160,6 +172,12 @@
           <i class="fas fa-home"></i>
         </div>
         <div class="tap-menu-tooltip">Inicio</div>
+        <a href="#" class="tap-menu-item theme-toggle-tap" data-label="THEME" aria-label="Cambiar tema">
+  <div class="tap-menu-icon">
+    <i class="fas fa-moon"></i>
+  </div>
+  <div class="tap-menu-tooltip">Tema</div>
+</a>
       </a>
       
       <a href="#casos" class="tap-menu-item" data-label="WORK" aria-label="Ver trabajos">
