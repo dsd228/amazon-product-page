@@ -6,93 +6,224 @@
     <title>NeoProdUx | Diseño UX/UI & Product Strategy</title>
     <meta name="description" content="Portafolio profesional de diseño UX/UI especializado en estrategia de producto, investigación de usuarios y optimización de conversión.">
     
-    <!-- Fonts exactas de Portfoliobox -->
+    <!-- Fonts de Portfoliobox -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Icons de Portfoliobox -->
+    <!-- Icons de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="styles.css">
     
-    <!-- Favicon similar a Portfoliobox -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://assets.portfoliobox.net/assets/webclip-79ffc975b241f9fad38592dab49cd224.png">
     
     <style>
-        /* Estilos inline para efectos específicos de Portfoliobox */
-        .hero-mode .pb-logo {
-            color: white !important;
-        }
-        
-        .hero-mode .pb-nav-link {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-        
-        .hero-mode .pb-nav-link:hover {
-            color: white !important;
-        }
-        
-        .hero-mode .pb-btn-primary {
-            background: rgba(255, 255, 255, 0.15) !important;
-            border: 1px solid rgba(255, 255, 255, 0.25) !important;
-            color: white !important;
-        }
-        
-        .hero-mode .pb-btn-primary:hover {
-            background: white !important;
-            color: var(--pb-text-primary) !important;
-        }
-        
-        /* Grid de proyectos estilo Portfoliobox */
-        .pb-projects-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        /* Badge de Portfoliobox */
-        .pb-feature-badge {
-            display: inline-flex;
+        /* Estilos específicos para efecto galería */
+        .pb-hero-gallery {
+            position: relative;
+            min-height: 100vh;
+            padding-top: 120px;
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            background: var(--pb-gray-900);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            overflow: hidden;
+        }
+
+        .pb-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9));
+            z-index: 2;
+        }
+
+        .pb-hero-gallery-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .pb-gallery-item {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            animation-duration: 20s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        .pb-gallery-item:nth-child(1) {
+            grid-column: 1 / span 2;
+            grid-row: 1;
+            height: 180px;
+            animation-name: float1;
+        }
+
+        .pb-gallery-item:nth-child(2) {
+            grid-column: 3 / span 1;
+            grid-row: 1 / span 2;
+            height: 250px;
+            animation-name: float2;
+            animation-delay: 2s;
+        }
+
+        .pb-gallery-item:nth-child(3) {
+            grid-column: 4 / span 1;
+            grid-row: 1;
+            height: 150px;
+            animation-name: float3;
+            animation-delay: 1s;
+        }
+
+        .pb-gallery-item:nth-child(4) {
+            grid-column: 1 / span 1;
+            grid-row: 2;
+            height: 200px;
+            animation-name: float4;
+            animation-delay: 3s;
+        }
+
+        .pb-gallery-item:nth-child(5) {
+            grid-column: 2 / span 2;
+            grid-row: 2 / span 2;
+            height: 300px;
+            animation-name: float5;
+            animation-delay: 0.5s;
+        }
+
+        .pb-gallery-item:nth-child(6) {
+            grid-column: 4 / span 1;
+            grid-row: 2 / span 2;
+            height: 250px;
+            animation-name: float6;
+            animation-delay: 2.5s;
+        }
+
+        .pb-gallery-item:nth-child(7) {
+            grid-column: 1 / span 1;
+            grid-row: 3;
+            height: 180px;
+            animation-name: float7;
+            animation-delay: 1.5s;
+        }
+
+        .pb-gallery-item:nth-child(8) {
+            grid-column: 3 / span 1;
+            grid-row: 3;
+            height: 160px;
+            animation-name: float8;
+            animation-delay: 4s;
+        }
+
+        .pb-hero-gallery-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            text-align: center;
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.75rem;
+        }
+
+        .pb-hero-gallery-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pb-hero-gallery-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: #cbd5e1;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Animaciones flotantes */
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-15px) translateX(10px); }
+            50% { transform: translateY(0) translateX(20px); }
+            75% { transform: translateY(15px) translateX(10px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-20px) translateX(-10px); }
+            50% { transform: translateY(0) translateX(-20px); }
+            75% { transform: translateY(20px) translateX(-10px); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-10px) translateX(15px); }
+            50% { transform: translateY(0) translateX(30px); }
+            75% { transform: translateY(10px) translateX(15px); }
+        }
+
+        @keyframes float4 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-25px) translateX(-5px); }
+            50% { transform: translateY(0) translateX(-10px); }
+            75% { transform: translateY(25px) translateX(-5px); }
+        }
+
+        @keyframes float5 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-30px) translateX(5px); }
+            50% { transform: translateY(0) translateX(10px); }
+            75% { transform: translateY(30px) translateX(5px); }
+        }
+
+        /* Para ver proyectos inmediatamente */
+        .pb-projects-showcase {
+            display: grid !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        .pb-project-card {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        /* Placeholder para imágenes */
+        .project-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin: 1rem 0;
-        }
-        
-        /* Efectos de hover suaves */
-        .pb-card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .pb-card-hover:hover {
-            transform: translateY(-5px);
-        }
-        
-        /* Loading states */
-        .pb-loading {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .pb-loaded {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.6s ease;
+            font-size: 1.2rem;
         }
     </style>
 </head>
-<body class="pb-loading">
-    <!-- Header con transformación al scroll -->
+<body>
+    <!-- Header con efecto transformación -->
     <header class="pb-header hero-mode" id="main-header">
         <div class="pb-container">
             <nav class="pb-main-nav">
@@ -116,50 +247,64 @@
                 </div>
             </nav>
         </div>
-        
-        <!-- Menú móvil -->
-        <div class="pb-mobile-menu" id="mobileMenu"></div>
     </header>
 
-    <!-- Hero Section con efecto Portfoliobox -->
-    <section class="pb-hero-parallax" id="hero">
-        <div class="pb-hero-bg" id="parallax-bg"></div>
+    <!-- Hero Section con Galería Parallax -->
+    <section class="pb-hero-gallery" id="hero">
+        <!-- Fondo con galería parallax -->
+        <div class="pb-hero-gallery-bg" id="galleryParallax">
+            <div class="pb-gallery-item"></div>
+            <div class="pb-gallery-item"></div>
+            <div class="pb-gallery-item"></div>
+            <div class="pb-gallery-item"></div>
+            <div class="pb-gallery-item"></div>
+            <div class="pb-gallery-item"></div>
+            <div class="pb-gallery-item"></div>
+            <div class="pb-gallery-item"></div>
+        </div>
         
+        <!-- Overlay para mejor legibilidad -->
+        <div class="pb-hero-overlay"></div>
+        
+        <!-- Contenido principal -->
         <div class="pb-container">
-            <div class="pb-hero-portfolio">
-                <h1 class="pb-hero-title pb-reveal" data-delay="100">
-                    Diseño que <span style="color: var(--pb-primary-light)">convierte</span> y 
-                    <span style="color: var(--pb-accent)">retiene</span>
+            <div class="pb-hero-gallery-content">
+                <h1 class="pb-hero-gallery-title">
+                    Diseño que <span style="color: #60a5fa">Convierte</span><br>
+                    & <span style="color: #8b5cf6">Retiene</span>
                 </h1>
-                <p class="pb-hero-subtitle pb-reveal" data-delay="300">
-                    Especialista en diseño UX/UI basado en datos, investigación de usuarios 
-                    y estrategias de producto que generan <strong>resultados medibles</strong> para startups y empresas digitales.
+                
+                <p class="pb-hero-gallery-subtitle">
+                    Portafolio profesional de diseño UX/UI y estrategia de producto.<br>
+                    Transformo ideas en experiencias digitales que generan resultados medibles.
                 </p>
                 
-                <div class="pb-hero-actions pb-reveal" data-delay="500">
+                <div class="pb-hero-actions">
                     <a href="#proyectos" class="pb-btn pb-btn-primary pb-btn-large">
-                        <i class="fas fa-eye"></i> Ver proyectos destacados
+                        <i class="fas fa-eye"></i> Ver Proyectos
                     </a>
                     <a href="#contacto" class="pb-btn pb-btn-outline pb-btn-large">
-                        <i class="fas fa-chart-line"></i> Solicitar auditoría gratuita
+                        <i class="fas fa-rocket"></i> Comenzar Proyecto
                     </a>
                 </div>
                 
-                <div class="pb-hero-stats pb-reveal" data-delay="700">
+                <!-- Stats -->
+                <div class="pb-hero-stats">
                     <div class="pb-stat">
                         <span class="pb-stat-number" data-count="50">0+</span>
-                        <span class="pb-stat-label">proyectos entregados</span>
+                        <span class="pb-stat-label">Proyectos Entregados</span>
                     </div>
                     <div class="pb-stat">
-                        <span class="pb-stat-number" data-count="35">0%</span>
-                        <span class="pb-stat-label">aumento conversión avg.</span>
+                        <span class="pb-stat-number" data-count="340">0%</span>
+                        <span class="pb-stat-label">Aumento Conversión</span>
                     </div>
                     <div class="pb-stat">
                         <span class="pb-stat-number">100%</span>
-                        <span class="pb-stat-label">satisfacción clientes</span>
+                        <span class="pb-stat-label">Clientes Satisfechos</span>
                     </div>
                 </div>
                 
+                <!-- Scroll hint -->
                 <div class="pb-scroll-hint" id="scrollHint">
                     <i class="fas fa-chevron-down"></i>
                 </div>
@@ -167,38 +312,30 @@
         </div>
     </section>
 
-    <!-- Proyectos Destacados - Estilo galería Portfoliobox -->
+    <!-- Sección: Proyectos Destacados -->
     <section class="pb-section pb-section-light" id="proyectos">
         <div class="pb-container">
-            <div class="pb-section-header pb-reveal">
-                <h2 class="pb-section-title">Portfolio de Proyectos</h2>
+            <div class="pb-section-header">
+                <h2 class="pb-section-title">Proyectos Destacados</h2>
                 <p class="pb-section-subtitle">
-                    Casos de estudio reales donde el diseño UX/UI transformó métricas de negocio
+                    Casos de estudio donde el diseño UX/UI transformó resultados de negocio de forma medible.
                 </p>
-                <span class="pb-feature-badge">
-                    <i class="fas fa-medal"></i> Resultados verificados
-                </span>
             </div>
             
-            <!-- Grid estilo Portfoliobox -->
+            <!-- Galería de proyectos -->
             <div class="pb-projects-showcase">
                 <!-- Proyecto 1 -->
-                <article class="pb-project-card pb-portfoliobox-card pb-card-hover" data-delay="100">
+                <article class="pb-project-card">
                     <div class="pb-project-image">
-                        <div class="pb-image-overlay">
-                            <img src="Desktop - 1paseo.png" 
-                                 alt="Paseo FinTech App - Case Study" 
-                                 loading="lazy"
-                                 class="pb-image-loaded">
+                        <div class="project-placeholder">
+                            PASEO FinTech
                         </div>
                         <div class="pb-project-overlay">
-                            <div class="overlay-content">
-                                <h4>PASEO – FinTech App</h4>
-                                <p>Diseño completo de app de paseo de perros con sistema de pagos integrado</p>
-                                <div class="overlay-stats">
-                                    <span><i class="fas fa-chart-line"></i> +75% velocidad</span>
-                                    <span><i class="fas fa-bug"></i> -45% errores</span>
-                                </div>
+                            <h4>PASEO – UX Case Study</h4>
+                            <p>FinTech · Mobile App</p>
+                            <div class="overlay-stats">
+                                <span><i class="fas fa-chart-line"></i> +75% velocidad</span>
+                                <span><i class="fas fa-bug"></i> -45% errores</span>
                             </div>
                         </div>
                     </div>
@@ -226,22 +363,17 @@
                 </article>
 
                 <!-- Proyecto 2 -->
-                <article class="pb-project-card pb-portfoliobox-card pb-card-hover" data-delay="200">
+                <article class="pb-project-card">
                     <div class="pb-project-image">
-                        <div class="pb-image-overlay">
-                            <img src="dispatch - copia.png" 
-                                 alt="Nexus Logistics Dashboard" 
-                                 loading="lazy"
-                                 class="pb-image-loaded">
+                        <div class="project-placeholder">
+                            Nexus Logistics
                         </div>
                         <div class="pb-project-overlay">
-                            <div class="overlay-content">
-                                <h4>Nexus Logistics</h4>
-                                <p>Dashboard SaaS B2B para gestión logística</p>
-                                <div class="overlay-stats">
-                                    <span><i class="fas fa-user-check"></i> +40% usabilidad</span>
-                                    <span><i class="fas fa-clock"></i> -30% tiempo</span>
-                                </div>
+                            <h4>Nexus Logistics</h4>
+                            <p>Logística · SaaS B2B</p>
+                            <div class="overlay-stats">
+                                <span><i class="fas fa-user-check"></i> +40% usabilidad</span>
+                                <span><i class="fas fa-clock"></i> -30% tiempo</span>
                             </div>
                         </div>
                     </div>
@@ -269,22 +401,17 @@
                 </article>
 
                 <!-- Proyecto 3 -->
-                <article class="pb-project-card pb-portfoliobox-card pb-card-hover" data-delay="300">
+                <article class="pb-project-card">
                     <div class="pb-project-image">
-                        <div class="pb-image-overlay">
-                            <img src="Bodega La Caroyense — UX_UI Redesign/Desktop - 3.png" 
-                                 alt="La Caroyense E-commerce Redesign" 
-                                 loading="lazy"
-                                 class="pb-image-loaded">
+                        <div class="project-placeholder">
+                            La Caroyense
                         </div>
                         <div class="pb-project-overlay">
-                            <div class="overlay-content">
-                                <h4>La Caroyense</h4>
-                                <p>Rediseño mobile-first de e-commerce</p>
-                                <div class="overlay-stats">
-                                    <span><i class="fas fa-shopping-cart"></i> +340% conversión</span>
-                                    <span><i class="fas fa-times-circle"></i> -45% abandono</span>
-                                </div>
+                            <h4>La Caroyense</h4>
+                            <p>E-commerce · Mobile First</p>
+                            <div class="overlay-stats">
+                                <span><i class="fas fa-shopping-cart"></i> +340% conversión</span>
+                                <span><i class="fas fa-times-circle"></i> -45% abandono</span>
                             </div>
                         </div>
                     </div>
@@ -312,7 +439,7 @@
                 </article>
             </div>
             
-            <div class="pb-section-footer pb-reveal" data-delay="400">
+            <div class="pb-section-footer">
                 <a href="https://github.com/dsd228?tab=repositories" 
                    target="_blank" 
                    class="pb-btn pb-btn-outline pb-btn-large">
@@ -322,10 +449,10 @@
         </div>
     </section>
 
-    <!-- Proceso de Trabajo -->
+    <!-- Sección: Proceso -->
     <section class="pb-section" id="proceso">
         <div class="pb-container">
-            <div class="pb-section-header pb-reveal">
+            <div class="pb-section-header">
                 <h2 class="pb-section-title">Mi Proceso de Trabajo</h2>
                 <p class="pb-section-subtitle">
                     Metodología estructurada que garantiza resultados consistentes
@@ -333,65 +460,57 @@
             </div>
             
             <div class="pb-process-steps">
-                <div class="pb-process-step pb-reveal" data-delay="100">
-                    <div class="pb-step-icon">
-                        <div class="pb-step-number">01</div>
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 class="pb-step-title">Descubrimiento</h3>
+                <div class="pb-process-step">
+                    <div class="pb-step-number">01</div>
+                    <h3 class="pb-step-title">Investigación</h3>
                     <p class="pb-step-description">
-                        Análisis profundo del problema, entrevistas con usuarios y benchmark competitivo.
+                        Análisis de métricas existentes, entrevistas con usuarios 
+                        y benchmark competitivo.
                     </p>
                 </div>
                 
-                <div class="pb-process-step pb-reveal" data-delay="200">
-                    <div class="pb-step-icon">
-                        <div class="pb-step-number">02</div>
-                        <i class="fas fa-pencil-ruler"></i>
-                    </div>
+                <div class="pb-process-step">
+                    <div class="pb-step-number">02</div>
                     <h3 class="pb-step-title">Diseño</h3>
                     <p class="pb-step-description">
-                        Creación de wireframes, prototipos interactivos y sistemas de diseño.
+                        Creación de wireframes, prototipos interactivos 
+                        y sistemas de diseño.
                     </p>
                 </div>
                 
-                <div class="pb-process-step pb-reveal" data-delay="300">
-                    <div class="pb-step-icon">
-                        <div class="pb-step-number">03</div>
-                        <i class="fas fa-flask"></i>
-                    </div>
+                <div class="pb-process-step">
+                    <div class="pb-step-number">03</div>
                     <h3 class="pb-step-title">Validación</h3>
                     <p class="pb-step-description">
-                        Testing con usuarios reales, análisis de métricas y refinamiento iterativo.
+                        Testing con usuarios reales, análisis de feedback 
+                        y refinamiento iterativo.
                     </p>
                 </div>
                 
-                <div class="pb-process-step pb-reveal" data-delay="400">
-                    <div class="pb-step-icon">
-                        <div class="pb-step-number">04</div>
-                        <i class="fas fa-rocket"></i>
-                    </div>
+                <div class="pb-process-step">
+                    <div class="pb-step-number">04</div>
                     <h3 class="pb-step-title">Implementación</h3>
                     <p class="pb-step-description">
-                        Handoff a desarrollo, supervisión y medición de resultados post-lanzamiento.
+                        Handoff a desarrollo, supervisión y medición 
+                        de resultados post-lanzamiento.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Servicios -->
+    <!-- Sección: Servicios -->
     <section class="pb-section pb-section-light" id="servicios">
         <div class="pb-container">
-            <div class="pb-section-header pb-reveal">
+            <div class="pb-section-header">
                 <h2 class="pb-section-title">Servicios Especializados</h2>
                 <p class="pb-section-subtitle">
-                    Soluciones de diseño UX/UI y estrategia de producto adaptadas a tus necesidades
+                    Soluciones de diseño UX/UI y estrategia de producto para necesidades específicas.
                 </p>
             </div>
             
             <div class="pb-services-grid">
-                <div class="pb-service-card pb-reveal" data-delay="100">
+                <div class="pb-service-card">
                     <div class="pb-service-icon">
                         <i class="fas fa-pencil-ruler"></i>
                     </div>
@@ -404,11 +523,10 @@
                         <li>Research & User Testing</li>
                         <li>Wireframes & Prototipos</li>
                         <li>Design Systems</li>
-                        <li>UI Design</li>
                     </ul>
                 </div>
                 
-                <div class="pb-service-card pb-reveal" data-delay="200">
+                <div class="pb-service-card">
                     <div class="pb-service-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
@@ -421,11 +539,10 @@
                         <li>Product Discovery</li>
                         <li>Analytics & KPIs</li>
                         <li>Conversion Optimization</li>
-                        <li>Roadmap Planning</li>
                     </ul>
                 </div>
                 
-                <div class="pb-service-card pb-reveal" data-delay="300">
+                <div class="pb-service-card">
                     <div class="pb-service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
@@ -438,11 +555,10 @@
                         <li>Mobile App Design</li>
                         <li>Responsive Web</li>
                         <li>Touch UX Patterns</li>
-                        <li>iOS/Android Guidelines</li>
                     </ul>
                 </div>
                 
-                <div class="pb-service-card pb-reveal" data-delay="400">
+                <div class="pb-service-card">
                     <div class="pb-service-icon">
                         <i class="fas fa-code"></i>
                     </div>
@@ -455,45 +571,44 @@
                         <li>Figma to Code</li>
                         <li>Webflow Development</li>
                         <li>WordPress Custom</li>
-                        <li>Performance Optimization</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sobre Mí -->
-    <section class="pb-section" id="sobre-mi">
+    <!-- Sección: Sobre Mí -->
+    <section class="pb-section pb-section-dark" id="sobre-mi">
         <div class="pb-container">
             <div class="pb-about-grid">
                 <div class="pb-about-content">
-                    <h2 class="pb-section-title pb-reveal">Sobre Mí</h2>
-                    <p class="pb-about-description pb-reveal" data-delay="100">
+                    <h2 class="pb-section-title">Sobre Mí</h2>
+                    <p class="pb-about-description">
                         Soy <strong>David Díaz</strong>, diseñador UX/UI y estratega de producto con 5+ años 
                         transformando productos digitales. Mi enfoque combina diseño basado en datos, 
                         investigación de usuarios y optimización de conversión para generar impacto real.
                     </p>
-                    <p class="pb-about-description pb-reveal" data-delay="200">
+                    <p class="pb-about-description">
                         Especializado en startups y scale-ups, trabajo de forma remota con clientes 
                         globales, desde ideas iniciales hasta lanzamientos exitosos.
                     </p>
                     
                     <div class="pb-about-stats">
-                        <div class="pb-about-stat pb-animated-stat">
+                        <div class="pb-about-stat">
                             <span class="pb-stat-number" data-count="50">0+</span>
                             <span class="pb-stat-label">Proyectos completados</span>
                         </div>
-                        <div class="pb-about-stat pb-animated-stat" data-delay="100">
+                        <div class="pb-about-stat">
                             <span class="pb-stat-number">100%</span>
                             <span class="pb-stat-label">Clientes satisfechos</span>
                         </div>
-                        <div class="pb-about-stat pb-animated-stat" data-delay="200">
+                        <div class="pb-about-stat">
                             <span class="pb-stat-number" data-count="35">0%</span>
                             <span class="pb-stat-label">Conversión avg.</span>
                         </div>
                     </div>
                     
-                    <div class="pb-about-actions pb-reveal" data-delay="300">
+                    <div class="pb-about-actions">
                         <a href="#contacto" class="pb-btn pb-btn-primary">
                             <i class="fas fa-paper-plane"></i> Contactar para proyecto
                         </a>
@@ -505,15 +620,10 @@
                     </div>
                 </div>
                 
-                <div class="pb-about-image pb-reveal" data-delay="400">
+                <div class="pb-about-image">
                     <div class="pb-image-frame">
                         <div class="pb-placeholder-image">
                             <i class="fas fa-user-circle"></i>
-                        </div>
-                        <div class="pb-image-badge">
-                            <span class="pb-feature-badge">
-                                <i class="fas fa-map-marker-alt"></i> 100% Remoto · Clientes Globales
-                            </span>
                         </div>
                     </div>
                 </div>
@@ -521,28 +631,22 @@
         </div>
     </section>
 
-    <!-- Testimonios -->
+    <!-- Sección: Testimonios -->
     <section class="pb-section pb-section-light" id="testimonios">
         <div class="pb-container">
-            <div class="pb-section-header pb-reveal">
-                <h2 class="pb-section-title">Testimonios de Clientes</h2>
+            <div class="pb-section-header">
+                <h2 class="pb-section-title">Lo que dicen mis clientes</h2>
                 <p class="pb-section-subtitle">
-                    Feedback real de proyectos completados con resultados verificables
+                    Feedback real de proyectos completados con resultados verificables.
                 </p>
             </div>
             
             <div class="pb-testimonials-grid">
-                <div class="pb-testimonial-card pb-reveal" data-delay="100">
+                <div class="pb-testimonial-card">
                     <div class="pb-testimonial-content">
-                        <div class="pb-testimonial-quote">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
                         <p>"David transformó completamente nuestro producto. Implementamos sus recomendaciones y en 3 meses vimos un aumento del 78% en retención de usuarios."</p>
                     </div>
                     <div class="pb-testimonial-author">
-                        <div class="pb-author-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
                         <div class="pb-author-info">
                             <h4>Alex Chen</h4>
                             <p>CEO & Founder, Startup FinTech</p>
@@ -550,35 +654,23 @@
                     </div>
                 </div>
                 
-                <div class="pb-testimonial-card pb-reveal" data-delay="200">
+                <div class="pb-testimonial-card">
                     <div class="pb-testimonial-content">
-                        <div class="pb-testimonial-quote">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
                         <p>"Excelente análisis de datos y propuestas de diseño. Nuestras métricas de usabilidad mejoraron +40% post-rediseño."</p>
                     </div>
                     <div class="pb-testimonial-author">
-                        <div class="pb-author-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
                         <div class="pb-author-info">
                             <h4>María Rodríguez</h4>
-                            <p>Product Lead, E-commerce Platform</p>
+                            <p>Product Lead, E-commerce</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="pb-testimonial-card pb-reveal" data-delay="300">
+                <div class="pb-testimonial-card">
                     <div class="pb-testimonial-content">
-                        <div class="pb-testimonial-quote">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
                         <p>"+$2.1M en ingresos adicionales tras el rediseño. El mejor ROI que hemos visto en diseño. Profesional y orientado a resultados."</p>
                     </div>
                     <div class="pb-testimonial-author">
-                        <div class="pb-author-avatar">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
                         <div class="pb-author-info">
                             <h4>James Wilson</h4>
                             <p>CEO, SaaS Platform</p>
@@ -589,10 +681,10 @@
         </div>
     </section>
 
-    <!-- Contacto -->
+    <!-- Sección: Contacto -->
     <section class="pb-section" id="contacto">
         <div class="pb-container">
-            <div class="pb-section-header pb-reveal">
+            <div class="pb-section-header">
                 <h2 class="pb-section-title">Hablemos de tu proyecto</h2>
                 <p class="pb-section-subtitle">
                     Cuéntame sobre tu producto y te enviaré una propuesta personalizada en 24 horas.
@@ -600,35 +692,29 @@
             </div>
             
             <div class="pb-contact-grid">
-                <div class="pb-contact-info pb-reveal" data-delay="100">
+                <div class="pb-contact-info">
                     <h3 class="pb-contact-title">Información de contacto</h3>
                     
                     <div class="pb-contact-details">
                         <div class="pb-contact-detail">
-                            <div class="pb-contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="pb-contact-text">
+                            <i class="fas fa-envelope"></i>
+                            <div>
                                 <h4>Email</h4>
                                 <a href="mailto:david.diaz.uxdata@gmail.com">david.diaz.uxdata@gmail.com</a>
                             </div>
                         </div>
                         
                         <div class="pb-contact-detail">
-                            <div class="pb-contact-icon">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <div class="pb-contact-text">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
                                 <h4>Agendar llamada</h4>
                                 <a href="https://calendly.com/dsd228-dd" target="_blank">Calendly.com/dsd228-dd</a>
                             </div>
                         </div>
                         
                         <div class="pb-contact-detail">
-                            <div class="pb-contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="pb-contact-text">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
                                 <h4>Ubicación</h4>
                                 <p>100% Remoto · Clientes globales</p>
                             </div>
@@ -636,26 +722,20 @@
                     </div>
                     
                     <div class="pb-contact-social">
-                        <p class="pb-social-title">Conecta conmigo</p>
-                        <div class="pb-social-links">
-                            <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="pb-social-link">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://github.com/dsd228" target="_blank" class="pb-social-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://dribbble.com" target="_blank" class="pb-social-link">
-                                <i class="fab fa-dribbble"></i>
-                            </a>
-                            <a href="https://behance.net" target="_blank" class="pb-social-link">
-                                <i class="fab fa-behance"></i>
-                            </a>
-                        </div>
+                        <a href="https://linkedin.com/in/david-sebastian-diaz" target="_blank" class="pb-social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/dsd228" target="_blank" class="pb-social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://dribbble.com" target="_blank" class="pb-social-link">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="pb-contact-form pb-reveal" data-delay="200">
-                    <form id="contactForm" novalidate>
+                <div class="pb-contact-form">
+                    <form id="contactForm">
                         <div class="pb-form-group">
                             <label for="name">Nombre completo *</label>
                             <input type="text" id="name" name="name" required placeholder="Tu nombre">
@@ -704,9 +784,6 @@
                         Diseño UX/UI estratégico basado en datos para productos digitales 
                         que convierten y retienen.
                     </p>
-                    <span class="pb-feature-badge">
-                        <i class="fas fa-code"></i> Portafolio personalizado
-                    </span>
                 </div>
                 
                 <div class="pb-footer-links">
@@ -723,14 +800,12 @@
                         <a href="https://github.com/dsd228" target="_blank" class="pb-footer-link">GitHub</a>
                         <a href="https://calendly.com/dsd228-dd" target="_blank" class="pb-footer-link">Calendly</a>
                         <a href="#blog" class="pb-footer-link">Blog</a>
-                        <a href="#recursos" class="pb-footer-link">Plantillas</a>
                     </div>
                     
                     <div class="pb-footer-column">
                         <h4 class="pb-footer-title">Legal</h4>
                         <a href="#privacidad" class="pb-footer-link">Privacidad</a>
                         <a href="#terminos" class="pb-footer-link">Términos</a>
-                        <a href="#cookies" class="pb-footer-link">Cookies</a>
                     </div>
                 </div>
             </div>
@@ -740,95 +815,39 @@
                     &copy; <span id="currentYear">2024</span> NeoProdUx. Todos los derechos reservados.
                 </p>
                 <p class="pb-attribution">
-                    Inspirado en el estilo visual de <strong>Portfoliobox</strong> · Diseñado con ❤️ por David Díaz
+                    Inspirado en el estilo visual de <strong>Portfoliobox</strong>
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScripts -->
+    <!-- JavaScript -->
     <script src="script.js"></script>
     
-    <!-- Scripts específicos de Portfoliobox -->
+    <!-- Script para galería parallax -->
     <script>
         // Inicialización cuando el DOM está listo
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎨 Portfoliobox effects cargados');
+            console.log('🎨 Portfoliobox con galería parallax - Inicializando');
             
-            // Remover clase de loading
-            document.body.classList.remove('pb-loading');
-            document.body.classList.add('pb-loaded');
-            
-            // Inicializar año actual
+            // Actualizar año en footer
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // Crear menú móvil dinámicamente
-            createMobileMenu();
+            // Inicializar galería parallax
+            initGalleryParallax();
             
-            // Inicializar efectos de scroll
-            initScrollEffects();
-            
-            // Inicializar animaciones
-            initAnimations();
-            
-            // Inicializar formulario de contacto
-            initContactForm();
-            
-            // Inicializar contadores animados
+            // Inicializar contadores
             initCounters();
             
-            console.log('✅ Todos los efectos de Portfoliobox activados');
-        });
-        
-        // Crear menú móvil dinámico
-        function createMobileMenu() {
-            const navCenter = document.querySelector('.pb-nav-center');
-            const mobileMenu = document.querySelector('.pb-mobile-menu');
-            
-            if (navCenter && mobileMenu) {
-                mobileMenu.innerHTML = navCenter.innerHTML;
-            }
-        }
-        
-        // Efectos de scroll
-        function initScrollEffects() {
-            const header = document.getElementById('main-header');
-            const parallaxBg = document.getElementById('parallax-bg');
+            // Scroll hint
             const scrollHint = document.getElementById('scrollHint');
-            
-            // Scroll event
-            window.addEventListener('scroll', function() {
-                const scrollY = window.scrollY;
-                
-                // Efecto parallax
-                if (parallaxBg) {
-                    const rate = scrollY * -0.3;
-                    parallaxBg.style.transform = `translate3d(0, ${rate}px, 0)`;
-                }
-                
-                // Transformación del header
-                if (scrollY > 100) {
-                    header.classList.remove('hero-mode');
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.add('hero-mode');
-                    header.classList.remove('scrolled');
-                }
-                
-                // Ocultar scroll hint
-                if (scrollHint && scrollY > 300) {
-                    scrollHint.style.opacity = '0';
-                    scrollHint.style.pointerEvents = 'none';
-                }
-            });
-            
-            // Click en scroll hint
             if (scrollHint) {
                 scrollHint.addEventListener('click', function() {
-                    const proyectosSection = document.getElementById('proyectos');
-                    if (proyectosSection) {
-                        const headerHeight = header.offsetHeight;
-                        const targetPosition = proyectosSection.offsetTop - headerHeight;
+                    const proyectos = document.getElementById('proyectos');
+                    if (proyectos) {
+                        const header = document.querySelector('.pb-header');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const targetPosition = proyectos.offsetTop - headerHeight;
                         
                         window.scrollTo({
                             top: targetPosition,
@@ -837,34 +856,37 @@
                     }
                 });
             }
-        }
+            
+            // Efecto header al scroll
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', function() {
+                const scrollY = window.scrollY;
+                
+                if (scrollY > 100) {
+                    header.classList.remove('hero-mode');
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.add('hero-mode');
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
         
-        // Animaciones con Intersection Observer
-        function initAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+        // Galería parallax
+        function initGalleryParallax() {
+            const gallery = document.getElementById('galleryParallax');
+            if (!gallery) return;
             
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const delay = entry.target.dataset.delay || 0;
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                            
-                            // Activar contadores si es un elemento con data-count
-                            if (entry.target.classList.contains('pb-stat-number') && entry.target.dataset.count) {
-                                animateCounter(entry.target);
-                            }
-                        }, parseInt(delay));
-                    }
+            const items = gallery.querySelectorAll('.pb-gallery-item');
+            
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                
+                items.forEach((item, index) => {
+                    const speed = 0.3 + (index * 0.05);
+                    const yPos = -(scrolled * speed);
+                    item.style.transform = `translateY(${yPos}px)`;
                 });
-            }, observerOptions);
-            
-            // Observar todos los elementos con clase pb-reveal
-            document.querySelectorAll('.pb-reveal, .pb-animated-stat').forEach(el => {
-                observer.observe(el);
             });
         }
         
@@ -873,7 +895,6 @@
             const counters = document.querySelectorAll('.pb-stat-number[data-count]');
             
             counters.forEach(counter => {
-                // Solo animar si están en viewport
                 const observer = new IntersectionObserver(function(entries) {
                     entries.forEach(entry => {
                         if (entry.isIntersecting && !entry.target.dataset.animated) {
@@ -892,9 +913,10 @@
             const suffix = element.textContent.replace(/[0-9]/g, '');
             let current = 0;
             
+            if (isNaN(target)) return;
+            
             const increment = target / 50;
-            const duration = 1500;
-            const stepTime = Math.floor(duration / (target / increment));
+            const stepTime = 30;
             
             const timer = setInterval(() => {
                 current += increment;
@@ -907,72 +929,103 @@
             }, stepTime);
         }
         
+        // Menú móvil
+        const menuToggle = document.getElementById('menuToggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                const navCenter = document.querySelector('.pb-nav-center');
+                if (navCenter) {
+                    // Crear menú móvil si no existe
+                    let mobileMenu = document.querySelector('.pb-mobile-menu');
+                    if (!mobileMenu) {
+                        mobileMenu = document.createElement('div');
+                        mobileMenu.className = 'pb-mobile-menu';
+                        mobileMenu.innerHTML = navCenter.innerHTML;
+                        document.querySelector('.pb-header').appendChild(mobileMenu);
+                    }
+                    
+                    // Toggle
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        this.innerHTML = '<i class="fas fa-bars"></i>';
+                        document.body.style.overflow = '';
+                    } else {
+                        mobileMenu.classList.add('active');
+                        this.innerHTML = '<i class="fas fa-times"></i>';
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            });
+        }
+        
+        // Smooth scroll para enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href === '#!') return;
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                
+                if (targetElement) {
+                    const header = document.querySelector('.pb-header');
+                    const headerHeight = header ? header.offsetHeight : 0;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Cerrar menú móvil si está abierto
+                    const mobileMenu = document.querySelector('.pb-mobile-menu');
+                    if (mobileMenu && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        if (menuToggle) {
+                            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+        });
+        
         // Formulario de contacto
-        function initContactForm() {
-            const form = document.getElementById('contactForm');
-            if (!form) return;
-            
-            form.addEventListener('submit', function(e) {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const submitBtn = form.querySelector('button[type="submit"]');
+                const submitBtn = this.querySelector('button[type="submit"]');
                 const btnText = submitBtn.querySelector('.btn-text');
                 const btnLoading = submitBtn.querySelector('.btn-loading');
+                
+                // Validación básica
+                const name = this.querySelector('#name').value;
+                const email = this.querySelector('#email').value;
+                const message = this.querySelector('#message').value;
+                
+                if (!name || !email || !message) {
+                    alert('Por favor completa todos los campos requeridos');
+                    return;
+                }
                 
                 // Mostrar loading
                 btnText.style.display = 'none';
                 btnLoading.style.display = 'inline-block';
                 submitBtn.disabled = true;
                 
-                // Simular envío (en producción sería fetch/AJAX)
+                // Simular envío
                 setTimeout(() => {
-                    // Éxito
-                    showFormMessage('¡Mensaje enviado con éxito! Te contactaré en menos de 24 horas.', 'success');
-                    form.reset();
+                    alert('¡Mensaje enviado! Te contactaré en menos de 24 horas.');
+                    this.reset();
                     
                     // Restaurar botón
                     btnText.style.display = 'inline-block';
                     btnLoading.style.display = 'none';
                     submitBtn.disabled = false;
-                    
-                    // Desaparecer mensaje después de 5 segundos
-                    setTimeout(() => {
-                        const successMessage = document.querySelector('.form-success');
-                        if (successMessage) {
-                            successMessage.remove();
-                        }
-                    }, 5000);
-                }, 2000);
+                }, 1500);
             });
-        }
-        
-        // Mostrar mensaje del formulario
-        function showFormMessage(text, type) {
-            const existingMessages = document.querySelectorAll('.form-message');
-            existingMessages.forEach(msg => msg.remove());
-            
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `form-message form-${type}`;
-            messageDiv.textContent = text;
-            messageDiv.style.cssText = `
-                padding: 1rem;
-                margin: 1rem 0;
-                border-radius: 0.5rem;
-                font-weight: 500;
-                text-align: center;
-                animation: fadeIn 0.3s ease;
-            `;
-            
-            if (type === 'success') {
-                messageDiv.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
-                messageDiv.style.border = '1px solid #22c55e';
-                messageDiv.style.color = '#22c55e';
-            }
-            
-            const form = document.getElementById('contactForm');
-            if (form) {
-                form.insertBefore(messageDiv, form.firstChild);
-            }
         }
     </script>
 </body>
