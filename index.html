@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="src/styles/styles.css">
+    <link rel="stylesheet" href="styles.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
@@ -43,8 +43,8 @@
                 <!-- Navegación Principal -->
                 <div class="nav-center">
                     <a href="#proyectos" class="nav-link">Proyectos</a>
+                    <a href="#coverflow" class="nav-link">Galería 3D</a>
                     <a href="#servicios" class="nav-link">Servicios</a>
-                    <a href="#carrusel3d" class="nav-link">Galería 3D</a>
                     <a href="#proceso" class="nav-link">Proceso</a>
                     <a href="#contacto" class="nav-link">Contacto</a>
                 </div>
@@ -86,9 +86,9 @@
                 
                 <!-- CTA -->
                 <div class="hero-actions">
-                    <a href="#proyectos" class="btn-primary btn-large">
-                        <i class="fas fa-eye"></i>
-                        Ver proyectos
+                    <a href="#coverflow" class="btn-primary btn-large">
+                        <i class="fas fa-play-circle"></i>
+                        Ver Galería 3D
                     </a>
                     <a href="#contacto" class="btn-secondary btn-large">
                         <i class="fas fa-calendar-alt"></i>
@@ -117,12 +117,305 @@
         </div>
         
         <!-- Scroll Down -->
-        <a href="#proyectos" class="scroll-down" aria-label="Desplazar a proyectos">
+        <a href="#coverflow" class="scroll-down" aria-label="Desplazar a galería 3D">
             <span class="scroll-icon">↓</span>
         </a>
     </section>
 
-    <!-- Proyectos Destacados -->
+    <!-- ===== CARRUSEL COVERFLOW 3D PREMIUM ===== -->
+    <section class="section coverflow-section" id="coverflow">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Galería Coverflow 3D</h2>
+                <p class="section-subtitle">Proyectos destacados con efecto 3D tipo Apple. Desliza, usa la rueda o las flechas.</p>
+            </div>
+        </div>
+        
+        <!-- Contenedor del Coverflow -->
+        <div class="coverflow-container">
+            <!-- Vista previa detallada (centro) -->
+            <div class="coverflow-preview">
+                <div class="preview-content">
+                    <div class="preview-image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="PASEO App - Rediseño FinTech" 
+                             id="previewImg">
+                        <div class="preview-overlay"></div>
+                    </div>
+                    <div class="preview-info">
+                        <div class="preview-badge" id="previewBadge">FinTech</div>
+                        <h3 class="preview-title" id="previewTitle">PASEO App</h3>
+                        <p class="preview-description" id="previewDescription">
+                            Rediseño completo de app FinTech para paseadores de perros
+                        </p>
+                        <div class="preview-stats">
+                            <div class="stat">
+                                <i class="fas fa-chart-line"></i>
+                                <div>
+                                    <strong id="previewStat1">+78%</strong>
+                                    <span>Retención</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-bolt"></i>
+                                <div>
+                                    <strong id="previewStat2">3.2x</strong>
+                                    <span>Más rápido</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-calendar"></i>
+                                <div>
+                                    <strong id="previewDuration">8 semanas</strong>
+                                    <span>Duración</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#proyectos" class="btn-primary" id="previewLink">
+                            <i class="fas fa-external-link-alt"></i> Ver caso completo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carrusel Coverflow -->
+            <div class="coverflow-carousel">
+                <div class="coverflow-track" id="coverflowTrack">
+                    <!-- Slide 1 - PASEO App -->
+                    <div class="coverflow-slide active" data-index="0" 
+                         data-img="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         data-title="PASEO App"
+                         data-description="Rediseño completo de app FinTech para paseadores de perros"
+                         data-badge="FinTech"
+                         data-stat1="+78%"
+                         data-stat2="3.2x"
+                         data-duration="8 semanas"
+                         data-link="#proyectos">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="PASEO App - FinTech" 
+                                     loading="lazy">
+                                <div class="slide-overlay"></div>
+                            </div>
+                            <div class="slide-label">
+                                <span class="slide-category">FinTech</span>
+                                <h4>PASEO App</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 - Nexus Dashboard -->
+                    <div class="coverflow-slide" data-index="1" 
+                         data-img="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         data-title="Nexus Dashboard"
+                         data-description="Dashboard SaaS B2B para gestión logística avanzada"
+                         data-badge="SaaS B2B"
+                         data-stat1="+45%"
+                         data-stat2="$2.1M"
+                         data-duration="12 semanas"
+                         data-link="#proyectos">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Nexus Dashboard - SaaS" 
+                                     loading="lazy">
+                                <div class="slide-overlay"></div>
+                            </div>
+                            <div class="slide-label">
+                                <span class="slide-category">SaaS B2B</span>
+                                <h4>Nexus Dashboard</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 - E-commerce -->
+                    <div class="coverflow-slide" data-index="2" 
+                         data-img="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         data-title="Tienda Online"
+                         data-description="Rediseño e-commerce mobile-first con optimización de conversión"
+                         data-badge="E-commerce"
+                         data-stat1="+62%"
+                         data-stat2="94% mobile"
+                         data-duration="10 semanas"
+                         data-link="#proyectos">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="E-commerce Mobile" 
+                                     loading="lazy">
+                                <div class="slide-overlay"></div>
+                            </div>
+                            <div class="slide-label">
+                                <span class="slide-category">E-commerce</span>
+                                <h4>Tienda Online</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4 - Design System -->
+                    <div class="coverflow-slide" data-index="3" 
+                         data-img="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         data-title="Design System"
+                         data-description="Sistema de diseño unificado para 12 productos digitales"
+                         data-badge="Design System"
+                         data-stat1="150+"
+                         data-stat2="80% eficiencia"
+                         data-duration="16 semanas"
+                         data-link="#proyectos">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Design System" 
+                                     loading="lazy">
+                                <div class="slide-overlay"></div>
+                            </div>
+                            <div class="slide-label">
+                                <span class="slide-category">Design System</span>
+                                <h4>Unified Design</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5 - Analytics Dashboard -->
+                    <div class="coverflow-slide" data-index="4" 
+                         data-img="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         data-title="Data Insights"
+                         data-description="Dashboard de analytics con visualización en tiempo real"
+                         data-badge="Analytics"
+                         data-stat1="Real-time"
+                         data-stat2="12 métricas"
+                         data-duration="6 semanas"
+                         data-link="#proyectos">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Analytics Dashboard" 
+                                     loading="lazy">
+                                <div class="slide-overlay"></div>
+                            </div>
+                            <div class="slide-label">
+                                <span class="slide-category">Analytics</span>
+                                <h4>Data Insights</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 6 - Mobile Banking -->
+                    <div class="coverflow-slide" data-index="5" 
+                         data-img="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         data-title="Mobile Banking"
+                         data-description="App de banca móvil con onboarding simplificado"
+                         data-badge="Banking"
+                         data-stat1="+67%"
+                         data-stat2="4.8 estrellas"
+                         data-duration="14 semanas"
+                         data-link="#proyectos">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Mobile Banking App" 
+                                     loading="lazy">
+                                <div class="slide-overlay"></div>
+                            </div>
+                            <div class="slide-label">
+                                <span class="slide-category">Banking</span>
+                                <h4>Mobile Banking</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 7 - SaaS Platform -->
+                    <div class="coverflow-slide" data-index="6" 
+                         data-img="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         data-title="SaaS Platform"
+                         data-description="Plataforma SaaS completa con múltiples módulos"
+                         data-badge="SaaS"
+                         data-stat1="+89%"
+                         data-stat2="5 productos"
+                         data-duration="20 semanas"
+                         data-link="#proyectos">
+                        <div class="slide-content">
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="SaaS Platform" 
+                                     loading="lazy">
+                                <div class="slide-overlay"></div>
+                            </div>
+                            <div class="slide-label">
+                                <span class="slide-category">SaaS</span>
+                                <h4>SaaS Platform</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controles de navegación -->
+                <div class="coverflow-controls">
+                    <button class="coverflow-prev" aria-label="Proyecto anterior">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <div class="coverflow-dots">
+                        <button class="dot active" data-index="0" aria-label="Ir a proyecto 1"></button>
+                        <button class="dot" data-index="1" aria-label="Ir a proyecto 2"></button>
+                        <button class="dot" data-index="2" aria-label="Ir a proyecto 3"></button>
+                        <button class="dot" data-index="3" aria-label="Ir a proyecto 4"></button>
+                        <button class="dot" data-index="4" aria-label="Ir a proyecto 5"></button>
+                        <button class="dot" data-index="5" aria-label="Ir a proyecto 6"></button>
+                        <button class="dot" data-index="6" aria-label="Ir a proyecto 7"></button>
+                    </div>
+                    
+                    <button class="coverflow-next" aria-label="Siguiente proyecto">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Instrucciones -->
+            <div class="coverflow-instructions">
+                <div class="instruction">
+                    <i class="fas fa-mouse"></i>
+                    <span>Desliza o usa la rueda</span>
+                </div>
+                <div class="instruction">
+                    <i class="fas fa-arrows-alt-h"></i>
+                    <span>Flechas para navegar</span>
+                </div>
+                <div class="instruction">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                    <span>Click para ver detalles</span>
+                </div>
+            </div>
+            
+            <!-- Indicador de auto-play -->
+            <div class="autoplay-indicator">
+                <div class="autoplay-toggle">
+                    <input type="checkbox" id="autoplayToggle" checked>
+                    <label for="autoplayToggle">
+                        <i class="fas fa-play"></i>
+                        <span>Auto-play</span>
+                    </label>
+                </div>
+                <div class="autoplay-progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA después del coverflow -->
+        <div class="container">
+            <div class="coverflow-cta">
+                <h3>¿Interesado en un proyecto similar?</h3>
+                <p>Solicita una consulta gratuita para discutir tus necesidades específicas.</p>
+                <a href="#contacto" class="btn-primary btn-large">
+                    <i class="fas fa-comments"></i> Solicitar consulta
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos Destacados (detallados) -->
     <section class="section projects-section" id="proyectos">
         <div class="container">
             <div class="section-header">
@@ -253,211 +546,6 @@
                     </div>
                 </div>
             </article>
-        </div>
-    </section>
-
-    <!-- ===== CARRUSEL 3D ÚNICO - GALAXY ORBIT ===== -->
-    <section class="section galaxy-carousel-section" id="carrusel3d">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Galería Orbitante</h2>
-                <p class="section-subtitle">Experiencia 3D interactiva - Mueve el mouse o desliza para explorar</p>
-            </div>
-        </div>
-        
-        <!-- Galaxia de Proyectos -->
-        <div class="galaxy-container">
-            <!-- Núcleo Central -->
-            <div class="galaxy-core">
-                <div class="core-glow"></div>
-                <div class="core-content">
-                    <i class="fas fa-atom"></i>
-                    <span>50+ Proyectos</span>
-                </div>
-            </div>
-            
-            <!-- Órbitas -->
-            <div class="orbit orbit-1">
-                <div class="orbit-path"></div>
-                <!-- Proyecto en órbita -->
-                <div class="orbit-project" data-index="0">
-                    <div class="project-sphere">
-                        <div class="sphere-image">
-                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="FinTech App" 
-                                 loading="lazy">
-                        </div>
-                        <div class="sphere-glow"></div>
-                    </div>
-                    <div class="project-info">
-                        <h4>PASEO App</h4>
-                        <p>+78% retención</p>
-                        <div class="project-tags">
-                            <span>Mobile</span>
-                            <span>FinTech</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="orbit orbit-2">
-                <div class="orbit-path"></div>
-                <!-- Proyecto en órbita -->
-                <div class="orbit-project" data-index="1">
-                    <div class="project-sphere">
-                        <div class="sphere-image">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="SaaS Dashboard" 
-                                 loading="lazy">
-                        </div>
-                        <div class="sphere-glow"></div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Nexus Logistics</h4>
-                        <p>+45% eficiencia</p>
-                        <div class="project-tags">
-                            <span>SaaS</span>
-                            <span>B2B</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="orbit orbit-3">
-                <div class="orbit-path"></div>
-                <!-- Proyecto en órbita -->
-                <div class="orbit-project" data-index="2">
-                    <div class="project-sphere">
-                        <div class="sphere-image">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="E-commerce" 
-                                 loading="lazy">
-                        </div>
-                        <div class="sphere-glow"></div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Tienda Online</h4>
-                        <p>+62% conversión</p>
-                        <div class="project-tags">
-                            <span>E-commerce</span>
-                            <span>Mobile First</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="orbit orbit-4">
-                <div class="orbit-path"></div>
-                <!-- Proyecto en órbita -->
-                <div class="orbit-project" data-index="3">
-                    <div class="project-sphere">
-                        <div class="sphere-image">
-                            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Design System" 
-                                 loading="lazy">
-                        </div>
-                        <div class="sphere-glow"></div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Design System</h4>
-                        <p>150+ componentes</p>
-                        <div class="project-tags">
-                            <span>UI System</span>
-                            <span>Scalable</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="orbit orbit-5">
-                <div class="orbit-path"></div>
-                <!-- Proyecto en órbita -->
-                <div class="orbit-project" data-index="4">
-                    <div class="project-sphere">
-                        <div class="sphere-image">
-                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Analytics" 
-                                 loading="lazy">
-                        </div>
-                        <div class="sphere-glow"></div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Data Insights</h4>
-                        <p>Real-time analytics</p>
-                        <div class="project-tags">
-                            <span>Analytics</span>
-                            <span>Dashboard</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="orbit orbit-6">
-                <div class="orbit-path"></div>
-                <!-- Proyecto en órbita -->
-                <div class="orbit-project" data-index="5">
-                    <div class="project-sphere">
-                        <div class="sphere-image">
-                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="UI Components" 
-                                 loading="lazy">
-                        </div>
-                        <div class="sphere-glow"></div>
-                    </div>
-                    <div class="project-info">
-                        <h4>UI Library</h4>
-                        <p>Custom components</p>
-                        <div class="project-tags">
-                            <span>Components</span>
-                            <span>Library</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Efectos de Partículas -->
-            <div class="particles-container">
-                <div class="particle particle-1"></div>
-                <div class="particle particle-2"></div>
-                <div class="particle particle-3"></div>
-                <div class="particle particle-4"></div>
-                <div class="particle particle-5"></div>
-                <div class="particle particle-6"></div>
-                <div class="particle particle-7"></div>
-                <div class="particle particle-8"></div>
-            </div>
-            
-            <!-- Instrucciones -->
-            <div class="galaxy-instructions">
-                <div class="instruction-item">
-                    <i class="fas fa-mouse-pointer"></i>
-                    <span>Mueve el mouse para rotar</span>
-                </div>
-                <div class="instruction-item">
-                    <i class="fas fa-arrows-alt"></i>
-                    <span>Desliza para acercar</span>
-                </div>
-                <div class="instruction-item">
-                    <i class="fas fa-hand-pointer"></i>
-                    <span>Click para explorar</span>
-                </div>
-            </div>
-            
-            <!-- Controles -->
-            <div class="galaxy-controls">
-                <button class="control-btn" id="speedUp" aria-label="Aumentar velocidad">
-                    <i class="fas fa-forward"></i>
-                </button>
-                <button class="control-btn" id="playPause" aria-label="Pausar animación">
-                    <i class="fas fa-pause"></i>
-                </button>
-                <button class="control-btn" id="speedDown" aria-label="Reducir velocidad">
-                    <i class="fas fa-backward"></i>
-                </button>
-                <button class="control-btn" id="resetView" aria-label="Restablecer vista">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-            </div>
         </div>
     </section>
 
@@ -808,8 +896,8 @@
                     <div class="footer-column">
                         <h4>Navegación</h4>
                         <a href="#proyectos">Proyectos</a>
+                        <a href="#coverflow">Galería 3D</a>
                         <a href="#servicios">Servicios</a>
-                        <a href="#carrusel3d">Galería 3D</a>
                         <a href="#proceso">Proceso</a>
                         <a href="#contacto">Contacto</a>
                     </div>
