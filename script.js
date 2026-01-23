@@ -1,10 +1,10 @@
 // ============================================
 // PORTAFOLIO PREMIUM DAVID DÍAZ - JAVASCRIPT
-// CON GALAXIA ORBITANTE 3D ÚNICA
+// CON CARRUSEL COVERFLOW 3D TIPO APPLE
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Portafolio David Díaz - Galaxia 3D Cargada');
+    console.log('🚀 Portafolio David Díaz - Coverflow 3D Cargado');
     
     // ===== CONFIGURACIÓN INICIAL =====
     const config = {
@@ -30,19 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
         initLazyLoading();
         initAccessibility();
         
-        // Nuevo: Inicializar Galaxia 3D
-        const galaxy = initGalaxy3D();
+        // Inicializar Coverflow
+        const coverflow = initCoverflow();
         
         console.log('✅ Módulos inicializados');
         
-        // Exponer galaxia globalmente
+        // Exponer coverflow globalmente
         window.DDPortfolio = window.DDPortfolio || {};
-        window.DDPortfolio.galaxy = galaxy;
+        window.DDPortfolio.coverflow = coverflow;
         
         // Cleanup on page unload
         window.addEventListener('beforeunload', () => {
-            if (galaxy && galaxy.cleanup) {
-                galaxy.cleanup();
+            if (coverflow && coverflow.cleanup) {
+                coverflow.cleanup();
             }
         });
     }
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </button>
                 <nav class="mobile-nav" aria-label="Navegación móvil">
                     <a href="#proyectos" class="nav-link">Proyectos</a>
+                    <a href="#coverflow" class="nav-link">Galería 3D</a>
                     <a href="#servicios" class="nav-link">Servicios</a>
-                    <a href="#carrusel3d" class="nav-link">Galería 3D</a>
                     <a href="#proceso" class="nav-link">Proceso</a>
                     <a href="#contacto" class="nav-link">Contacto</a>
                 </nav>
@@ -487,214 +487,301 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== 10. GALAXIA 3D ÚNICA - CARRUSEL ORBITANTE =====
-    function initGalaxy3D() {
-        const galaxyContainer = document.querySelector('.galaxy-container');
-        if (!galaxyContainer) return null;
+    // ===== 10. CARRUSEL COVERFLOW 3D =====
+    function initCoverflow() {
+        const coverflowTrack = document.getElementById('coverflowTrack');
+        if (!coverflowTrack) return null;
         
-        const orbitProjects = document.querySelectorAll('.orbit-project');
-        const controlButtons = {
-            speedUp: document.getElementById('speedUp'),
-            playPause: document.getElementById('playPause'),
-            speedDown: document.getElementById('speedDown'),
-            resetView: document.getElementById('resetView')
-        };
+        const slides = document.querySelectorAll('.coverflow-slide');
+        const dots = document.querySelectorAll('.coverflow-dots .dot');
+        const prevBtn = document.querySelector('.coverflow-prev');
+        const nextBtn = document.querySelector('.coverflow-next');
+        const autoplayToggle = document.getElementById('autoplayToggle');
+        const progressBar = document.querySelector('.autoplay-progress .progress-bar');
+        
+        // Elementos de vista previa
+        const previewImg = document.getElementById('previewImg');
+        const previewTitle = document.getElementById('previewTitle');
+        const previewDescription = document.getElementById('previewDescription');
+        const previewBadge = document.getElementById('previewBadge');
+        const previewStat1 = document.getElementById('previewStat1');
+        const previewStat2 = document.getElementById('previewStat2');
+        const previewDuration = document.getElementById('previewDuration');
+        const previewLink = document.getElementById('previewLink');
         
         // Variables de estado
-        let isAnimating = true;
-        let rotationSpeed = 1;
-        let mouseX = 0;
-        let mouseY = 0;
+        let currentIndex = 0;
+        let totalSlides = slides.length;
+        let isAnimating = false;
+        let autoplayInterval = null;
+        let isAutoplay = true;
+        let autoplaySpeed = 5000; // 5 segundos
         let isDragging = false;
         let dragStartX = 0;
-        let dragStartY = 0;
-        let currentRotationX = 0;
-        let currentRotationY = 0;
-        let targetRotationX = 0;
-        let targetRotationY = 0;
-        let animationId = null;
+        let dragCurrentX = 0;
+        let dragThreshold = 50; // px mínimo para cambiar slide
         
         // Configuración
-        const configGalaxy = {
-            baseSpeed: 0.2,
-            maxSpeed: 3,
-            minSpeed: 0.1,
-            mouseSensitivity: 0.002,
-            dragSensitivity: 0.3,
-            autoRotation: true,
-            smoothFactor: 0.05,
-            zoomSpeed: 0.1
+        const configCoverflow = {
+            animationDuration: 800,
+            easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+            visibleSlides: 3, // Slides visibles a cada lado
+            touchSensitivity: 2
         };
         
         // Inicializar
-        initOrbits();
-        initMouseInteraction();
-        initTouchInteraction();
-        initControls();
-        startAnimation();
+        updateCoverflow();
+        updatePreview();
+        initEventListeners();
+        startAutoplay();
         
-        // Función para inicializar órbitas
-        function initOrbits() {
-            const orbits = document.querySelectorAll('.orbit');
+        // Función para actualizar coverflow
+        function updateCoverflow() {
+            if (isAnimating) return;
             
-            orbits.forEach((orbit, index) => {
-                const projects = orbit.querySelectorAll('.orbit-project');
-                const orbitRadius = orbit.offsetWidth / 2;
-                const angleStep = (2 * Math.PI) / projects.length;
+            isAnimating = true;
+            
+            // Actualizar índices de slides
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
                 
-                projects.forEach((project, projectIndex) => {
-                    const angle = angleStep * projectIndex;
-                    const x = Math.cos(angle) * orbitRadius;
-                    const y = Math.sin(angle) * orbitRadius;
-                    
-                    project.style.transform = `translateX(${x}px) translateY(${y}px)`;
-                    
-                    // Añadir delay para animación escalonada
-                    project.style.animationDelay = `${index * 0.5 + projectIndex * 0.2}s`;
-                });
+                // Calcular índice relativo
+                let relativeIndex = index - currentIndex;
+                
+                // Limitar índices visibles
+                if (Math.abs(relativeIndex) > configCoverflow.visibleSlides) {
+                    slide.style.opacity = '0';
+                    slide.style.pointerEvents = 'none';
+                } else {
+                    slide.style.opacity = '';
+                    slide.style.pointerEvents = '';
+                    slide.setAttribute('data-index', relativeIndex.toString());
+                }
+                
+                if (index === currentIndex) {
+                    slide.classList.add('active');
+                }
             });
+            
+            // Actualizar dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+            
+            // Reset animating flag después de la transición
+            setTimeout(() => {
+                isAnimating = false;
+            }, configCoverflow.animationDuration);
         }
         
-        // Función para inicializar interacción con mouse
-        function initMouseInteraction() {
-            // Movimiento del mouse
-            galaxyContainer.addEventListener('mousemove', handleMouseMove);
+        // Función para actualizar vista previa
+        function updatePreview() {
+            const activeSlide = slides[currentIndex];
             
-            // Drag para rotar
-            galaxyContainer.addEventListener('mousedown', startDrag);
-            document.addEventListener('mousemove', handleDrag);
-            document.addEventListener('mouseup', endDrag);
+            if (!activeSlide || !previewImg) return;
             
-            // Wheel para zoom (simulado con rotación)
-            galaxyContainer.addEventListener('wheel', handleWheel, { passive: false });
+            // Obtener datos del slide activo
+            const imgSrc = activeSlide.getAttribute('data-img');
+            const title = activeSlide.getAttribute('data-title');
+            const description = activeSlide.getAttribute('data-description');
+            const badge = activeSlide.getAttribute('data-badge');
+            const stat1 = activeSlide.getAttribute('data-stat1');
+            const stat2 = activeSlide.getAttribute('data-stat2');
+            const duration = activeSlide.getAttribute('data-duration');
+            const link = activeSlide.getAttribute('data-link');
             
-            // Hover en proyectos
-            orbitProjects.forEach(project => {
-                project.addEventListener('mouseenter', () => {
-                    if (!isDragging) {
-                        project.classList.add('hover-active');
-                        project.style.zIndex = '100';
-                    }
-                });
+            // Actualizar elementos de vista previa
+            if (previewImg) {
+                previewImg.src = imgSrc;
+                previewImg.alt = title;
+            }
+            if (previewTitle) previewTitle.textContent = title;
+            if (previewDescription) previewDescription.textContent = description;
+            if (previewBadge) previewBadge.textContent = badge;
+            if (previewStat1) previewStat1.textContent = stat1;
+            if (previewStat2) previewStat2.textContent = stat2;
+            if (previewDuration) previewDuration.textContent = duration;
+            if (previewLink) previewLink.href = link;
+            
+            // Animación de transición
+            const previewContent = document.querySelector('.preview-content');
+            if (previewContent) {
+                previewContent.style.opacity = '0';
+                previewContent.style.transform = 'translateY(20px)';
                 
-                project.addEventListener('mouseleave', () => {
-                    if (!isDragging) {
-                        project.classList.remove('hover-active');
-                        project.style.zIndex = '';
-                    }
+                setTimeout(() => {
+                    previewContent.style.transition = 'all 0.5s ease';
+                    previewContent.style.opacity = '1';
+                    previewContent.style.transform = 'translateY(0)';
+                }, 50);
+            }
+        }
+        
+        // Navegación
+        function goToSlide(index) {
+            if (isAnimating || index === currentIndex) return;
+            
+            // Calcular nuevo índice (con wrap-around)
+            currentIndex = (index + totalSlides) % totalSlides;
+            
+            updateCoverflow();
+            updatePreview();
+            resetAutoplay();
+        }
+        
+        function goToPrevSlide() {
+            goToSlide(currentIndex - 1);
+        }
+        
+        function goToNextSlide() {
+            goToSlide(currentIndex + 1);
+        }
+        
+        // Auto-play
+        function startAutoplay() {
+            if (!isAutoplay || config.reduceMotion) return;
+            
+            clearInterval(autoplayInterval);
+            
+            autoplayInterval = setInterval(() => {
+                if (!isDragging && !isAnimating) {
+                    goToNextSlide();
+                }
+            }, autoplaySpeed);
+            
+            // Iniciar animación de progress bar
+            if (progressBar) {
+                progressBar.style.animation = `progressBar ${autoplaySpeed}ms linear infinite`;
+            }
+        }
+        
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+            if (progressBar) {
+                progressBar.style.animation = 'none';
+            }
+        }
+        
+        function resetAutoplay() {
+            if (isAutoplay) {
+                startAutoplay();
+            }
+        }
+        
+        function toggleAutoplay() {
+            isAutoplay = !isAutoplay;
+            
+            if (isAutoplay) {
+                startAutoplay();
+                if (autoplayToggle) {
+                    autoplayToggle.checked = true;
+                }
+            } else {
+                stopAutoplay();
+                if (autoplayToggle) {
+                    autoplayToggle.checked = false;
+                }
+            }
+        }
+        
+        // Event Listeners
+        function initEventListeners() {
+            // Botones de navegación
+            if (prevBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    goToPrevSlide();
                 });
-                
-                project.addEventListener('click', (e) => {
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    goToNextSlide();
+                });
+            }
+            
+            // Dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    goToSlide(index);
+                });
+            });
+            
+            // Auto-play toggle
+            if (autoplayToggle) {
+                autoplayToggle.addEventListener('change', toggleAutoplay);
+            }
+            
+            // Click en slides
+            slides.forEach((slide, index) => {
+                slide.addEventListener('click', (e) => {
                     if (!isDragging) {
                         e.preventDefault();
                         e.stopPropagation();
-                        
-                        // Animación de click
-                        project.style.transform += ' scale(0.9)';
-                        setTimeout(() => {
-                            project.style.transform = project.style.transform.replace(' scale(0.9)', '');
-                        }, 200);
-                        
-                        // Aquí podrías añadir funcionalidad para abrir modal o redirigir
-                        console.log('Proyecto clickeado:', project.querySelector('h4').textContent);
+                        goToSlide(index);
                     }
                 });
             });
+            
+            // Wheel scroll
+            coverflowTrack.addEventListener('wheel', handleWheel, { passive: false });
+            
+            // Touch/Mouse drag
+            coverflowTrack.addEventListener('mousedown', startDrag);
+            coverflowTrack.addEventListener('touchstart', handleTouchStart, { passive: true });
+            
+            document.addEventListener('mousemove', handleDrag);
+            document.addEventListener('touchmove', handleTouchMove, { passive: false });
+            
+            document.addEventListener('mouseup', endDrag);
+            document.addEventListener('touchend', endDrag);
+            document.addEventListener('touchcancel', endDrag);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', handleKeydown);
         }
         
-        function handleMouseMove(e) {
-            if (configGalaxy.autoRotation && !isDragging) {
-                const rect = galaxyContainer.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                mouseX = (e.clientX - centerX) * configGalaxy.mouseSensitivity;
-                mouseY = (e.clientY - centerY) * configGalaxy.mouseSensitivity;
-                
-                targetRotationX = mouseY;
-                targetRotationY = mouseX;
+        function handleWheel(e) {
+            e.preventDefault();
+            
+            if (isAnimating) return;
+            
+            const delta = Math.sign(e.deltaY);
+            
+            if (delta > 0) {
+                goToNextSlide();
+            } else {
+                goToPrevSlide();
             }
         }
         
         function startDrag(e) {
             isDragging = true;
             dragStartX = e.clientX;
-            dragStartY = e.clientY;
+            dragCurrentX = dragStartX;
             
-            // Pausar rotación automática temporalmente
-            const wasAutoRotating = configGalaxy.autoRotation;
-            configGalaxy.autoRotation = false;
-            
-            galaxyContainer.style.cursor = 'grabbing';
-            
-            // Restaurar rotación automática al soltar
-            document.addEventListener('mouseup', function restoreAutoRotation() {
-                if (wasAutoRotating) {
-                    setTimeout(() => {
-                        configGalaxy.autoRotation = true;
-                    }, 1000);
-                }
-                document.removeEventListener('mouseup', restoreAutoRotation);
-            });
+            // Pausar auto-play temporalmente
+            stopAutoplay();
         }
         
         function handleDrag(e) {
             if (!isDragging) return;
             
-            const deltaX = e.clientX - dragStartX;
-            const deltaY = e.clientY - dragStartY;
-            
-            currentRotationY += deltaX * configGalaxy.dragSensitivity;
-            currentRotationX += deltaY * configGalaxy.dragSensitivity;
-            
-            // Limitar rotación vertical
-            currentRotationX = Math.max(-60, Math.min(60, currentRotationX));
-            
-            dragStartX = e.clientX;
-            dragStartY = e.clientY;
-            
-            updateGalaxyRotation();
-        }
-        
-        function endDrag() {
-            isDragging = false;
-            galaxyContainer.style.cursor = 'grab';
-        }
-        
-        function handleWheel(e) {
-            e.preventDefault();
-            
-            if (e.deltaY > 0) {
-                // Scroll down - aumentar velocidad
-                rotationSpeed = Math.min(configGalaxy.maxSpeed, rotationSpeed + 0.1);
-            } else {
-                // Scroll up - disminuir velocidad
-                rotationSpeed = Math.max(configGalaxy.minSpeed, rotationSpeed - 0.1);
-            }
-            
-            updateSpeedIndicator();
-        }
-        
-        // Función para inicializar interacción táctil
-        function initTouchInteraction() {
-            if (!config.isTouch) return;
-            
-            galaxyContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
-            galaxyContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
-            galaxyContainer.addEventListener('touchend', handleTouchEnd);
-            
-            // Para dispositivos táctiles, desactivamos hover effects
-            orbitProjects.forEach(project => {
-                project.style.pointerEvents = 'auto';
-            });
+            dragCurrentX = e.clientX;
+            updateDragEffect();
         }
         
         function handleTouchStart(e) {
             if (e.touches.length === 1) {
                 isDragging = true;
                 dragStartX = e.touches[0].clientX;
-                dragStartY = e.touches[0].clientY;
-                configGalaxy.autoRotation = false;
+                dragCurrentX = dragStartX;
+                stopAutoplay();
             }
         }
         
@@ -702,251 +789,128 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isDragging || e.touches.length !== 1) return;
             
             e.preventDefault();
-            
-            const touch = e.touches[0];
-            const deltaX = touch.clientX - dragStartX;
-            const deltaY = touch.clientY - dragStartY;
-            
-            currentRotationY += deltaX * configGalaxy.dragSensitivity * 2;
-            currentRotationX += deltaY * configGalaxy.dragSensitivity * 2;
-            
-            // Limitar rotación vertical
-            currentRotationX = Math.max(-60, Math.min(60, currentRotationX));
-            
-            dragStartX = touch.clientX;
-            dragStartY = touch.clientY;
-            
-            updateGalaxyRotation();
+            dragCurrentX = e.touches[0].clientX;
+            updateDragEffect();
         }
         
-        function handleTouchEnd() {
-            isDragging = false;
-            // Reactivar rotación automática después de un tiempo
-            setTimeout(() => {
-                configGalaxy.autoRotation = true;
-            }, 2000);
-        }
-        
-        // Función para inicializar controles
-        function initControls() {
-            if (controlButtons.speedUp) {
-                controlButtons.speedUp.addEventListener('click', () => {
-                    rotationSpeed = Math.min(configGalaxy.maxSpeed, rotationSpeed + 0.5);
-                    updateSpeedIndicator();
-                    showControlFeedback('Velocidad aumentada');
-                });
-            }
+        function endDrag() {
+            if (!isDragging) return;
             
-            if (controlButtons.playPause) {
-                controlButtons.playPause.addEventListener('click', () => {
-                    isAnimating = !isAnimating;
-                    controlButtons.playPause.innerHTML = isAnimating ? 
-                        '<i class="fas fa-pause"></i>' : 
-                        '<i class="fas fa-play"></i>';
-                    controlButtons.playPause.setAttribute('aria-label', 
-                        isAnimating ? 'Pausar animación' : 'Reanudar animación');
-                    
-                    showControlFeedback(isAnimating ? 'Animación reanudada' : 'Animación pausada');
-                });
-            }
+            const dragDistance = dragCurrentX - dragStartX;
             
-            if (controlButtons.speedDown) {
-                controlButtons.speedDown.addEventListener('click', () => {
-                    rotationSpeed = Math.max(configGalaxy.minSpeed, rotationSpeed - 0.5);
-                    updateSpeedIndicator();
-                    showControlFeedback('Velocidad reducida');
-                });
-            }
-            
-            if (controlButtons.resetView) {
-                controlButtons.resetView.addEventListener('click', () => {
-                    currentRotationX = 0;
-                    currentRotationY = 0;
-                    targetRotationX = 0;
-                    targetRotationY = 0;
-                    rotationSpeed = 1;
-                    updateGalaxyRotation();
-                    updateSpeedIndicator();
-                    showControlFeedback('Vista restablecida');
-                });
-            }
-        }
-        
-        function updateSpeedIndicator() {
-            // Podrías añadir un indicador visual de velocidad aquí
-            console.log('Velocidad actual:', rotationSpeed);
-        }
-        
-        function showControlFeedback(message) {
-            // Feedback visual para controles
-            const feedback = document.createElement('div');
-            feedback.className = 'control-feedback';
-            feedback.textContent = message;
-            feedback.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: rgba(0, 210, 106, 0.9);
-                color: white;
-                padding: 10px 20px;
-                border-radius: 20px;
-                z-index: 1000;
-                animation: slideInRight 0.3s ease;
-            `;
-            
-            document.body.appendChild(feedback);
-            
-            setTimeout(() => {
-                feedback.style.animation = 'slideOutRight 0.3s ease';
-                setTimeout(() => {
-                    if (feedback.parentNode) {
-                        feedback.parentNode.removeChild(feedback);
-                    }
-                }, 300);
-            }, 2000);
-            
-            // Añadir estilos de animación si no existen
-            if (!document.querySelector('#controlFeedbackStyles')) {
-                const style = document.createElement('style');
-                style.id = 'controlFeedbackStyles';
-                style.textContent = `
-                    @keyframes slideInRight {
-                        from { transform: translateX(100%); opacity: 0; }
-                        to { transform: translateX(0); opacity: 1; }
-                    }
-                    @keyframes slideOutRight {
-                        from { transform: translateX(0); opacity: 1; }
-                        to { transform: translateX(100%); opacity: 0; }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-        }
-        
-        // Función para actualizar rotación de la galaxia
-        function updateGalaxyRotation() {
-            const orbits = document.querySelectorAll('.orbit');
-            const core = document.querySelector('.galaxy-core');
-            
-            if (core) {
-                core.style.transform = `translate(-50%, -50%) rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
-            }
-            
-            orbits.forEach((orbit, index) => {
-                // Añadir rotación individual a cada órbita
-                const orbitRotation = currentRotationY * 0.5 + (index * 10);
-                orbit.style.transform = `translate(-50%, -50%) rotateX(${currentRotationX * 0.3}deg) rotateY(${orbitRotation}deg)`;
-            });
-        }
-        
-        // Función principal de animación
-        function startAnimation() {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-            
-            function animate() {
-                if (isAnimating) {
-                    // Rotación automática suave
-                    if (configGalaxy.autoRotation && !isDragging) {
-                        currentRotationY += configGalaxy.baseSpeed * rotationSpeed;
-                        
-                        // Interpolación suave hacia target rotation (mouse)
-                        currentRotationX += (targetRotationX - currentRotationX) * configGalaxy.smoothFactor;
-                        currentRotationY += (targetRotationY - currentRotationY) * configGalaxy.smoothFactor;
-                    }
-                    
-                    // Actualizar rotación
-                    updateGalaxyRotation();
-                    
-                    // Actualizar posición de proyectos en órbitas
-                    updateOrbitPositions();
+            if (Math.abs(dragDistance) > dragThreshold) {
+                if (dragDistance > 0) {
+                    goToPrevSlide();
+                } else {
+                    goToNextSlide();
                 }
-                
-                animationId = requestAnimationFrame(animate);
             }
             
-            animate();
+            isDragging = false;
+            
+            // Reanudar auto-play si estaba activo
+            if (isAutoplay) {
+                startAutoplay();
+            }
         }
         
-        function updateOrbitPositions() {
-            const orbits = document.querySelectorAll('.orbit');
-            const time = Date.now() * 0.001;
+        function updateDragEffect() {
+            if (!isDragging) return;
             
-            orbits.forEach((orbit, orbitIndex) => {
-                const projects = orbit.querySelectorAll('.orbit-project');
-                const orbitRadius = orbit.offsetWidth / 2;
-                const angleStep = (2 * Math.PI) / projects.length;
-                const orbitSpeed = (orbitIndex + 1) * 0.2 * rotationSpeed;
-                
-                projects.forEach((project, projectIndex) => {
-                    const baseAngle = angleStep * projectIndex;
-                    const dynamicAngle = baseAngle + time * orbitSpeed;
-                    const x = Math.cos(dynamicAngle) * orbitRadius;
-                    const y = Math.sin(dynamicAngle) * orbitRadius;
+            const dragDistance = (dragCurrentX - dragStartX) * configCoverflow.touchSensitivity;
+            const dragPercentage = dragDistance / window.innerWidth;
+            
+            // Efecto visual durante el drag
+            coverflowTrack.style.transform = `translateX(${dragDistance}px)`;
+            coverflowTrack.style.transition = 'none';
+            
+            // Feedback visual en slides
+            slides.forEach((slide, index) => {
+                if (Math.abs(index - currentIndex) <= configCoverflow.visibleSlides) {
+                    const baseTransform = slide.getAttribute('data-index');
+                    const extraRotation = dragPercentage * 10; // Rotación adicional por drag
                     
-                    // Añadir efecto de flotación
-                    const floatY = Math.sin(time * 2 + projectIndex) * 10;
-                    
-                    project.style.transform = `translateX(${x}px) translateY(${y + floatY}px)`;
-                    
-                    // Efecto 3D - rotar proyecto para que siempre mire hacia el centro
-                    const projectAngle = Math.atan2(y, x) * (180 / Math.PI);
-                    project.style.transform += ` rotateZ(${-projectAngle}deg)`;
-                });
+                    if (baseTransform) {
+                        const baseValue = parseInt(baseTransform);
+                        let newRotation = 0;
+                        
+                        if (baseValue < 0) {
+                            newRotation = 30 + extraRotation;
+                        } else if (baseValue > 0) {
+                            newRotation = -30 + extraRotation;
+                        }
+                        
+                        slide.style.transform = slide.style.transform.replace(
+                            /rotateY\([^)]*\)/,
+                            `rotateY(${newRotation}deg)`
+                        );
+                    }
+                }
             });
+        }
+        
+        function handleKeydown(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                goToPrevSlide();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                goToNextSlide();
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                toggleAutoplay();
+            }
         }
         
         // Cleanup
         function cleanup() {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
+            stopAutoplay();
             
             // Remover event listeners
-            galaxyContainer.removeEventListener('mousemove', handleMouseMove);
-            galaxyContainer.removeEventListener('mousedown', startDrag);
-            galaxyContainer.removeEventListener('wheel', handleWheel);
-            galaxyContainer.removeEventListener('touchstart', handleTouchStart);
-            galaxyContainer.removeEventListener('touchmove', handleTouchMove);
-            galaxyContainer.removeEventListener('touchend', handleTouchEnd);
+            if (prevBtn) prevBtn.removeEventListener('click', goToPrevSlide);
+            if (nextBtn) nextBtn.removeEventListener('click', goToNextSlide);
+            if (autoplayToggle) autoplayToggle.removeEventListener('change', toggleAutoplay);
+            
+            dots.forEach(dot => {
+                dot.removeEventListener('click', () => {});
+            });
+            
+            slides.forEach(slide => {
+                slide.removeEventListener('click', () => {});
+            });
+            
+            coverflowTrack.removeEventListener('wheel', handleWheel);
+            coverflowTrack.removeEventListener('mousedown', startDrag);
+            coverflowTrack.removeEventListener('touchstart', handleTouchStart);
             
             document.removeEventListener('mousemove', handleDrag);
+            document.removeEventListener('touchmove', handleTouchMove);
             document.removeEventListener('mouseup', endDrag);
-            
-            orbitProjects.forEach(project => {
-                project.removeEventListener('mouseenter', () => {});
-                project.removeEventListener('mouseleave', () => {});
-                project.removeEventListener('click', () => {});
-            });
-            
-            Object.values(controlButtons).forEach(button => {
-                if (button) {
-                    button.removeEventListener('click', () => {});
-                }
-            });
+            document.removeEventListener('touchend', endDrag);
+            document.removeEventListener('touchcancel', endDrag);
+            document.removeEventListener('keydown', handleKeydown);
         }
         
         // Public methods
         return {
-            play: () => { isAnimating = true; },
-            pause: () => { isAnimating = false; },
-            setSpeed: (speed) => { 
-                rotationSpeed = Math.max(configGalaxy.minSpeed, Math.min(configGalaxy.maxSpeed, speed));
-                updateSpeedIndicator();
+            next: goToNextSlide,
+            prev: goToPrevSlide,
+            goTo: (index) => goToSlide(index),
+            play: () => {
+                isAutoplay = true;
+                startAutoplay();
+                if (autoplayToggle) autoplayToggle.checked = true;
             },
-            reset: () => {
-                currentRotationX = 0;
-                currentRotationY = 0;
-                targetRotationX = 0;
-                targetRotationY = 0;
-                rotationSpeed = 1;
-                updateGalaxyRotation();
-                updateSpeedIndicator();
+            pause: () => {
+                isAutoplay = false;
+                stopAutoplay();
+                if (autoplayToggle) autoplayToggle.checked = false;
             },
             cleanup: cleanup,
-            getSpeed: () => rotationSpeed,
-            isPlaying: () => isAnimating
+            getCurrentIndex: () => currentIndex,
+            getTotalSlides: () => totalSlides
         };
     }
     
@@ -996,28 +960,34 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         },
         
-        // Métodos para controlar la galaxia desde la consola
-        galaxyPlay: function() {
-            if (window.DDPortfolio.galaxy) {
-                window.DDPortfolio.galaxy.play();
+        // Métodos para controlar el coverflow desde la consola
+        coverflowNext: function() {
+            if (window.DDPortfolio.coverflow) {
+                window.DDPortfolio.coverflow.next();
             }
         },
         
-        galaxyPause: function() {
-            if (window.DDPortfolio.galaxy) {
-                window.DDPortfolio.galaxy.pause();
+        coverflowPrev: function() {
+            if (window.DDPortfolio.coverflow) {
+                window.DDPortfolio.coverflow.prev();
             }
         },
         
-        galaxySetSpeed: function(speed) {
-            if (window.DDPortfolio.galaxy) {
-                window.DDPortfolio.galaxy.setSpeed(speed);
+        coverflowGoTo: function(index) {
+            if (window.DDPortfolio.coverflow) {
+                window.DDPortfolio.coverflow.goTo(index);
             }
         },
         
-        galaxyReset: function() {
-            if (window.DDPortfolio.galaxy) {
-                window.DDPortfolio.galaxy.reset();
+        coverflowPlay: function() {
+            if (window.DDPortfolio.coverflow) {
+                window.DDPortfolio.coverflow.play();
+            }
+        },
+        
+        coverflowPause: function() {
+            if (window.DDPortfolio.coverflow) {
+                window.DDPortfolio.coverflow.pause();
             }
         }
     });
