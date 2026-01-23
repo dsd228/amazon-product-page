@@ -4,7 +4,7 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Portafolio David Díaz - Optimizado 10/10');
+    console.log('Portafolio David Díaz - Optimizado 10/10');
     
     // ===== CONFIGURACIÓN =====
     const config = {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== ELEMENTOS PRINCIPALES =====
     const elements = {
-        header: document.querySelector('.header-minimal'),
+        header: document.querySelector('.header-fixed'),
         menuToggle: document.getElementById('menuToggle'),
         currentYear: document.getElementById('currentYear'),
         contactForm: document.getElementById('contactForm'),
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCurrentYear();
         initMobileMenu();
         initSmoothScroll();
-        initHeaderScroll();
+        initHeaderSticky();
         initStatsCounter();
         initContactForm();
         initAnimations();
@@ -80,13 +80,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-briefcase"></i> Casos
                     </a>
                     <a href="#servicios" class="nav-link">
-                        <i class="fas fa-cogs"></i> Cómo trabajo
+                        <i class="fas fa-cogs"></i> Proceso
+                    </a>
+                    <a href="#testimonios" class="nav-link">
+                        <i class="fas fa-quote-right"></i> Testimonios
                     </a>
                     <a href="#contacto" class="nav-link">
                         <i class="fas fa-calendar-check"></i> Contacto
                     </a>
                 </nav>
-                <a href="#contacto" class="btn-primary">Consulta gratuita</a>
+                <a href="#contacto" class="btn-primary">Trabajemos juntos</a>
             </div>
         `;
         
@@ -145,29 +148,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== 3. HEADER SCROLL =====
-    function initHeaderScroll() {
-        let lastScroll = 0;
-        const threshold = 100;
-        
+    // ===== 3. HEADER FIXED (siempre visible) =====
+    function initHeaderSticky() {
+        // El header ya es sticky por CSS, solo agregamos clase al scrollear
         function updateHeader() {
             const currentScroll = window.scrollY;
-            const isScrollingDown = currentScroll > lastScroll;
             
             if (currentScroll > 50) {
                 elements.header.classList.add('scrolled');
-                
-                if (isScrollingDown && currentScroll > threshold) {
-                    elements.header.style.transform = 'translateY(-100%)';
-                } else {
-                    elements.header.style.transform = 'translateY(0)';
-                }
             } else {
                 elements.header.classList.remove('scrolled');
-                elements.header.style.transform = 'translateY(0)';
             }
-            
-            lastScroll = currentScroll;
         }
         
         window.addEventListener('scroll', updateHeader, { passive: true });
@@ -428,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== 8. COVERFLOW OPTIMIZADO =====
+    // ===== 8. COVERFLOW CON CONTEXTO =====
     function initCoverflow() {
         if (!elements.coverflowTrack) return null;
         
@@ -437,14 +428,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevBtn = document.querySelector('.coverflow-prev');
         const nextBtn = document.querySelector('.coverflow-next');
         
-        // Elementos de vista previa
+        // Elementos de vista previa CON CONTEXTO
         const previewElements = {
             img: document.getElementById('previewImg'),
             title: document.getElementById('previewTitle'),
             description: document.getElementById('previewDescription'),
             badge: document.getElementById('previewBadge'),
             stat1: document.getElementById('previewStat1'),
-            duration: document.getElementById('previewDuration')
+            duration: document.getElementById('previewDuration'),
+            problem: document.getElementById('previewProblem'),
+            solution: document.getElementById('previewSolution')
         };
         
         // Estado
@@ -505,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const activeSlide = slides[currentIndex];
             if (!activeSlide || !previewElements.img) return;
             
-            // Actualizar datos
+            // Actualizar datos CON CONTEXTO
             previewElements.img.src = activeSlide.getAttribute('data-img');
             previewElements.img.alt = activeSlide.getAttribute('data-title');
             previewElements.title.textContent = activeSlide.getAttribute('data-title');
@@ -513,6 +506,10 @@ document.addEventListener('DOMContentLoaded', function() {
             previewElements.badge.textContent = activeSlide.getAttribute('data-badge');
             previewElements.stat1.textContent = activeSlide.getAttribute('data-stat1');
             previewElements.duration.textContent = activeSlide.getAttribute('data-duration');
+            
+            // Contexto problema/solución
+            previewElements.problem.textContent = activeSlide.getAttribute('data-problem');
+            previewElements.solution.textContent = activeSlide.getAttribute('data-solution');
             
             // Animación
             const previewContent = document.querySelector('.preview-content');
