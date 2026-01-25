@@ -153,6 +153,7 @@
     </section>
 
     <!-- ===== GALERÍA CIRCULAR INTERACTIVA ===== -->
+<!-- ===== GALERÍA CIRCULAR INTERACTIVA MEJORADA ===== -->
 <section id="mockups" class="mockups-section">
     <div class="container">
         <div class="section-header">
@@ -167,6 +168,29 @@
         
         <!-- Galería circular -->
         <div class="gallery-container">
+            <!-- Flecha para volver (inicialmente oculta) -->
+            <button class="back-to-gallery" aria-label="Volver a la galería">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            
+            <!-- Contador (inicialmente oculto) -->
+            <div class="gallery-counter">
+                <span class="current-index">1</span>
+                <span>/</span>
+                <span class="total-count">6</span>
+            </div>
+            
+            <!-- Navegación (inicialmente oculta) -->
+            <div class="gallery-nav">
+                <button class="nav-prev" aria-label="Imagen anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-next" aria-label="Siguiente imagen">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Grid de imágenes -->
             <div class="gallery-grid">
                 <!-- Mockup 1 -->
                 <div class="gallery-item" data-index="1">
@@ -226,15 +250,10 @@
             <!-- Overlay oscuro -->
             <div class="gallery-overlay"></div>
             
-            <!-- Botón de cerrar -->
-            <button class="gallery-close" aria-label="Cerrar vista">
-                <i class="fas fa-times"></i>
-            </button>
-            
             <!-- Instrucción -->
             <div class="gallery-instruction">
-                <i class="fas fa-hand-pointer"></i>
-                Haz clic en cualquier imagen para verla en pantalla completa
+                <i class="fas fa-mouse-pointer"></i>
+                Pasa el mouse para ver la rotación 3D • Haz clic para expandir
             </div>
         </div>
     </div>
