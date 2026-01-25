@@ -878,79 +878,210 @@ window.closeMobileMenu = function() {
         }
     }, 300);
 };
-// Agrega esto al final de tu script.js existente o crea un nuevo archivo
-
+// GALERÍA INTERACTIVA MEJORADA
 document.addEventListener('DOMContentLoaded', function() {
     const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryGrid = document.querySelector('.gallery-grid');
     const galleryOverlay = document.querySelector('.gallery-overlay');
-    const galleryClose = document.querySelector('.gallery-close');
+    const backButton = document.querySelector('.back-to-gallery');
     const body = document.body;
+    const currentIndexSpan = document.querySelector('.current-index');
+    const totalCountSpan = document.querySelector('.total-count');
+    const galleryCounter = document.querySelector('.gallery-counter');
+    const galleryNav = document.querySelector('.gallery-nav');
+    const navPrev = document.querySelector('.nav-prev');
+    const navNext = document.querySelector('.nav-next');
+    
+    let currentExpandedIndex = 1;
+    const totalItems = galleryItems.length;
+    
+    // Establecer contador total
+    totalCountSpan.textContent = totalItems;
     
     // Expandir card al hacer clic
     galleryItems.forEach(item => {
         item.addEventListener('click', function(e) {
-            // Prevenir que se expanda si ya está expandida
-            if (this.classList.contains('expanded')) return;
+            // Evitar múltiples expansiones
+            if (document.querySelector('.gallery-item.expanded.active')) {
+                closeExpandedCard();
+                return;
+            }
             
-            // Obtener posición original
-            const rect = this.getBoundingClientRect();
+            // Obtener índice de la imagen clickeada
+            currentExpandedIndex = parseInt(this.getAttribute('data-index'));
+            currentIndexSpan.textContent = currentExpandedIndex;
             
-            // Calcular transform para animación
-            const scaleX = window.innerWidth / rect.width;
-            const scaleY = window.innerHeight / rect.height;
+            // Ocultar grid
+            galleryGrid.classList.add('hidden');
             
-            // Guardar posición original
-            this.style.setProperty('--original-x', `${rect.left}px`);
-            this.style.setProperty('--original-y', `${rect.top}px`);
-            this.style.setProperty('--original-width', `${rect.width}px`);
-            this.style.setProperty('--original-height', `${rect.height}px`);
-            
-            // Añadir clases para expansión
-            this.classList.add('expanded');
+            // Mostrar overlay
             galleryOverlay.classList.add('active');
+            
+            // Mostrar controles
+            backButton.classList.add('visible');
+            galleryCounter.classList.add('visible');
+            galleryNav.classList.add('visible');
+            
+            // Bloquear scroll
             body.classList.add('no-scroll');
             
-            // Forzar reflow para reiniciar animación
-            void this.offsetWidth;
+            // Posicionar y mostrar la card expandida
+            const rect = this.getBoundingClientRect();
+            const expandedClone = this.cloneNode(true);
+            expandedClone.classList.add('expanded');
+            
+            // Posicionar en el centro de la pantalla
+            expandedClone.style.position = 'fixed';
+            expandedClone.style.top = `${rect.top}px`;
+            expandedClone.style.left = `${rect.left}px`;
+            expandedClone.style.width = `${rect.width}px`;
+            expandedClone.style.height = `${rect.height}px`;
+            expandedClone.style.margin = '0';
+            
+            // Agregar al DOM
+            document.querySelector('.gallery-container').appendChild(expandedClone);
+            
+            // Forzar reflow
+            void expandedClone.offsetWidth;
+            
+            // Animar a posición central
+            expandedClone.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            expandedClone.style.top = '50%';
+            expandedClone.style.left = '50%';
+            expandedClone.style.transform = 'translate(-50%, -50%) scale(1)';
+            expandedClone.classList.add('active');
+            
+            // Agregar evento para cerrar
+            expandedClone.addEventListener('click', function(e) {
+                if (e.target === this || e.target.closest('.gallery-image')) {
+                    closeExpandedCard();
+                }
+            });
         });
     });
     
-    // Cerrar card expandida
+    // Función para cerrar la vista expandida
     function closeExpandedCard() {
         const expandedItem = document.querySelector('.gallery-item.expanded');
+        
         if (expandedItem) {
-            expandedItem.classList.remove('expanded');
-            galleryOverlay.classList.remove('active');
-            body.classList.remove('no-scroll');
+            // Obtener posición original
+            const originalIndex = currentExpandedIndex;
+            const originalItem = document.querySelector(`.gallery-item[data-index="${originalIndex}"]`);
+            const originalRect = originalItem.getBoundingClientRect();
+            
+            // Animar de vuelta a la posición original
+            expandedItem.style.top = `${originalRect.top}px`;
+            expandedItem.style.left = `${originalRect.left}px`;
+            expandedItem.style.width = `${originalRect.width}px`;
+            expandedItem.style.height = `${originalRect.height}px`;
+            expandedItem.style.transform = 'translate(0, 0) scale(1)';
+            
+            // Esperar a que termine la animación y remover
+            setTimeout(() => {
+                if (expandedItem.parentNode) {
+                    expandedItem.parentNode.removeChild(expandedItem);
+                }
+                
+                // Restaurar vista normal
+                galleryGrid.classList.remove('hidden');
+                galleryOverlay.classList.remove('active');
+                backButton.classList.remove('visible');
+                galleryCounter.classList.remove('visible');
+                galleryNav.classList.remove('visible');
+                body.classList.remove('no-scroll');
+            }, 600);
         }
     }
     
-    // Eventos para cerrar
-    galleryClose.addEventListener('click', closeExpandedCard);
-    galleryOverlay.addEventListener('click', closeExpandedCard);
+    // Navegar entre imágenes
+    function navigateGallery(direction) {
+        const expandedItem = document.querySelector('.gallery-item.expanded');
+        if (!expandedItem) return;
+        
+        // Calcular nuevo índice
+        let newIndex = currentExpandedIndex + direction;
+        if (newIndex < 1) newIndex = totalItems;
+        if (newIndex > totalItems) newIndex = 1;
+        
+        // Actualizar índice
+        currentExpandedIndex = newIndex;
+        currentIndexSpan.textContent = currentExpandedIndex;
+        
+        // Obtener nueva imagen
+        const newItem = document.querySelector(`.gallery-item[data-index="${newIndex}"]`);
+        const imgSrc = newItem.querySelector('img').getAttribute('src');
+        const imgAlt = newItem.querySelector('img').getAttribute('alt');
+        
+        // Actualizar imagen expandida
+        const expandedImg = expandedItem.querySelector('img');
+        expandedImg.setAttribute('src', imgSrc);
+        expandedImg.setAttribute('alt', imgAlt);
+        
+        // Efecto de transición
+        expandedItem.style.opacity = '0.7';
+        setTimeout(() => {
+            expandedItem.style.opacity = '1';
+        }, 200);
+    }
     
-    // Cerrar con tecla ESC
+    // Eventos
+    backButton.addEventListener('click', closeExpandedCard);
+    galleryOverlay.addEventListener('click', closeExpandedCard);
+    navPrev.addEventListener('click', () => navigateGallery(-1));
+    navNext.addEventListener('click', () => navigateGallery(1));
+    
+    // Navegación con teclado
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' || e.keyCode === 27) {
-            closeExpandedCard();
+        if (!document.querySelector('.gallery-item.expanded')) return;
+        
+        switch(e.key) {
+            case 'Escape':
+                closeExpandedCard();
+                break;
+            case 'ArrowLeft':
+                navigateGallery(-1);
+                break;
+            case 'ArrowRight':
+                navigateGallery(1);
+                break;
         }
     });
     
-    // Prevenir scroll en cards expandidas
-    document.addEventListener('wheel', function(e) {
+    // Swipe en móvil
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', function(e) {
+        if (document.querySelector('.gallery-item.expanded')) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+    });
+    
+    document.addEventListener('touchend', function(e) {
+        if (document.querySelector('.gallery-item.expanded')) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                navigateGallery(1); // Swipe izquierda = siguiente
+            } else {
+                navigateGallery(-1); // Swipe derecha = anterior
+            }
+        }
+    }
+    
+    // Prevenir scroll en móvil cuando hay imagen expandida
+    document.addEventListener('touchmove', function(e) {
         if (document.querySelector('.gallery-item.expanded')) {
             e.preventDefault();
         }
     }, { passive: false });
-    
-    // Cerrar al hacer clic fuera de la imagen expandida
-    document.addEventListener('click', function(e) {
-        const expandedItem = document.querySelector('.gallery-item.expanded');
-        if (expandedItem && 
-            !expandedItem.contains(e.target) && 
-            e.target !== galleryClose && 
-            !galleryClose.contains(e.target)) {
-            closeExpandedCard();
-        }
-    });
 });
