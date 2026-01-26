@@ -669,86 +669,247 @@ body.mobile-menu-open .header-fixed {
 /* ===============================
    GALERÍA ESTILO APPLE — FINAL
    =============================== */
+/* ===== GALERÍA APPLE PRO - CARRUSEL INFINITO ===== */
+.gallery-section {
+  padding: var(--space-8) 0;
+  background: var(--color-gray-50);
+  overflow: hidden;
+}
 
-.gallery-grid {
+.gallery-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+/* Encabezado galería */
+.gallery-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.gallery-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-black);
+  margin-bottom: var(--space-2);
+}
+
+.gallery-subtitle {
+  color: var(--color-gray-600);
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Contenedor del carrusel infinito */
+.gallery-carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  background: var(--color-white);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* Track animado */
+.gallery-track {
   display: flex;
-  gap: 48px;
-  padding: 40px 10vw;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  gap: 0;
+  animation: slideCarousel 80s linear infinite;
+  will-change: transform;
 }
 
-.gallery-grid::-webkit-scrollbar {
-  display: none;
+.gallery-track:hover {
+  animation-play-state: paused;
 }
 
-/* MINIATURA */
+/* Items del carrusel */
 .gallery-item {
   flex: 0 0 auto;
-  width: 420px;
-  height: 280px;
-  border-radius: 24px;
-  background: #f5f5f7;
-  overflow: hidden;
-  cursor: pointer;
-  scroll-snap-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.gallery-item.is-active {
-  transform: scale(1.04);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
-}
-
-/* 🔑 CLAVE: miniatura desde arriba */
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;              /* recorta */
-  object-position: center top;    /* desde arriba */
-  transition: transform 0.6s ease;
-}
-
-/* ===============================
-   EXPANDIDO
-   =============================== */
-
-.gallery-expanded {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(16px);
+  width: 400px;
+  height: 500px;
+  padding: var(--space-4);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
-  opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
-.gallery-expanded.active {
+.gallery-item-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--color-gray-100);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover .gallery-item-inner {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s ease;
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.05);
+}
+
+/* Overlay de información */
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-5);
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: var(--color-white);
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  opacity: 0;
+}
+
+.gallery-item:hover .gallery-overlay {
+  transform: translateY(0);
   opacity: 1;
 }
 
-.gallery-expanded img {
-  max-width: 90vw;
-  max-height: 85vh;
-  object-fit: contain;           /* 🔑 imagen completa */
-  object-position: center;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 50px 120px rgba(0, 0, 0, 0.35);
+.gallery-overlay h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+  color: var(--color-white);
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .gallery-item {
-    width: 300px;
-    height: 220px;
+.gallery-overlay p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+/* Animación del carrusel */
+@keyframes slideCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
+/* Efecto de desenfoque en los bordes */
+.gradient-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gradient-mask.left {
+  left: 0;
+  background: linear-gradient(to right, var(--color-gray-50), transparent);
+}
+
+.gradient-mask.right {
+  right: 0;
+  background: linear-gradient(to left, var(--color-gray-50), transparent);
+}
+
+/* Controles */
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.gallery-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 2px solid var(--color-gray-300);
+  color: var(--color-black);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  font-size: 1.125rem;
+}
+
+.gallery-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+.gallery-dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gray-300);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.gallery-dot.active {
+  background: var(--color-primary);
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .gallery-carousel {
+    height: 400px;
+  }
+  
+  .gallery-item {
+    width: 320px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-carousel {
+    height: 300px;
+  }
+  
+  .gallery-item {
+    width: 250px;
+    height: 300px;
+  }
+  
+  .gallery-title {
+    font-size: 2rem;
+  }
+}
 
 /* ===== SECCIÓN RESULTADOS CON CONTEXTO ===== */
 .results-section {
