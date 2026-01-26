@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!-- TÍTULO DEL ARTÍCULO --> | David Díaz UX/UI</title>
+    <meta name="description" content="<!-- DESCRIPCIÓN META -->">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="<!-- TÍTULO OG -->">
+    <meta property="og:description" content="<!-- DESCRIPCIÓN OG -->">
+    <meta property="og:image" content="<!-- IMAGEN DESTACADA -->">
+    <meta property="og:url" content="<!-- URL COMPLETA -->">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles-blog.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>DD</text></svg>">
+</head>
+<body>
+    <!-- INCLUIR HEADER -->
+    <!-- #include virtual="../components/header.html" -->
+
+    <!-- HERO DEL BLOG -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <div class="blog-meta">
+                    <span class="blog-category">Diseño UX/UI</span>
+                    <span class="blog-date">
+                        <i class="far fa-calendar"></i> 15 Enero 2024
+                    </span>
+                    <span class="blog-read-time">
+                        <i class="far fa-clock"></i> 5 min lectura
+                    </span>
+                </div>
+                
+                <h1 class="blog-title"><!-- TÍTULO PRINCIPAL --></h1>
+                
+                <p class="blog-excerpt"><!-- INTRODUCCIÓN DEL ARTÍCULO --></p>
+                
+                <div class="blog-author">
+                    <img src="../images/author-david.jpg" alt="David Díaz" class="author-avatar">
+                    <div class="author-info">
+                        <h4>David Díaz</h4>
+                        <p>UX/UI Designer especializado en conversión</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-hero-image">
+                <img src="<!-- IMAGEN DESTACADA -->" alt="<!-- ALT TEXT -->">
+                <div class="image-caption"><!-- PIE DE FOTO --></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENIDO DEL BLOG -->
+    <article class="blog-content">
+        <div class="container">
+            <div class="blog-article">
+                <!-- CONTENIDO MARKDOWN AQUÍ -->
+                <div class="article-body">
+                    <!-- El contenido específico de cada artículo -->
+                </div>
+                
+                <!-- CTA DE BLOG -->
+                <div class="blog-cta">
+                    <h3>¿Necesitas ayuda con tu proyecto?</h3>
+                    <p>Agenda una consulta gratuita para analizar tus desafíos específicos.</p>
+                    <a href="../contacto.html" class="btn-primary btn-large">
+                        <i class="fas fa-calendar-check"></i> Agenda consulta 30min
+                    </a>
+                </div>
+                
+                <!-- COMPARTIR -->
+                <div class="blog-share">
+                    <h4>Comparte este artículo</h4>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn twitter" aria-label="Compartir en Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="share-btn linkedin" aria-label="Compartir en LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="share-btn facebook" aria-label="Compartir en Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SIDEBAR -->
+            <aside class="blog-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Artículos relacionados</h3>
+                    <div class="related-articles">
+                        <!-- ARTÍCULOS RELACIONADOS -->
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Newsletter</h3>
+                    <div class="newsletter-box">
+                        <p>Recibe insights exclusivos sobre diseño y conversión.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Tu email" required>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i> Suscribirme
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </article>
+
+    <!-- BLOGS RELACIONADOS -->
+    <section class="related-blogs-section">
+        <div class="container">
+            <h2 class="section-title">Artículos que te pueden interesar</h2>
+            
+            <div class="blogs-grid">
+                <!-- GRID DE ARTÍCULOS RELACIONADOS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- INCLUIR FOOTER -->
+    <!-- #include virtual="../components/footer.html" -->
+
+    <!-- JavaScript -->
+    <script src="../script.js"></script>
+    <script src="../script-blog.js"></script>
+</body>
+</html>
