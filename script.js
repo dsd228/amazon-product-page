@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle: document.getElementById('menuToggle'),
         currentYear: document.getElementById('currentYear'),
         contactForm: document.getElementById('contactForm'),
-        coverflowTrack: document.getElementById('coverflowTrack'),
         statNumbers: document.querySelectorAll('[data-count]')
     };
     
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initStatsCounter();
         initContactForm();
         initAnimations();
-        initCoverflow();
         initAppleGallery();
         initAnalytics();
         
@@ -91,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="#hero" class="nav-link" onclick="closeMobileMenu()">
                         <i class="fas fa-home"></i> Inicio
                     </a>
-                    <a href="#mockups" class="nav-link" onclick="closeMobileMenu()">
+                    <a href="#gallery" class="nav-link" onclick="closeMobileMenu()">
                         <i class="fas fa-paint-brush"></i> Mockups
                     </a>
                     <a href="#resultados" class="nav-link" onclick="closeMobileMenu()">
@@ -99,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     </a>
                     <a href="#proyectos" class="nav-link" onclick="closeMobileMenu()">
                         <i class="fas fa-briefcase"></i> Casos
+                    </a>
+                    <a href="#sobre-mi" class="nav-link" onclick="closeMobileMenu()">
+                        <i class="fas fa-user-tie"></i> Experiencia
                     </a>
                     <a href="#servicios" class="nav-link" onclick="closeMobileMenu()">
                         <i class="fas fa-cogs"></i> Proceso
@@ -458,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (config.reduceMotion) return;
         
         const animatedElements = document.querySelectorAll(
-            '.result-card, .process-card, .testimonial-card, .benefit-item, .mockup-card'
+            '.result-card, .process-card, .testimonial-card, .benefit-item, .case-card'
         );
         
         if (animatedElements.length === 0) return;
@@ -483,277 +484,109 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== 8. COVERFLOW CON CONTEXTO =====
-    function initCoverflow() {
-        if (!elements.coverflowTrack) return;
+    // ===== 8. GALERÍA APPLE PRO - CARRUSEL INFINITO =====
+    function initAppleGallery() {
+        const galleryTrack = document.querySelector('.gallery-track');
+        if (!galleryTrack) return;
         
-        const slides = document.querySelectorAll('.coverflow-slide');
-        const dots = document.querySelectorAll('.coverflow-dots .dot');
-        const prevBtn = document.querySelector('.coverflow-prev');
-        const nextBtn = document.querySelector('.coverflow-next');
+        // Duplicar los items para efecto infinito
+        const items = galleryTrack.querySelectorAll('.gallery-item');
+        const cloneItems = Array.from(items).map(item => item.cloneNode(true));
         
-        if (slides.length === 0) return;
+        cloneItems.forEach(item => {
+            galleryTrack.appendChild(item);
+        });
         
-        // Elementos de vista previa CON CONTEXTO
-        const previewElements = {
-            img: document.getElementById('previewImg'),
-            title: document.getElementById('previewTitle'),
-            description: document.getElementById('previewDescription'),
-            badge: document.getElementById('previewBadge'),
-            stat1: document.getElementById('previewStat1'),
-            duration: document.getElementById('previewDuration'),
-            problem: document.getElementById('previewProblem'),
-            solution: document.getElementById('previewSolution')
-        };
+        // Controles
+        const dots = document.querySelectorAll('.gallery-dot');
+        const prevBtn = document.querySelector('.gallery-prev');
+        const nextBtn = document.querySelector('.gallery-next');
         
-        // Estado
         let currentIndex = 0;
-        const totalSlides = slides.length;
-        let isAnimating = false;
-        let isDragging = false;
-        let dragStartX = 0;
-        let dragCurrentX = 0;
-        const dragThreshold = 30;
+        const totalItems = items.length;
+        let autoScrollInterval;
         
-        // Configuración
-        const coverflowConfig = {
-            animationDuration: 600,
-            easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
-            visibleSlides: 2
-        };
-        
-        // Inicializar
-        updateCoverflow();
-        updatePreview();
-        initCoverflowEvents();
-        
-        // Funciones principales
-        function updateCoverflow() {
-            if (isAnimating) return;
-            isAnimating = true;
-            
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active');
-                
-                let relativeIndex = index - currentIndex;
-                
-                if (Math.abs(relativeIndex) > coverflowConfig.visibleSlides) {
-                    slide.style.opacity = '0';
-                    slide.style.pointerEvents = 'none';
-                } else {
-                    slide.style.opacity = '';
-                    slide.style.pointerEvents = '';
-                    slide.setAttribute('data-index', relativeIndex.toString());
-                }
-                
-                if (index === currentIndex) {
-                    slide.classList.add('active');
-                }
-            });
-            
+        function updateDots() {
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
-            
-            setTimeout(() => {
-                isAnimating = false;
-            }, coverflowConfig.animationDuration);
-        }
-        
-        function updatePreview() {
-            const activeSlide = slides[currentIndex];
-            if (!activeSlide || !previewElements.img) return;
-            
-            // Actualizar datos CON CONTEXTO
-            previewElements.img.src = activeSlide.getAttribute('data-img');
-            previewElements.img.alt = activeSlide.getAttribute('data-title');
-            previewElements.title.textContent = activeSlide.getAttribute('data-title');
-            previewElements.description.textContent = activeSlide.getAttribute('data-description');
-            previewElements.badge.textContent = activeSlide.getAttribute('data-badge');
-            previewElements.stat1.textContent = activeSlide.getAttribute('data-stat1');
-            previewElements.duration.textContent = activeSlide.getAttribute('data-duration');
-            
-            // Contexto problema/solución
-            if (previewElements.problem) {
-                previewElements.problem.textContent = activeSlide.getAttribute('data-problem');
-            }
-            if (previewElements.solution) {
-                previewElements.solution.textContent = activeSlide.getAttribute('data-solution');
-            }
-            
-            // Animación
-            const previewContent = document.querySelector('.preview-content');
-            if (previewContent) {
-                previewContent.style.opacity = '0';
-                previewContent.style.transform = 'translateY(10px)';
-                
-                setTimeout(() => {
-                    previewContent.style.transition = 'all 0.4s ease';
-                    previewContent.style.opacity = '1';
-                    previewContent.style.transform = 'translateY(0)';
-                }, 50);
-            }
         }
         
         function goToSlide(index) {
-            if (isAnimating || index === currentIndex) return;
+            currentIndex = (index + totalItems) % totalItems;
+            updateDots();
             
-            currentIndex = (index + totalSlides) % totalSlides;
-            updateCoverflow();
-            updatePreview();
+            // Centrar el slide actual
+            const trackWidth = galleryTrack.scrollWidth / 2; // Porque duplicamos los items
+            const slideWidth = items[0].offsetWidth;
+            const targetScroll = currentIndex * slideWidth;
+            
+            galleryTrack.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            galleryTrack.style.transform = `translateX(-${targetScroll}px)`;
         }
         
-        function goToPrevSlide() {
-            goToSlide(currentIndex - 1);
-        }
-        
-        function goToNextSlide() {
-            goToSlide(currentIndex + 1);
-        }
-        
-        // Event Listeners
-        function initCoverflowEvents() {
-            // Botones de navegación
-            if (prevBtn) prevBtn.addEventListener('click', goToPrevSlide);
-            if (nextBtn) nextBtn.addEventListener('click', goToNextSlide);
-            
-            // Dots
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => goToSlide(index));
-            });
-            
-            // Click en slides
-            slides.forEach((slide, index) => {
-                slide.addEventListener('click', () => {
-                    if (!isDragging) goToSlide(index);
-                });
-            });
-            
-            // Wheel
-            elements.coverflowTrack.addEventListener('wheel', handleWheel, { passive: false });
-            
-            // Drag
-            elements.coverflowTrack.addEventListener('mousedown', startDrag);
-            elements.coverflowTrack.addEventListener('touchstart', handleTouchStart, { passive: true });
-            
-            document.addEventListener('mousemove', handleDrag);
-            document.addEventListener('touchmove', handleTouchMove, { passive: false });
-            
-            document.addEventListener('mouseup', endDrag);
-            document.addEventListener('touchend', endDrag);
-            document.addEventListener('touchcancel', endDrag);
-            
-            // Teclado
-            document.addEventListener('keydown', handleKeydown);
-        }
-        
-        function handleWheel(e) {
-            e.preventDefault();
-            if (isAnimating) return;
-            
-            e.deltaY > 0 ? goToNextSlide() : goToPrevSlide();
-        }
-        
-        function startDrag(e) {
-            isDragging = true;
-            dragStartX = e.clientX || e.touches[0].clientX;
-            dragCurrentX = dragStartX;
-            
-            // Prevenir selección de texto durante el drag
-            e.preventDefault();
-        }
-        
-        function handleDrag(e) {
-            if (!isDragging) return;
-            dragCurrentX = e.clientX || e.touches[0].clientX;
-            updateDragEffect();
-        }
-        
-        function handleTouchStart(e) {
-            if (e.touches.length === 1) {
-                startDrag(e);
-            }
-        }
-        
-        function handleTouchMove(e) {
-            if (!isDragging || e.touches.length !== 1) return;
-            e.preventDefault();
-            handleDrag(e);
-        }
-        
-        function endDrag() {
-            if (!isDragging) return;
-            
-            const dragDistance = dragCurrentX - dragStartX;
-            
-            if (Math.abs(dragDistance) > dragThreshold) {
-                dragDistance > 0 ? goToPrevSlide() : goToNextSlide();
-            }
-            
-            isDragging = false;
-            if (elements.coverflowTrack) {
-                elements.coverflowTrack.style.transform = '';
-                elements.coverflowTrack.style.transition = '';
-            }
-        }
-        
-        function updateDragEffect() {
-            if (!isDragging || !elements.coverflowTrack) return;
-            
-            const dragDistance = dragCurrentX - dragStartX;
-            elements.coverflowTrack.style.transform = `translateX(${dragDistance}px)`;
-            elements.coverflowTrack.style.transition = 'none';
-        }
-        
-        function handleKeydown(e) {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-            
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                goToPrevSlide();
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                goToNextSlide();
-            }
-        }
-        
-        // Auto-rotación opcional
-        let autoRotateInterval;
-        function startAutoRotate() {
+        function startAutoScroll() {
             if (config.reduceMotion) return;
             
-            autoRotateInterval = setInterval(() => {
-                goToNextSlide();
+            autoScrollInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateDots();
             }, 5000);
         }
         
-        function stopAutoRotate() {
-            if (autoRotateInterval) {
-                clearInterval(autoRotateInterval);
-                autoRotateInterval = null;
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
             }
         }
         
-        // Pausar auto-rotación en hover/interacción
-        const coverflowContainer = document.querySelector('.coverflow-container');
-        if (coverflowContainer) {
-            coverflowContainer.addEventListener('mouseenter', stopAutoRotate);
-            coverflowContainer.addEventListener('mouseleave', startAutoRotate);
-            coverflowContainer.addEventListener('touchstart', stopAutoRotate);
+        // Event listeners
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                stopAutoScroll();
+                goToSlide(currentIndex - 1);
+                startAutoScroll();
+            });
         }
         
-        // Iniciar auto-rotación
-        startAutoRotate();
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                stopAutoScroll();
+                goToSlide(currentIndex + 1);
+                startAutoScroll();
+            });
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoScroll();
+                goToSlide(index);
+                startAutoScroll();
+            });
+        });
+        
+        // Pausar auto-rotación al hacer hover
+        const galleryCarousel = document.querySelector('.gallery-carousel');
+        if (galleryCarousel) {
+            galleryCarousel.addEventListener('mouseenter', stopAutoScroll);
+            galleryCarousel.addEventListener('mouseleave', startAutoScroll);
+            galleryCarousel.addEventListener('touchstart', stopAutoScroll);
+        }
+        
+        // Iniciar
+        updateDots();
+        startAutoScroll();
         
         // API pública
-        window.coverflowAPI = window.coverflowAPI || {};
-        Object.assign(window.coverflowAPI, {
-            next: goToNextSlide,
-            prev: goToPrevSlide,
+        window.galleryAPI = window.galleryAPI || {};
+        Object.assign(window.galleryAPI, {
+            next: () => goToSlide(currentIndex + 1),
+            prev: () => goToSlide(currentIndex - 1),
             goTo: (index) => goToSlide(index),
             getCurrentIndex: () => currentIndex,
-            startAutoRotate: startAutoRotate,
-            stopAutoRotate: stopAutoRotate
+            startAutoScroll: startAutoScroll,
+            stopAutoScroll: stopAutoScroll
         });
     }
     
@@ -784,11 +617,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Track mockup gallery interactions
-        document.querySelectorAll('.view-full').forEach(link => {
-            link.addEventListener('click', function() {
-                const mockupTitle = this.closest('.mockup-card').querySelector('h3').textContent;
-                console.log(`📊 Mockup Viewed: "${mockupTitle}"`);
+        // Track gallery interactions
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const overlay = this.querySelector('.gallery-overlay h3');
+                if (overlay) {
+                    console.log(`📊 Gallery Item Viewed: "${overlay.textContent}"`);
+                }
             });
         });
     }
@@ -879,162 +714,3 @@ window.closeMobileMenu = function() {
         }
     }, 300);
 };
-document.addEventListener("DOMContentLoaded", () => {
-  const gallery = document.querySelector(".gallery-grid");
-  const items = document.querySelectorAll(".gallery-item");
-  const prev = document.querySelector(".nav-prev");
-  const next = document.querySelector(".nav-next");
-
-  let current = 0;
-
-  function setActive(index) {
-    items.forEach(item => item.classList.remove("is-active"));
-    items[index].classList.add("is-active");
-
-    items[index].scrollIntoView({
-      behavior: "smooth",
-      inline: "center"
-    });
-  }
-
-  setActive(current);
-
-  next.addEventListener("click", () => {
-    current = Math.min(current + 1, items.length - 1);
-    setActive(current);
-  });
-
-  prev.addEventListener("click", () => {
-    current = Math.max(current - 1, 0);
-    setActive(current);
-  });
-
-  gallery.addEventListener("scroll", () => {
-    let closest = 0;
-    let minDistance = Infinity;
-
-    items.forEach((item, index) => {
-      const rect = item.getBoundingClientRect();
-      const distance = Math.abs(
-        rect.left + rect.width / 2 - window.innerWidth / 2
-      );
-
-      if (distance < minDistance) {
-        minDistance = distance;
-        closest = index;
-      }
-    });
-
-    current = closest;
-    items.forEach(item => item.classList.remove("is-active"));
-    items[current].classList.add("is-active");
-  });
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const items = document.querySelectorAll(".gallery-item");
-
-  items.forEach(item => {
-    item.addEventListener("click", () => {
-      expandImage(item.querySelector("img").src, item.querySelector("img").alt);
-    });
-  });
-
-  function expandImage(src, alt) {
-    const overlay = document.createElement("div");
-    overlay.className = "gallery-expanded";
-
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = alt;
-
-    overlay.appendChild(img);
-    document.body.appendChild(overlay);
-
-    requestAnimationFrame(() => {
-      overlay.classList.add("active");
-    });
-
-    overlay.addEventListener("click", () => {
-      overlay.classList.remove("active");
-      setTimeout(() => overlay.remove(), 300);
-    });
-  }
-});
-// ===== GALERÍA APPLE PRO - CARRUSEL INFINITO =====
-function initAppleGallery() {
-  const galleryTrack = document.querySelector('.gallery-track');
-  if (!galleryTrack) return;
-  
-  // Duplicar los items para efecto infinito
-  const items = galleryTrack.querySelectorAll('.gallery-item');
-  const cloneItems = Array.from(items).map(item => item.cloneNode(true));
-  
-  cloneItems.forEach(item => {
-    galleryTrack.appendChild(item);
-  });
-  
-  // Controles
-  const dots = document.querySelectorAll('.gallery-dot');
-  const prevBtn = document.querySelector('.gallery-prev');
-  const nextBtn = document.querySelector('.gallery-next');
-  
-  let currentIndex = 0;
-  const totalItems = items.length;
-  let autoScrollInterval;
-  
-  function updateDots() {
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentIndex);
-    });
-  }
-  
-  function goToSlide(index) {
-    currentIndex = (index + totalItems) % totalItems;
-    updateDots();
-  }
-  
-  function startAutoScroll() {
-    autoScrollInterval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % totalItems;
-      updateDots();
-    }, 5000);
-  }
-  
-  function stopAutoScroll() {
-    if (autoScrollInterval) {
-      clearInterval(autoScrollInterval);
-    }
-  }
-  
-  // Event listeners
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      stopAutoScroll();
-      goToSlide(currentIndex - 1);
-      startAutoScroll();
-    });
-  }
-  
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      stopAutoScroll();
-      goToSlide(currentIndex + 1);
-      startAutoScroll();
-    });
-  }
-  
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      stopAutoScroll();
-      goToSlide(index);
-      startAutoScroll();
-    });
-  });
-  
-  // Pausar al hacer hover
-  galleryTrack.addEventListener('mouseenter', stopAutoScroll);
-  galleryTrack.addEventListener('mouseleave', startAutoScroll);
-  
-  // Iniciar
-  startAutoScroll();
-}
