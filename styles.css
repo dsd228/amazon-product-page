@@ -128,10 +128,20 @@ p {
   align-items: center;
   justify-content: center;
   gap: var(--space-3);
+  color: var(--color-black);
+}
+
+.section-title.light-title {
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .section-title i {
   color: var(--color-primary);
+}
+
+.section-title.light-title i {
+  color: var(--color-primary-light);
 }
 
 .section-subtitle {
@@ -139,6 +149,11 @@ p {
   color: var(--color-gray-600);
   max-width: 600px;
   margin: 0 auto;
+}
+
+.section-subtitle.light-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .text-highlight {
@@ -692,6 +707,10 @@ body.mobile-menu-open .header-fixed {
   font-weight: 800;
   color: var(--color-black);
   margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
 }
 
 .gallery-subtitle {
@@ -1329,7 +1348,7 @@ body.mobile-menu-open .header-fixed {
   }
 }
 
-/* ===== SOBRE MÍ CON BANNER OSCURO Y TEXTO CLARO ===== */
+/* ===== SOBRE MÍ CON BANNER ===== */
 .about-section {
   position: relative;
   min-height: 80vh;
@@ -1337,7 +1356,6 @@ body.mobile-menu-open .header-fixed {
   align-items: center;
   overflow: hidden;
   color: var(--color-white);
-  background: var(--color-black);
 }
 
 .about-banner {
@@ -1349,24 +1367,12 @@ body.mobile-menu-open .header-fixed {
   z-index: 1;
 }
 
-.about-banner::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
-  z-index: 1;
-}
-
 .about-banner-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: left center;
   display: block;
-  opacity: 0.4;
 }
 
 /* CONTENIDO SOBRE EL BANNER */
@@ -1381,7 +1387,6 @@ body.mobile-menu-open .header-fixed {
   margin-left: auto;
   margin-right: 2rem;
   padding: var(--space-6);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .about-content {
@@ -1392,11 +1397,11 @@ body.mobile-menu-open .header-fixed {
 
 /* Texto claro con buen contraste */
 .about-text {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   border-radius: var(--radius-2xl);
   padding: var(--space-5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .about-headline {
@@ -1434,9 +1439,9 @@ body.mobile-menu-open .header-fixed {
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-3);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .highlight-item i {
@@ -1462,11 +1467,11 @@ body.mobile-menu-open .header-fixed {
 
 /* Certificaciones */
 .certifications-section {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   border-radius: var(--radius-2xl);
   padding: var(--space-5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .certifications-title {
@@ -1507,9 +1512,9 @@ body.mobile-menu-open .header-fixed {
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-3);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   text-decoration: none;
   transition: all var(--transition-fast);
   text-align: center;
@@ -1518,7 +1523,7 @@ body.mobile-menu-open .header-fixed {
 .certification-item:hover {
   transform: translateY(-2px);
   border-color: var(--color-primary-light);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .certification-logo {
