@@ -7,7 +7,7 @@
   
   <!-- Estilos principales -->
   <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="blog/blog.css">
+  <link rel="stylesheet" href="blog.css">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +19,270 @@
   
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>DD</text></svg>">
+  
+  <style>
+    /* Estilos inline para colores específicos del blog */
+    :root {
+      --color-primary: #2563eb;
+      --color-primary-dark: #1d4ed8;
+      --color-primary-light: #3b82f6;
+      --color-accent: #f59e0b;
+      --color-dark: #0f172a;
+      --color-dark-light: #1e293b;
+      --color-text-light: #dcdcdc;
+    }
+    
+    /* Header del blog */
+    .blog-header { 
+      background: linear-gradient(135deg, var(--color-dark), var(--color-dark-light)); 
+      color: #fff; 
+      padding: 28px 24px 52px; 
+      position: relative; 
+      overflow: hidden; 
+    }
+    
+    .brand-logo {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    
+    .nav-links a { 
+      color: var(--color-text-light); 
+      font-size: 0.95rem; 
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover { 
+      color: #fff; 
+    }
+    
+    .blog-hero p { 
+      color: var(--color-text-light); 
+      font-size: 1.05rem; 
+      max-width: 780px; 
+      line-height: 1.7; 
+    }
+    
+    .badge { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      padding: 8px 12px; 
+      border-radius: 999px; 
+      background: rgba(255,255,255,0.08); 
+      color: #fff; 
+      font-weight: 600; 
+      margin-bottom: 12px; 
+      font-size: 0.9rem; 
+    }
+    
+    .badge i {
+      color: var(--color-accent);
+    }
+    
+    /* Grid de artículos */
+    .article-card { 
+      background: #fff; 
+      border-radius: 14px; 
+      overflow: hidden; 
+      border: 1px solid #e5e5e5; 
+      display: flex; 
+      flex-direction: column; 
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; 
+      height: 100%;
+    }
+    
+    .article-card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 18px 38px rgba(37, 99, 235, 0.08); 
+      border-color: var(--color-primary-light);
+    }
+    
+    /* Imagen de la card */
+    .card-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .article-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+    
+    /* Placeholder para imágenes que no cargan */
+    .card-image .image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    }
+    
+    .card-body { 
+      padding: 24px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 12px; 
+      flex: 1; 
+    }
+    
+    .article-title { 
+      font-family: "Sora", sans-serif; 
+      font-size: 1.25rem; 
+      color: var(--color-dark); 
+      line-height: 1.4; 
+      font-weight: 700; 
+      margin-bottom: 8px;
+    }
+    
+    .article-card:hover .article-title {
+      color: var(--color-primary);
+    }
+    
+    .article-excerpt {
+      color: #475569; 
+      font-size: 0.95rem; 
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    
+    .article-category {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      transition: all 0.25s ease;
+    }
+    
+    .article-card:hover .article-category {
+      background: var(--color-primary);
+      color: white;
+    }
+    
+    .article-link { 
+      color: var(--color-primary); 
+      font-weight: 600; 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+    
+    .article-link:hover {
+      color: var(--color-primary-dark);
+      gap: 10px;
+    }
+    
+    /* CTA */
+    .blog-cta { 
+      margin-top: 48px; 
+      padding: 32px; 
+      border-radius: 14px; 
+      background: var(--color-dark); 
+      color: #fff; 
+      display: flex; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      gap: 24px; 
+      justify-content: space-between; 
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+    }
+    
+    .cta-text strong {
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    
+    .cta-text p {
+      color: rgba(255,255,255,0.7); 
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .btn-primary { 
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark)); 
+      color: #fff; 
+    }
+    
+    .btn-primary:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25); 
+    }
+    
+    .btn-secondary { 
+      background: transparent; 
+      color: #fff; 
+      border: 2px solid rgba(255,255,255,0.3); 
+    }
+    
+    .btn-secondary:hover { 
+      border-color: #fff; 
+      transform: translateY(-2px); 
+      background: rgba(255,255,255,0.05);
+    }
+    
+    /* Footer */
+    .blog-footer { 
+      text-align: center; 
+      padding: 40px 16px 56px; 
+      color: #64748b; 
+      font-size: 0.95rem; 
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .blog-footer a {
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .blog-cta {
+        padding: 24px;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Header del Blog -->
@@ -37,7 +301,7 @@
       </div>
     </nav>
     <div class="blog-hero">
-      <div class="badge">Blog · UX/UI · Producto · Design to Code</div>
+      <div class="badge"><i class="fas fa-blog"></i> Blog · UX/UI · Producto · Design to Code</div>
       <h1>Ideas accionables para diseño, research y entrega a producción</h1>
       <p>Guías, checklists y patrones que usamos con clientes para mover métricas reales: conversión, retención y velocidad de entrega.</p>
     </div>
@@ -51,7 +315,7 @@
       <!-- Artículos del blog con imágenes -->
       <article class="article-card">
         <div class="card-image">
-          <img src="imagenes/canvavsfigma.jpg" alt="Canva vs Figma 2025" loading="lazy">
+          <img src="canvavsfigma.jpg" alt="Canva vs Figma 2025" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Canva vs Figma</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Canva vs Figma 2025</div>
@@ -60,13 +324,13 @@
             <span class="article-category">Herramientas</span>
             <span>5 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-canva-vs-figma-2025.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-canva-vs-figma-2025.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="article-card">
         <div class="card-image">
-          <img src="blog/imagenes/dashboardanalisis.jpg" alt="Dashboard Design Examples 2024" loading="lazy">
+          <img src="dashboardanalisis.jpg" alt="Dashboard Design Examples 2024" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Dashboard Design</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Dashboard Design Examples 2024</div>
@@ -75,13 +339,13 @@
             <span class="article-category">UI/UX</span>
             <span>7 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-dashboard-design-examples-2024.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-dashboard-design-examples-2024.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="article-card">
         <div class="card-image">
-          <img src="blog/imagenes/appcomida.jpg" alt="Design Food Delivery App" loading="lazy">
+          <img src="appcomida.jpg" alt="Design Food Delivery App" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Food Delivery App</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Design Food Delivery App</div>
@@ -90,13 +354,13 @@
             <span class="article-category">Product Design</span>
             <span>8 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-design-food-delivery-app.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-design-food-delivery-app.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="article-card">
         <div class="card-image">
-          <img src="blog/imagenes/figmamake.jpg" alt="Figma Make" loading="lazy">
+          <img src="figmamake.jpg" alt="Figma Make" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Figma Make</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Figma Make</div>
@@ -105,13 +369,13 @@
             <span class="article-category">Figma</span>
             <span>6 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-figma-make.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-figma-make.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="article-card">
         <div class="card-image">
-          <img src="blog/imagenes/figmahtml.jpg" alt="Figma to HTML Tools" loading="lazy">
+          <img src="figmahtml.jpg" alt="Figma to HTML Tools" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Figma to HTML</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Figma to HTML Tools</div>
@@ -120,13 +384,13 @@
             <span class="article-category">Code</span>
             <span>6 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-figma-to-html-tools.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-figma-to-html-tools.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="article-card">
         <div class="card-image">
-          <img src="blog/imagenes/framer.jpg" alt="Framer Trends" loading="lazy">
+          <img src="framer.jpg" alt="Framer Trends" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Framer Trends</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Framer Trends</div>
@@ -135,13 +399,13 @@
             <span class="article-category">Herramientas</span>
             <span>5 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-framer-trends.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-framer-trends.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="article-card">
         <div class="card-image">
-          <img src="blog/imagenes/7errores.jpg" alt="Grocery UX" loading="lazy">
+          <img src="7errores.jpg" alt="Grocery UX" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Grocery UX</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Grocery UX</div>
@@ -150,13 +414,13 @@
             <span class="article-category">UX Research</span>
             <span>7 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-grocery-ux.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-grocery-ux.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="article-card">
         <div class="card-image">
-          <img src="blog/imagenes/7errores.jpg" alt="Dog Walking UX" loading="lazy">
+          <img src="7errores.jpg" alt="Dog Walking UX" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Dog Walking UX</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Dog Walking UX</div>
@@ -165,13 +429,13 @@
             <span class="article-category">UX Design</span>
             <span>6 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-dog-walking-ux.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-dog-walking-ux.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="article-card">
         <div class="card-image">
-          <img src="blog/imagenes/7errores.jpg" alt="Export Figma to HTML" loading="lazy">
+          <img src="figmahtml.jpg" alt="Export Figma to HTML" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 250\"><rect width=\"400\" height=\"250\" fill=\"%23f1f5f9\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"24\" fill=\"%2394a3b8\" text-anchor=\"middle\" dy=\".3em\">Export Figma</text></svg>'">
         </div>
         <div class="card-body">
           <div class="article-title">Export Figma to HTML</div>
@@ -180,7 +444,7 @@
             <span class="article-category">Figma</span>
             <span>8 min lectura</span>
           </div>
-          <a class="article-link" href="articulos/blog-export-figma-to-html.html">Leer artículo completo →</a>
+          <a class="article-link" href="blog-export-figma-to-html.html">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
         </div>
       </article>
     </div>
@@ -214,6 +478,37 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="blog/blog.js"></script>
+  <script>
+    // Año actual automático
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Smooth scroll para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Efectos hover en cards
+    document.querySelectorAll('.article-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
 </body>
 </html>
