@@ -874,7 +874,7 @@ body.mobile-menu-open .header-fixed {
 
 /* ===== COVERFLOW CON CONTEXTO ===== */
 .coverflow-section {
-  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-secondary) 100%);
   position: relative;
   overflow: hidden;
 }
