@@ -6,11 +6,11 @@ Estilo minimalista con enfoque en conversión
 /* ===== VARIABLES APPLE-STYLE ===== */
 :root {
     /* Paleta minimalista Apple */
-    --color-primary: #007AFF;
-    --color-primary-dark: #0056CC;
-    --color-primary-light: #66B3FF;
+    --color-primary: #C9D521;
+    --color-primary-dark: #E4F316;
+    --color-primary-light: #C9D521;
     --color-secondary: #1D1D1F;
-    --color-accent: #5856D6;
+    --color-accent: #9FA914;
     
     /* Escala de grises Apple */
     --color-white: #FFFFFF;
