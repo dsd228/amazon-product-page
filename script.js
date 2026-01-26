@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initContactForm();
         initAnimations();
         initCoverflow();
+        initAppleGallery();
         initAnalytics();
         
         if (config.debug) console.log('✅ Todos los módulos inicializados');
