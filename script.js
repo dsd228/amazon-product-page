@@ -878,91 +878,54 @@ window.closeMobileMenu = function() {
         }
     }, 300);
 };
-document.addEventListener('DOMContentLoaded', () => {
-  const items = document.querySelectorAll('.gallery-item');
-  const grid = document.querySelector('.gallery-grid');
-  const overlay = document.querySelector('.gallery-overlay');
-  const backBtn = document.querySelector('.back-to-gallery');
-  const counter = document.querySelector('.gallery-counter');
-  const current = document.querySelector('.current-index');
-  const total = document.querySelector('.total-count');
-  const nav = document.querySelector('.gallery-nav');
-  const prev = document.querySelector('.nav-prev');
-  const next = document.querySelector('.nav-next');
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.querySelector(".gallery-grid");
+  const items = document.querySelectorAll(".gallery-item");
+  const prev = document.querySelector(".nav-prev");
+  const next = document.querySelector(".nav-next");
 
-  let index = 1;
-  const totalItems = items.length;
-  total.textContent = totalItems;
+  let current = 0;
 
-  items.forEach(item => {
-    item.addEventListener('click', () => open(item));
+  function setActive(index) {
+    items.forEach(item => item.classList.remove("is-active"));
+    items[index].classList.add("is-active");
+
+    items[index].scrollIntoView({
+      behavior: "smooth",
+      inline: "center"
+    });
+  }
+
+  setActive(current);
+
+  next.addEventListener("click", () => {
+    current = Math.min(current + 1, items.length - 1);
+    setActive(current);
   });
 
-  function open(item) {
-    index = Number(item.dataset.index);
-    current.textContent = index;
+  prev.addEventListener("click", () => {
+    current = Math.max(current - 1, 0);
+    setActive(current);
+  });
 
-    const clone = item.cloneNode(true);
-    clone.classList.add('expanded');
+  gallery.addEventListener("scroll", () => {
+    let closest = 0;
+    let minDistance = Infinity;
 
-    document.body.classList.add('no-scroll');
-    grid.classList.add('hidden');
-    overlay.classList.add('active');
-    backBtn.classList.add('visible');
-    counter.classList.add('visible');
-    nav.classList.add('visible');
+    items.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      const distance = Math.abs(
+        rect.left + rect.width / 2 - window.innerWidth / 2
+      );
 
-    document.querySelector('.gallery-container').appendChild(clone);
-    requestAnimationFrame(() => clone.classList.add('active'));
-  }
+      if (distance < minDistance) {
+        minDistance = distance;
+        closest = index;
+      }
+    });
 
-  function close() {
-    const expanded = document.querySelector('.gallery-item.expanded');
-    if (!expanded) return;
-
-    expanded.classList.remove('active');
-
-    setTimeout(() => {
-      expanded.remove();
-      grid.classList.remove('hidden');
-      overlay.classList.remove('active');
-      backBtn.classList.remove('visible');
-      counter.classList.remove('visible');
-      nav.classList.remove('visible');
-      document.body.classList.remove('no-scroll');
-    }, 300);
-  }
-
-  function navigate(dir) {
-    const expanded = document.querySelector('.gallery-item.expanded img');
-    if (!expanded) return;
-
-    index += dir;
-    if (index < 1) index = totalItems;
-    if (index > totalItems) index = 1;
-
-    current.textContent = index;
-    const newImg = document.querySelector(
-      `.gallery-item[data-index="${index}"] img`
-    );
-
-    expanded.style.opacity = '0';
-    setTimeout(() => {
-      expanded.src = newImg.src;
-      expanded.alt = newImg.alt;
-      expanded.style.opacity = '1';
-    }, 150);
-  }
-
-  backBtn.addEventListener('click', close);
-  overlay.addEventListener('click', close);
-  prev.addEventListener('click', () => navigate(-1));
-  next.addEventListener('click', () => navigate(1));
-
-  document.addEventListener('keydown', e => {
-    if (!document.querySelector('.gallery-item.expanded')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') navigate(-1);
-    if (e.key === 'ArrowRight') navigate(1);
+    current = closest;
+    items.forEach(item => item.classList.remove("is-active"));
+    items[current].classList.add("is-active");
   });
 });
