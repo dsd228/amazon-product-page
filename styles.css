@@ -1119,7 +1119,7 @@ body.mobile-menu-open .header-fixed {
     height: 250px;
   }
   
-  .coverflow-slide.active {
+  .coverflow-slide.active {F
     width: 240px;
     height: 300px;
   }
@@ -1361,12 +1361,15 @@ body.mobile-menu-open .header-fixed {
 }
 
 /* ===== SOBRE MÍ CON BANNER SIN FILTROS ===== */
+/* ===== SOBRE MÍ CON BANNER OSCURO Y TEXTO CLARO ===== */
 .about-section {
   position: relative;
   min-height: 80vh;
   display: flex;
   align-items: center;
   overflow: hidden;
+  color: var(--color-white);
+  background: var(--color-black);
 }
 
 .about-banner {
@@ -1375,7 +1378,18 @@ body.mobile-menu-open .header-fixed {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: 1;
+}
+
+.about-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+  z-index: 1;
 }
 
 .about-banner-img {
@@ -1384,9 +1398,10 @@ body.mobile-menu-open .header-fixed {
   object-fit: cover;
   object-position: left center;
   display: block;
+  opacity: 0.4;
 }
 
-/* SIN OVERLAY - IMAGEN COMPLETA */
+/* CONTENIDO SOBRE EL BANNER */
 .about-section .container {
   position: relative;
   z-index: 2;
@@ -1394,15 +1409,11 @@ body.mobile-menu-open .header-fixed {
 }
 
 .about-grid {
-  background: rgba(255, 255, 255, 0.95); /* Fondo blanco para legibilidad */
-  border-radius: var(--radius-2xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: 2rem;
   padding: var(--space-6);
-  max-width: 600px; /* Ancho más pequeño para que quede a la derecha */
-  margin-left: auto; /* Empuja a la derecha */
-  margin-right: 2rem; /* Espacio desde el borde */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(5px);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .about-content {
@@ -1411,24 +1422,26 @@ body.mobile-menu-open .header-fixed {
   gap: var(--space-6);
 }
 
+/* Texto claro con buen contraste */
 .about-text {
-  background: var(--color-white);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
   border-radius: var(--radius-2xl);
   padding: var(--space-5);
-  border: 1px solid var(--color-gray-200);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-headline {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: var(--space-4);
-  color: var(color-primary-dark);
+  color: var(--color-white);
 }
 
 .about-text p {
   margin-bottom: var(--space-3);
   line-height: 1.7;
-  color: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .about-text p:last-child {
@@ -1436,10 +1449,11 @@ body.mobile-menu-open .header-fixed {
 }
 
 .about-text strong {
-  color: var(--color-black);
+  color: var(--color-primary-light);
   font-weight: 600;
 }
 
+/* Items destacados */
 .about-highlights {
   margin-top: var(--space-5);
   display: flex;
@@ -1452,14 +1466,14 @@ body.mobile-menu-open .header-fixed {
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-3);
-  background: var(--color-gray-50);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--color-gray-200);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .highlight-item i {
   font-size: 1.5rem;
-  color: var(--color-primary);
+  color: var(--color-primary-light);
   margin-top: 2px;
   flex-shrink: 0;
 }
@@ -1467,42 +1481,43 @@ body.mobile-menu-open .header-fixed {
 .highlight-item h4 {
   font-weight: 600;
   margin-bottom: var(--space-1);
-  color: var(--color-black);
+  color: var(--color-white);
   font-size: 1rem;
 }
 
 .highlight-item p {
   font-size: 0.875rem;
-  color: var(--color-gray-600);
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
   line-height: 1.5;
 }
 
-/* Certificaciones optimizadas */
+/* Certificaciones */
 .certifications-section {
-  background: var(--color-white);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
   border-radius: var(--radius-2xl);
   padding: var(--space-5);
-  border: 1px solid var(--color-gray-200);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .certifications-title {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: var(--space-2);
-  color: var(--color-black);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   gap: var(--space-3);
 }
 
 .certifications-title i {
-  color: var(--color-primary);
+  color: var(--color-primary-light);
 }
 
 .certifications-subtitle {
   font-size: 0.875rem;
-  color: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: var(--space-4);
 }
 
@@ -1515,6 +1530,81 @@ body.mobile-menu-open .header-fixed {
 @media (min-width: 768px) {
   .certifications-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.certification-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.certification-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary-light);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.certification-logo {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-light);
+  font-size: 1.5rem;
+  transition: all var(--transition-fast);
+}
+
+.certification-item:hover .certification-logo {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.certification-info h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+  color: var(--color-white);
+  line-height: 1.3;
+}
+
+.certification-info span {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.3;
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+  .about-grid {
+    padding: var(--space-4);
+    margin: 0 var(--space-3);
+    max-width: 100%;
+  }
+  
+  .about-banner-img {
+    object-position: center center;
+  }
+  
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .certifications-grid {
+    grid-template-columns: 1fr;
   }
 }
 
