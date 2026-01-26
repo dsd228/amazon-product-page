@@ -1428,7 +1428,7 @@ body.mobile-menu-open .header-fixed {
 .about-text p {
   margin-bottom: var(--space-3);
   line-height: 1.7;
-  color: var(--color-gray-700);
+  color: var(--color-primary-dark);
 }
 
 .about-text p:last-child {
@@ -1502,7 +1502,7 @@ body.mobile-menu-open .header-fixed {
 
 .certifications-subtitle {
   font-size: 0.875rem;
-  color: var(--color-gray-600);
+  color: var(--color-primary-dark);
   margin-bottom: var(--space-4);
 }
 
